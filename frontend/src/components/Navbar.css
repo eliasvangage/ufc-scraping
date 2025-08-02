@@ -1,0 +1,115 @@
+/* === 🔥 Gladiator Arena Enhanced Navbar === */
+
+.navbar {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 1rem 0;
+  border-bottom: 2px solid #f04e30;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(255, 77, 36, 0.35);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+}
+
+.navbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.logo-text {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffae00;
+  text-decoration: none;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px #ff4e00;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  animation: logoGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes logoGlow {
+  from { text-shadow: 0 0 6px #f04e30; }
+  to   { text-shadow: 0 0 15px #ff7f00; }
+}
+
+.navbar-links {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+}
+
+.dropbtn {
+  background-color: transparent;
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.dropbtn:hover {
+  color: #ff8c00;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #1e1e1e;
+  min-width: 150px;
+  top: 100%;
+  right: 0;
+  border: 1px solid #f04e30;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(255, 77, 36, 0.25);
+  z-index: 1000;
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 0.6rem 1rem;
+  display: block;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.dropdown-content a:hover {
+  background-color: #ff3c00;
+  color: black;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Theme toggle */
+.theme-toggle {
+  background: linear-gradient(45deg, #f04e30, #ff6a4a);
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(255, 60, 0, 0.3);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background: #ff7333;
+  transform: scale(1.05);
+}

@@ -1,0 +1,748 @@
+[
+  {
+    "event_name": "UFC Fight Night: Taira vs. Park",
+    "event_url": "http://ufcstats.com/event-details/f2c934689243fe4e",
+    "date": "Las Vegas, Nevada, USA",
+    "time": "TBD",
+    "venue": "Location: Las Vegas, Nevada, USA",
+    "fights": [
+      {
+        "fighter_red": "Tatsuro Taira",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/4461d7e47375a895",
+        "fighter_blue": "HyunSung Park",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/b671bdf981ad527d",
+        "weight_class": "Flyweight",
+        "bout_order": 1
+      },
+      {
+        "fighter_red": "Mateusz Rebecki",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/849c5d9979df5357",
+        "fighter_blue": "Chris Duncan",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/fd406a32a6fb3a29",
+        "weight_class": "Lightweight",
+        "bout_order": 2
+      },
+      {
+        "fighter_red": "Elves Brener",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/48a9a128784d53d1",
+        "fighter_blue": "Esteban Ribovics",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/323d4ca260dfa0ba",
+        "weight_class": "Lightweight",
+        "bout_order": 3
+      },
+      {
+        "fighter_red": "Karol Rosa",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/351c4ec637380ad5",
+        "fighter_blue": "Nora Cornolle",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/f2b3f4ef3f780168",
+        "weight_class": "Women's Bantamweight",
+        "bout_order": 4
+      },
+      {
+        "fighter_red": "Neil Magny",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/84b3e7d38f2d2ec5",
+        "fighter_blue": "Elizeu Zaleski dos Santos",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/8adcbd525fab8d9b",
+        "weight_class": "Welterweight",
+        "bout_order": 5
+      },
+      {
+        "fighter_red": "Danny Silva",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/d964a59c48381cb6",
+        "fighter_blue": "Kevin Vallejos",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/239d8e5359022f3b",
+        "weight_class": "Featherweight",
+        "bout_order": 6
+      },
+      {
+        "fighter_red": "Rinya Nakamura",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/d8c811df0386d5e8",
+        "fighter_blue": "Nathan Fletcher",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/a2d342ffc83913ed",
+        "weight_class": "Bantamweight",
+        "bout_order": 7
+      },
+      {
+        "fighter_red": "Rodolfo Vieira",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/260e9e0d4954aea6",
+        "fighter_blue": "Tresean Gore",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/147e70aa6cc48cfc",
+        "weight_class": "Middleweight",
+        "bout_order": 8
+      },
+      {
+        "fighter_red": "Nick Klein",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/7eaa5e31c2dd86aa",
+        "fighter_blue": "Andrey Pulyaev",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/22e07d3da1aa3475",
+        "weight_class": "Middleweight",
+        "bout_order": 9
+      },
+      {
+        "fighter_red": "Austin Bashi",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/d3f89fa685bd8420",
+        "fighter_blue": "John Yannis",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/450bcab0968562c4",
+        "weight_class": "Featherweight",
+        "bout_order": 10
+      },
+      {
+        "fighter_red": "Rafael Estevam",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/83455a9d17f57dae",
+        "fighter_blue": "Felipe Bunes",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/53c10176e3bc7416",
+        "weight_class": "Flyweight",
+        "bout_order": 11
+      },
+      {
+        "fighter_red": "Piera Rodriguez",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/e375cb5caf4717b6",
+        "fighter_blue": "Ketlen Souza",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/8bd4200561c77a62",
+        "weight_class": "Women's Strawweight",
+        "bout_order": 12
+      }
+    ]
+  },
+  {
+    "event_name": "UFC Fight Night: Dolidze vs. Hernandez",
+    "event_url": "http://ufcstats.com/event-details/6cd3dfc54f01287f",
+    "date": "Las Vegas, Nevada, USA",
+    "time": "TBD",
+    "venue": "Location: Las Vegas, Nevada, USA",
+    "fights": [
+      {
+        "fighter_red": "Roman Dolidze",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/327d5f279895110d",
+        "fighter_blue": "Anthony Hernandez",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/093e1f5bb73850be",
+        "weight_class": "Middleweight",
+        "bout_order": 1
+      },
+      {
+        "fighter_red": "Alex Perez",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/ab2b4ff41d6ebe0f",
+        "fighter_blue": "Steve Erceg",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/32ab52e5de93092d",
+        "weight_class": "Flyweight",
+        "bout_order": 2
+      },
+      {
+        "fighter_red": "Iasmin Lucindo",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/abcf2cc6efc42031",
+        "fighter_blue": "Angela Hill",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/f0feeb2192937424",
+        "weight_class": "Women's Strawweight",
+        "bout_order": 3
+      },
+      {
+        "fighter_red": "Andre Fili",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/8fd808923cffff82",
+        "fighter_blue": "Christian Rodriguez",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/5ec591b78349ba7e",
+        "weight_class": "Featherweight",
+        "bout_order": 4
+      },
+      {
+        "fighter_red": "Miles Johns",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/46e0d677f91bacc0",
+        "fighter_blue": "Jean Matsumoto",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/ffd3224638c01b57",
+        "weight_class": "Bantamweight",
+        "bout_order": 5
+      },
+      {
+        "fighter_red": "Eryk Anders",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/cad24459b28592ca",
+        "fighter_blue": "Christian Leroy Duncan",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/a93f94c923c3a9cb",
+        "weight_class": "Middleweight",
+        "bout_order": 6
+      },
+      {
+        "fighter_red": "Julius Walker",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/6add18754930182b",
+        "fighter_blue": "Rafael Cerqueira",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/09a4447655fd4b7b",
+        "weight_class": "Light Heavyweight",
+        "bout_order": 7
+      },
+      {
+        "fighter_red": "Elijah Smith",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/7478b7f959ba61f5",
+        "fighter_blue": "Toshiomi Kazama",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/148bb103cfbf123e",
+        "weight_class": "Bantamweight",
+        "bout_order": 8
+      },
+      {
+        "fighter_red": "Joselyne Edwards",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/f9ab66e67240db7b",
+        "fighter_blue": "Priscila Cachoeira",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/b1e5bcaad32a3cac",
+        "weight_class": "Women's Bantamweight",
+        "bout_order": 9
+      },
+      {
+        "fighter_red": "Uros Medic",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/681399317dbf4701",
+        "fighter_blue": "Gilbert Urbina",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/b12fb759e02378de",
+        "weight_class": "Welterweight",
+        "bout_order": 10
+      },
+      {
+        "fighter_red": "Gabriella Fernandes",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/a6eb54ae17a551be",
+        "fighter_blue": "Julija Stoliarenko",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/a78a87d8c2bbb1cb",
+        "weight_class": "Women's Flyweight",
+        "bout_order": 11
+      }
+    ]
+  },
+  {
+    "event_name": "UFC 319: Du Plessis vs. Chimaev",
+    "event_url": "http://ufcstats.com/event-details/421ccfc6ddb17958",
+    "date": "Chicago, Illinois, USA",
+    "time": "TBD",
+    "venue": "Location: Chicago, Illinois, USA",
+    "fights": [
+      {
+        "fighter_red": "Dricus Du Plessis",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/0d7b51c9d2649a6e",
+        "fighter_blue": "Khamzat Chimaev",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/767755fd74662dbf",
+        "weight_class": "Middleweight",
+        "bout_order": 1
+      },
+      {
+        "fighter_red": "Lerone Murphy",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/396fe87b84ac2e1c",
+        "fighter_blue": "Aaron Pico",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/5537efc6e496dd84",
+        "weight_class": "Featherweight",
+        "bout_order": 2
+      },
+      {
+        "fighter_red": "Geoff Neal",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/b997be68943010fc",
+        "fighter_blue": "Carlos Prates",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/7ee0fd831c0fe7c3",
+        "weight_class": "Welterweight",
+        "bout_order": 3
+      },
+      {
+        "fighter_red": "Jared Cannonier",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/13a0275fa13c4d26",
+        "fighter_blue": "Michael Page",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/a67d071163962af8",
+        "weight_class": "Middleweight",
+        "bout_order": 4
+      },
+      {
+        "fighter_red": "Tim Elliott",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/c96d9178c9ed9e62",
+        "fighter_blue": "Kai Asakura",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/d33da8a3d82bdb62",
+        "weight_class": "Flyweight",
+        "bout_order": 5
+      },
+      {
+        "fighter_red": "King Green",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/887961364be5ceb3",
+        "fighter_blue": "Diego Ferreira",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/f53d4f21d1b5f2dc",
+        "weight_class": "Lightweight",
+        "bout_order": 6
+      },
+      {
+        "fighter_red": "Gerald Meerschaert",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/6ac9bc2953c47345",
+        "fighter_blue": "Michal Oleksiejczuk",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/0d65c432720accb9",
+        "weight_class": "Middleweight",
+        "bout_order": 7
+      },
+      {
+        "fighter_red": "Jessica Andrade",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/6a1901c62ab3870f",
+        "fighter_blue": "Loopy Godinez",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/8e5d953bdb9ae5e7",
+        "weight_class": "Women's Strawweight",
+        "bout_order": 8
+      },
+      {
+        "fighter_red": "Chase Hooper",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/971246648e162f0d",
+        "fighter_blue": "Alexander Hernandez",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/262a7d06203657e6",
+        "weight_class": "Lightweight",
+        "bout_order": 9
+      },
+      {
+        "fighter_red": "Edson Barboza",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/64a50dad704d1d49",
+        "fighter_blue": "Drakkar Klose",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/7cbf7c78d3b34218",
+        "weight_class": "Lightweight",
+        "bout_order": 10
+      },
+      {
+        "fighter_red": "Bryan Battle",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/f626118b6da0e020",
+        "fighter_blue": "Nursulton Ruziboev",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/49d2a08964c5eb11",
+        "weight_class": "Middleweight",
+        "bout_order": 11
+      },
+      {
+        "fighter_red": "Karine Silva",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/9d62c2d8ee151f08",
+        "fighter_blue": "JJ Aldrich",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/6fd953151d981979",
+        "weight_class": "Women's Flyweight",
+        "bout_order": 12
+      }
+    ]
+  },
+  {
+    "event_name": "UFC Fight Night: Walker vs. Zhang",
+    "event_url": "http://ufcstats.com/event-details/754968e325d6f60d",
+    "date": "Shanghai, Hebei, China",
+    "time": "TBD",
+    "venue": "Location: Shanghai, Hebei, China",
+    "fights": [
+      {
+        "fighter_red": "Johnny Walker",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/c21f26bbde777573",
+        "fighter_blue": "Zhang Mingyang",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/8a65fd9ba31fd3f7",
+        "weight_class": "Light Heavyweight",
+        "bout_order": 1
+      },
+      {
+        "fighter_red": "Brian Ortega",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/def8166ff24bd237",
+        "fighter_blue": "Aljamain Sterling",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/cb696ebfb6598724",
+        "weight_class": "Featherweight",
+        "bout_order": 2
+      },
+      {
+        "fighter_red": "Sergei Pavlovich",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/f14cf73e51b29254",
+        "fighter_blue": "Waldo Cortes-Acosta",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/fc08099550072fe4",
+        "weight_class": "Heavyweight",
+        "bout_order": 3
+      },
+      {
+        "fighter_red": "Marco Tulio",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/9384e71bca6c409d",
+        "fighter_blue": "Michel Pereira",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/595db60957de51d3",
+        "weight_class": "Middleweight",
+        "bout_order": 4
+      },
+      {
+        "fighter_red": "Uran Satybaldiev",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/02f484417a6fa69d",
+        "fighter_blue": "Diyar Nurgozhay",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/709fadb644ee3f51",
+        "weight_class": "Light Heavyweight",
+        "bout_order": 5
+      },
+      {
+        "fighter_red": "Lone'er Kavanagh",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/bb2c3c3a466224af",
+        "fighter_blue": "Charles Johnson",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/814e5233e2acf2ee",
+        "weight_class": "Flyweight",
+        "bout_order": 6
+      },
+      {
+        "fighter_red": "Sumudaerji",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/3cf18e01cb6cbde3",
+        "fighter_blue": "Kevin Borjas",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/34b96d52db1d26e6",
+        "weight_class": "Flyweight",
+        "bout_order": 7
+      },
+      {
+        "fighter_red": "Song Kenan",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/32490e80ddab1e5a",
+        "fighter_blue": "Kiefer Crosbie",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/4729c93ba705a3bf",
+        "weight_class": "Welterweight",
+        "bout_order": 8
+      },
+      {
+        "fighter_red": "Rongzhu",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/a13d755965a4ec9f",
+        "fighter_blue": "Austin Hubbard",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/d2cd7a69cc55e7ed",
+        "weight_class": "Lightweight",
+        "bout_order": 9
+      },
+      {
+        "fighter_red": "Xiao Long",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/86bace9e4ad85542",
+        "fighter_blue": "SuYoung You",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/a474aade8eb3a8f0",
+        "weight_class": "Bantamweight",
+        "bout_order": 10
+      },
+      {
+        "fighter_red": "Maheshate",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/8c1ca54b5089d199",
+        "fighter_blue": "Gauge Young",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/b2a78df161bd67f9",
+        "weight_class": "Lightweight",
+        "bout_order": 11
+      }
+    ]
+  },
+  {
+    "event_name": "UFC Fight Night: Imavov vs. Borralho",
+    "event_url": "http://ufcstats.com/event-details/6e380a4d73ab4f0e",
+    "date": "Paris, Ile-de-France, France",
+    "time": "TBD",
+    "venue": "Location: Paris, Ile-de-France, France",
+    "fights": [
+      {
+        "fighter_red": "Nassourdine Imavov",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/881bf86d4cba8578",
+        "fighter_blue": "Caio Borralho",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/4126a78111c0855a",
+        "weight_class": "Middleweight",
+        "bout_order": 1
+      },
+      {
+        "fighter_red": "Andreas Gustafsson",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/2caf993f53541fa1",
+        "fighter_blue": "Rinat Fakhretdinov",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/8f765fd5775a8873",
+        "weight_class": "Welterweight",
+        "bout_order": 2
+      },
+      {
+        "fighter_red": "Marcin Tybura",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/c9cf753cfdf77fc2",
+        "fighter_blue": "Ante Delija",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/7d8435c56043b0ae",
+        "weight_class": "Heavyweight",
+        "bout_order": 3
+      },
+      {
+        "fighter_red": "Bolaji Oki",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/4bdedbdeedff7d1d",
+        "fighter_blue": "Mason Jones",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/f6ad6a1e4d600e0d",
+        "weight_class": "Lightweight",
+        "bout_order": 4
+      },
+      {
+        "fighter_red": "Kennedy Freeman",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/63d071997c75e3fd",
+        "fighter_blue": "Yuneisy Duben",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/c3d2b9bcb4cead6b",
+        "weight_class": "Women's Flyweight",
+        "bout_order": 5
+      },
+      {
+        "fighter_red": "Shauna Bannon",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/9c442aaf149ea982",
+        "fighter_blue": "Sam Hughes",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/e94085e821bd81de",
+        "weight_class": "Women's Strawweight",
+        "bout_order": 6
+      },
+      {
+        "fighter_red": "Modestas Bukauskas",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/476fe566d2df676e",
+        "fighter_blue": "Paul Craig",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/eabf206b162b3b83",
+        "weight_class": "Light Heavyweight",
+        "bout_order": 7
+      },
+      {
+        "fighter_red": "Fares Ziam",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/1e4f273069fb9e85",
+        "fighter_blue": "Kaue Fernandes",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/ec13c393d029297d",
+        "weight_class": "Lightweight",
+        "bout_order": 8
+      },
+      {
+        "fighter_red": "William Gomis",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/e1d40e8782d80bc2",
+        "fighter_blue": "Robert Ruchala",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/92aed9d16794f42b",
+        "weight_class": "Featherweight",
+        "bout_order": 9
+      }
+    ]
+  },
+  {
+    "event_name": "UFC Fight Night: Lopes vs. Silva",
+    "event_url": "http://ufcstats.com/event-details/5efaaf313b652dd7",
+    "date": "San Antonio, Texas, USA",
+    "time": "TBD",
+    "venue": "Location: San Antonio, Texas, USA",
+    "fights": [
+      {
+        "fighter_red": "Diego Lopes",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/f166e93d04a8c274",
+        "fighter_blue": "Jean Silva",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/52ef95b5860fb28c",
+        "weight_class": "Featherweight",
+        "bout_order": 1
+      },
+      {
+        "fighter_red": "Jose Daniel Medina",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/baa9be02c3e3e038",
+        "fighter_blue": "Dusko Todorovic",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/866fd7b1a6c90e7f",
+        "weight_class": "Middleweight",
+        "bout_order": 2
+      },
+      {
+        "fighter_red": "Edgar Chairez",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/5ef94841c4bc3f86",
+        "fighter_blue": "Alessandro Costa",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/3fa97913cfd205d3",
+        "weight_class": "Flyweight",
+        "bout_order": 3
+      },
+      {
+        "fighter_red": "Jesus Aguilar",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/c051c2e12d692b8a",
+        "fighter_blue": "Luis Gurule",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/29162be25ebef5f0",
+        "weight_class": "Flyweight",
+        "bout_order": 4
+      },
+      {
+        "fighter_red": "Rafa Garcia",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/e132d47bd9efbbe0",
+        "fighter_blue": "Jared Gordon",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/7026eca45f65377b",
+        "weight_class": "Lightweight",
+        "bout_order": 5
+      },
+      {
+        "fighter_red": "Tatiana Suarez",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/b08012bbe542592a",
+        "fighter_blue": "Amanda Lemos",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/3df5493bb279226f",
+        "weight_class": "Women's Strawweight",
+        "bout_order": 6
+      },
+      {
+        "fighter_red": "Claudio Puelles",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/d747eb273a40a920",
+        "fighter_blue": "Joaquim Silva",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/ae7fe94f117f98cf",
+        "weight_class": "Lightweight",
+        "bout_order": 7
+      },
+      {
+        "fighter_red": "Zachary Reese",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/23dec7c47cb418f8",
+        "fighter_blue": "Sedriques Dumas",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/4e6738062d469256",
+        "weight_class": "Middleweight",
+        "bout_order": 8
+      },
+      {
+        "fighter_red": "Montserrat Rendon",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/60193e707634e560",
+        "fighter_blue": "Alice Pereira",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/81d2c551886bd5a1",
+        "weight_class": "Women's Bantamweight",
+        "bout_order": 9
+      },
+      {
+        "fighter_red": "Raquel Pennington",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/fc169c387b4b465d",
+        "fighter_blue": "Norma Dumont",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/d3f5d33d61cd00c9",
+        "weight_class": "Women's Bantamweight",
+        "bout_order": 10
+      }
+    ]
+  },
+  {
+    "event_name": "UFC Fight Night: Ulberg vs. Reyes",
+    "event_url": "http://ufcstats.com/event-details/ed220e87bef0cc64",
+    "date": "Perth, Western Australia, Australia",
+    "time": "TBD",
+    "venue": "Location: Perth, Western Australia, Australia",
+    "fights": [
+      {
+        "fighter_red": "Carlos Ulberg",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/9014c02eff8b3d62",
+        "fighter_blue": "Dominick Reyes",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/2e19380f34871c6a",
+        "weight_class": "Light Heavyweight",
+        "bout_order": 1
+      },
+      {
+        "fighter_red": "Loma Lookboonmee",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/4e30e4250cb08b61",
+        "fighter_blue": "Alexia Thainara",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/545092d13c67aa49",
+        "weight_class": "Women's Strawweight",
+        "bout_order": 2
+      },
+      {
+        "fighter_red": "Colby Thicknesse",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/ed7d329d7c29428d",
+        "fighter_blue": "Josias Musasa",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/723b64c0e9a8f348",
+        "weight_class": "Bantamweight",
+        "bout_order": 3
+      },
+      {
+        "fighter_red": "Dooho Choi",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/e93b04e308913c2e",
+        "fighter_blue": "Daniel Santos",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/b67d6bacc68d4c92",
+        "weight_class": "Featherweight",
+        "bout_order": 4
+      },
+      {
+        "fighter_red": "Navajo Stirling",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/b4b496ec2197ee3e",
+        "fighter_blue": "Rodolfo Bellato",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/69898645d600abdb",
+        "weight_class": "Light Heavyweight",
+        "bout_order": 5
+      },
+      {
+        "fighter_red": "Michelle Montague",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/ca80d72da81d7224",
+        "fighter_blue": "Luana Carolina",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/528b071cf3da7c56",
+        "weight_class": "Women's Bantamweight",
+        "bout_order": 6
+      }
+    ]
+  },
+  {
+    "event_name": "UFC 320: Ankalaev vs. Pereira 2",
+    "event_url": "http://ufcstats.com/event-details/8944a0f9b2f0ce6d",
+    "date": "Las Vegas, Nevada, USA",
+    "time": "TBD",
+    "venue": "Location: Las Vegas, Nevada, USA",
+    "fights": [
+      {
+        "fighter_red": "Magomed Ankalaev",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/d802174b0c0c1f4e",
+        "fighter_blue": "Alex Pereira",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/e5549c82bfb5582d",
+        "weight_class": "Light Heavyweight",
+        "bout_order": 1
+      },
+      {
+        "fighter_red": "Merab Dvalishvili",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/c03520b5c88ed6b4",
+        "fighter_blue": "Cory Sandhagen",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/65f09bacd3957381",
+        "weight_class": "Bantamweight",
+        "bout_order": 2
+      },
+      {
+        "fighter_red": "Jiri Prochazka",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/009341ed974bad72",
+        "fighter_blue": "Khalil Rountree Jr.",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/749f572d1d3161fb",
+        "weight_class": "Light Heavyweight",
+        "bout_order": 3
+      }
+    ]
+  },
+  {
+    "event_name": "UFC Fight Night",
+    "event_url": "http://ufcstats.com/event-details/38e5d9dcb0fddc42",
+    "date": "Vancouver, British Columbia, Canada",
+    "time": "TBD",
+    "venue": "Location: Vancouver, British Columbia, Canada",
+    "fights": [
+      {
+        "fighter_red": "Manon Fiorot",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/34ff304266360297",
+        "fighter_blue": "Jasmine Jasudavicius",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/a9e260472d321361",
+        "weight_class": "Women's Flyweight",
+        "bout_order": 1
+      },
+      {
+        "fighter_red": "Azamat Bekoev",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/3bc3f60b21cddc6a",
+        "fighter_blue": "Yousri Belgaroui",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/7674b836ce0698a0",
+        "weight_class": "Middleweight",
+        "bout_order": 2
+      }
+    ]
+  },
+  {
+    "event_name": "UFC 321: Aspinall vs. Gane",
+    "event_url": "http://ufcstats.com/event-details/7956f026e2672c47",
+    "date": "Abu Dhabi, Abu Dhabi, United Arab Emirates",
+    "time": "TBD",
+    "venue": "Location: Abu Dhabi, Abu Dhabi, United Arab Emirates",
+    "fights": [
+      {
+        "fighter_red": "Tom Aspinall",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/399afbabc02376b5",
+        "fighter_blue": "Ciryl Gane",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/787bb1f087ccff8a",
+        "weight_class": "Heavyweight",
+        "bout_order": 1
+      },
+      {
+        "fighter_red": "Alexander Volkov",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/279566840aa55bf2",
+        "fighter_blue": "Jailton Almeida",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/41e83a89929d1327",
+        "weight_class": "Heavyweight",
+        "bout_order": 2
+      },
+      {
+        "fighter_red": "Aleksandar Rakic",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/333b9e5c723ac873",
+        "fighter_blue": "Azamat Murzakanov",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/e90a2f22417af68e",
+        "weight_class": "Light Heavyweight",
+        "bout_order": 3
+      },
+      {
+        "fighter_red": "Hamdy Abdelwahab",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/3329d692aea4dc28",
+        "fighter_blue": "Chris Barnett",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/7a5e8c94a86f9895",
+        "weight_class": "Heavyweight",
+        "bout_order": 4
+      },
+      {
+        "fighter_red": "Ikram Aliskerov",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/b07aed698fba8624",
+        "fighter_blue": "JunYong Park",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/285ae0b4a68221f4",
+        "weight_class": "Middleweight",
+        "bout_order": 5
+      },
+      {
+        "fighter_red": "Azat Maksum",
+        "fighter_red_url": "http://ufcstats.com/fighter-details/7f1bf0c255ec8756",
+        "fighter_blue": "Mitch Raposo",
+        "fighter_blue_url": "http://ufcstats.com/fighter-details/0be6776db31d98ec",
+        "weight_class": "Flyweight",
+        "bout_order": 6
+      }
+    ]
+  }
+]

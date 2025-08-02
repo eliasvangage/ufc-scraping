@@ -1,0 +1,201 @@
+.result-card {
+  background: #1f1f1f;
+  color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-top: 1rem;
+  box-shadow: 0 0 10px rgba(240, 78, 48, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.result-card:hover {
+  transform: scale(1.01);
+}
+
+.result-card h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: #f04e30;
+}
+
+.result-card h3 {
+  font-size: 1.1rem;
+  margin-top: 1.2rem;
+  color: #ffb347;
+}
+
+.result-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+}
+
+.result-card li {
+  padding: 4px 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.result-card {
+  margin-top: 1.5rem;
+  background-color: #111;
+  border: 2px solid #ff3c00;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(255, 60, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+body.light-mode .result-card {
+  background-color: #fefefe;
+  color: #111;
+}
+
+.feature-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  color: white;
+}
+
+.feature-table th,
+.feature-table td {
+  padding: 8px 12px;
+  text-align: center;
+  border-bottom: 1px solid #444;
+}
+
+.feature-table th {
+  background-color: #222;
+  color: #f04e30;
+}
+
+.favored-glow {
+  background-color: rgba(255, 94, 0, 0.1);
+  animation: glowFade 1.2s ease-in-out infinite alternate;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+@keyframes glowFade {
+  from {
+    box-shadow: 0 0 5px rgba(255, 94, 0, 0.4);
+  }
+  to {
+    box-shadow: 0 0 10px rgba(255, 94, 0, 0.9);
+  }
+}
+
+.highlight-f1 {
+  background-color: #2929ff20;
+  border-radius: 6px;
+  padding: 2px 6px;
+  font-weight: bold;
+}
+
+.highlight-f2 {
+  background-color: #ff292920;
+  border-radius: 6px;
+  padding: 2px 6px;
+  font-weight: bold;
+}
+
+.rematch-banner {
+  background-color: #ff4d4d;
+  color: white;
+  font-weight: bold;
+  padding: 0.5rem;
+  margin: 1rem 0;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.predicted-winner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+}
+
+.champion-belt {
+  height: 30px;
+  margin-left: 10px;
+  animation: pulseBelt 1.5s infinite ease-in-out;
+}
+
+@keyframes pulseBelt {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+.feature-table {
+  width: 100%;
+  margin-top: 1.5rem;
+  border-collapse: collapse;
+  text-align: center;
+  border-radius: 10px;
+  overflow: hidden;
+  backdrop-filter: blur(4px);
+}
+
+.feature-table th {
+  background: #ff3c00;
+  color: #fff;
+  font-size: 1.1rem;
+  padding: 1rem;
+  text-shadow: 1px 1px 2px #000;
+}
+
+.feature-table td {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 1rem;
+  font-weight: bold;
+  border-top: 1px solid rgba(255, 60, 0, 0.2);
+}
+
+.feature-table tr:nth-child(even) td {
+  background: rgba(20, 20, 20, 0.7);
+}
+
+.favored-name {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: gold;
+}
+
+@keyframes flickerGlow {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0.85; transform: scale(1.1); }
+}
+
+.winner-banner {
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.winner-name {
+  font-size: 2rem;
+  font-weight: bold;
+  color: gold;
+  text-shadow: 0 0 10px #ff8400, 0 0 20px #ff8400;
+  animation: glowPulse 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+  from {
+    text-shadow: 0 0 10px #ff8400;
+  }
+  to {
+    text-shadow: 0 0 25px #ffd700;
+  }
+}
+
+.confidence-text {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #ddd;
+  margin-bottom: 1rem;
+}
+
