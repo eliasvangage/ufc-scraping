@@ -182,14 +182,23 @@ acc[eventId].fights.push({
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
-        <div className="text-center mb-8">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <Shield className="h-10 w-10 text-primary" />
-            <h1 className="text-5xl font-bold bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent">
+        <div className="text-center mb-12">
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <div className="relative">
+              <Shield className="h-12 w-12 text-primary" />
+              <div className="absolute inset-0 h-12 w-12 text-primary/20 animate-pulse scale-110" />
+            </div>
+            <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent tracking-tight">
               ORYEN COMBAT ENGINE
             </h1>
+            <div className="relative">
+              <Shield className="h-12 w-12 text-primary scale-x-[-1]" />
+              <div className="absolute inset-0 h-12 w-12 text-primary/20 animate-pulse scale-110 scale-x-[-1]" />
+            </div>
           </div>
-          <p className="text-muted-foreground text-lg">Advanced machine learning combat outcome predictions</p>
+          <p className="text-lg md:text-xl text-muted-foreground/90 max-w-3xl mx-auto leading-relaxed">
+            Advanced <span className="text-primary font-semibold">machine learning</span> combat outcome predictions with real-time tracking
+          </p>
         </div>
 
         {/* Top Stats */}
@@ -258,42 +267,46 @@ acc[eventId].fights.push({
         {/* Events */}
         <div className="space-y-6">
           {/* Event Navigation */}
-          <div className="flex items-center justify-between bg-gradient-to-r from-card/50 to-muted/30 rounded-lg p-4 border border-border/50">
+          <div className="flex items-center justify-between bg-gradient-to-r from-card/40 via-muted/20 to-card/40 rounded-xl p-6 border border-border/50 shadow-lg">
             <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2">
-                <Calendar className="h-6 w-6 text-primary" />
-                <h2 className="text-xl font-bold">
-                  {showPastEvents ? 'Past Events' : 'Upcoming Events'}
-                </h2>
-                <Badge variant="secondary" className="ml-2">
-                  {displayEvents.length}
-                </Badge>
+              <div className="flex items-center gap-3">
+                <div className="p-3 bg-primary/10 rounded-xl border border-primary/20">
+                  <Calendar className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold bg-gradient-to-r from-foreground to-primary/80 bg-clip-text text-transparent">
+                    {showPastEvents ? 'Past Events' : 'Upcoming Events'}
+                  </h2>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    {displayEvents.length} event{displayEvents.length !== 1 ? 's' : ''} tracked
+                  </p>
+                </div>
               </div>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 p-1 bg-background/60 rounded-lg border border-border/40">
+              {upcomingEvents.length > 0 && (
+                <Button
+                  variant={!showPastEvents ? "default" : "ghost"}
+                  size="sm"
+                  onClick={() => setShowPastEvents(false)}
+                  className={`gap-2 transition-all duration-300 ${!showPastEvents ? 'bg-primary shadow-lg shadow-primary/20' : 'hover:bg-primary/10'}`}
+                >
+                  <Calendar className="h-4 w-4" />
+                  Upcoming
+                  <Badge variant="secondary" className="ml-1 text-xs">{upcomingEvents.length}</Badge>
+                </Button>
+              )}
               {pastEvents.length > 0 && (
                 <Button
-                  variant={showPastEvents ? "default" : "outline"}
+                  variant={showPastEvents ? "default" : "ghost"}
                   size="sm"
                   onClick={() => setShowPastEvents(true)}
-                  className="gap-2"
+                  className={`gap-2 transition-all duration-300 ${showPastEvents ? 'bg-primary shadow-lg shadow-primary/20' : 'hover:bg-primary/10'}`}
                 >
                   <History className="h-4 w-4" />
                   Past Events
-                  <Badge variant="secondary" className="ml-1">{pastEvents.length}</Badge>
-                </Button>
-              )}
-              {upcomingEvents.length > 0 && (
-                <Button
-                  variant={!showPastEvents ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setShowPastEvents(false)}
-                  className="gap-2"
-                >
-                  <Calendar className="h-4 w-4" />
-                  Upcoming Events
-                  <Badge variant="secondary" className="ml-1">{upcomingEvents.length}</Badge>
+                  <Badge variant="secondary" className="ml-1 text-xs">{pastEvents.length}</Badge>
                 </Button>
               )}
             </div>
