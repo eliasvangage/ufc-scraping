@@ -257,7 +257,49 @@ acc[eventId].fights.push({
 
         {/* Events */}
         <div className="space-y-6">
-          {fightData.events.map((event) => {
+          {/* Event Navigation */}
+          <div className="flex items-center justify-between bg-gradient-to-r from-card/50 to-muted/30 rounded-lg p-4 border border-border/50">
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
+                <Calendar className="h-6 w-6 text-primary" />
+                <h2 className="text-xl font-bold">
+                  {showPastEvents ? 'Past Events' : 'Upcoming Events'}
+                </h2>
+                <Badge variant="secondary" className="ml-2">
+                  {displayEvents.length}
+                </Badge>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2">
+              {pastEvents.length > 0 && (
+                <Button
+                  variant={showPastEvents ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setShowPastEvents(true)}
+                  className="gap-2"
+                >
+                  <History className="h-4 w-4" />
+                  Past Events
+                  <Badge variant="secondary" className="ml-1">{pastEvents.length}</Badge>
+                </Button>
+              )}
+              {upcomingEvents.length > 0 && (
+                <Button
+                  variant={!showPastEvents ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setShowPastEvents(false)}
+                  className="gap-2"
+                >
+                  <Calendar className="h-4 w-4" />
+                  Upcoming Events
+                  <Badge variant="secondary" className="ml-1">{upcomingEvents.length}</Badge>
+                </Button>
+              )}
+            </div>
+          </div>
+
+          {displayEvents.map((event) => {
             const isExpanded = expandedEvents.has(event.id);
             const eventAccuracy = event.fights.filter(f => f.actualResult !== null).length > 0 
               ? Math.round((event.fights.filter(f => f.correct === true).length / event.fights.filter(f => f.actualResult !== null).length) * 100)
