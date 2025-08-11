@@ -52,6 +52,7 @@ export default function Index() {
   const [fightData, setFightData] = useState<FightCard | null>(null);
   const [loading, setLoading] = useState(true);
   const [expandedEvents, setExpandedEvents] = useState<Set<string>>(new Set(["current"]));
+  const [showPastEvents, setShowPastEvents] = useState(false);
 
   useEffect(() => {
     fetchFightData();
