@@ -202,7 +202,7 @@ acc[eventId].fights.push({
         </div>
 
         {/* Top Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
           <Card className="bg-gradient-to-br from-primary/20 to-primary/10 border-primary/30 shadow-lg">
             <CardContent className="p-6 text-center">
               <div className="flex items-center justify-center gap-2 mb-2">
