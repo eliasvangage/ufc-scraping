@@ -58,6 +58,7 @@ export function FightPredictor() {
   const [error, setError] = useState<string | null>(null);
   const [usingMockData, setUsingMockData] = useState(false);
   const [upcomingCards, setUpcomingCards] = useState<UpcomingCard[]>([]);
+  const [showPastEvents, setShowPastEvents] = useState(false);
 
   useEffect(() => {
     const loadFighters = async () => {
