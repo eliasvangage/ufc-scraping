@@ -335,16 +335,14 @@ acc[eventId].fights.push({
                       )}
                     </div>
                     <div className="flex items-center gap-4">
-                      <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full 
-  bg-orange-500/10 border border-orange-500/30 text-orange-300 font-semibold tracking-wide">
-  <Calendar className="h-4 w-4" />
-  {new Date(event.date).toLocaleDateString("en-US", {
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-    year: "numeric"
-  })}
-</span>
+                      <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full font-semibold tracking-wide ${
+                        event.status === "upcoming"
+                          ? "bg-orange-500/10 border border-orange-500/30 text-orange-300"
+                          : "bg-slate-500/10 border border-slate-500/30 text-slate-300"
+                      }`}>
+                        <Calendar className="h-4 w-4" />
+                        {formatEventDate(event.date)}
+                      </span>
 
                       <div className="flex items-center gap-2">
                         <Badge variant="outline" className="text-slate-300">
