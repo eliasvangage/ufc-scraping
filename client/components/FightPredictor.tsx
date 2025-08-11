@@ -157,12 +157,12 @@ export function FightPredictor() {
               <div className="flex items-center justify-center gap-4 mb-6">
                 <Flame className="h-12 w-12 text-primary animate-pulse" />
                 <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-foreground via-primary to-primary/70 bg-clip-text text-transparent">
-                  UFC ORACLE
+                  ORYEN ORACLE
                 </h1>
                 <Flame className="h-12 w-12 text-primary animate-pulse scale-x-[-1]" />
               </div>
               <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
-                Harness the power of machine learning to predict UFC fight outcomes
+                Harness the power of machine learning to predict combat fight outcomes
               </p>
             </div>
 
@@ -226,7 +226,7 @@ export function FightPredictor() {
               <Calendar className="h-8 w-8 text-primary" />
               OCTAGON SCHEDULE
             </h2>
-            <p className="text-muted-foreground text-lg">Upcoming UFC events in the octagon</p>
+            <p className="text-muted-foreground text-lg">Upcoming combat events in the arena</p>
             <div className="mt-2 flex items-center justify-center gap-2">
               <div className="h-1 w-16 bg-gradient-to-r from-transparent via-primary to-transparent" />
               <Flame className="h-4 w-4 text-primary animate-pulse" />
