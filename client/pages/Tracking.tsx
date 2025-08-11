@@ -327,7 +327,7 @@ acc[eventId].fights.push({
               : 0;
             
             return (
-              <Card key={event.id} className="bg-gradient-to-br from-card to-muted/30 border-border shadow-xl">
+              <Card key={event.id} className="bg-gradient-to-br from-card to-muted/30 border-border shadow-xl hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 hover:scale-[1.01] animate-in fade-in slide-in-from-bottom-4">
                 <CardHeader 
                   className="cursor-pointer hover:bg-slate-700/30 transition-colors"
                   onClick={() => toggleEventExpansion(event.id)}
