@@ -18,8 +18,12 @@ import {
   BarChart3,
   Activity,
   Percent,
-  Users
+  Users,
+  ChevronLeft,
+  ChevronRight,
+  History
 } from "lucide-react";
+import { isEventPast, sortEventsByDate, formatEventDate } from "@/lib/dateUtils";
 
 interface Fight {
   fighter1: string;
