@@ -239,6 +239,40 @@ export function FightPredictor() {
             </div>
           </div>
 
+          {/* Event Navigation Controls */}
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-4">
+              <h3 className="text-2xl font-bold">
+                {showPastEvents ? 'Past Events' : 'Upcoming Events'}
+              </h3>
+            </div>
+
+            <div className="flex items-center gap-2">
+              {upcomingCards.filter(event => !isEventPast(event.date)).length > 0 && (
+                <Button
+                  variant={!showPastEvents ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setShowPastEvents(false)}
+                  className="gap-2"
+                >
+                  <Calendar className="h-4 w-4" />
+                  Upcoming
+                </Button>
+              )}
+              {upcomingCards.filter(event => isEventPast(event.date)).length > 0 && (
+                <Button
+                  variant={showPastEvents ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setShowPastEvents(true)}
+                  className="gap-2"
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                  Past Events
+                </Button>
+              )}
+            </div>
+          </div>
+
           {/* Enhanced Event Cards Grid */}
           <div className="relative">
             <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
@@ -246,9 +280,11 @@ export function FightPredictor() {
 
             <div className="overflow-x-auto custom-scrollbar">
               <div className="flex gap-6 pb-6 px-2 min-w-max">
-                {upcomingCards.map((event, idx) => {
+                {upcomingCards
+                  .filter(event => showPastEvents ? isEventPast(event.date) : !isEventPast(event.date))
+                  .map((event, idx) => {
                   const mainEvent = event.fights[0];
-                  const isNextEvent = idx === 0;
+                  const isNextEvent = idx === 0 && !showPastEvents;
 
                   return (
                     <Card
