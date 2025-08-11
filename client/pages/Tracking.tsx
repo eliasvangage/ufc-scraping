@@ -75,12 +75,13 @@ export default function Index() {
     // Transform raw logs into expected FightCard format
     const groupedByEvent = data.reduce((acc: any, fight: any) => {
       const eventId = fight.event || "Unknown Event";
+      const eventDate = fight.date || new Date().toISOString();
       if (!acc[eventId]) {
   acc[eventId] = {
     id: eventId,
     title: eventId,
-    date: fight.date || new Date().toISOString(), 
-    status: "upcoming",
+    date: eventDate,
+    status: isEventPast(eventDate) ? "completed" : "upcoming",
     fights: [],
   };
 }
