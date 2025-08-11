@@ -28,6 +28,7 @@ import {
 import { apiService, type PredictionResponse } from "@/services/api";
 import { FighterSearch } from "./FighterSearch";
 import { FightCard } from "./FightCard";
+import { isEventPast, sortEventsByDate, formatEventDate } from "@/lib/dateUtils";
 
 interface UpcomingFight {
   fighter_red: string;
