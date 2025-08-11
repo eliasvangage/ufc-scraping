@@ -303,13 +303,19 @@ export function FightPredictor() {
                     >
                       <CardHeader className="pb-4">
                         <div className="flex items-center justify-between mb-3">
-                          {isNextEvent && (
+                          {isNextEvent && !showPastEvents && (
                             <Badge className="bg-gradient-to-r from-red-500 to-red-600 text-white font-bold animate-pulse">
                               <Flame className="h-3 w-3 mr-1" />
                               NEXT EVENT
                             </Badge>
                           )}
-                          {!isNextEvent && (
+                          {showPastEvents && (
+                            <Badge variant="outline" className="text-xs border-slate-500/30 text-slate-400">
+                              <History className="h-3 w-3 mr-1" />
+                              Past Event
+                            </Badge>
+                          )}
+                          {!isNextEvent && !showPastEvents && (
                             <Badge variant="outline" className="text-xs border-primary/30">
                               🔥 Main Event
                             </Badge>
