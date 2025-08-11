@@ -178,10 +178,10 @@ acc[eventId].fights.push({
           <div className="flex items-center justify-center gap-3 mb-4">
             <Shield className="h-10 w-10 text-primary" />
             <h1 className="text-5xl font-bold bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent">
-              UFC AI PREDICTIONS
+              ORYEN COMBAT ENGINE
             </h1>
           </div>
-          <p className="text-muted-foreground text-lg">Advanced machine learning fight outcome predictions</p>
+          <p className="text-muted-foreground text-lg">Advanced machine learning combat outcome predictions</p>
         </div>
 
         {/* Top Stats */}
