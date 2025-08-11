@@ -6,13 +6,15 @@ import { createServer } from "./server";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   server: {
-  host: "localhost",       // Can also use "::"
-  port: 48752,             // ✅ Required for Builder.io
+  host: "localhost",
+  port: 5173,
+  strictPort: true,   // <-- don’t auto-switch
   fs: {
     allow: ["./client", "./shared"],
     deny: [".env", ".env.*", "*.{crt,pem}", "**/.git/**", "server/**"],
   },
 },
+
 
 
   build: {
