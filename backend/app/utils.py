@@ -22,12 +22,28 @@ feature_names = pd.read_csv(os.path.join(model_path, "feature_list.csv"))['featu
 # === Load Fighter Data ===
 fighter_data = json.load(open(os.path.join(os.path.dirname(__file__), "..", "data", "ufc_fighters.json"), encoding="utf-8"))
 
+def parse_height(height_str):
+    match = re.match(r"(\d+)'[ ]?(\d+)?", height_str)
+    if not match:
+        return None
+    feet = int(match.group(1))
+    inches = int(match.group(2)) if match.group(2) else 0
+    return round(feet + inches / 12, 3)  # height in feet
+
+def parse_reach(reach_str):
+    try:
+        return float(reach_str.replace('"', '').strip())  # inches
+    except:
+        return None
+
 fighters_df = pd.DataFrame([
     {
         "name": f["name"],
+        "nickname": f.get("nickname", ""),
+        "dob": f.get("dob", None),    
         "weight": float(f["weight"].replace(" lbs.", "")) if "lbs" in f["weight"] else None,
-        "height": float(f["height"].replace("\"", "").replace("' ", ".")) * 2.54 if "'" in f["height"] else None,
-        "reach": float(f["reach"].replace("\"", "")) * 2.54 if f["reach"] and "\"" in f["reach"] else None,
+        "height": parse_height(f["height"]),
+        "reach": parse_reach(f["reach"]),
         "SLpM": float(f["stats"].get("SLpM", "0")),
         "SApM": float(f["stats"].get("SApM", "0")),
         "TD Avg.": float(f["stats"].get("TD Avg.", "0")),
@@ -35,7 +51,8 @@ fighters_df = pd.DataFrame([
         "Str. Acc.": float(f["stats"].get("Str. Acc.", "0%").replace("%", "")),
         "Str. Def": float(f["stats"].get("Str. Def", "0%").replace("%", "")),
         "fight_history": f.get("fight_history", []),
-        "is_champion": f.get("is_champion", False)
+        "is_champion": f.get("is_champion", False),
+        "record": f.get("record", "0-0-0")
     }
     for f in fighter_data
 ])
@@ -49,9 +66,23 @@ def get_all_fighters():
 def opponent_strength(opp_name):
     opp = fighters_df[fighters_df["name_clean"] == opp_name.lower().strip()]
     if opp.empty:
-        return 0.5
+        return 0.5  # Neutral if no data
+    
     row = opp.iloc[0]
-    return (row["TD Def."] + row["Str. Def"]) / 200
+    
+    # Defensive skill score (existing metric)
+    def_score = (row["TD Def."] + row["Str. Def"]) / 200
+    
+    # UFC record score
+    wins = row.get("ufc_wins", 0)
+    losses = row.get("ufc_losses", 0)
+    draws = row.get("ufc_draws", 0)
+    total_fights = wins + losses + draws
+    record_score = wins / total_fights if total_fights > 0 else 0.5
+    
+    # Weighted combination
+    # Adjust weights if you want record to have more/less influence
+    return round(0.6 * def_score + 0.4 * record_score, 4)
 
 def fight_recency_weight(fight):
     date_str = fight.get("date")
@@ -61,37 +92,77 @@ def fight_recency_weight(fight):
     months_ago = (datetime.now() - fight_date).days / 30.0
     return max(0.0, 1 - months_ago / 24.0)
 
+def is_debut(fighter: dict) -> bool:
+    return (
+        len(fighter.get("fight_history", [])) == 0 or
+        all(stat in ["0", "0%", "0.0", None, "--"] for stat in [
+            fighter.get("stats", {}).get("SLpM"),
+            fighter.get("stats", {}).get("Str. Acc."),
+            fighter.get("stats", {}).get("SApM"),
+            fighter.get("stats", {}).get("Str. Def"),
+            fighter.get("stats", {}).get("TD Avg."),
+            fighter.get("stats", {}).get("TD Def.")
+        ])
+    )
+
 def recent_form_score(fights, limit=5):
-    results = []
-    weights = []
-    for f in fights:
-        r = f.get("result", "").lower()
-        if r in {"nc", "draw"}:
-            continue
-        result_val = 1 if r == "win" else -1
+    """
+    Returns a recency-weighted form score between -1 and +1.
+    Win always improves score, loss always decreases score.
+    Does not normalize in a way that erases head-to-head results.
+    """
+    if not fights:
+        return 0.0
+
+    score = 0.0
+    total_weight = 0.0
+
+    for f in fights[:limit]:
+        r = safe_result(f)
         weight = fight_recency_weight(f)
-        results.append(result_val * weight)
-        weights.append(weight)
-        if len(results) == limit:
-            break
-    return round(sum(results) / sum(weights), 4) if weights else 0.0
+
+        if r == "win":
+            score += 1.0 * weight
+        elif r == "loss":
+            score -= 1.0 * weight
+        # draws and NC count as 0, but still add to total weight to prevent bias
+        total_weight += weight
+
+    if total_weight == 0:
+        return 0.0
+
+    # scale to roughly -1 to +1 range
+    return round(score / total_weight, 4)
+
 
 def win_streak_score(fights, limit=5):
+    """
+    Measures strength of current win streak with recency weighting.
+    Breaks streak on first loss.
+    """
+    if not fights:
+        return 0.0
+
     score = 0.0
-    count = 0
-    for f in fights:
-        r = f.get("result", "").lower()
+    total_weight = 0.0
+
+    for f in fights[:limit]:
+        r = safe_result(f)
         if r == "win":
             weight = fight_recency_weight(f)
             score += opponent_strength(f.get("opponent", "")) * weight
-            count += weight
+            total_weight += weight
         elif r in {"nc", "draw"}:
             continue
         else:
-            break
-        if count >= limit:
-            break
-    return score / limit if limit else 0.0
+            break  # streak broken
+
+    if total_weight == 0:
+        return 0.0
+
+    # normalize by limit so 5 recent wins = ~1.0 max
+    return round(score / limit, 4)
+
 
 def avg_opponent_strength(fights, limit=5):
     if not fights:
@@ -136,14 +207,60 @@ def get_stat_favors(f1, f2):
         result.append({"stat": label, "favors": favored})
     return result
 
+def safe_result(fight):
+    result = fight.get("result", "")
+    return result.lower() if isinstance(result, str) else ""
+
+def get_finish_percentages(fights):
+    if not fights:
+        return {"ko_pct": 0.0, "dec_pct": 0.0, "sub_pct": 0.0}
+
+    wins = [f for f in fights if f.get("result", "").lower() == "win"]
+    total_wins = len(wins)
+    if total_wins == 0:
+        return {"ko_pct": 0.0, "dec_pct": 0.0, "sub_pct": 0.0}
+
+    ko_wins = sum(1 for f in wins if "ko" in f.get("method", "").lower() or "tko" in f.get("method", "").lower())
+    sub_wins = sum(1 for f in wins if "sub" in f.get("method", "").lower())
+    dec_wins = sum(1 for f in wins if "dec" in f.get("method", "").lower())
+
+    return {
+        "ko_pct": round((ko_wins / total_wins) * 100, 1),
+        "dec_pct": round((dec_wins / total_wins) * 100, 1),
+        "sub_pct": round((sub_wins / total_wins) * 100, 1)
+    }
+
+def calculate_age(dob_str):
+    """Calculate age in years from DOB string like 'Jun 27, 1984'."""
+    if not dob_str:
+        return None
+    try:
+        dob = datetime.strptime(dob_str, "%b %d, %Y")
+        today = datetime.today()
+        age = today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day))
+        return age
+    except Exception:
+        return None
+
+
 def get_fighter_stats(name):
     row = fighters_df[fighters_df["name_clean"] == name.lower().strip()]
     if row.empty:
         return None
     row = row.iloc[0]
-    ufc_fights = [f for f in row["fight_history"] if "UFC" in f.get("event", "")]
+    all_fights = row["fight_history"] or []
+    ufc_fights = [f for f in all_fights if "UFC" in f.get("event", "")]
+
+    # UFC-only record
+    ufc_wins = sum(1 for f in ufc_fights if f.get("result", "").lower() == "win")
+    ufc_losses = sum(1 for f in ufc_fights if f.get("result", "").lower() == "loss")
+    ufc_draws = sum(1 for f in ufc_fights if f.get("result", "").lower() in {"draw", "nc"})
+
+    finish_pcts = get_finish_percentages(ufc_fights)
+
     return {
         "name": row["name"],
+        "nickname": row.get("nickname", ""),  # ← adds nickname
         "weight": row["weight"],
         "height": row["height"],
         "reach": row["reach"],
@@ -159,25 +276,72 @@ def get_fighter_stats(name):
         "avg_opp_strength": avg_opponent_strength(ufc_fights),
         "last_results": get_last_results(ufc_fights),
         "is_champion": row.get("is_champion", False),
+        "record": row.get("record", "0-0-0"), 
+        "ufc_wins": ufc_wins,
+        "ufc_losses": ufc_losses,
+        "ufc_draws": ufc_draws,
+        "ko_pct": finish_pcts["ko_pct"],
+        "sub_pct": finish_pcts["sub_pct"],
+        "dec_pct": finish_pcts["dec_pct"],
+         "age": calculate_age(row.get("dob"))               # ← adds age
     }
+
 
 def safe_log(x, base=10):
     return np.log1p(x) / np.log(base)
 
 def build_feature_vector(f1, f2):
+    # Use safe TD_Def if fighter has < 4 UFC fights
+    td_def_1 = f1["TD Def."] if len(f1["fight_history"]) >= 4 else 50.0
+    td_def_2 = f2["TD Def."] if len(f2["fight_history"]) >= 4 else 50.0
+
+    # Compute TD_SApM_combo safely
+    td_sapm_combo = (f2["SApM"] - f1["SApM"]) * (td_def_1 - td_def_2) / 100
+
     return pd.DataFrame([{k: v for k, v in {
         "SLpM_diff": 0.5 * (f1["SLpM"] - f2["SLpM"]),
-        "SApM_diff": f2["SApM"] - f1["SApM"],
+        "SApM_diff": f1["SApM"] - f2["SApM"],
         "TD_Avg_diff": f1["TD Avg."] - f2["TD Avg."],
-        "TD_Def_diff": 0.6 * (f1["TD Def."] - f2["TD Def."]),
+        "TD_Def_diff": 0.3 * (f1["TD Def."] - f2["TD Def."]),
         "Str_Acc_diff": f1["Str. Acc."] - f2["Str. Acc."],
         "Str_Def_diff": 0.5 * (f1["Str. Def"] - f2["Str. Def"]),
         "Height_diff": 0.25 * (f1["height"] - f2["height"]),
         "Reach_diff": 0.25 * (f1["reach"] - f2["reach"]),
         "Recent_form_score_diff": f1["recent_form_score"] - f2["recent_form_score"],
         "Win_streak_score_diff": 0.4 * (f1["win_streak_score"] - f2["win_streak_score"]),
-        "Avg_opp_strength_diff": f1["avg_opp_strength"] - f2["avg_opp_strength"]
+        "Avg_opp_strength_diff": f1["avg_opp_strength"] - f2["avg_opp_strength"],
+        "TD_SApM_combo": td_sapm_combo,
     }.items() if k in feature_names}])[feature_names]
+
+def get_opponent_ufc_record(opp_name):
+    """Return opponent's UFC record as (wins, losses, draws)."""
+    if not opp_name:
+        return (0, 0, 0)
+
+    opp_clean = opp_name.lower().strip()
+
+    # Try to match in fighters_df
+    opp_row = fighters_df[fighters_df["name_clean"] == opp_clean]
+    if not opp_row.empty:
+        row = opp_row.iloc[0]
+        wins = int(row.get("ufc_wins", 0) or 0)
+        losses = int(row.get("ufc_losses", 0) or 0)
+        draws = int(row.get("ufc_draws", 0) or 0)
+        # If those values are already populated, return them
+        if wins + losses + draws > 0:
+            return (wins, losses, draws)
+
+        # Otherwise, reconstruct from fight history
+        fights = row.get("fight_history", [])
+        ufc_fights = [f for f in fights if "UFC" in f.get("event", "")]
+        wins = sum(1 for f in ufc_fights if f.get("result", "").lower() == "win")
+        losses = sum(1 for f in ufc_fights if f.get("result", "").lower() == "loss")
+        draws = sum(1 for f in ufc_fights if f.get("result", "").lower() in {"draw", "nc"})
+        return (wins, losses, draws)
+
+    # Opponent not in DB — no info
+    return (0, 0, 0)
+
 
 def is_rematch(f1, f2):
     f1_name = f1["name"].lower().strip()
@@ -190,7 +354,34 @@ def is_rematch(f1, f2):
             return True
     return False
 
+def recent_rematch_winner(f1, f2, max_fights_ago=2):
+    """
+    Returns winner name if f1 or f2 won clearly in last 1-2 fights against each other.
+    """
+    f1_name = f1["name"].lower()
+    f2_name = f2["name"].lower()
+
+    for i, fight in enumerate(f1.get("fight_history", [])[:max_fights_ago]):
+        opp = fight.get("opponent", "").lower()
+        if opp == f2_name and fight.get("result", "").lower() == "win":
+            method = fight.get("method", "").lower()
+            if any(m in method for m in ["ko", "tko", "submission", "unanimous"]):
+                return f1["name"]
+
+    for i, fight in enumerate(f2.get("fight_history", [])[:max_fights_ago]):
+        opp = fight.get("opponent", "").lower()
+        if opp == f1_name and fight.get("result", "").lower() == "win":
+            method = fight.get("method", "").lower()
+            if any(m in method for m in ["ko", "tko", "submission", "unanimous"]):
+                return f2["name"]
+
+    return None
+
+
 def predict_match(f1_input, f2_input):
+
+    print(f"ALPHA ORDER: {f1_input['name']} (f1) vs {f2_input['name']} (f2)")
+    
     # === Enforce deterministic order: alphabetical by name ===
     f1_name = f1_input["name"].strip().lower()
     f2_name = f2_input["name"].strip().lower()
@@ -199,6 +390,21 @@ def predict_match(f1_input, f2_input):
     if f1_name > f2_name:
         f1_input, f2_input = f2_input, f1_input
         reverse = True
+
+    # === Debug: Show fighter stats before feature calculation ===
+    print(f"\n🔴 RED CORNER: {f1_input['name']}")
+    for k, v in f1_input.items():
+        if isinstance(v, (int, float)) and k in ["SLpM", "SApM", "TD Avg.", "TD Def.", "Str. Acc.", "Str. Def"]:
+            print(f"  {k}: {v}")
+
+    print(f"\n🔵 BLUE CORNER: {f2_input['name']}")
+    for k, v in f2_input.items():
+        if isinstance(v, (int, float)) and k in ["SLpM", "SApM", "TD Avg.", "TD Def.", "Str. Acc.", "Str. Def"]:
+            print(f"  {k}: {v}")
+
+    sa_diff = f1_input["SApM"] - f2_input["SApM"]
+    print(f"[SApM] {f1_input['name']}: {f1_input['SApM']} | {f2_input['name']}: {f2_input['SApM']} → Diff: {sa_diff:.3f}")
+
 
     # === Build features as f1 - f2 ===
     X = build_feature_vector(f1_input, f2_input)
@@ -210,21 +416,36 @@ def predict_match(f1_input, f2_input):
     if reverse:
         raw_proba = 1 - raw_proba
         f1_input, f2_input = f2_input, f1_input
+        # rebuild X for debug so stats match displayed order
+        X = build_feature_vector(f1_input, f2_input)
+        X_scaled = scaler.transform(X)
 
-    pred_f1 = raw_proba >= 0.5
-    true_predicted = "f1" if pred_f1 else "f2"
-    winner = f1_input["name"] if pred_f1 else f2_input["name"]
+    # === Confidence normalization helper ===
+    def normalize_confidence(p: float, low=50.0, high=68.0) -> float:
+        # Clamp more gently to avoid extreme confidence
+        p = max(0.01, min(p, 0.99))
+        # Symmetric scaling around 0.5
+        scaled = low + abs(p - 0.5) * 2 * (high - low)
+        return round(scaled, 2)
 
-    # === Confidence Normalization ===
-    def normalize_confidence(p, low=50.0, high=85.0):
-        scaled = low + (p - 0.5) * (high - low) / 0.5
-        return round(min(max(scaled, low), high), 2)
 
-    base_confidence = normalize_confidence(max(raw_proba, 1 - raw_proba))
+    # Store the unmodified raw_proba for boosting
+    boosted_proba = raw_proba
+
+    # Normalize based on true raw (not max symmetrical)
+    base_confidence = normalize_confidence(raw_proba)
+
 
     # === Stat Favors ===
     stat_favors = get_stat_favors(f1_input, f2_input)
-    stat_boost = 0.5 * sum(1 for s in stat_favors if s["favors"] == winner) if APPLY_STAT_DOMINANCE_BONUS else 0.0
+    if APPLY_STAT_DOMINANCE_BONUS:
+        initial_winner = f1_input["name"] if boosted_proba >= 0.5 else f2_input["name"]
+        winner_count = sum(1 for s in stat_favors if s["favors"] == initial_winner)
+        loser_count = sum(1 for s in stat_favors if s["favors"] not in [initial_winner, "Even"])
+        net_advantage = winner_count - loser_count
+        stat_boost = net_advantage * 0.5
+    else:
+        stat_boost = 0.0
 
     # === Form & Streak Boosts ===
     recent_diff = f1_input["recent_form_score"] - f2_input["recent_form_score"]
@@ -232,43 +453,146 @@ def predict_match(f1_input, f2_input):
 
     form_boost = 0.0
     if APPLY_FORM_BOOST:
-        if winner == f1_input["name"] and recent_diff > 0:
-            form_boost = abs(recent_diff) * 5
-        elif winner == f2_input["name"] and recent_diff < 0:
-            form_boost = abs(recent_diff) * 5
+        form_boost = abs(recent_diff) * 6
+        if (boosted_proba >= 0.5 and recent_diff < 0) or (boosted_proba < 0.5 and recent_diff > 0):
+            form_boost *= -1
 
     streak_boost = 0.0
     if APPLY_STREAK_BOOST:
-        if winner == f1_input["name"] and streak_diff > 0:
-            streak_boost = abs(streak_diff) * 3
-        elif winner == f2_input["name"] and streak_diff < 0:
-            streak_boost = abs(streak_diff) * 3
+        streak_boost = abs(streak_diff) * 12
+        if (boosted_proba >= 0.5 and streak_diff < 0) or (boosted_proba < 0.5 and streak_diff > 0):
+            streak_boost *= -1
 
-    # === Final Confidence ===
-    confidence = base_confidence + stat_boost + form_boost + streak_boost
-    confidence = round(min(confidence, 50.0 + MAX_BOOST, 85.0), 2)
+    # === Convert boosts from confidence points → probability space ===
+        # === Convert boosts from confidence points → probability space ===
+    def conf_boost_to_prob(boost_pts, low=50.0, high=85.0):
+        scale = 0.5 / (high - low)  # inverse of normalize_confidence scaling
+        return boost_pts * scale
 
+    # === Disable boosts if either fighter has < 4 fights
+    min_fight_count = 4
+    if len(f1_input["fight_history"]) < min_fight_count or len(f2_input["fight_history"]) < min_fight_count:
+        stat_boost = 0.0
+        form_boost = 0.0
+        streak_boost = 0.0
+
+    boosted_proba += conf_boost_to_prob(stat_boost)
+    boosted_proba += conf_boost_to_prob(form_boost)
+    boosted_proba += conf_boost_to_prob(streak_boost)
+
+
+    # Clamp boosted probability
+    boosted_proba = min(max(boosted_proba, 0.0), 1.0)
+
+    # === Final Winner & Confidence after boosts ===
+    winner = f1_input["name"] if boosted_proba >= 0.5 else f2_input["name"]
+    confidence = normalize_confidence(max(boosted_proba, 1 - boosted_proba))
+
+    # === Rematch Info ===
     # === Rematch Info ===
     rematch = is_rematch(f1_input, f2_input)
 
     # === Debug Logging ===
     if DEBUG_LOGGING:
+        def combined_ufc_record(fighter):
+            total_wins = total_losses = total_draws = 0
+            for fight in fighter["fight_history"]:
+                opp_w, opp_l, opp_d = get_opponent_ufc_record(fight.get("opponent"))
+                total_wins += opp_w
+                total_losses += opp_l
+                total_draws += opp_d
+            return total_wins, total_losses, total_draws
+
+        f1_opp_w, f1_opp_l, f1_opp_d = combined_ufc_record(f1_input)
+        f2_opp_w, f2_opp_l, f2_opp_d = combined_ufc_record(f2_input)
+
+        def win_pct(w, l, d):
+            total = w + l
+            return (w / total) if total > 0 else 0.5
+
+        f1_opp_winpct = win_pct(f1_opp_w, f1_opp_l, f1_opp_d)
+        f2_opp_winpct = win_pct(f2_opp_w, f2_opp_l, f2_opp_d)
+        winpct_diff = f1_opp_winpct - f2_opp_winpct
+        #boost
+        opp_strength_boost = round(abs(winpct_diff) * 10, 2)
+
+        if (boosted_proba >= 0.5 and winpct_diff > 0) or (boosted_proba < 0.5 and winpct_diff < 0):
+            boosted_proba += conf_boost_to_prob(opp_strength_boost)
+        else:
+            boosted_proba -= conf_boost_to_prob(opp_strength_boost)
+
+        boosted_proba = min(max(boosted_proba, 0.0), 1.0)
+        winner = f1_input["name"] if boosted_proba >= 0.5 else f2_input["name"]
+        confidence = normalize_confidence(max(boosted_proba, 1 - boosted_proba))
+
+        print("📊 Opponent UFC Records:")
+        print(f"   {f1_input['name']}: {f1_opp_w}-{f1_opp_l}-{f1_opp_d} (Win%: {f1_opp_winpct:.3f})")
+        print(f"   {f2_input['name']}: {f2_opp_w}-{f2_opp_l}-{f2_opp_d} (Win%: {f2_opp_winpct:.3f})")
+        print(f"   Win% Diff: {winpct_diff:+.3f} → Potential Confidence Change: {opp_strength_boost:+.2f} pts")
         print(f"🔍 Normalized Order: {f1_input['name']} vs {f2_input['name']}")
-        print(f"  -> Winner: {winner} | Confidence: {confidence}%")
+        print(f"  -> Winner: {winner} | Confidence: {confidence:.1f}%")
         print(f"🧠 Raw model probability (f1 wins): {raw_proba:.4f}")
+        print(f"🧮 Boosted probability (f1 wins): {boosted_proba:.4f}")
         print(f"🔧 Normalized base confidence: {base_confidence:.2f}")
-        print(f"📊 Final Prediction: {winner} | Confidence: {confidence}%")
-        print(f"    ↪ Raw prob: {raw_proba:.4f}")
+        print(f"📊 Final Prediction: {winner} | Confidence: {confidence:.1f}%")
         print(f"    ↪ Stat boost: {stat_boost:.2f}")
         print(f"    ↪ Form boost: {form_boost:.2f}")
         print(f"    ↪ Streak boost: {streak_boost:.2f}")
-        print("[RAW Features]:")
-        for k, v in X.iloc[0].items():
+        print("[RAW Features] (display order):")
+        X_debug = build_feature_vector(f1_input, f2_input)
+        X_scaled_debug = scaler.transform(X_debug)
+        for k, v in X_debug.iloc[0].items():
             print(f"{k}: {v:.3f}")
-        print("[SCALED Features]:")
-        for i, k in enumerate(X.columns):
-            print(f"{k}: {X_scaled[0][i]:.3f}")
+        print("[SCALED Features] (display order):")
+        for i, k in enumerate(X_debug.columns):
+            print(f"{k}: {X_scaled_debug[0][i]:.3f}")
         print(f"Rematch Detected: {rematch}")
+
+        
+    
+        
+    # Apply SHAP-style weights, reducing influence of TD_Def_diff
+    shap_weights = {f: 1.0 for f in X.columns}
+    shap_weights["TD_Def_diff"] = 0.25  # reduce weight here
+
+    # Apply weights to feature diffs
+    weighted_feature_diffs = {
+        f: round(X.iloc[0][f] * shap_weights[f], 4)
+        for f in X.columns
+    }
+
+    # Recalculate top contributors from weighted values
+    top_contributors = sorted(
+        weighted_feature_diffs.items(),
+        key=lambda kv: abs(kv[1]),
+        reverse=True
+    )[:3]
+
+        # === Apply recent rematch override if present ===
+    recent_rematch = recent_rematch_winner(f1_input, f2_input)
+    if recent_rematch:
+        print(f"⚠️ Overriding prediction due to recent dominant rematch result: {recent_rematch} won last time.")
+        winner = recent_rematch
+        confidence = 90.0  # Strong confidence override
+
+
+    log_entry = {
+        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "fighter1": f1_input["name"],
+        "fighter2": f2_input["name"],
+        "winner": winner,
+        "confidence": confidence,
+        "rematch": rematch,
+        "raw_feature_diffs": X.iloc[0].to_dict(),
+        "shap_weights": shap_weights,
+        "weighted_feature_diffs": weighted_feature_diffs,
+        "top_3_contributors": [f"{k} ({v:+.3f})" for k, v in top_contributors],
+    }
+
+
+    with open("predictions.log", "a", encoding="utf-8") as f:
+        f.write(json.dumps(log_entry) + "\n")
+
 
     return (
         winner,
@@ -278,6 +602,6 @@ def predict_match(f1_input, f2_input):
         f2_input["last_results"],
         rematch,
         stat_favors,
-        f1_input["name"],  # red
-        f2_input["name"]   # blue
+        f1_input["name"],
+        f2_input["name"]
     )

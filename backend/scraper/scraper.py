@@ -1,8 +1,18 @@
 import requests
 from bs4 import BeautifulSoup
-import time
+from datetime import datetime
 import json
 import string
+
+def calculate_age(dob_str: str) -> int | None:
+    """Convert 'Apr 11, 1993' → integer age."""
+    try:
+        dob = datetime.strptime(dob_str.strip(), "%b %d, %Y")
+        today = datetime.today()
+        return today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day))
+    except Exception:
+        return None
+
 
 headers = {'User-Agent': 'Mozilla/5.0'}
 BASE_URL = 'http://www.ufcstats.com/statistics/fighters?char={}&page={}'
@@ -16,19 +26,45 @@ def get_fighter_stats(profile_url, fighter_name):
     try:
         res = requests.get(profile_url, headers=headers)
         soup = BeautifulSoup(res.text, 'lxml')
+
         stats = {}
         fights = []
+        dob_value = None
 
-        stat_sections = soup.select("div.b-list__info-box-left, div.b-list__info-box-right")
-        for section in stat_sections:
-            for item in section.select("li.b-list__box-list-item"):
-                label_tag = item.select_one("i.b-list__box-item-title")
-                if label_tag:
-                    label = clean_text(label_tag.text.strip().rstrip(":"))
-                    value = label_tag.next_sibling.strip() if label_tag.next_sibling else None
-                    if value and value != '--':
-                        stats[label] = value
+        # Parse basic info (Height, Weight, Reach, Stance, DOB)
+        height = weight = reach = stance = None
+        for item in soup.select("div.b-list__info-box_style_small-width li.b-list__box-list-item"):
+            label_tag = item.select_one("i.b-list__box-item-title")
+            if not label_tag:
+                continue
+            label = clean_text(label_tag.text.strip().rstrip(":"))
+            value = clean_text(item.get_text().replace(label_tag.text, ""))
 
+            if not value or value == "--":
+                continue
+
+            if label == "Height":
+                height = value
+            elif label == "Weight":
+                weight = value
+            elif label == "Reach":
+                reach = value
+            elif label == "STANCE":
+                stance = value
+            elif label == "DOB":
+                dob_value = value
+
+        # Parse career stats (SLpM, Str. Acc., etc.)
+        for item in soup.select("div.b-list__info-box-left li.b-list__box-list-item, div.b-list__info-box-right li.b-list__box-list-item"):
+            label_tag = item.select_one("i.b-list__box-item-title")
+            if not label_tag:
+                continue
+            label = clean_text(label_tag.text.strip().rstrip(":"))
+            value = clean_text(item.get_text().replace(label_tag.text, ""))
+            if value and value != "--":
+                stats[label] = value
+
+        # Parse fight history
         fight_table = soup.select_one("table.b-fight-details__table")
         if fight_table:
             rows = fight_table.select("tbody tr.b-fight-details__table-row")
@@ -69,11 +105,13 @@ def get_fighter_stats(profile_url, fighter_name):
                 }
                 fights.append(fight)
 
-        return stats, fights
+        # Return height/weight/reach/stance separately
+        return stats, fights, dob_value, height, weight, reach, stance
 
     except Exception as e:
         print(f"[ERROR] {fighter_name}: {e}")
-        return {}, []
+        return {}, [], None, None, None, None, None
+
 
 def get_all_fighters():
     all_fighters = []
@@ -115,9 +153,22 @@ def get_all_fighters():
                     "profile_url": link_tag['href']
                 }
 
-                stats, fights = get_fighter_stats(fighter["profile_url"], full_name)
+                stats, fights, dob, height_p, weight_p, reach_p, stance_p = get_fighter_stats(
+                fighter["profile_url"], full_name
+            )
+
+                # Only overwrite if profile page provided a real value
+                fighter["height"] = height_p or fighter["height"]
+                fighter["weight"] = weight_p or fighter["weight"]
+                fighter["reach"] = reach_p or fighter["reach"]
+                fighter["stance"] = stance_p or fighter["stance"]
+
                 fighter["stats"] = stats
                 fighter["fight_history"] = fights
+
+                # Keep both dob and computed age if you want
+                fighter["dob"] = dob
+                fighter["age"] = calculate_age(dob) if dob else None
 
                 all_fighters.append(fighter)
                 total_count += 1

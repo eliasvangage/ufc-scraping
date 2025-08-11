@@ -15,16 +15,19 @@ def get_upcoming_event_links():
     soup = BeautifulSoup(res.text, "lxml")
 
     event_links = []
-    rows = soup.select("tbody tr")
+    rows = soup.select("table.b-statistics__table-events tbody tr.b-statistics__table-row")
 
     for row in rows:
-        link_tag = row.select_one("a")
-        date_td = row.select_one("td:nth-of-type(2)")
-        if link_tag and "event-details" in link_tag['href']:
+        link_tag = row.select_one("a.b-link")
+        date_span = row.select_one("span.b-statistics__date")
+        location_td = row.select("td")[1] if len(row.select("td")) > 1 else None
+
+        if link_tag and date_span and location_td:
             event_links.append({
                 "event_name": clean_text(link_tag.text),
                 "event_url": link_tag['href'],
-                "date": clean_text(date_td.text) if date_td else "Unknown"
+                "date": clean_text(date_span.text),
+                "location": clean_text(location_td.text)
             })
 
     return event_links
@@ -39,6 +42,7 @@ def parse_event_card(event):
     for i, row in enumerate(fight_rows):
         fighter_links = row.select("td:nth-of-type(2) a")
         weight_td = row.select_one("td:nth-of-type(7)")
+        belt_icon = row.select_one("img[src*='belt.png']")  # ✅ Detect title fights via image
 
         if len(fighter_links) == 2:
             red_name = clean_text(fighter_links[0].text)
@@ -53,31 +57,19 @@ def parse_event_card(event):
                 "fighter_blue": blue_name,
                 "fighter_blue_url": blue_url,
                 "weight_class": weight_class,
-                "bout_order": i + 1
+                "bout_order": i + 1,
+                "is_title_fight": belt_icon is not None
             })
-
-    # Extract time and venue from event summary
-    event_info_box = soup.select_one(".b-list__box-list")
-    info_items = event_info_box.select("li") if event_info_box else []
-
-    time_str = "TBD"
-    venue_str = "TBD"
-
-    for item in info_items:
-        label = clean_text(item.text)
-        if "ET" in label:
-            time_str = label
-        elif "," in label:
-            venue_str = label
 
     return {
         "event_name": event["event_name"],
         "event_url": event["event_url"],
-        "date": event["date"],
-        "time": time_str,
-        "venue": venue_str,
+        "date": event["date"],               # ✅ From event listing (accurate)
+        "time": "TBD",                       # ❌ Not available — use placeholder
+        "venue": event["location"],          # ✅ Already from event listing
         "fights": fights
     }
+
 
 def scrape_upcoming_cards():
     events = get_upcoming_event_links()

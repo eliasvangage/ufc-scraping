@@ -1,11 +1,11 @@
 # app/config.py
 
 # Toggle post-prediction confidence boosts
-APPLY_FORM_BOOST = False
-APPLY_STREAK_BOOST = False
+APPLY_FORM_BOOST = True
+APPLY_STREAK_BOOST = True
 
 # Toggle stat-based UI bonus (confidence +0.5% per stat won)
-APPLY_STAT_DOMINANCE_BONUS = False
+APPLY_STAT_DOMINANCE_BONUS = True
 
 # Toggle UI-only champion badge
 DISPLAY_CHAMPION_BADGE = True
