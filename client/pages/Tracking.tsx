@@ -203,61 +203,69 @@ acc[eventId].fights.push({
 
         {/* Top Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
-          <Card className="bg-gradient-to-br from-primary/20 to-primary/10 border-primary/30 shadow-lg">
+          <Card className="bg-gradient-to-br from-primary/20 to-primary/10 border-primary/30 shadow-xl hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 hover:scale-[1.02]">
             <CardContent className="p-6 text-center">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <Target className="h-6 w-6 text-orange-400" />
-                <div className="text-3xl font-bold text-orange-400">
+              <div className="flex items-center justify-center gap-2 mb-3">
+                <div className="p-2 bg-orange-500/20 rounded-lg">
+                  <Target className="h-6 w-6 text-orange-400" />
+                </div>
+                <div className="text-4xl font-bold text-orange-400">
                   {stats.accuracy}%
                 </div>
               </div>
-              <div className="text-slate-300 font-medium">Accuracy</div>
-              <div className="text-xs text-slate-500 mt-1">
-                {stats.correctPredictions}/{stats.totalPredictions} correct
+              <div className="text-slate-200 font-semibold text-lg">Accuracy</div>
+              <div className="text-sm text-slate-400 mt-1">
+                {stats.correctPredictions}/{stats.totalPredictions} correct predictions
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-card to-muted/20 border-border shadow-lg">
+          <Card className="bg-gradient-to-br from-blue-500/20 to-blue-500/10 border-blue-500/30 shadow-xl hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300 hover:scale-[1.02]">
             <CardContent className="p-6 text-center">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <BarChart3 className="h-6 w-6 text-blue-400" />
-                <div className="text-3xl font-bold text-blue-400">
+              <div className="flex items-center justify-center gap-2 mb-3">
+                <div className="p-2 bg-blue-500/20 rounded-lg">
+                  <BarChart3 className="h-6 w-6 text-blue-400" />
+                </div>
+                <div className="text-4xl font-bold text-blue-400">
                   {allFights.length}
                 </div>
               </div>
-              <div className="text-slate-300 font-medium">Total Predictions</div>
-              <div className="text-xs text-slate-500 mt-1">
+              <div className="text-slate-200 font-semibold text-lg">Total Predictions</div>
+              <div className="text-sm text-slate-400 mt-1">
                 Across all events
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-green-500/20 to-green-500/10 border-green-500/30 shadow-lg">
+          <Card className="bg-gradient-to-br from-green-500/20 to-green-500/10 border-green-500/30 shadow-xl hover:shadow-2xl hover:shadow-green-500/20 transition-all duration-300 hover:scale-[1.02]">
             <CardContent className="p-6 text-center">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <CheckCircle className="h-6 w-6 text-green-400" />
-                <div className="text-3xl font-bold text-green-400">
+              <div className="flex items-center justify-center gap-2 mb-3">
+                <div className="p-2 bg-green-500/20 rounded-lg">
+                  <CheckCircle className="h-6 w-6 text-green-400" />
+                </div>
+                <div className="text-4xl font-bold text-green-400">
                   {allFights.filter(fight => fight.confidenceScore >= 75).length}
                 </div>
               </div>
-              <div className="text-slate-300 font-medium">High Confidence</div>
-              <div className="text-xs text-slate-500 mt-1">
+              <div className="text-slate-200 font-semibold text-lg">High Confidence</div>
+              <div className="text-sm text-slate-400 mt-1">
                 75%+ confidence picks
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-purple-500/20 to-purple-500/10 border-purple-500/30 shadow-lg">
+          <Card className="bg-gradient-to-br from-purple-500/20 to-purple-500/10 border-purple-500/30 shadow-xl hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 hover:scale-[1.02]">
             <CardContent className="p-6 text-center">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <Activity className="h-6 w-6 text-purple-400" />
-                <div className="text-3xl font-bold text-purple-400">
+              <div className="flex items-center justify-center gap-2 mb-3">
+                <div className="p-2 bg-purple-500/20 rounded-lg">
+                  <Activity className="h-6 w-6 text-purple-400" />
+                </div>
+                <div className="text-4xl font-bold text-purple-400">
                   {Math.round(allFights.reduce((acc, fight) => acc + fight.confidenceScore, 0) / allFights.length)}%
                 </div>
               </div>
-              <div className="text-slate-300 font-medium">Avg Confidence</div>
-              <div className="text-xs text-slate-500 mt-1">
+              <div className="text-slate-200 font-semibold text-lg">Avg Confidence</div>
+              <div className="text-sm text-slate-400 mt-1">
                 All predictions
               </div>
             </CardContent>
