@@ -175,6 +175,8 @@ acc[eventId].fights.push({
 
   const stats = calculateStats();
   const allFights = fightData.events.flatMap(event => event.fights);
+  const { upcoming: upcomingEvents, past: pastEvents } = sortEventsByDate(fightData.events);
+  const displayEvents = showPastEvents ? pastEvents : upcomingEvents;
 
   return (
     <div className="min-h-screen bg-background">
