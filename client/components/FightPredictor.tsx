@@ -246,20 +246,25 @@ export function FightPredictor() {
           </div>
 
           {/* Event Navigation Controls */}
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-8 p-4 bg-gradient-to-r from-card/30 via-muted/10 to-card/30 rounded-xl border border-border/40">
             <div className="flex items-center gap-4">
-              <h3 className="text-2xl font-bold">
-                {showPastEvents ? 'Past Events' : 'Upcoming Events'}
-              </h3>
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <Calendar className="h-5 w-5 text-primary" />
+                </div>
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-foreground to-primary/80 bg-clip-text text-transparent">
+                  {showPastEvents ? 'Past Events' : 'Upcoming Events'}
+                </h3>
+              </div>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 p-1 bg-background/50 rounded-lg border border-border/30">
               {upcomingCards.filter(event => !isEventPast(event.date)).length > 0 && (
                 <Button
-                  variant={!showPastEvents ? "default" : "outline"}
+                  variant={!showPastEvents ? "default" : "ghost"}
                   size="sm"
                   onClick={() => setShowPastEvents(false)}
-                  className="gap-2"
+                  className={`gap-2 transition-all duration-300 ${!showPastEvents ? 'bg-primary shadow-lg shadow-primary/20' : 'hover:bg-primary/10'}`}
                 >
                   <Calendar className="h-4 w-4" />
                   Upcoming
@@ -267,12 +272,12 @@ export function FightPredictor() {
               )}
               {upcomingCards.filter(event => isEventPast(event.date)).length > 0 && (
                 <Button
-                  variant={showPastEvents ? "default" : "outline"}
+                  variant={showPastEvents ? "default" : "ghost"}
                   size="sm"
                   onClick={() => setShowPastEvents(true)}
-                  className="gap-2"
+                  className={`gap-2 transition-all duration-300 ${showPastEvents ? 'bg-primary shadow-lg shadow-primary/20' : 'hover:bg-primary/10'}`}
                 >
-                  <ChevronLeft className="h-4 w-4" />
+                  <History className="h-4 w-4" />
                   Past Events
                 </Button>
               )}
