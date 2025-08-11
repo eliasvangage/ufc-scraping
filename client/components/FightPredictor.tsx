@@ -160,28 +160,34 @@ export function FightPredictor() {
           <div className="max-w-4xl mx-auto space-y-6">
             <div className="space-y-4">
               <div className="flex items-center justify-center gap-4 mb-6">
-                <Flame className="h-12 w-12 text-primary animate-pulse" />
-                <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-foreground via-primary to-primary/70 bg-clip-text text-transparent">
+                <div className="relative">
+                  <Flame className="h-12 w-12 text-primary animate-pulse" />
+                  <div className="absolute inset-0 h-12 w-12 text-primary/30 animate-ping" />
+                </div>
+                <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-foreground via-primary to-primary/70 bg-clip-text text-transparent tracking-tight">
                   ORYEN ORACLE
                 </h1>
-                <Flame className="h-12 w-12 text-primary animate-pulse scale-x-[-1]" />
+                <div className="relative">
+                  <Flame className="h-12 w-12 text-primary animate-pulse scale-x-[-1]" />
+                  <div className="absolute inset-0 h-12 w-12 text-primary/30 animate-ping scale-x-[-1]" />
+                </div>
               </div>
-              <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
-                Harness the power of machine learning to predict combat fight outcomes
+              <p className="text-xl md:text-2xl text-muted-foreground/90 max-w-2xl mx-auto leading-relaxed">
+                Harness the power of <span className="text-primary font-semibold">machine learning</span> to predict combat fight outcomes
               </p>
             </div>
 
-            <div className="flex items-center justify-center gap-6 pt-4">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-primary rounded-full animate-pulse" />
+            <div className="flex items-center justify-center gap-6 pt-6">
+              <div className="flex items-center gap-2 px-3 py-2 bg-primary/10 rounded-full border border-primary/20">
+                <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
                 <span className="text-sm font-medium text-primary">
                   {usingMockData ? 'Demo Mode' : 'Live Predictions'}
                 </span>
               </div>
-              <div className="w-px h-4 bg-border" />
-              <div className="flex items-center gap-2">
+              <div className="w-px h-6 bg-border/50" />
+              <div className="flex items-center gap-2 px-3 py-2 bg-muted/30 rounded-full border border-border/30">
                 <Users className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm text-muted-foreground">
+                <span className="text-sm text-muted-foreground font-medium">
                   {availableFighters.length} Fighters
                 </span>
               </div>
