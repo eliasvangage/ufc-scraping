@@ -21,6 +21,9 @@ import {
   AlertCircle,
   Target,
   Users,
+  ChevronLeft,
+  ChevronRight,
+  History,
 } from "lucide-react";
 import { apiService, type PredictionResponse } from "@/services/api";
 import { FighterSearch } from "./FighterSearch";
