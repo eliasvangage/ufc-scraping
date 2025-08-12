@@ -9,7 +9,9 @@ import { NavBar } from "@/components/NavBar";
 import Index from "./pages/Index";
 import EventDetail from "./pages/EventDetail";
 import Fighters from "./pages/Fighters";
-import Tracking from "./pages/Tracking"; // ✅ Add this import
+import FighterProfile from "./pages/FighterProfile";
+import Events from "./pages/Events";
+import Tracking from "./pages/Tracking";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,8 +27,10 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/fighters" element={<Fighters />} />
+            <Route path="/fighter/:fighterName" element={<FighterProfile />} />
+            <Route path="/events" element={<Events />} />
             <Route path="/event/:eventId" element={<EventDetail />} />
-            <Route path="/tracking" element={<Tracking />} /> {/* ✅ Add this line */}
+            <Route path="/tracking" element={<Tracking />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
