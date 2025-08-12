@@ -296,11 +296,18 @@ export default function EventDetail() {
  {fighterData && (
   <Badge variant="secondary" className="text-sm px-3 py-1">
     {(!fighterData.ufc_wins && !fighterData.ufc_losses && !fighterData.ufc_draws)
-      ? "UFC Debut"
+      ? "UFC: 0-0-0"
       : `UFC: ${fighterData.ufc_wins}-${fighterData.ufc_losses}-${fighterData.ufc_draws}`}
   </Badge>
 )}
 
+  {/* Debut badge */}
+  {fighterData && (!fighterData.ufc_wins && !fighterData.ufc_losses && !fighterData.ufc_draws) && (
+    <Badge className="bg-gradient-to-r from-green-500 to-green-600 text-white font-bold">
+      <Star className="h-3 w-3 mr-1" />
+      UFC DEBUT
+    </Badge>
+  )}
 
   {/* Champion badge */}
   {fighterData?.is_champion && (
@@ -310,11 +317,11 @@ export default function EventDetail() {
     </Badge>
   )}
 
-   {/* Finisher badge */}
-  {fighterData?.ko_pct >= 80 && fighterData?.fight_history?.length > 4 && (
-    <Badge className="bg-red-600 text-white font-semibold">
+   {/* Knockout Artist badge */}
+  {fighterData?.ko_pct >= 80 && (fighterData.ufc_wins + fighterData.ufc_losses + fighterData.ufc_draws) >= 5 && (
+    <Badge className="bg-gradient-to-r from-red-600 to-red-700 text-white font-bold">
       <Zap className="h-3 w-3 mr-1" />
-      FINISHER
+      KNOCKOUT ARTIST
     </Badge>
   )}
 
