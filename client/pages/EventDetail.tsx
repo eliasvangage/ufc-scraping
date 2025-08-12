@@ -503,34 +503,38 @@ export default function EventDetail() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="relative bg-gradient-to-br from-background via-muted/5 to-background border-b border-border">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(255,103,0,0.1),transparent)]" />
-        <div className="relative container mx-auto px-4 py-8">
-
-
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent mb-4">
-              {eventData.event_name}
-            </h1>
-
-            <div className="flex flex-wrap items-center justify-center gap-6 text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <Calendar className="h-5 w-5 text-primary" />
-                <span>{eventData.date}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock className="h-5 w-5 text-primary" />
-                <span>{eventData.time}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="h-5 w-5 text-primary" />
-                <span>{eventData.venue.replace('Location: ', '')}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Hero
+        title={eventData.event_name}
+        subtitle="Complete fight card with detailed analysis and AI predictions"
+        icon={Calendar}
+        variant="events"
+        stats={[
+          {
+            icon: Calendar,
+            label: eventData.date,
+            value: "",
+            color: "primary",
+          },
+          {
+            icon: Clock,
+            label: eventData.time || "TBD",
+            value: "",
+            color: "primary",
+          },
+          {
+            icon: MapPin,
+            label: eventData.venue?.replace('Location: ', '') || "TBD",
+            value: "",
+            color: "primary",
+          },
+          {
+            icon: Swords,
+            label: "Fights",
+            value: eventData.fights.length,
+            color: "primary",
+          },
+        ]}
+      />
 
       <div className="container mx-auto px-4 py-8">
         <div className="space-y-6">
