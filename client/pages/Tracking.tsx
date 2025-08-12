@@ -192,28 +192,40 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="flex items-center justify-center gap-4 mb-6">
-            <div className="relative">
-              <Shield className="h-12 w-12 text-primary" />
-              <div className="absolute inset-0 h-12 w-12 text-primary/20 animate-pulse scale-110" />
-            </div>
-            <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent tracking-tight">
-              ORYEN COMBAT ENGINE
-            </h1>
-            <div className="relative">
-              <Shield className="h-12 w-12 text-primary scale-x-[-1]" />
-              <div className="absolute inset-0 h-12 w-12 text-primary/20 animate-pulse scale-110 scale-x-[-1]" />
-            </div>
-          </div>
-          <p className="text-lg md:text-xl text-muted-foreground/90 max-w-3xl mx-auto leading-relaxed">
+      <Hero
+        title="ORYEN COMBAT ENGINE"
+        subtitle={
+          <>
             Advanced{" "}
             <span className="text-primary font-semibold">machine learning</span>{" "}
             combat outcome predictions with real-time tracking
-          </p>
-        </div>
+          </>
+        }
+        icon={Shield}
+        variant="tracking"
+        stats={[
+          {
+            icon: Target,
+            label: "Accuracy",
+            value: `${stats.accuracy}%`,
+            color: "green-500",
+          },
+          {
+            icon: BarChart3,
+            label: "Predictions",
+            value: allFights.length,
+            color: "blue-500",
+          },
+          {
+            icon: Activity,
+            label: "Avg Confidence",
+            value: `${Math.round(allFights.reduce((acc, fight) => acc + fight.confidenceScore, 0) / allFights.length)}%`,
+            color: "purple-500",
+          },
+        ]}
+      />
+
+      <div className="container mx-auto px-4 py-8">
 
         {/* Top Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
