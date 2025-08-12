@@ -2,6 +2,7 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { Progress } from "@/components/ui/progress";
 import { type PredictionResponse } from "@/services/api";
 import {
   Shield,
@@ -10,6 +11,12 @@ import {
   Crown,
   Award,
   Eye,
+  Calendar,
+  Ruler,
+  Weight,
+  Flame,
+  BarChart3,
+  Zap
 } from "lucide-react";
 
 interface FightCardProps {
