@@ -934,17 +934,22 @@ export default function EventDetail() {
                             )}
 
                             {prediction && (
-                              <div className="space-y-4">
-                                <div className="text-center">
-                                  <h3 className="text-2xl font-bold text-primary mb-2">
-                                    Predicted Winner: {prediction.predicted_winner}
-                                  </h3>
+                              <div className="space-y-6 relative">
+                                <div className="text-center bg-gradient-to-r from-background/50 via-muted/20 to-background/50 p-6 rounded-xl border border-border/30">
+                                  <div className="mb-4">
+                                    <div className="text-sm text-muted-foreground mb-2">ORACLE PREDICTION</div>
+                                    <h3 className="text-3xl font-bold bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent mb-3">
+                                      {prediction.predicted_winner} VICTORIOUS
+                                    </h3>
+                                  </div>
                                   <div className="flex justify-center gap-4">
-                                    <Badge variant="default" className="text-lg py-2 px-4">
+                                    <Badge variant="default" className="text-xl py-3 px-6 bg-gradient-to-r from-primary to-primary/80 shadow-lg shadow-primary/20">
+                                      <Zap className="h-5 w-5 mr-2" />
                                       {prediction.confidence}% Confidence
                                     </Badge>
                                     {prediction.rematch && (
-                                      <Badge variant="secondary" className="text-lg py-2 px-4">
+                                      <Badge variant="secondary" className="text-xl py-3 px-6 shadow-lg">
+                                        <Activity className="h-4 w-4 mr-2" />
                                         REMATCH
                                       </Badge>
                                     )}
