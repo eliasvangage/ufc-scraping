@@ -242,14 +242,14 @@ export function FightPredictor() {
                 selectedFighter={fighter1}
                 onFighterSelect={(f) => handleFighterSelect(f, "fighter1")}
                 placeholder="Search for red corner fighter..."
-                label="🔴 RED CORNER"
+                label="RED CORNER"
               />
               <FighterSearch
                 availableFighters={availableFighters}
                 selectedFighter={fighter2}
                 onFighterSelect={(f) => handleFighterSelect(f, "fighter2")}
                 placeholder="Search for blue corner fighter..."
-                label="🔵 BLUE CORNER"
+                label="BLUE CORNER"
               />
             </div>
             {fighter1 && fighter2 && (
