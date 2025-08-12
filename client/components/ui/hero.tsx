@@ -166,11 +166,19 @@ export function Hero({
             <div className="flex items-center justify-center gap-4 pt-4 flex-wrap">
               {badges.map((badge, index) => {
                 const BadgeIcon = badge.icon;
+                const colorClass = badge.color || 'primary';
+                const borderTextClass = colorClass === 'primary' ? 'border-primary/30 text-primary' :
+                                       colorClass === 'green-500' ? 'border-green-500/30 text-green-500' :
+                                       colorClass === 'blue-500' ? 'border-blue-500/30 text-blue-500' :
+                                       colorClass === 'purple-500' ? 'border-purple-500/30 text-purple-500' :
+                                       colorClass === 'red-500' ? 'border-red-500/30 text-red-500' :
+                                       colorClass === 'yellow-500' ? 'border-yellow-500/30 text-yellow-500' :
+                                       'border-muted/30 text-muted-foreground';
                 return (
-                  <Badge 
+                  <Badge
                     key={index}
-                    variant="outline" 
-                    className={`${badge.color ? `border-${badge.color}/30 text-${badge.color}` : 'border-primary/30 text-primary'} text-sm px-4 py-2 backdrop-blur-sm`}
+                    variant="outline"
+                    className={`${borderTextClass} text-sm px-4 py-2 backdrop-blur-sm`}
                   >
                     {BadgeIcon && <BadgeIcon className="h-4 w-4 mr-2" />}
                     {badge.label}
