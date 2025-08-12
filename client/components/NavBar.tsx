@@ -68,7 +68,7 @@ export function NavBar() {
           </div>
 
           {/* Navigation Items */}
-          <div className="hidden md:flex items-center space-x-2">
+          <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => {
               const isActive = location.pathname === item.path;
               const Icon = item.icon;
@@ -76,21 +76,38 @@ export function NavBar() {
               return (
                 <Button
                   key={item.path}
-                  variant={isActive ? "default" : "ghost"}
+                  variant="ghost"
                   size="lg"
                   onClick={() => navigate(item.path)}
                   className={`
-                    relative gap-3 px-6 py-3 h-auto
-                    ${isActive
-                      ? 'bg-primary text-primary-foreground'
-                      : 'hover:bg-primary/10 hover:text-primary'
+                    relative gap-3 px-5 py-3 h-auto transition-all duration-300 group
+                    ${
+                      isActive
+                        ? 'bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-lg shadow-primary/20 scale-105'
+                        : 'hover:bg-gradient-to-r hover:from-primary/10 hover:to-primary/5 hover:text-primary hover:scale-105'
+                    }
+                    rounded-xl border border-transparent
+                    ${
+                      isActive
+                        ? 'border-primary/30'
+                        : 'hover:border-primary/20'
                     }
                   `}
                 >
-                  <Icon className="h-5 w-5" />
-                  <div className="text-left">
-                    <div className="font-medium">{item.label}</div>
-                    <div className="text-xs opacity-70">{item.description}</div>
+                  {isActive && (
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-primary/10 rounded-xl blur-lg" />
+                  )}
+
+                  <Icon className={`h-5 w-5 transition-all duration-300 ${
+                    isActive ? 'animate-pulse' : 'group-hover:scale-110'
+                  }`} />
+                  <div className="text-left relative">
+                    <div className={`font-semibold transition-all duration-300 ${
+                      isActive ? 'text-primary-foreground' : ''
+                    }`}>{item.label}</div>
+                    <div className={`text-xs transition-all duration-300 ${
+                      isActive ? 'text-primary-foreground/80' : 'text-muted-foreground group-hover:text-primary/70'
+                    }`}>{item.description}</div>
                   </div>
                 </Button>
               );
