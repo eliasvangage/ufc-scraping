@@ -177,7 +177,7 @@ export function Hero({
 
           {/* Badges */}
           {badges.length > 0 && (
-            <div className="flex items-center justify-center gap-4 pt-4 flex-wrap">
+            <div className="flex items-center justify-center gap-4 pt-6 flex-wrap animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-700">
               {badges.map((badge, index) => {
                 const BadgeIcon = badge.icon;
                 const colorClass = badge.color || 'primary';
