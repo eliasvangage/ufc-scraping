@@ -378,7 +378,7 @@ export function FightPredictor() {
                             : "bg-gradient-to-br from-card to-card/80 border-muted/20 hover:border-primary/30"
                         }
                       `}
-                        onClick={() => navigate(`/event/${idx}`)}
+                        onClick={() => navigate(`/event/${originalIdx}`)}
                         style={{ animationDelay: `${idx * 100}ms` }}
                       >
                         <CardHeader className="pb-4">
