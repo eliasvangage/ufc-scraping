@@ -59,10 +59,10 @@ export function NavBar() {
               </div>
             </div>
             <div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent tracking-tight">
                 ORYEN COMBAT ENGINE
               </h1>
-              <p className="text-sm text-muted-foreground -mt-1">AI Fight Predictions</p>
+              <p className="text-sm text-muted-foreground -mt-1 font-medium">Advanced Combat Analytics</p>
             </div>
           </div>
 
