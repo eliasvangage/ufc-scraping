@@ -182,7 +182,34 @@ export default function Fighters() {
         unique.add(f.division);
       }
     });
-    return Array.from(unique).sort();
+
+    // Sort divisions by weight (heaviest to lightest)
+    const weightOrder = [
+      "Heavyweight",
+      "Light Heavyweight",
+      "Middleweight",
+      "Welterweight",
+      "Lightweight",
+      "Featherweight",
+      "Bantamweight",
+      "Flyweight",
+      "Strawweight"
+    ];
+
+    return Array.from(unique).sort((a, b) => {
+      const aIndex = weightOrder.indexOf(a);
+      const bIndex = weightOrder.indexOf(b);
+
+      // If both divisions are in our order, sort by order
+      if (aIndex !== -1 && bIndex !== -1) {
+        return aIndex - bIndex;
+      }
+      // If only one is in our order, prioritize it
+      if (aIndex !== -1) return -1;
+      if (bIndex !== -1) return 1;
+      // If neither is in our order, sort alphabetically
+      return a.localeCompare(b);
+    });
   }, [currentFighters]);
 
   const { filteredFighters, totalPages, paginatedFighters } = useMemo(() => {
