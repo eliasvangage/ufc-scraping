@@ -187,59 +187,43 @@ export function FightPredictor() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="relative bg-gradient-to-br from-background via-muted/5 to-background border-b border-border">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(255,103,0,0.1),transparent)]" />
-        <div className="relative container mx-auto px-4 py-16 text-center">
-          <div className="max-w-4xl mx-auto space-y-6">
-            <div className="space-y-4">
-              <div className="flex items-center justify-center gap-4 mb-6">
-                <div className="relative">
-                  <Flame className="h-12 w-12 text-primary animate-pulse" />
-                  <div className="absolute inset-0 h-12 w-12 text-primary/30 animate-ping" />
-                </div>
-                <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-foreground via-primary to-primary/70 bg-clip-text text-transparent tracking-tight">
-                  ORYEN ORACLE
-                </h1>
-                <div className="relative">
-                  <Flame className="h-12 w-12 text-primary animate-pulse scale-x-[-1]" />
-                  <div className="absolute inset-0 h-12 w-12 text-primary/30 animate-ping scale-x-[-1]" />
-                </div>
-              </div>
-              <p className="text-xl md:text-2xl text-muted-foreground/90 max-w-2xl mx-auto leading-relaxed">
-                Harness the power of{" "}
-                <span className="text-primary font-semibold">
-                  machine learning
-                </span>{" "}
-                to predict combat fight outcomes
-              </p>
-            </div>
+      <Hero
+        title="ORYEN ORACLE"
+        subtitle={
+          <>
+            Harness the power of{" "}
+            <span className="text-primary font-semibold">machine learning</span>{" "}
+            to predict combat fight outcomes
+          </>
+        }
+        icon={Flame}
+        variant="oracle"
+        stats={[
+          {
+            icon: Users,
+            label: "Fighters",
+            value: availableFighters.length,
+            color: "primary",
+          },
+        ]}
+        badges={[
+          {
+            icon: Target,
+            label: usingMockData ? "Demo Mode" : "Live Predictions",
+            color: usingMockData ? "yellow-500" : "green-500",
+          },
+        ]}
+      />
 
-            <div className="flex items-center justify-center gap-6 pt-6">
-              <div className="flex items-center gap-2 px-3 py-2 bg-primary/10 rounded-full border border-primary/20">
-                <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                <span className="text-sm font-medium text-primary">
-                  {usingMockData ? "Demo Mode" : "Live Predictions"}
-                </span>
-              </div>
-              <div className="w-px h-6 bg-border/50" />
-              <div className="flex items-center gap-2 px-3 py-2 bg-muted/30 rounded-full border border-border/30">
-                <Users className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm text-muted-foreground font-medium">
-                  {availableFighters.length} Fighters
-                </span>
-              </div>
-            </div>
-
-            {usingMockData && (
-              <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-3 max-w-md mx-auto">
-                <p className="text-xs text-yellow-600/90">
-                  Backend unavailable - using demo predictions
-                </p>
-              </div>
-            )}
+      {usingMockData && (
+        <div className="container mx-auto px-4 pt-4">
+          <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-3 max-w-md mx-auto text-center">
+            <p className="text-xs text-yellow-600/90">
+              Backend unavailable - using demo predictions
+            </p>
           </div>
         </div>
-      </div>
+      )}
 
       <div className="container mx-auto px-4 py-8 space-y-8">
         <Card className="bg-gradient-to-br from-muted/10 via-muted/5 to-muted/10 border-muted/20">
