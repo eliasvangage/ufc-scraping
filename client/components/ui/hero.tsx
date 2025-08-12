@@ -131,9 +131,12 @@ export function Hero({
             </div>
             
             {subtitle && (
-              <p className="text-xl md:text-2xl text-muted-foreground/90 max-w-3xl mx-auto leading-relaxed">
-                {subtitle}
-              </p>
+              <div className="relative">
+                <p className="text-xl md:text-2xl text-muted-foreground/90 max-w-3xl mx-auto leading-relaxed animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-300">
+                  {subtitle}
+                </p>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent blur-xl -z-10" />
+              </div>
             )}
           </div>
 
