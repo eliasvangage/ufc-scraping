@@ -142,7 +142,7 @@ export function Hero({
 
           {/* Stats */}
           {stats.length > 0 && (
-            <div className="flex items-center justify-center gap-6 pt-6 flex-wrap">
+            <div className="flex items-center justify-center gap-6 pt-8 flex-wrap animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-500">
               {stats.map((stat, index) => {
                 const StatIcon = stat.icon;
                 const colorClass = stat.color || 'primary';
