@@ -33,6 +33,7 @@ import {
   ChevronsRight,
   Hash
 } from "lucide-react";
+import { Hero } from "@/components/ui/hero";
 
 function inferDivisionFromWeight(weight: string): string | undefined {
   if (!weight) return undefined;
