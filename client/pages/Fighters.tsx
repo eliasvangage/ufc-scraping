@@ -105,6 +105,7 @@ interface Fighter {
 }
 
 export default function Fighters() {
+  const navigate = useNavigate();
   const [allFighters, setAllFighters] = useState<Fighter[]>([]);
   const [ufcFighters, setUfcFighters] = useState<Fighter[]>([]);
   const [loading, setLoading] = useState(true);
