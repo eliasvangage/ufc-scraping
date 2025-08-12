@@ -402,7 +402,7 @@ export function FightPredictor() {
                                 variant="outline"
                                 className="text-xs border-primary/30"
                               >
-                                🔥 Main Event
+                                Main Event
                               </Badge>
                             )}
                             <Badge variant="secondary" className="font-medium">
