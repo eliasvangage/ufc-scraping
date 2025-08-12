@@ -706,17 +706,17 @@ export default function EventDetail() {
                     {/* Animated background glow */}
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                    {/* Enhanced Tag System */}
+                    {/* Tag System */}
                     <div className="relative flex flex-wrap items-center justify-center gap-3">
                       {fightStats.isMainEvent && (
-                        <Badge className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-black font-bold animate-pulse shadow-lg shadow-yellow-500/30 border border-yellow-300/50">
-                          <Crown className="h-4 w-4 mr-1 animate-bounce" />
+                        <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold shadow-lg">
+                          <Crown className="h-4 w-4 mr-1" />
                           MAIN EVENT
                         </Badge>
                       )}
                       {fightStats.isCoMain && (
-                        <Badge className="bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 text-white font-bold shadow-lg shadow-purple-500/30 border border-purple-400/50">
-                          <Star className="h-4 w-4 mr-1 animate-pulse" />
+                        <Badge className="bg-gradient-to-r from-purple-500 to-purple-700 text-white font-bold shadow-lg">
+                          <Star className="h-4 w-4 mr-1" />
                           CO-MAIN EVENT
                         </Badge>
                       )}
@@ -726,8 +726,8 @@ export default function EventDetail() {
                         {fight.weight_class}
                       </Badge>
                       {fightStats.hasTitleImplications && (
-                        <Badge className="bg-gradient-to-r from-red-500 via-red-600 to-red-700 text-white font-bold animate-bounce shadow-lg shadow-red-500/40 border border-red-400/50">
-                          <Trophy className="h-4 w-4 mr-1 animate-pulse" />
+                        <Badge className="bg-gradient-to-r from-red-500 to-red-700 text-white font-bold shadow-lg">
+                          <Trophy className="h-4 w-4 mr-1" />
                           TITLE FIGHT
                         </Badge>
                       )}
@@ -738,7 +738,7 @@ export default function EventDetail() {
                          )}
 
                       {fightStats.hasFinisher && (
-                        <Badge className="bg-red-600 text-white font-bold animate-pulse">
+                        <Badge className="bg-red-600 text-white font-bold">
                           <Zap className="h-4 w-4 mr-1" />
                           FINISHER
                         </Badge>
