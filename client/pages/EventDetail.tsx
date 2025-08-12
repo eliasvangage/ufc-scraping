@@ -693,37 +693,41 @@ export default function EventDetail() {
                 )}
 
                 <Card
-                  className={`transition-all duration-500 ${
+                  className={`group transition-all duration-700 hover:scale-[1.02] ${
                     fightStats.isMainEvent
-                      ? 'bg-gradient-to-br from-primary/20 via-primary/10 to-primary/5 border-primary/30 shadow-primary/20'
+                      ? 'bg-gradient-to-br from-primary/25 via-primary/15 to-primary/5 border-primary/40 shadow-2xl shadow-primary/20 hover:shadow-primary/30'
                       : fightStats.isCoMain
-                      ? 'bg-gradient-to-br from-secondary/20 via-secondary/10 to-secondary/5 border-secondary/30'
-                      : 'bg-gradient-to-br from-card to-card/80 border-muted/20'
-                  } ${isExpanded ? 'shadow-2xl scale-[1.01]' : 'hover:shadow-lg hover:scale-[1.005]'}`}
+                      ? 'bg-gradient-to-br from-purple-500/25 via-purple-500/15 to-purple-500/5 border-purple-500/40 shadow-xl shadow-purple-500/10 hover:shadow-purple-500/20'
+                      : 'bg-gradient-to-br from-card via-card/95 to-muted/30 border-border hover:border-primary/30 shadow-lg hover:shadow-xl'
+                  } ${isExpanded ? 'shadow-3xl scale-[1.01] ring-2 ring-primary/20' : ''} animate-in fade-in slide-in-from-bottom-4`}
+                  style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <CardHeader className="space-y-4">
+                  <CardHeader className="space-y-4 relative overflow-hidden">
+                    {/* Animated background glow */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
                     {/* Enhanced Tag System */}
-                    <div className="flex flex-wrap items-center justify-center gap-2">
+                    <div className="relative flex flex-wrap items-center justify-center gap-3">
                       {fightStats.isMainEvent && (
-                        <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold animate-pulse">
-                          <Crown className="h-4 w-4 mr-1" />
+                        <Badge className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-black font-bold animate-pulse shadow-lg shadow-yellow-500/30 border border-yellow-300/50">
+                          <Crown className="h-4 w-4 mr-1 animate-bounce" />
                           MAIN EVENT
                         </Badge>
                       )}
                       {fightStats.isCoMain && (
-                        <Badge className="bg-gradient-to-r from-purple-500 to-purple-600 text-white font-bold">
-                          <Star className="h-4 w-4 mr-1" />
+                        <Badge className="bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 text-white font-bold shadow-lg shadow-purple-500/30 border border-purple-400/50">
+                          <Star className="h-4 w-4 mr-1 animate-pulse" />
                           CO-MAIN EVENT
                         </Badge>
                       )}
                 
-                      <Badge variant="secondary" className="font-medium">
-                        <Award className="h-4 w-4 mr-1" />
+                      <Badge variant="secondary" className="font-medium bg-gradient-to-r from-muted/80 to-muted/60 border-muted/40 text-foreground">
+                        <Award className="h-4 w-4 mr-1 text-primary" />
                         {fight.weight_class}
                       </Badge>
                       {fightStats.hasTitleImplications && (
-                        <Badge className="bg-gradient-to-r from-red-500 to-red-600 text-white font-bold animate-bounce">
-                          <Trophy className="h-4 w-4 mr-1" />
+                        <Badge className="bg-gradient-to-r from-red-500 via-red-600 to-red-700 text-white font-bold animate-bounce shadow-lg shadow-red-500/40 border border-red-400/50">
+                          <Trophy className="h-4 w-4 mr-1 animate-pulse" />
                           TITLE FIGHT
                         </Badge>
                       )}
@@ -746,34 +750,51 @@ export default function EventDetail() {
 
                     </div>
 
-<CardTitle className="text-2xl">
-  <div className="flex flex-col items-center justify-center gap-3">
-    {/* Fighter names and shields */}
-    <div className="flex items-center justify-center gap-4">
-      <span className="text-primary font-bold transition-all duration-300 hover:scale-105">
-        {fight.fighter_red}
-      </span>
-      <div className="flex items-center gap-2 animate-pulse">
-        <Shield className="h-6 w-6 text-red-400" />
-        <Shield className="h-6 w-6 text-blue-400" />
+<CardTitle className="text-2xl relative">
+  <div className="flex flex-col items-center justify-center gap-4">
+    {/* Fighter names and animated shields */}
+    <div className="flex items-center justify-center gap-6">
+      <div className="text-center">
+        <span className="text-red-400 font-bold text-xl transition-all duration-300 hover:scale-105 cursor-pointer hover:text-red-300">
+          {fight.fighter_red}
+        </span>
       </div>
-      <span className="text-primary font-bold transition-all duration-300 hover:scale-105">
-        {fight.fighter_blue}
-      </span>
+      <div className="flex items-center gap-3 relative">
+        <div className="relative">
+          <Shield className="h-7 w-7 text-red-400 animate-pulse" />
+          <div className="absolute inset-0 h-7 w-7 text-red-400/30 animate-ping" />
+        </div>
+        <div className="font-bold text-muted-foreground text-lg animate-pulse">VS</div>
+        <div className="relative">
+          <Shield className="h-7 w-7 text-blue-400 animate-pulse" />
+          <div className="absolute inset-0 h-7 w-7 text-blue-400/30 animate-ping" />
+        </div>
+      </div>
+      <div className="text-center">
+        <span className="text-blue-400 font-bold text-xl transition-all duration-300 hover:scale-105 cursor-pointer hover:text-blue-300">
+          {fight.fighter_blue}
+        </span>
+      </div>
     </div>
 
-    {/* Odds underneath — large, bold, and orange */}
+    {/* Enhanced odds display */}
     {(fight.odds1 || fight.odds2) && (
-      <div className="flex justify-center gap-24 mt-1">
+      <div className="flex justify-center gap-8 mt-2">
         {fight.odds1 && (
-          <span className="text-primary font-bold text-lg tracking-wide">
-            {fight.odds1}
-          </span>
+          <div className="bg-gradient-to-r from-red-500/20 to-red-500/10 border border-red-500/30 rounded-lg px-4 py-2">
+            <div className="text-xs text-red-300 font-medium">RED CORNER</div>
+            <div className="text-red-400 font-bold text-xl tracking-wide">
+              {fight.odds1}
+            </div>
+          </div>
         )}
         {fight.odds2 && (
-          <span className="text-primary font-bold text-lg tracking-wide">
-            {fight.odds2}
-          </span>
+          <div className="bg-gradient-to-r from-blue-500/20 to-blue-500/10 border border-blue-500/30 rounded-lg px-4 py-2">
+            <div className="text-xs text-blue-300 font-medium">BLUE CORNER</div>
+            <div className="text-blue-400 font-bold text-xl tracking-wide">
+              {fight.odds2}
+            </div>
+          </div>
         )}
       </div>
     )}
@@ -784,8 +805,8 @@ export default function EventDetail() {
                 </CardHeader>
 
                 <CardContent className="space-y-4">
-                  {/* Quick Actions */}
-                  <div className="flex flex-wrap justify-center gap-3">
+                  {/* Enhanced Quick Actions */}
+                  <div className="flex flex-wrap justify-center gap-4 p-4 bg-gradient-to-r from-background/50 via-muted/20 to-background/50 rounded-lg border border-border/30">
                     <Button
                       variant="outline"
                       onClick={() => {
@@ -797,7 +818,7 @@ export default function EventDetail() {
                           }));
                         }, 100);
                       }}
-                      className="gap-2"
+                      className="gap-2 bg-gradient-to-r from-primary/10 to-primary/5 border-primary/30 hover:from-primary hover:to-primary/90 hover:text-primary-foreground transition-all duration-300 shadow-lg hover:shadow-primary/20"
                     >
                       <Target className="h-4 w-4" />
                       Predict Outcome
@@ -806,8 +827,10 @@ export default function EventDetail() {
                     <Button
                       variant="default"
                       onClick={() => toggleFightExpansion(fight.bout_order)}
-                      className={`gap-2 transition-all duration-300 ${
-                        isExpanded ? 'bg-primary/80' : ''
+                      className={`gap-2 transition-all duration-500 shadow-lg hover:shadow-xl ${
+                        isExpanded
+                          ? 'bg-gradient-to-r from-primary to-primary/80 shadow-primary/30 scale-105'
+                          : 'bg-gradient-to-r from-primary/90 to-primary hover:from-primary hover:to-primary/80'
                       }`}
                     >
                       {isExpanded ? (
@@ -824,25 +847,36 @@ export default function EventDetail() {
                     </Button>
                   </div>
 
-                  {/* Expanded Content */}
-                  <div className={`transition-all duration-700 ease-in-out ${
+                  {/* Enhanced Expanded Content */}
+                  <div className={`transition-all duration-1000 ease-in-out ${
                     isExpanded
-                      ? 'max-h-[3000px] opacity-100'
-                      : 'max-h-0 opacity-0 overflow-hidden'
+                      ? 'max-h-[4000px] opacity-100 mt-6'
+                      : 'max-h-0 opacity-0 overflow-hidden mt-0'
                   }`}>
                     {isExpanded && (
                       <div className="space-y-8 pt-6">
                         <Separator className="opacity-30" />
 
-                        {/* Enhanced Fighter Comparison */}
-                        <div className="space-y-6">
-                          <div className="text-center">
-                            <h3 className="text-2xl font-bold flex items-center justify-center gap-3 mb-2">
-                              <BarChart3 className="h-6 w-6 text-primary" />
-                              FIGHTER BREAKDOWN
-                              <BarChart3 className="h-6 w-6 text-primary" />
-                            </h3>
-                            <p className="text-muted-foreground">Complete statistical analysis and recent form</p>
+                        {/* Enhanced Fighter Comparison with animations */}
+                        <div className="space-y-8">
+                          <div className="text-center relative">
+                            <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 rounded-lg -m-4" />
+                            <div className="relative p-6">
+                              <h3 className="text-3xl font-bold flex items-center justify-center gap-4 mb-3">
+                                <div className="relative">
+                                  <BarChart3 className="h-7 w-7 text-primary animate-pulse" />
+                                  <div className="absolute inset-0 h-7 w-7 text-primary/30 animate-ping" />
+                                </div>
+                                <span className="bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">
+                                  FIGHTER BREAKDOWN
+                                </span>
+                                <div className="relative">
+                                  <BarChart3 className="h-7 w-7 text-primary animate-pulse" />
+                                  <div className="absolute inset-0 h-7 w-7 text-primary/30 animate-ping" />
+                                </div>
+                              </h3>
+                              <p className="text-muted-foreground text-lg">Complete statistical analysis and recent form</p>
+                            </div>
                           </div>
 
                           <div className="grid md:grid-cols-2 gap-8">
