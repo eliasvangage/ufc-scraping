@@ -752,26 +752,18 @@ export default function EventDetail() {
 
 <CardTitle className="text-2xl relative">
   <div className="flex flex-col items-center justify-center gap-4">
-    {/* Fighter names and animated shields */}
+    {/* Fighter names with VS in center */}
     <div className="flex items-center justify-center gap-6">
       <div className="text-center">
-        <span className="text-red-400 font-bold text-xl transition-all duration-300 hover:scale-105 cursor-pointer hover:text-red-300">
+        <span className="text-primary font-bold text-xl transition-all duration-300 hover:scale-105 cursor-pointer">
           {fight.fighter_red}
         </span>
       </div>
       <div className="flex items-center gap-3 relative">
-        <div className="relative">
-          <Shield className="h-7 w-7 text-red-400 animate-pulse" />
-          <div className="absolute inset-0 h-7 w-7 text-red-400/30 animate-ping" />
-        </div>
         <div className="font-bold text-muted-foreground text-lg animate-pulse">VS</div>
-        <div className="relative">
-          <Shield className="h-7 w-7 text-blue-400 animate-pulse" />
-          <div className="absolute inset-0 h-7 w-7 text-blue-400/30 animate-ping" />
-        </div>
       </div>
       <div className="text-center">
-        <span className="text-blue-400 font-bold text-xl transition-all duration-300 hover:scale-105 cursor-pointer hover:text-blue-300">
+        <span className="text-primary font-bold text-xl transition-all duration-300 hover:scale-105 cursor-pointer">
           {fight.fighter_blue}
         </span>
       </div>

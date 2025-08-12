@@ -101,33 +101,15 @@ export function Hero({
       {/* Content */}
       <div className="relative container mx-auto px-4 py-20 text-center">
         <div className="max-w-4xl mx-auto space-y-6">
-          {/* Title and Icon */}
+          {/* Title */}
           <div className="space-y-4">
             <div className="flex items-center justify-center gap-6 mb-8">
-              {Icon && (
-                <>
-                  <div className="relative group">
-                    <div className={`absolute -inset-4 ${styles.iconColors.replace('text-', 'bg-')}/10 rounded-full blur-2xl animate-pulse`} />
-                    <Icon className={`h-14 w-14 ${styles.iconColors} transition-all duration-500 group-hover:scale-110 group-hover:rotate-12`} />
-                    <div className={`absolute inset-0 h-14 w-14 ${styles.iconColors}/20 animate-ping`} />
-                  </div>
-                </>
-              )}
-
               <div className="relative">
                 <h1 className={`text-5xl md:text-7xl font-bold bg-gradient-to-r ${styles.titleGradient} bg-clip-text text-transparent tracking-tight animate-in fade-in slide-in-from-bottom-4 duration-1000`}>
                   {title}
                 </h1>
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-primary/10 blur-3xl -z-10 animate-pulse" />
               </div>
-
-              {Icon && (
-                <div className="relative group">
-                  <div className={`absolute -inset-4 ${styles.iconColors.replace('text-', 'bg-')}/10 rounded-full blur-2xl animate-pulse scale-x-[-1]`} />
-                  <Icon className={`h-14 w-14 ${styles.iconColors} scale-x-[-1] transition-all duration-500 group-hover:scale-110 group-hover:-rotate-12`} />
-                  <div className={`absolute inset-0 h-14 w-14 ${styles.iconColors}/20 animate-ping scale-x-[-1]`} />
-                </div>
-              )}
             </div>
             
             {subtitle && (

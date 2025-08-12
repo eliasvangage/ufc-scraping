@@ -241,15 +241,15 @@ export function FightPredictor() {
                 availableFighters={availableFighters}
                 selectedFighter={fighter1}
                 onFighterSelect={(f) => handleFighterSelect(f, "fighter1")}
-                placeholder="Search for red corner fighter..."
-                label="RED CORNER"
+                placeholder="Search for first fighter..."
+                label="FIGHTER 1"
               />
               <FighterSearch
                 availableFighters={availableFighters}
                 selectedFighter={fighter2}
                 onFighterSelect={(f) => handleFighterSelect(f, "fighter2")}
-                placeholder="Search for blue corner fighter..."
-                label="BLUE CORNER"
+                placeholder="Search for second fighter..."
+                label="FIGHTER 2"
               />
             </div>
             {fighter1 && fighter2 && (
@@ -292,8 +292,7 @@ export function FightPredictor() {
 
         <div className="space-y-8">
           <div className="text-center">
-            <h2 className="text-4xl font-bold mb-4 flex items-center justify-center gap-3">
-              <Calendar className="h-8 w-8 text-primary" />
+            <h2 className="text-4xl font-bold mb-4">
               OCTAGON SCHEDULE
             </h2>
             <p className="text-muted-foreground text-lg">
@@ -301,7 +300,7 @@ export function FightPredictor() {
             </p>
             <div className="mt-2 flex items-center justify-center gap-2">
               <div className="h-1 w-16 bg-gradient-to-r from-transparent via-primary to-transparent" />
-              <Flame className="h-4 w-4 text-primary animate-pulse" />
+              🔥
               <div className="h-1 w-16 bg-gradient-to-r from-transparent via-primary to-transparent" />
             </div>
           </div>
@@ -310,9 +309,6 @@ export function FightPredictor() {
           <div className="flex items-center justify-between mb-8 p-4 bg-gradient-to-r from-card/30 via-muted/10 to-card/30 rounded-xl border border-border/40">
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <Calendar className="h-5 w-5 text-primary" />
-                </div>
                 <h3 className="text-2xl font-bold bg-gradient-to-r from-foreground to-primary/80 bg-clip-text text-transparent">
                   {showPastEvents ? "Past Events" : "Upcoming Events"}
                 </h3>
@@ -328,8 +324,7 @@ export function FightPredictor() {
                   onClick={() => setShowPastEvents(false)}
                   className={`gap-2 transition-all duration-300 ${!showPastEvents ? "bg-primary shadow-lg shadow-primary/20" : "hover:bg-primary/10"}`}
                 >
-                  <Calendar className="h-4 w-4" />
-                  Upcoming
+                  📅 Upcoming
                 </Button>
               )}
               {upcomingCards.filter((event) => isEventPast(event.date)).length >
@@ -340,8 +335,7 @@ export function FightPredictor() {
                   onClick={() => setShowPastEvents(true)}
                   className={`gap-2 transition-all duration-300 ${showPastEvents ? "bg-primary shadow-lg shadow-primary/20" : "hover:bg-primary/10"}`}
                 >
-                  <History className="h-4 w-4" />
-                  Past Events
+                  📊 Past Events
                 </Button>
               )}
             </div>
@@ -417,13 +411,7 @@ export function FightPredictor() {
                                 {mainEvent.fighter_red}
                               </span>
                               <div className="flex items-center gap-2">
-                                <div className="w-6 h-6 rounded-full bg-red-500/20 flex items-center justify-center">
-                                  <div className="w-3 h-3 rounded-full bg-red-500" />
-                                </div>
-                                <Swords className="h-5 w-5 text-muted-foreground animate-pulse" />
-                                <div className="w-6 h-6 rounded-full bg-blue-500/20 flex items-center justify-center">
-                                  <div className="w-3 h-3 rounded-full bg-blue-500" />
-                                </div>
+                                <span className="text-2xl">🥊</span>
                               </div>
                               <span className="text-primary font-bold transition-all duration-300 group-hover:scale-105">
                                 {mainEvent.fighter_blue}
@@ -439,14 +427,14 @@ export function FightPredictor() {
                         <CardContent className="space-y-4">
                           <div className="flex items-center justify-center gap-3 text-sm bg-background/30 rounded-lg p-3">
                             <div className="flex items-center gap-2">
-                              <Clock className="h-4 w-4 text-primary" />
+                              <span className="text-primary">🕒</span>
                               <span className="font-medium">
                                 {event.time ?? "TBD"}
                               </span>
                             </div>
                             <div className="w-px h-4 bg-border" />
                             <div className="flex items-center gap-2">
-                              <MapPin className="h-4 w-4 text-primary" />
+                              <span className="text-primary">📍</span>
                               <span className="font-medium truncate">
                                 {(event.venue ?? "TBD").replace(
                                   "Location: ",
@@ -501,7 +489,7 @@ export function FightPredictor() {
                 <Card className="w-96 bg-gradient-to-br from-muted/10 to-muted/5 border-dashed border-muted/30 hover:border-primary/30 transition-all duration-300 cursor-pointer group">
                   <CardContent className="flex flex-col items-center justify-center h-full p-8 text-center">
                     <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                      <Calendar className="h-8 w-8 text-primary" />
+                      <span className="text-3xl">📅</span>
                     </div>
                     <h3 className="text-lg font-semibold mb-2">More Events</h3>
                     <p className="text-sm text-muted-foreground mb-4">
