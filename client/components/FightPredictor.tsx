@@ -367,7 +367,7 @@ export function FightPredictor() {
 
                     return (
                       <Card
-                        key={idx}
+                        key={originalIdx}
                         className={`
                         w-96 transition-all duration-500 group cursor-pointer
                         hover:scale-[1.02] hover:shadow-2xl
