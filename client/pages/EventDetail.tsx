@@ -564,70 +564,75 @@ export default function EventDetail() {
           </div>
 
         {eventData.fights.length > 0 && (
-  <div className="text-center mb-10">
-    <Button
-  onClick={async () => {
-    console.log("🟡 Predict All Fights clicked");
+  <div className="text-center mb-12">
+    <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 rounded-xl p-6 border border-primary/20 mb-8 max-w-2xl mx-auto">
+      <h3 className="text-xl font-bold mb-3 text-primary">AI Analysis Center</h3>
+      <p className="text-muted-foreground mb-4">Generate comprehensive predictions for all fights using advanced machine learning</p>
+      <Button
+        size="lg"
+        className="gap-3 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-lg px-8 py-3 shadow-lg shadow-primary/20"
+        onClick={async () => {
+          console.log("🟡 Predict All Fights clicked");
 
-    for (const fight of eventData.fights) {
-      console.log(`🔄 Predicting: ${fight.fighter_red} vs ${fight.fighter_blue}`);
-      setAnalyzingFights(prev => new Set(prev).add(fight.bout_order));
+          for (const fight of eventData.fights) {
+            console.log(`🔄 Predicting: ${fight.fighter_red} vs ${fight.fighter_blue}`);
+            setAnalyzingFights(prev => new Set(prev).add(fight.bout_order));
 
-      try {
-        const prediction = await apiService.predictFight({
-          fighter1: fight.fighter_red,
-          fighter2: fight.fighter_blue,
-        });
+            try {
+              const prediction = await apiService.predictFight({
+                fighter1: fight.fighter_red,
+                fighter2: fight.fighter_blue,
+              });
 
-        console.log("✅ Prediction result:", prediction);
+              console.log("✅ Prediction result:", prediction);
 
-        setPredictions(prev => new Map(prev).set(fight.bout_order, prediction));
+              setPredictions(prev => new Map(prev).set(fight.bout_order, prediction));
 
-        // ✅ Create and store tracking entry
-        const log: TrackedFight = {
-          fighter1: fight.fighter_red,
-          fighter2: fight.fighter_blue,
-          predictedWinner: prediction.predicted_winner,
-          confidenceScore: prediction.confidence,
-          oddsAtPrediction: fight.odds1 || "N/A",
-          currentOdds: fight.odds1 || null,
-          actualResult: null,
-          correct: null,
-        };
+              // ✅ Create and store tracking entry
+              const log: TrackedFight = {
+                fighter1: fight.fighter_red,
+                fighter2: fight.fighter_blue,
+                predictedWinner: prediction.predicted_winner,
+                confidenceScore: prediction.confidence,
+                oddsAtPrediction: fight.odds1 || "N/A",
+                currentOdds: fight.odds1 || null,
+                actualResult: null,
+                correct: null,
+              };
 
-        setPredictionLogs(prev => [...prev, log]);
-        console.log("📦 Log added to tracking list:", log);
-      } catch (err) {
-        console.error("❌ Prediction failed:", fight.fighter_red, "vs", fight.fighter_blue, err);
-      } finally {
-        setAnalyzingFights(prev => {
-          const newSet = new Set(prev);
-          newSet.delete(fight.bout_order);
-          return newSet;
-        });
-      }
-    }
+              setPredictionLogs(prev => [...prev, log]);
+              console.log("📦 Log added to tracking list:", log);
+            } catch (err) {
+              console.error("❌ Prediction failed:", fight.fighter_red, "vs", fight.fighter_blue, err);
+            } finally {
+              setAnalyzingFights(prev => {
+                const newSet = new Set(prev);
+                newSet.delete(fight.bout_order);
+                return newSet;
+              });
+            }
+          }
 
-    console.log("📤 Submitting all logs to backend:", predictionLogs);
+          console.log("📤 Submitting all logs to backend:", predictionLogs);
 
-    // Send logs to backend
-    try {
-      const res = await fetch("http://localhost:8000/track", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(predictionLogs),
-      });
-      const result = await res.json();
-      console.log("✅ Logs sent to backend:", result);
-    } catch (e) {
-      console.error("❌ Failed to POST logs:", e);
-    }
-  }}
->
-  <Zap className="h-5 w-5" />
-  Predict All Fights
-</Button>
-
+          // Send logs to backend
+          try {
+            const res = await fetch("http://localhost:8000/track", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(predictionLogs),
+            });
+            const result = await res.json();
+            console.log("✅ Logs sent to backend:", result);
+          } catch (e) {
+            console.error("❌ Failed to POST logs:", e);
+          }
+        }}
+      >
+        <Zap className="h-5 w-5" />
+        Predict All Fights
+      </Button>
+    </div>
   </div>
 )}
 
