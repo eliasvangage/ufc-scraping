@@ -9,7 +9,8 @@ import { NavBar } from "@/components/NavBar";
 import Index from "./pages/Index";
 import EventDetail from "./pages/EventDetail";
 import Fighters from "./pages/Fighters";
-import Tracking from "./pages/Tracking"; // ✅ Add this import
+import Events from "./pages/Events";
+import Tracking from "./pages/Tracking";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
