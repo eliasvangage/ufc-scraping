@@ -28,6 +28,7 @@ import {
   sortEventsByDate,
   formatEventDate,
 } from "@/lib/dateUtils";
+import { Hero } from "@/components/ui/hero";
 
 interface Fight {
   fighter1: string;
