@@ -131,13 +131,28 @@ export function Hero({
             <div className="flex items-center justify-center gap-6 pt-6 flex-wrap">
               {stats.map((stat, index) => {
                 const StatIcon = stat.icon;
+                const colorClass = stat.color || 'primary';
+                const bgClass = colorClass === 'primary' ? 'bg-primary/10 border-primary/20' :
+                               colorClass === 'green-500' ? 'bg-green-500/10 border-green-500/20' :
+                               colorClass === 'blue-500' ? 'bg-blue-500/10 border-blue-500/20' :
+                               colorClass === 'purple-500' ? 'bg-purple-500/10 border-purple-500/20' :
+                               colorClass === 'red-500' ? 'bg-red-500/10 border-red-500/20' :
+                               colorClass === 'yellow-500' ? 'bg-yellow-500/10 border-yellow-500/20' :
+                               'bg-muted/10 border-muted/20';
+                const textClass = colorClass === 'primary' ? 'text-primary' :
+                                 colorClass === 'green-500' ? 'text-green-500' :
+                                 colorClass === 'blue-500' ? 'text-blue-500' :
+                                 colorClass === 'purple-500' ? 'text-purple-500' :
+                                 colorClass === 'red-500' ? 'text-red-500' :
+                                 colorClass === 'yellow-500' ? 'text-yellow-500' :
+                                 'text-muted-foreground';
                 return (
-                  <div 
+                  <div
                     key={index}
-                    className={`flex items-center gap-2 px-4 py-3 bg-${stat.color || 'primary'}/10 rounded-full border border-${stat.color || 'primary'}/20 backdrop-blur-sm`}
+                    className={`flex items-center gap-2 px-4 py-3 ${bgClass} rounded-full backdrop-blur-sm`}
                   >
-                    <StatIcon className={`h-4 w-4 text-${stat.color || 'primary'}`} />
-                    <span className={`text-sm font-medium text-${stat.color || 'primary'}`}>
+                    <StatIcon className={`h-4 w-4 ${textClass}`} />
+                    <span className={`text-sm font-medium ${textClass}`}>
                       {stat.value} {stat.label}
                     </span>
                   </div>
