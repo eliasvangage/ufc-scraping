@@ -760,18 +760,118 @@ export default function Fighters() {
         {/* Fighters Display */}
         {paginatedFighters.length > 0 ? (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {paginatedFighters.map((fighter, index) => (
-                <div
-                  key={fighter.profile_url || fighter.name || index}
-                  className="opacity-0 animate-fadeInUp"
-                  style={{ animationDelay: `${index * 50}ms`, animationFillMode: 'forwards' }}
-                >
-                  <FighterCard fighter={fighter} />
-                </div>
-              ))}
-            </div>
-            
+            {viewMode === "grid" ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {paginatedFighters.map((fighter, index) => (
+                  <div
+                    key={fighter.profile_url || fighter.name || index}
+                    className="opacity-0 animate-fadeInUp"
+                    style={{ animationDelay: `${index * 50}ms`, animationFillMode: 'forwards' }}
+                  >
+                    <FighterCard fighter={fighter} />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {paginatedFighters.map((fighter, index) => {
+                  const recordToShow = ufcOnly && fighter.ufc_record ? fighter.ufc_record : fighter.record;
+                  const winPercentage = getWinPercentage(recordToShow);
+                  const isUFCVeteran = isUFCFighter(fighter);
+
+                  return (
+                    <Card
+                      key={fighter.profile_url || fighter.name || index}
+                      className="hover:shadow-lg transition-all duration-300 hover:border-primary/30 cursor-pointer"
+                      onClick={() => navigate(`/fighter/${encodeURIComponent(fighter.name)}`)}
+                    >
+                      <CardContent className="p-4">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-4">
+                            <div className="relative">
+                              <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full flex items-center justify-center">
+                                <Shield className="h-8 w-8 text-primary" />
+                              </div>
+                              {fighter.champion && (
+                                <div className="absolute -top-1 -right-1 w-6 h-6 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center">
+                                  <Crown className="h-3 w-3 text-yellow-900" />
+                                </div>
+                              )}
+                            </div>
+
+                            <div>
+                              <h3 className="text-xl font-bold">{fighter.name}</h3>
+                              {fighter.nickname && (
+                                <p className="text-sm text-muted-foreground italic">"{fighter.nickname}"</p>
+                              )}
+                              <div className="flex items-center gap-2 mt-1">
+                                <Badge variant="outline" className="text-xs">
+                                  {fighter.division}
+                                </Badge>
+                                <Badge variant="outline" className="text-xs">
+                                  {fighter.stance}
+                                </Badge>
+                                {isUFCVeteran && (
+                                  <Badge className="text-xs bg-red-600 text-white">
+                                    UFC
+                                  </Badge>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="flex items-center gap-6 text-center">
+                            <div>
+                              <div className="text-sm text-muted-foreground">Record</div>
+                              <Badge
+                                variant="outline"
+                                className={`${getRecordBadgeColor(recordToShow)} font-bold`}
+                              >
+                                {recordToShow}
+                              </Badge>
+                            </div>
+
+                            <div>
+                              <div className="text-sm text-muted-foreground">Win Rate</div>
+                              <div className="font-bold text-primary">{winPercentage}%</div>
+                            </div>
+
+                            <div>
+                              <div className="text-sm text-muted-foreground">Age</div>
+                              <div className="font-bold">{fighter.age}</div>
+                            </div>
+
+                            <div className="hidden md:block">
+                              <div className="text-sm text-muted-foreground">Height</div>
+                              <div className="font-bold">{fighter.height}</div>
+                            </div>
+
+                            <div className="hidden lg:block">
+                              <div className="text-sm text-muted-foreground">Weight</div>
+                              <div className="font-bold">{fighter.weight}</div>
+                            </div>
+
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="gap-2"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                navigate(`/fighter/${encodeURIComponent(fighter.name)}`);
+                              }}
+                            >
+                              <Eye className="h-3 w-3" />
+                              View
+                            </Button>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
+            )}
+
             {/* Pagination Controls */}
             <PaginationControls />
           </>
