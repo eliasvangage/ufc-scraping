@@ -96,7 +96,7 @@ interface Fighter {
   dob: string;
   age: number;
   division: string;
-  champion: boolean;
+  is_champion: boolean;
   // UFC-specific fields
   ufc_record?: string;
   ufc_wins?: number;
@@ -243,7 +243,7 @@ export default function Fighters() {
           return bWins - aWins;
         }
         case "champion":
-          return (b.champion ? 1 : 0) - (a.champion ? 1 : 0);
+          return (b.is_champion ? 1 : 0) - (a.is_champion ? 1 : 0);
         default:
           return (a.name || "").localeCompare(b.name || "");
       }
@@ -413,7 +413,7 @@ export default function Fighters() {
           )}
 
           {/* Champion crown */}
-          {fighter.champion && (
+          {fighter.is_champion && (
             <div className="w-8 h-8 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center animate-pulse shadow-lg">
               <Crown className="h-4 w-4 text-yellow-900" />
             </div>
@@ -616,7 +616,7 @@ export default function Fighters() {
           }] : []),
           {
             icon: Crown,
-            label: `${currentFighters.filter(f => f.champion).length} Champions`,
+            label: `${currentFighters.filter(f => f.is_champion).length} Champions`,
             color: "yellow-500"
           }
         ]}
@@ -747,7 +747,7 @@ export default function Fighters() {
             <div className="flex items-center gap-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-1">
                 <Crown className="h-4 w-4 text-yellow-400" />
-                {filteredFighters.filter(f => f.champion).length} Champions
+                {filteredFighters.filter(f => f.is_champion).length} Champions
               </div>
               <div className="flex items-center gap-1">
                 <Trophy className="h-4 w-4 text-primary" />
@@ -792,11 +792,11 @@ export default function Fighters() {
                               <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full flex items-center justify-center">
                                 <Shield className="h-8 w-8 text-primary" />
                               </div>
-                              {fighter.champion && (
-                                <div className="absolute -top-1 -right-1 w-6 h-6 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center">
-                                  <Crown className="h-3 w-3 text-yellow-900" />
-                                </div>
-                              )}
+                              {fighter.is_champion && (
+                <div className="absolute -top-1 -right-1 w-6 h-6 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center">
+                  <Crown className="h-3 w-3 text-yellow-900" />
+                </div>
+              )}
                             </div>
 
                             <div>
