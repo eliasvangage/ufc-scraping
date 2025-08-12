@@ -551,7 +551,7 @@ export default function EventDetail() {
   onClick={async () => {
     console.log("🟡 Predict All Fights clicked");
 
-    for (const fight of fights) {
+    for (const fight of eventData.fights) {
       console.log(`🔄 Predicting: ${fight.fighter_red} vs ${fight.fighter_blue}`);
       setAnalyzingFights(prev => new Set(prev).add(fight.bout_order));
 
