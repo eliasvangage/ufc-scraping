@@ -126,6 +126,20 @@ export function FightCard({ prediction, isAnalyzing, fighter1, fighter2 }: Fight
                   CHAMPION
                 </Badge>
               )}
+              {/* Debut badge */}
+              {fighterData && (!fighterData.ufc_wins && !fighterData.ufc_losses && !fighterData.ufc_draws) && (
+                <Badge className="bg-gradient-to-r from-green-500 to-green-600 text-white font-bold">
+                  <Activity className="h-3 w-3 mr-1" />
+                  UFC DEBUT
+                </Badge>
+              )}
+              {/* Knockout Artist badge */}
+              {fighterData?.ko_pct >= 80 && (fighterData.ufc_wins + fighterData.ufc_losses + fighterData.ufc_draws) >= 5 && (
+                <Badge className="bg-gradient-to-r from-red-600 to-red-700 text-white font-bold">
+                  <Zap className="h-3 w-3 mr-1" />
+                  KNOCKOUT ARTIST
+                </Badge>
+              )}
             </div>
           </div>
 
