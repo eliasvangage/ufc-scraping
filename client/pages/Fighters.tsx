@@ -566,6 +566,7 @@ export default function Fighters() {
             variant="outline"
             size="sm"
             className="w-full group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-primary/80 group-hover:text-primary-foreground group-hover:border-primary transition-all duration-300 font-medium text-xs h-8"
+            onClick={() => navigate(`/fighter/${encodeURIComponent(fighter.name)}`)}
           >
             <Eye className="h-3 w-3 mr-1" />
             View Profile
