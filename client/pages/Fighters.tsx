@@ -680,11 +680,11 @@ export default function Fighters() {
                   <Zap className={`h-4 w-4 mr-2 ${ufcOnly ? 'animate-pulse' : ''}`} />
                   UFC Only
                   <Badge className={`ml-2 text-xs ${
-                    ufcOnly 
-                      ? "bg-white/20 text-white" 
+                    ufcOnly
+                      ? "bg-white/20 text-white"
                       : "bg-red-500/10 text-red-600 border-red-500/20"
                   }`}>
-                    {ufcOnly ? ufcFighters.length : allFighters.filter(f => isUFCFighter(f)).length}
+                    {ufcFighters.length}
                   </Badge>
                 </Button>
               </div>
