@@ -16,7 +16,7 @@ import {
   Weight,
   Flame,
   BarChart3,
-  Zap
+  Zap,
 } from "lucide-react";
 
 interface FightCardProps {
@@ -28,7 +28,12 @@ interface FightCardProps {
   odds2?: string;
 }
 
-export function FightCard({ prediction, isAnalyzing, fighter1, fighter2 }: FightCardProps) {
+export function FightCard({
+  prediction,
+  isAnalyzing,
+  fighter1,
+  fighter2,
+}: FightCardProps) {
   const formatHeight = (feetDecimal: number): string => {
     const totalInches = Math.round(feetDecimal * 12);
     const feet = Math.floor(totalInches / 12);
@@ -63,61 +68,83 @@ export function FightCard({ prediction, isAnalyzing, fighter1, fighter2 }: Fight
       }
     };
 
-    const f1Better = higher === "better" ? fighter1Value > fighter2Value : fighter1Value < fighter2Value;
-    const f2Better = higher === "better" ? fighter2Value > fighter1Value : fighter2Value < fighter1Value;
+    const f1Better =
+      higher === "better"
+        ? fighter1Value > fighter2Value
+        : fighter1Value < fighter2Value;
+    const f2Better =
+      higher === "better"
+        ? fighter2Value > fighter1Value
+        : fighter2Value < fighter1Value;
 
     return (
       <div className="grid grid-cols-3 gap-4 items-center py-3">
-        <div className={`text-right ${f1Better ? "text-green-400 font-semibold" : "text-muted-foreground"}`}>
-          {formatValue(fighter1Value)}{unit}
+        <div
+          className={`text-right ${f1Better ? "text-green-400 font-semibold" : "text-muted-foreground"}`}
+        >
+          {formatValue(fighter1Value)}
+          {unit}
         </div>
-        <div className="text-center text-sm text-muted-foreground font-medium">{label}</div>
-        <div className={`text-left ${f2Better ? "text-green-400 font-semibold" : "text-muted-foreground"}`}>
-          {formatValue(fighter2Value)}{unit}
+        <div className="text-center text-sm text-muted-foreground font-medium">
+          {label}
+        </div>
+        <div
+          className={`text-left ${f2Better ? "text-green-400 font-semibold" : "text-muted-foreground"}`}
+        >
+          {formatValue(fighter2Value)}
+          {unit}
         </div>
       </div>
     );
   };
 
-  const FighterStatsCard = ({ 
-    fighter, 
-    corner, 
+  const FighterStatsCard = ({
+    fighter,
+    corner,
     fighterData,
-    recentForm 
-  }: { 
-    fighter: string; 
-    corner: 'red' | 'blue';
+    recentForm,
+  }: {
+    fighter: string;
+    corner: "red" | "blue";
     fighterData: any;
     recentForm: string[];
   }) => {
     const cornerColors = {
       red: {
-        bg: 'from-red-500/20 via-red-500/10 to-red-500/5',
-        border: 'border-red-500/30',
-        accent: 'text-red-400',
-        icon: 'text-red-400'
+        bg: "from-red-500/20 via-red-500/10 to-red-500/5",
+        border: "border-red-500/30",
+        accent: "text-red-400",
+        icon: "text-red-400",
       },
       blue: {
-        bg: 'from-blue-500/20 via-blue-500/10 to-blue-500/5',
-        border: 'border-blue-500/30',
-        accent: 'text-blue-400',
-        icon: 'text-blue-400'
-      }
+        bg: "from-blue-500/20 via-blue-500/10 to-blue-500/5",
+        border: "border-blue-500/30",
+        accent: "text-blue-400",
+        icon: "text-blue-400",
+      },
     };
 
     return (
-      <Card className={`bg-gradient-to-br ${cornerColors[corner].bg} ${cornerColors[corner].border} shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02]`}>
+      <Card
+        className={`bg-gradient-to-br ${cornerColors[corner].bg} ${cornerColors[corner].border} shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02]`}
+      >
         <CardContent className="p-6 space-y-4">
           {/* Fighter Name & Record */}
           <div className="text-center space-y-3">
-            <h3 className={`text-2xl font-bold ${cornerColors[corner].accent}`}>{fighter}</h3>
+            <h3 className={`text-2xl font-bold ${cornerColors[corner].accent}`}>
+              {fighter}
+            </h3>
             <div className="flex flex-wrap items-center justify-center gap-3">
-              <Badge variant="outline" className={`${cornerColors[corner].border} ${cornerColors[corner].accent} text-lg px-3 py-1`}>
+              <Badge
+                variant="outline"
+                className={`${cornerColors[corner].border} ${cornerColors[corner].accent} text-lg px-3 py-1`}
+              >
                 {fighterData?.record || "N/A"}
               </Badge>
               {fighterData && (
                 <Badge variant="secondary" className="text-sm px-3 py-1">
-                  UFC: {fighterData.ufc_wins || 0}-{fighterData.ufc_losses || 0}-{fighterData.ufc_draws || 0}
+                  UFC: {fighterData.ufc_wins || 0}-{fighterData.ufc_losses || 0}
+                  -{fighterData.ufc_draws || 0}
                 </Badge>
               )}
               {fighterData?.is_champion && (
@@ -127,49 +154,64 @@ export function FightCard({ prediction, isAnalyzing, fighter1, fighter2 }: Fight
                 </Badge>
               )}
               {/* Debut badge */}
-              {fighterData && (!fighterData.ufc_wins && !fighterData.ufc_losses && !fighterData.ufc_draws) && (
-                <Badge className="bg-gradient-to-r from-green-500 to-green-600 text-white font-bold">
-                  <Activity className="h-3 w-3 mr-1" />
-                  UFC DEBUT
-                </Badge>
-              )}
+              {fighterData &&
+                !fighterData.ufc_wins &&
+                !fighterData.ufc_losses &&
+                !fighterData.ufc_draws && (
+                  <Badge className="bg-gradient-to-r from-green-500 to-green-600 text-white font-bold">
+                    <Activity className="h-3 w-3 mr-1" />
+                    UFC DEBUT
+                  </Badge>
+                )}
               {/* Knockout Artist badge */}
-              {fighterData?.ko_pct >= 80 && (fighterData.ufc_wins + fighterData.ufc_losses + fighterData.ufc_draws) >= 5 && (
-                <Badge className="bg-gradient-to-r from-red-600 to-red-700 text-white font-bold">
-                  <Zap className="h-3 w-3 mr-1" />
-                  KNOCKOUT ARTIST
-                </Badge>
-              )}
+              {fighterData?.ko_pct >= 80 &&
+                fighterData.ufc_wins +
+                  fighterData.ufc_losses +
+                  fighterData.ufc_draws >=
+                  5 && (
+                  <Badge className="bg-gradient-to-r from-red-600 to-red-700 text-white font-bold">
+                    <Zap className="h-3 w-3 mr-1" />
+                    KNOCKOUT ARTIST
+                  </Badge>
+                )}
             </div>
           </div>
 
           {/* Physical Stats */}
           <div className="grid grid-cols-3 gap-3 text-center">
             <div className="bg-background/30 rounded-lg p-3 backdrop-blur-sm">
-              <Ruler className={`h-4 w-4 mx-auto mb-1 ${cornerColors[corner].icon}`} />
+              <Ruler
+                className={`h-4 w-4 mx-auto mb-1 ${cornerColors[corner].icon}`}
+              />
               <div className="text-xs text-muted-foreground">HEIGHT</div>
               <div className="font-semibold">
-                {fighterData?.height !== null && fighterData?.height !== undefined
+                {fighterData?.height !== null &&
+                fighterData?.height !== undefined
                   ? formatHeight(fighterData.height)
-                  : 'N/A'}
+                  : "N/A"}
               </div>
             </div>
             <div className="bg-background/30 rounded-lg p-3 backdrop-blur-sm">
-              <Weight className={`h-4 w-4 mx-auto mb-1 ${cornerColors[corner].icon}`} />
+              <Weight
+                className={`h-4 w-4 mx-auto mb-1 ${cornerColors[corner].icon}`}
+              />
               <div className="text-xs text-muted-foreground">WEIGHT</div>
               <div className="font-semibold">
-                {fighterData?.weight !== null && fighterData?.weight !== undefined
+                {fighterData?.weight !== null &&
+                fighterData?.weight !== undefined
                   ? `${fighterData.weight}lbs`
-                  : 'N/A'}
+                  : "N/A"}
               </div>
             </div>
             <div className="bg-background/30 rounded-lg p-3 backdrop-blur-sm">
-              <Target className={`h-4 w-4 mx-auto mb-1 ${cornerColors[corner].icon}`} />
+              <Target
+                className={`h-4 w-4 mx-auto mb-1 ${cornerColors[corner].icon}`}
+              />
               <div className="text-xs text-muted-foreground">REACH</div>
               <div className="font-semibold">
                 {fighterData?.reach !== null && fighterData?.reach !== undefined
                   ? `${Math.round(fighterData.reach)}"`
-                  : 'N/A'}
+                  : "N/A"}
               </div>
             </div>
           </div>
@@ -177,17 +219,25 @@ export function FightCard({ prediction, isAnalyzing, fighter1, fighter2 }: Fight
           {/* Age and Experience */}
           <div className="grid grid-cols-2 gap-3">
             <div className="bg-background/30 rounded-lg p-3 text-center backdrop-blur-sm">
-              <Calendar className={`h-4 w-4 mx-auto mb-1 ${cornerColors[corner].icon}`} />
+              <Calendar
+                className={`h-4 w-4 mx-auto mb-1 ${cornerColors[corner].icon}`}
+              />
               <div className="text-xs text-muted-foreground">AGE</div>
               <div className={`font-bold ${cornerColors[corner].accent}`}>
-                {fighterData?.age || 'N/A'}
+                {fighterData?.age || "N/A"}
               </div>
             </div>
             <div className="bg-background/30 rounded-lg p-3 text-center backdrop-blur-sm">
-              <BarChart3 className={`h-4 w-4 mx-auto mb-1 ${cornerColors[corner].icon}`} />
+              <BarChart3
+                className={`h-4 w-4 mx-auto mb-1 ${cornerColors[corner].icon}`}
+              />
               <div className="text-xs text-muted-foreground">UFC FIGHTS</div>
               <div className={`font-bold ${cornerColors[corner].accent}`}>
-                {fighterData ? (fighterData.ufc_wins + fighterData.ufc_losses + fighterData.ufc_draws) : 'N/A'}
+                {fighterData
+                  ? fighterData.ufc_wins +
+                    fighterData.ufc_losses +
+                    fighterData.ufc_draws
+                  : "N/A"}
               </div>
             </div>
           </div>
@@ -201,9 +251,13 @@ export function FightCard({ prediction, isAnalyzing, fighter1, fighter2 }: Fight
             <div className="space-y-2">
               <div className="space-y-1">
                 <div className="flex justify-between text-xs">
-                  <span className="text-muted-foreground">Striking Accuracy</span>
-                  <span className={`font-medium ${cornerColors[corner].accent}`}>
-                    {fighterData?.strAcc ? `${fighterData.strAcc}%` : 'N/A'}
+                  <span className="text-muted-foreground">
+                    Striking Accuracy
+                  </span>
+                  <span
+                    className={`font-medium ${cornerColors[corner].accent}`}
+                  >
+                    {fighterData?.strAcc ? `${fighterData.strAcc}%` : "N/A"}
                   </span>
                 </div>
                 {fighterData?.strAcc && (
@@ -212,9 +266,13 @@ export function FightCard({ prediction, isAnalyzing, fighter1, fighter2 }: Fight
               </div>
               <div className="space-y-1">
                 <div className="flex justify-between text-xs">
-                  <span className="text-muted-foreground">Takedown Defense</span>
-                  <span className={`font-medium ${cornerColors[corner].accent}`}>
-                    {fighterData?.tdDef ? `${fighterData.tdDef}%` : 'N/A'}
+                  <span className="text-muted-foreground">
+                    Takedown Defense
+                  </span>
+                  <span
+                    className={`font-medium ${cornerColors[corner].accent}`}
+                  >
+                    {fighterData?.tdDef ? `${fighterData.tdDef}%` : "N/A"}
                   </span>
                 </div>
                 {fighterData?.tdDef && (
@@ -226,7 +284,9 @@ export function FightCard({ prediction, isAnalyzing, fighter1, fighter2 }: Fight
 
           {/* Recent Form */}
           <div className="space-y-2">
-            <h4 className="text-sm font-semibold text-center text-muted-foreground">RECENT FORM</h4>
+            <h4 className="text-sm font-semibold text-center text-muted-foreground">
+              RECENT FORM
+            </h4>
             <div className="flex justify-center gap-2">
               {recentForm.map((result, index) => (
                 <div
@@ -234,14 +294,15 @@ export function FightCard({ prediction, isAnalyzing, fighter1, fighter2 }: Fight
                   className={`
                     w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold
                     transition-all duration-300 hover:scale-110 cursor-pointer shadow-lg
-                    ${result === 'W'
-                      ? 'bg-green-500/80 text-white shadow-green-500/50'
-                      : result === 'L'
-                      ? 'bg-red-500/80 text-white shadow-red-500/50'
-                      : 'bg-yellow-500/80 text-black shadow-yellow-500/50'
+                    ${
+                      result === "W"
+                        ? "bg-green-500/80 text-white shadow-green-500/50"
+                        : result === "L"
+                          ? "bg-red-500/80 text-white shadow-red-500/50"
+                          : "bg-yellow-500/80 text-black shadow-yellow-500/50"
                     }
                   `}
-                  title={`Fight ${index + 1}: ${result === 'W' ? 'Win' : result === 'L' ? 'Loss' : 'Draw'}`}
+                  title={`Fight ${index + 1}: ${result === "W" ? "Win" : result === "L" ? "Loss" : "Draw"}`}
                 >
                   {result}
                 </div>
@@ -278,9 +339,12 @@ export function FightCard({ prediction, isAnalyzing, fighter1, fighter2 }: Fight
             <Shield className="h-20 w-20 text-muted-foreground mx-auto" />
             <div className="absolute -inset-4 bg-muted-foreground/10 rounded-full blur-xl" />
           </div>
-          <h3 className="text-2xl font-bold text-muted-foreground mb-3">Select Two Fighters</h3>
+          <h3 className="text-2xl font-bold text-muted-foreground mb-3">
+            Select Two Fighters
+          </h3>
           <p className="text-muted-foreground max-w-md mx-auto leading-relaxed">
-            Choose fighters from both corners to see their detailed matchup analysis with complete stats, records, and AI prediction
+            Choose fighters from both corners to see their detailed matchup
+            analysis with complete stats, records, and AI prediction
           </p>
         </CardContent>
       </Card>
@@ -301,7 +365,7 @@ export function FightCard({ prediction, isAnalyzing, fighter1, fighter2 }: Fight
               MAIN EVENT
             </Badge>
           </div>
-          
+
           <CardTitle className="text-3xl md:text-4xl font-bold mb-6">
             <div className="flex items-center justify-center gap-4 mb-4">
               <div className="flex items-center gap-2">
@@ -368,12 +432,18 @@ export function FightCard({ prediction, isAnalyzing, fighter1, fighter2 }: Fight
                 {prediction.predicted_winner} VICTORIOUS
               </h3>
               <div className="flex justify-center gap-4 mb-4">
-                <Badge variant="default" className="text-xl py-3 px-6 bg-gradient-to-r from-primary to-primary/80 shadow-lg">
+                <Badge
+                  variant="default"
+                  className="text-xl py-3 px-6 bg-gradient-to-r from-primary to-primary/80 shadow-lg"
+                >
                   <Zap className="h-5 w-5 mr-2" />
                   {prediction.confidence.toFixed(1)}% Certainty
                 </Badge>
                 {prediction.rematch && (
-                  <Badge variant="secondary" className="text-xl py-3 px-6 shadow-lg">
+                  <Badge
+                    variant="secondary"
+                    className="text-xl py-3 px-6 shadow-lg"
+                  >
                     REMATCH
                   </Badge>
                 )}
@@ -389,16 +459,50 @@ export function FightCard({ prediction, isAnalyzing, fighter1, fighter2 }: Fight
             </h4>
             <div className="space-y-1">
               <div className="grid grid-cols-3 gap-4 items-center py-3 border-b border-muted/20">
-                <div className="text-right font-bold text-red-400">{f1.name}</div>
-                <div className="text-center text-sm font-medium text-muted-foreground">STAT</div>
-                <div className="text-left font-bold text-blue-400">{f2.name}</div>
+                <div className="text-right font-bold text-red-400">
+                  {f1.name}
+                </div>
+                <div className="text-center text-sm font-medium text-muted-foreground">
+                  STAT
+                </div>
+                <div className="text-left font-bold text-blue-400">
+                  {f2.name}
+                </div>
               </div>
-              <StatComparison label="Strikes Landed/Min" fighter1Value={f1.slpm} fighter2Value={f2.slpm} />
-              <StatComparison label="Strikes Absorbed/Min" fighter1Value={f1.sapm} fighter2Value={f2.sapm} higher="worse" />
-              <StatComparison label="Striking Accuracy" fighter1Value={f1.strAcc} fighter2Value={f2.strAcc} format="percentage" />
-              <StatComparison label="Striking Defense" fighter1Value={f1.strDef} fighter2Value={f2.strDef} format="percentage" />
-              <StatComparison label="Takedown Average" fighter1Value={f1.tdAvg} fighter2Value={f2.tdAvg} />
-              <StatComparison label="Takedown Defense" fighter1Value={f1.tdDef} fighter2Value={f2.tdDef} format="percentage" />
+              <StatComparison
+                label="Strikes Landed/Min"
+                fighter1Value={f1.slpm}
+                fighter2Value={f2.slpm}
+              />
+              <StatComparison
+                label="Strikes Absorbed/Min"
+                fighter1Value={f1.sapm}
+                fighter2Value={f2.sapm}
+                higher="worse"
+              />
+              <StatComparison
+                label="Striking Accuracy"
+                fighter1Value={f1.strAcc}
+                fighter2Value={f2.strAcc}
+                format="percentage"
+              />
+              <StatComparison
+                label="Striking Defense"
+                fighter1Value={f1.strDef}
+                fighter2Value={f2.strDef}
+                format="percentage"
+              />
+              <StatComparison
+                label="Takedown Average"
+                fighter1Value={f1.tdAvg}
+                fighter2Value={f2.tdAvg}
+              />
+              <StatComparison
+                label="Takedown Defense"
+                fighter1Value={f1.tdDef}
+                fighter2Value={f2.tdDef}
+                format="percentage"
+              />
             </div>
           </div>
 
@@ -410,10 +514,14 @@ export function FightCard({ prediction, isAnalyzing, fighter1, fighter2 }: Fight
             </h4>
             <div className="grid sm:grid-cols-2 gap-3">
               {prediction.stat_favors.map((stat, index) => (
-                <div key={index} className="flex items-center gap-3 p-3 bg-background/50 rounded-lg border border-muted/20 hover:bg-background/70 transition-colors">
+                <div
+                  key={index}
+                  className="flex items-center gap-3 p-3 bg-background/50 rounded-lg border border-muted/20 hover:bg-background/70 transition-colors"
+                >
                   <div className="h-3 w-3 bg-gradient-to-r from-primary to-primary/60 rounded-full" />
                   <span className="text-sm font-medium">
-                    <strong className="text-primary">{stat.stat}:</strong> {stat.favors}
+                    <strong className="text-primary">{stat.stat}:</strong>{" "}
+                    {stat.favors}
                   </span>
                 </div>
               ))}

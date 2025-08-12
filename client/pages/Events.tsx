@@ -16,10 +16,14 @@ import {
   Star,
   History,
   ChevronRight,
-  Activity
+  Activity,
 } from "lucide-react";
 import { Hero } from "@/components/ui/hero";
-import { isEventPast, sortEventsByDate, formatEventDate } from "@/lib/dateUtils";
+import {
+  isEventPast,
+  sortEventsByDate,
+  formatEventDate,
+} from "@/lib/dateUtils";
 
 interface Fight {
   fighter_red: string;
@@ -63,22 +67,23 @@ export default function Events() {
     fetchEvents();
   }, []);
 
-  const { upcoming: upcomingEvents, past: pastEvents } = sortEventsByDate(events);
+  const { upcoming: upcomingEvents, past: pastEvents } =
+    sortEventsByDate(events);
   const displayEvents = showPastEvents ? pastEvents : upcomingEvents;
 
   const EventCard = ({ event, index }: { event: EventData; index: number }) => {
     const mainEvent = event.fights[0];
     const isNextEvent = index === 0 && !showPastEvents;
     const isPast = isEventPast(event.date);
-    
+
     return (
       <Card
         className={`group transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl cursor-pointer animate-in fade-in slide-in-from-bottom-4 ${
           isNextEvent
-            ? 'bg-gradient-to-br from-primary/20 via-primary/10 to-primary/5 border-primary/30 shadow-primary/20 ring-1 ring-primary/20'
+            ? "bg-gradient-to-br from-primary/20 via-primary/10 to-primary/5 border-primary/30 shadow-primary/20 ring-1 ring-primary/20"
             : isPast
-            ? 'bg-gradient-to-br from-muted/20 to-muted/10 border-muted/30'
-            : 'bg-gradient-to-br from-card to-card/80 border-muted/20 hover:border-primary/30'
+              ? "bg-gradient-to-br from-muted/20 to-muted/10 border-muted/30"
+              : "bg-gradient-to-br from-card to-card/80 border-muted/20 hover:border-primary/30"
         }`}
         style={{ animationDelay: `${index * 100}ms` }}
         onClick={() => navigate(`/event/${index}`)}
@@ -92,7 +97,10 @@ export default function Events() {
               </Badge>
             )}
             {isPast && (
-              <Badge variant="outline" className="border-muted/50 text-muted-foreground">
+              <Badge
+                variant="outline"
+                className="border-muted/50 text-muted-foreground"
+              >
                 <History className="h-3 w-3 mr-1" />
                 Past Event
               </Badge>
@@ -103,7 +111,7 @@ export default function Events() {
                 Upcoming
               </Badge>
             )}
-            
+
             <Badge variant="secondary" className="font-medium">
               {formatEventDate(event.date)}
             </Badge>
@@ -114,7 +122,7 @@ export default function Events() {
               <h3 className="text-2xl font-bold text-primary group-hover:text-primary/80 transition-colors">
                 {event.event_name}
               </h3>
-              
+
               {mainEvent && (
                 <div className="flex items-center justify-center gap-3">
                   <span className="text-foreground font-semibold transition-all duration-300 group-hover:scale-105">
@@ -148,7 +156,7 @@ export default function Events() {
             <div className="flex items-center gap-2">
               <MapPin className="h-4 w-4 text-primary" />
               <span className="font-medium truncate max-w-32">
-                {event.venue?.replace('Location: ', '') || "TBD"}
+                {event.venue?.replace("Location: ", "") || "TBD"}
               </span>
             </div>
           </div>
@@ -156,9 +164,10 @@ export default function Events() {
           <div className="text-center">
             <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-3">
               <Users className="h-4 w-4" />
-              <span className="font-semibold">{event.fights.length}</span> scheduled fights
+              <span className="font-semibold">{event.fights.length}</span>{" "}
+              scheduled fights
             </div>
-            
+
             {mainEvent?.is_title_fight && (
               <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold mb-3">
                 <Trophy className="h-3 w-3 mr-1" />
@@ -175,11 +184,16 @@ export default function Events() {
               onClick={(e) => {
                 e.stopPropagation();
                 if (mainEvent) {
-                  navigate('/');
+                  navigate("/");
                   setTimeout(() => {
-                    window.dispatchEvent(new CustomEvent('setFighters', {
-                      detail: { fighter1: mainEvent.fighter_red, fighter2: mainEvent.fighter_blue }
-                    }));
+                    window.dispatchEvent(
+                      new CustomEvent("setFighters", {
+                        detail: {
+                          fighter1: mainEvent.fighter_red,
+                          fighter2: mainEvent.fighter_blue,
+                        },
+                      }),
+                    );
                   }, 100);
                 }
               }}
@@ -260,35 +274,40 @@ export default function Events() {
               </div>
               <div>
                 <h2 className="text-2xl font-bold bg-gradient-to-r from-foreground to-primary/80 bg-clip-text text-transparent">
-                  {showPastEvents ? 'Past Events' : 'Upcoming Events'}
+                  {showPastEvents ? "Past Events" : "Upcoming Events"}
                 </h2>
                 <p className="text-sm text-muted-foreground mt-1">
-                  {displayEvents.length} event{displayEvents.length !== 1 ? 's' : ''} available
+                  {displayEvents.length} event
+                  {displayEvents.length !== 1 ? "s" : ""} available
                 </p>
               </div>
             </div>
           </div>
-          
+
           <div className="flex items-center gap-2 p-1 bg-background/60 rounded-lg border border-border/40">
             <Button
               variant={!showPastEvents ? "default" : "ghost"}
               size="sm"
               onClick={() => setShowPastEvents(false)}
-              className={`gap-2 transition-all duration-300 ${!showPastEvents ? 'bg-primary shadow-lg shadow-primary/20' : 'hover:bg-primary/10'}`}
+              className={`gap-2 transition-all duration-300 ${!showPastEvents ? "bg-primary shadow-lg shadow-primary/20" : "hover:bg-primary/10"}`}
             >
               <Calendar className="h-4 w-4" />
               Upcoming
-              <Badge variant="secondary" className="ml-1 text-xs">{upcomingEvents.length}</Badge>
+              <Badge variant="secondary" className="ml-1 text-xs">
+                {upcomingEvents.length}
+              </Badge>
             </Button>
             <Button
               variant={showPastEvents ? "default" : "ghost"}
               size="sm"
               onClick={() => setShowPastEvents(true)}
-              className={`gap-2 transition-all duration-300 ${showPastEvents ? 'bg-primary shadow-lg shadow-primary/20' : 'hover:bg-primary/10'}`}
+              className={`gap-2 transition-all duration-300 ${showPastEvents ? "bg-primary shadow-lg shadow-primary/20" : "hover:bg-primary/10"}`}
             >
               <History className="h-4 w-4" />
               Past Events
-              <Badge variant="secondary" className="ml-1 text-xs">{pastEvents.length}</Badge>
+              <Badge variant="secondary" className="ml-1 text-xs">
+                {pastEvents.length}
+              </Badge>
             </Button>
           </div>
         </div>
@@ -297,9 +316,15 @@ export default function Events() {
         {displayEvents.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {displayEvents.map((event, filteredIndex) => {
-              const originalIndex = events.findIndex(e => e.event_name === event.event_name);
+              const originalIndex = events.findIndex(
+                (e) => e.event_name === event.event_name,
+              );
               return (
-                <EventCard key={`${event.event_name}-${originalIndex}`} event={event} index={originalIndex} />
+                <EventCard
+                  key={`${event.event_name}-${originalIndex}`}
+                  event={event}
+                  index={originalIndex}
+                />
               );
             })}
           </div>
@@ -312,18 +337,17 @@ export default function Events() {
               </div>
               <h3 className="text-2xl font-bold mb-3">No Events Found</h3>
               <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-                {showPastEvents 
+                {showPastEvents
                   ? "No past events are currently available in our database."
-                  : "No upcoming events are currently scheduled. Check back soon for new fight announcements."
-                }
+                  : "No upcoming events are currently scheduled. Check back soon for new fight announcements."}
               </p>
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 onClick={() => setShowPastEvents(!showPastEvents)}
                 className="gap-2"
               >
                 <ChevronRight className="h-4 w-4" />
-                {showPastEvents ? 'View Upcoming Events' : 'View Past Events'}
+                {showPastEvents ? "View Upcoming Events" : "View Past Events"}
               </Button>
             </CardContent>
           </Card>
