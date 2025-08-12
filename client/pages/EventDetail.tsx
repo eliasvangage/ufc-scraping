@@ -537,12 +537,30 @@ export default function EventDetail() {
       />
 
       <div className="container mx-auto px-4 py-8">
-        <div className="space-y-6">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold mb-2">FIGHT CARD</h2>
-            <p className="text-muted-foreground">
-              {eventData.fights.length} scheduled battles
+        <div className="space-y-8">
+          {/* Enhanced Fight Card Header */}
+          <div className="text-center mb-10">
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <div className="h-1 w-16 bg-gradient-to-r from-transparent via-primary to-transparent" />
+              <Swords className="h-8 w-8 text-primary animate-pulse" />
+              <div className="h-1 w-16 bg-gradient-to-r from-transparent via-primary to-transparent" />
+            </div>
+            <h2 className="text-4xl font-bold mb-3 bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">
+              FIGHT CARD
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              {eventData.fights.length} scheduled battles in the arena
             </p>
+            <div className="flex items-center justify-center gap-6 mt-4">
+              <Badge variant="outline" className="border-primary/30 text-primary px-4 py-2">
+                <Trophy className="h-4 w-4 mr-2" />
+                {eventData.fights.filter(f => f.is_title_fight).length || 0} Title Fights
+              </Badge>
+              <Badge variant="outline" className="border-muted/30 text-muted-foreground px-4 py-2">
+                <Activity className="h-4 w-4 mr-2" />
+                Main Card: {Math.min(5, eventData.fights.length)} Fights
+              </Badge>
+            </div>
           </div>
 
         {eventData.fights.length > 0 && (
