@@ -9,6 +9,7 @@ import { NavBar } from "@/components/NavBar";
 import Index from "./pages/Index";
 import EventDetail from "./pages/EventDetail";
 import Fighters from "./pages/Fighters";
+import FighterProfile from "./pages/FighterProfile";
 import Events from "./pages/Events";
 import Tracking from "./pages/Tracking";
 import NotFound from "./pages/NotFound";
