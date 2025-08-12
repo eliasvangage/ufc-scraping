@@ -296,9 +296,12 @@ export default function Events() {
         {/* Events Grid */}
         {displayEvents.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {displayEvents.map((event, index) => (
-              <EventCard key={`${event.event_name}-${index}`} event={event} index={index} />
-            ))}
+            {displayEvents.map((event, filteredIndex) => {
+              const originalIndex = events.findIndex(e => e.event_name === event.event_name);
+              return (
+                <EventCard key={`${event.event_name}-${originalIndex}`} event={event} index={originalIndex} />
+              );
+            })}
           </div>
         ) : (
           <Card className="text-center py-16 bg-gradient-to-br from-card to-muted/20">
