@@ -86,12 +86,20 @@ export function Hero({
 
   return (
     <div className={`relative ${styles.bg} border-b border-border overflow-hidden`}>
-      {/* Background Effects */}
+      {/* Enhanced Background Effects */}
       <div className={`absolute inset-0 ${styles.overlay}`} />
-      {styles.accent && <div className={`absolute inset-0 ${styles.accent}`} />}
-      
+      {styles.accent && <div className={`absolute inset-0 ${styles.accent} animate-pulse`} />}
+
+      {/* Animated Background Particles */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-primary/20 rounded-full animate-pulse" style={{animationDelay: '0s'}} />
+        <div className="absolute top-1/3 right-1/4 w-1 h-1 bg-primary/30 rounded-full animate-pulse" style={{animationDelay: '1s'}} />
+        <div className="absolute bottom-1/3 left-1/3 w-1.5 h-1.5 bg-primary/25 rounded-full animate-pulse" style={{animationDelay: '2s'}} />
+        <div className="absolute top-2/3 right-1/3 w-1 h-1 bg-primary/20 rounded-full animate-pulse" style={{animationDelay: '1.5s'}} />
+      </div>
+
       {/* Content */}
-      <div className="relative container mx-auto px-4 py-16 text-center">
+      <div className="relative container mx-auto px-4 py-20 text-center">
         <div className="max-w-4xl mx-auto space-y-6">
           {/* Title and Icon */}
           <div className="space-y-4">
