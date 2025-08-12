@@ -611,7 +611,7 @@ export default function Fighters() {
           },
           ...(!ufcOnly ? [{
             icon: Zap,
-            label: `${allFighters.filter(f => isUFCFighter(f)).length} UFC Veterans`,
+            label: `${ufcFighters.length} UFC Veterans`,
             color: "red-500"
           }] : []),
           {
