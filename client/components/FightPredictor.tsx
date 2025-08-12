@@ -355,14 +355,15 @@ export function FightPredictor() {
             <div className="overflow-x-auto custom-scrollbar">
               <div className="flex gap-6 pb-6 px-2 min-w-max">
                 {upcomingCards
-                  .filter((event) =>
+                  .map((event, originalIdx) => ({ event, originalIdx }))
+                  .filter(({ event }) =>
                     showPastEvents
                       ? isEventPast(event.date)
                       : !isEventPast(event.date),
                   )
-                  .map((event, idx) => {
+                  .map(({ event, originalIdx }, filteredIdx) => {
                     const mainEvent = event.fights[0];
-                    const isNextEvent = idx === 0 && !showPastEvents;
+                    const isNextEvent = filteredIdx === 0 && !showPastEvents;
 
                     return (
                       <Card
