@@ -379,7 +379,7 @@ export function FightPredictor() {
                         }
                       `}
                         onClick={() => navigate(`/event/${originalIdx}`)}
-                        style={{ animationDelay: `${idx * 100}ms` }}
+                        style={{ animationDelay: `${filteredIdx * 100}ms` }}
                       >
                         <CardHeader className="pb-4">
                           <div className="flex items-center justify-between mb-3">
