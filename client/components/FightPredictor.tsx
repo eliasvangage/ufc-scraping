@@ -371,7 +371,7 @@ export function FightPredictor() {
                         className={`
                         w-96 transition-all duration-500 group cursor-pointer
                         hover:scale-[1.02] hover:shadow-2xl
-                        animate-[fadeInUp_0.6s_ease-out_${idx * 0.1}s_both]
+                        animate-[fadeInUp_0.6s_ease-out_${filteredIdx * 0.1}s_both]
                         ${
                           isNextEvent
                             ? "bg-gradient-to-br from-primary/20 via-primary/10 to-primary/5 border-primary/30 shadow-primary/20 ring-1 ring-primary/20"
