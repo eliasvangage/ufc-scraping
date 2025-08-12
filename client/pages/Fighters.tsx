@@ -565,51 +565,32 @@ export default function Fighters() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Enhanced Header */}
-      <div className="relative bg-gradient-to-br from-background via-muted/5 to-background border-b border-border overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(255,103,0,0.1),transparent)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,103,0,0.05)_50%,transparent_75%)]" />
-        
-        <div className="relative container mx-auto px-4 py-16 text-center">
-          <div className="flex items-center justify-center gap-4 mb-6">
-            <div className="relative">
-              <Users className="h-12 w-12 text-primary" />
-              <div className="absolute -inset-2 bg-primary/20 rounded-full blur-xl animate-pulse" />
-            </div>
-            <h1 className="text-6xl font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
-              {ufcOnly ? "UFC FIGHTERS" : "FIGHTER DATABASE"}
-            </h1>
-            <div className="relative">
-              <Users className="h-12 w-12 text-primary scale-x-[-1]" />
-              <div className="absolute -inset-2 bg-primary/20 rounded-full blur-xl animate-pulse" />
-            </div>
-          </div>
-          
-          <p className="text-muted-foreground text-xl mb-6 max-w-2xl mx-auto">
-            {ufcOnly 
-              ? "Exclusive UFC fighter profiles with official Octagon records and statistics"
-              : "Complete profiles, stats, and records of elite fighters"
-            }
-          </p>
-          
-          <div className="flex items-center justify-center gap-6 flex-wrap">
-            <Badge variant="outline" className="border-primary/30 text-primary text-sm px-4 py-2">
-              <Star className="h-4 w-4 mr-2" />
-              {currentFighters.length} {ufcOnly ? "UFC" : "Total"} Fighters
-            </Badge>
-            {!ufcOnly && (
-              <Badge variant="outline" className="border-red-500/30 text-red-400 text-sm px-4 py-2">
-                <Zap className="h-4 w-4 mr-2" />
-                {allFighters.filter(f => isUFCFighter(f)).length} UFC Veterans
-              </Badge>
-            )}
-            <Badge variant="outline" className="border-yellow-500/30 text-yellow-400 text-sm px-4 py-2">
-              <Crown className="h-4 w-4 mr-2" />
-              {currentFighters.filter(f => f.champion).length} Champions
-            </Badge>
-          </div>
-        </div>
-      </div>
+      <Hero
+        title={ufcOnly ? "UFC FIGHTERS" : "FIGHTER DATABASE"}
+        subtitle={ufcOnly
+          ? "Exclusive UFC fighter profiles with official Octagon records and statistics"
+          : "Complete profiles, stats, and records of elite fighters"
+        }
+        icon={Users}
+        variant="fighters"
+        badges={[
+          {
+            icon: Star,
+            label: `${currentFighters.length} ${ufcOnly ? "UFC" : "Total"} Fighters`,
+            color: "primary"
+          },
+          ...(!ufcOnly ? [{
+            icon: Zap,
+            label: `${allFighters.filter(f => isUFCFighter(f)).length} UFC Veterans`,
+            color: "red-500"
+          }] : []),
+          {
+            icon: Crown,
+            label: `${currentFighters.filter(f => f.champion).length} Champions`,
+            color: "yellow-500"
+          }
+        ]}
+      />
 
       <div className="container mx-auto px-4 py-8">
         {/* Enhanced Controls */}
