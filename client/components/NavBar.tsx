@@ -49,20 +49,21 @@ export function NavBar() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div
-            className="flex items-center gap-4 cursor-pointer group"
+            className="flex items-center gap-4 cursor-pointer group transition-all duration-300"
             onClick={() => navigate("/")}
           >
             <div className="relative">
-              <Swords className="h-10 w-10 text-primary transition-transform group-hover:scale-110" />
-              <div className="absolute inset-0 h-10 w-10 text-primary animate-pulse opacity-30">
-                <Swords className="h-10 w-10" />
+              <div className="absolute -inset-2 bg-gradient-to-r from-primary/20 to-primary/10 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <Swords className="h-11 w-11 text-primary transition-all duration-300 group-hover:scale-110 group-hover:rotate-12 relative" />
+              <div className="absolute inset-0 h-11 w-11 text-primary/20 animate-pulse scale-110">
+                <Swords className="h-11 w-11" />
               </div>
             </div>
-            <div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent tracking-tight">
+            <div className="transition-all duration-300 group-hover:translate-x-1">
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent tracking-tight">
                 ORYEN COMBAT ENGINE
               </h1>
-              <p className="text-sm text-muted-foreground -mt-1 font-medium">Advanced Combat Analytics</p>
+              <p className="text-sm text-muted-foreground -mt-1 font-medium group-hover:text-primary/80 transition-colors duration-300">Advanced Combat Analytics</p>
             </div>
           </div>
 
