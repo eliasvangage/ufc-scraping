@@ -114,17 +114,26 @@ export function NavBar() {
             })}
           </div>
 
-          {/* Status Badge */}
+          {/* Enhanced Status Badge */}
           <div className="hidden lg:block">
-            <Badge variant="outline" className="border-green-500/30 text-green-400 px-3 py-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse" />
-              Live
-            </Badge>
+            <div className="relative">
+              <Badge variant="outline" className="border-green-500/40 text-green-400 px-4 py-2 bg-gradient-to-r from-green-500/10 to-green-500/5 shadow-lg shadow-green-500/10 transition-all duration-300 hover:shadow-green-500/20 hover:scale-105">
+                <div className="relative flex items-center gap-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                  <div className="absolute w-2 h-2 bg-green-500/30 rounded-full animate-ping" />
+                  <span className="font-medium">Live</span>
+                </div>
+              </Badge>
+            </div>
           </div>
 
-          {/* Mobile Menu Button */}
-          <Button variant="ghost" size="sm" className="md:hidden">
-            <Menu className="h-5 w-5" />
+          {/* Enhanced Mobile Menu Button */}
+          <Button
+            variant="ghost"
+            size="sm"
+            className="md:hidden p-2 hover:bg-primary/10 hover:text-primary transition-all duration-300 rounded-lg"
+          >
+            <Menu className="h-6 w-6" />
           </Button>
         </div>
       </div>
