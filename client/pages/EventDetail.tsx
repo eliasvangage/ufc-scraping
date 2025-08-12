@@ -27,6 +27,7 @@ import {
   BarChart3,
 } from "lucide-react";
 import { apiService, type PredictionResponse } from "@/services/api";
+import { Hero } from "@/components/ui/hero";
 import "../components/animations.css";
 
 function formatHeight(feetDecimal: number): string {
