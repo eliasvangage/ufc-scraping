@@ -893,12 +893,22 @@ export default function EventDetail() {
                           </div>
                         </div>
 
-                        {/* ML Prediction Section */}
-                        <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20">
-                          <CardHeader>
-                            <CardTitle className="flex items-center gap-2">
-                              <Flame className="h-5 w-5 text-primary" />
-                              AI Fight Analysis
+                        {/* Enhanced AI Prediction Section */}
+                        <Card className="bg-gradient-to-br from-primary/15 via-primary/8 to-primary/15 border-primary/30 shadow-2xl relative overflow-hidden">
+                          <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5 animate-pulse" />
+                          <CardHeader className="relative">
+                            <CardTitle className="flex items-center justify-center gap-3 text-xl">
+                              <div className="relative">
+                                <Flame className="h-6 w-6 text-primary animate-pulse" />
+                                <div className="absolute inset-0 h-6 w-6 text-primary/40 animate-ping" />
+                              </div>
+                              <span className="bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
+                                AI FIGHT ANALYSIS
+                              </span>
+                              <div className="relative">
+                                <Flame className="h-6 w-6 text-primary animate-pulse" />
+                                <div className="absolute inset-0 h-6 w-6 text-primary/40 animate-ping" />
+                              </div>
                             </CardTitle>
                           </CardHeader>
                           <CardContent>
