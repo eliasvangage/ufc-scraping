@@ -313,7 +313,8 @@ export default function EventDetail() {
    {/* Finisher badge */}
   {fighterData?.ko_pct >= 80 && fighterData?.fight_history?.length > 4 && (
     <Badge className="bg-red-600 text-white font-semibold">
-      💥 FINISHER
+      <Zap className="h-3 w-3 mr-1" />
+      FINISHER
     </Badge>
   )}
 
