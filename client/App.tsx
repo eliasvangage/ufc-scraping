@@ -27,6 +27,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/fighters" element={<Fighters />} />
+            <Route path="/fighter/:fighterName" element={<FighterProfile />} />
             <Route path="/events" element={<Events />} />
             <Route path="/event/:eventId" element={<EventDetail />} />
             <Route path="/tracking" element={<Tracking />} />
