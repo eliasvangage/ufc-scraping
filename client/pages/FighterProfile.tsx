@@ -490,6 +490,22 @@ export default function FighterProfile() {
       />
 
       <div className="container mx-auto px-4 py-8 space-y-8">
+        {/* Fallback Data Notification */}
+        {usingFallbackData && (
+          <div className="bg-gradient-to-r from-yellow-500/10 to-amber-500/10 border border-yellow-500/30 rounded-xl p-4 animate-fadeInUpOnce">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-yellow-500/20 rounded-lg">
+                <Lightbulb className="h-5 w-5 text-yellow-400" />
+              </div>
+              <div className="space-y-1">
+                <h4 className="font-semibold text-yellow-400">Demo Data</h4>
+                <p className="text-sm text-muted-foreground">
+                  Fighter data not available from live database. Showing demo information for preview purposes.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
         {/* Navigation Tabs */}
         <div className="flex items-center justify-center">
           <div className="flex items-center p-1 bg-background/60 rounded-xl border border-border/40 backdrop-blur-sm">
