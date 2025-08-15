@@ -67,69 +67,83 @@ export function FightPredictor() {
   const [showPastEvents, setShowPastEvents] = useState(false);
 
   useEffect(() => {
+    let isMounted = true;
+
     const loadFighters = async () => {
+      if (!isMounted) return;
       setIsLoadingFighters(true);
       setError(null);
+
       try {
-        const timeoutPromise = new Promise((_, reject) =>
-          setTimeout(() => reject(new Error("Request timeout")), 5000),
-        );
-        const fightersPromise = apiService.getFighters();
-        const fighters = (await Promise.race([
-          fightersPromise,
-          timeoutPromise,
-        ])) as string[];
-        setAvailableFighters(fighters);
-        setUsingMockData(false);
+        const fighters = await apiService.getFighters();
+        if (isMounted) {
+          setAvailableFighters(fighters);
+          setUsingMockData(false);
+        }
       } catch (err) {
-        const mockFighters = [
-          "Jon Jones",
-          "Stipe Miocic",
-          "Alexander Volkanovski",
-          "Islam Makhachev",
-          "Sean O'Malley",
-          "Israel Adesanya",
-          "Alex Pereira",
-          "Belal Muhammad",
-          "Dricus du Plessis",
-          "Ilia Topuria",
-          "Max Holloway",
-          "Arman Tsarukyan",
-          "Magomed Ankalaev",
-          "Shavkat Rakhmonov",
-          "Sean Strickland",
-          "Tom Aspinall",
-          "Leon Edwards",
-          "Kamaru Usman",
-          "Colby Covington",
-          "Gilbert Burns",
-          "Francis Ngannou",
-          "Ciryl Gane",
-          "Curtis Blaydes",
-          "Derrick Lewis",
-          "Jailton Almeida",
-          "Sergei Pavlovich",
-          "Alexander Volkov",
-          "Tai Tuivasa",
-        ];
-        setAvailableFighters(mockFighters);
-        setUsingMockData(true);
+        if (isMounted) {
+          const mockFighters = [
+            "Jon Jones",
+            "Stipe Miocic",
+            "Alexander Volkanovski",
+            "Islam Makhachev",
+            "Sean O'Malley",
+            "Israel Adesanya",
+            "Alex Pereira",
+            "Belal Muhammad",
+            "Dricus du Plessis",
+            "Ilia Topuria",
+            "Max Holloway",
+            "Arman Tsarukyan",
+            "Magomed Ankalaev",
+            "Shavkat Rakhmonov",
+            "Sean Strickland",
+            "Tom Aspinall",
+            "Leon Edwards",
+            "Kamaru Usman",
+            "Colby Covington",
+            "Gilbert Burns",
+            "Francis Ngannou",
+            "Ciryl Gane",
+            "Curtis Blaydes",
+            "Derrick Lewis",
+            "Jailton Almeida",
+            "Sergei Pavlovich",
+            "Alexander Volkov",
+            "Tai Tuivasa",
+          ];
+          setAvailableFighters(mockFighters);
+          setUsingMockData(true);
+        }
+      } finally {
+        if (isMounted) {
+          setIsLoadingFighters(false);
+        }
       }
-      setIsLoadingFighters(false);
     };
 
     const loadUpcoming = async () => {
+      if (!isMounted) return;
+
       try {
         const res = await fetch("http://localhost:8000/upcoming");
-        const data = await res.json();
-        setUpcomingCards(data);
+        if (res.ok) {
+          const data = await res.json();
+          if (isMounted) {
+            setUpcomingCards(data);
+          }
+        }
       } catch (err) {
-        console.error("Failed to load upcoming fights:", err);
+        console.warn("Failed to load upcoming fights:", err);
       }
     };
 
     loadFighters();
     loadUpcoming();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   // Listen for fighter selection events from event detail pages
