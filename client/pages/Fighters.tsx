@@ -41,6 +41,7 @@ import {
   Hash,
 } from "lucide-react";
 import { Hero } from "@/components/ui/hero";
+import { apiService } from "@/services/api";
 
 function inferDivisionFromWeight(weight: string): string | undefined {
   if (!weight) return undefined;
