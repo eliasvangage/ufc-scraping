@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel
 from fastapi.responses import JSONResponse
-from app.utils import get_all_fighters, get_fighter_stats, predict_match, fighters_df
+from app.utils import get_all_fighters, get_fighter_stats, predict_match, fighters_df, build_placeholder_fighter
 from app import config
 import numpy as np
 import pandas as pd
@@ -101,26 +101,21 @@ def get_all_fighters_legacy():
     return fighters_df["name"].dropna().unique().tolist()
 
 @router.post("/predict")
+@router.post("/predict")
 def predict_fight(request: PredictionRequest):
     print(f"\n🔮 Predicting: {request.fighter1} vs {request.fighter2}")
 
     try:
-        f1 = get_fighter_stats(request.fighter1)
-        f2 = get_fighter_stats(request.fighter2)
+        # 1) Load fighters; allow missing by using placeholders
+        f1_raw = get_fighter_stats(request.fighter1)
+        f2_raw = get_fighter_stats(request.fighter2)
+        fighter1_has_stats = bool(f1_raw)
+        fighter2_has_stats = bool(f2_raw)
 
-        if not f1 or not f2:
-            raise HTTPException(status_code=404, detail="One or both fighters not found in the database.")
+        f1 = f1_raw or build_placeholder_fighter(request.fighter1)
+        f2 = f2_raw or build_placeholder_fighter(request.fighter2)
 
-        def in_same_weight_class(w1: int, w2: int) -> bool:
-            if w1 is None or w2 is None:
-                return False
-            weight_classes = [
-                (115, 116), (125, 126), (135, 136),
-                (145, 146), (155, 156), (170, 171),
-                (185, 186), (205, 206), (206, 266)
-            ]
-            return any(low <= w1 <= high and low <= w2 <= high for low, high in weight_classes)
-
+        # 2) Weight class check: allow if either weight is unknown (typical for debutants)
         def normalize_weight(w):
             if isinstance(w, str):
                 w = w.split()[0]
@@ -129,60 +124,69 @@ def predict_fight(request: PredictionRequest):
             except (ValueError, TypeError):
                 return None
 
-        def is_debut(fighter: dict) -> bool:
-            return (
-                fighter.get("ufc_wins", 0) + 
-                fighter.get("ufc_losses", 0) + 
-                fighter.get("ufc_draws", 0)
-            ) == 0
+        def in_same_weight_class(w1: int | None, w2: int | None) -> bool:
+            if w1 is None or w2 is None:
+                # Skip strict validation when a fighter has no recorded weight (e.g., debut)
+                return True
+            weight_classes = [
+                (115, 116), (125, 126), (135, 136),
+                (145, 146), (155, 156), (170, 171),
+                (185, 186), (205, 206), (206, 266)
+            ]
+            return any(low <= w1 <= high and low <= w2 <= high for low, high in weight_classes)
 
         w1 = normalize_weight(f1.get("weight"))
         w2 = normalize_weight(f2.get("weight"))
-
         print(f"DEBUG: {f1['name']} weight: {w1} | {f2['name']} weight: {w2}")
 
         if not in_same_weight_class(w1, w2):
-            raise HTTPException(
-                status_code=400,
-                detail="Fighters are not in the same weight class"
-            )
+            raise HTTPException(status_code=400, detail="Fighters are not in the same weight class")
 
-        is_f1_debut = is_debut(f1)
-        is_f2_debut = is_debut(f2)
+        # 3) If either fighter is debut/missing stats -> force 50/50 Toss Up, no diffs
+        def is_debut_like(fr: dict, has_stats: bool) -> bool:
+            if not has_stats:
+                return True
+            return (fr.get("ufc_wins", 0) + fr.get("ufc_losses", 0) + fr.get("ufc_draws", 0)) == 0
+
+        is_f1_debut = is_debut_like(f1, fighter1_has_stats)
+        is_f2_debut = is_debut_like(f2, fighter2_has_stats)
 
         if is_f1_debut or is_f2_debut:
-            print("⚠️ Debut detected — defaulting to 50/50 prediction")
-            winner = f1["name"]
+            print("⚠️ Debut/missing stats detected — defaulting to 50/50 prediction")
+            winner = f1["name"]  # arbitrary; UI shows 50/50
             confidence = 50.0
             feature_diffs = {str(feature): 0.0 for feature in feature_list if feature}
-            f1_last5 = []
-            f2_last5 = []
+            f1_last5, f2_last5 = [], []
             rematch = False
             stat_favors = []
-            red_name, blue_name = f1["name"], f2["name"]
             top_3_contributors = []
-            shap_weights_arr = []
             shap_weight_map = {}
             weighted_feature_diffs = {}
             debut_prediction = True
         else:
-            winner, confidence, feature_diffs, f1_last5, f2_last5, rematch, stat_favors, red_name, blue_name = predict_match(f1, f2)
+            # 4) Normal prediction path
+            (winner, confidence, feature_diffs, f1_last5, f2_last5,
+             rematch, stat_favors, red_name, blue_name) = predict_match(f1, f2)
+
             shap_weights_arr = shap_weights.tolist()
             feature_list_local = list(feature_diffs.keys())
             raw_feature_diffs = {k: float(v) for k, v in feature_diffs.items()}
-            shap_weight_map = {feature: round(shap_weights_arr[i], 4) for i, feature in enumerate(feature_list_local)}
+            shap_weight_map = {feature: round(shap_weights_arr[i], 4)
+                               for i, feature in enumerate(feature_list_local)}
             weighted_feature_diffs = {
                 feature: round(raw_feature_diffs[feature] * shap_weights_arr[i], 4)
                 for i, feature in enumerate(feature_list_local)
             }
-            top_3 = sorted(weighted_feature_diffs.items(), key=lambda x: abs(x[1]), reverse=True)[:3]
+            top_3 = sorted(weighted_feature_diffs.items(),
+                           key=lambda x: abs(x[1]), reverse=True)[:3]
             top_3_contributors = [f"{k} ({v:+.3f})" for k, v in top_3]
             debut_prediction = False
 
+        # 5) Normalize fighter objects for UI
         normalized_f1 = normalize_keys(f1)
         normalized_f2 = normalize_keys(f2)
 
-        # Optional: log only if not debut
+        # 6) Optional logging (only when we had a real model prediction)
         if not debut_prediction:
             log_path = Path("logs/predictions.log")
             log_path.parent.mkdir(parents=True, exist_ok=True)
@@ -201,30 +205,31 @@ def predict_fight(request: PredictionRequest):
             with log_path.open("a", encoding="utf-8") as log_file:
                 log_file.write(json.dumps(log_data) + "\n")
 
+        # 7) Response — include flags so UI can show “Debut / No stats” icon
         return safe_json({
-        "model_version": MODEL_VERSION,
-        "predicted_winner": str(winner),
-        "confidence": float(confidence),
-        "feature_differences": feature_diffs,
-        "fighter1_last5": list(map(str, f1_last5)),
-        "fighter2_last5": list(map(str, f2_last5)),
-        "fighter1": str(f1["name"]),
-        "fighter2": str(f2["name"]),
-        "fighter1_data": normalized_f1,
-        "fighter2_data": normalized_f2,
-        "rematch": bool(rematch),
-        "stat_favors": [{"stat": str(sf["stat"]), "favors": str(sf["favors"])} for sf in stat_favors],
-        "is_champion": bool(f1["is_champion"]) if winner == f1["name"] else bool(f2["is_champion"]),
-        "debut_prediction": debut_prediction
-})
-
+            "model_version": MODEL_VERSION,
+            "predicted_winner": str(winner),
+            "confidence": float(confidence),
+            "feature_differences": feature_diffs,
+            "fighter1_last5": list(map(str, f1_last5)),
+            "fighter2_last5": list(map(str, f2_last5)),
+            "fighter1": str(f1["name"]),
+            "fighter2": str(f2["name"]),
+            "fighter1_data": normalized_f1,
+            "fighter2_data": normalized_f2,
+            "rematch": bool(rematch),
+            "stat_favors": [{"stat": str(sf["stat"]), "favors": str(sf["favors"])} for sf in stat_favors],
+            "is_champion": bool(f1["is_champion"]) if winner == f1["name"] else bool(f2["is_champion"]),
+            "debut_prediction": debut_prediction,
+            "fighter1_has_stats": bool(fighter1_has_stats),
+            "fighter2_has_stats": bool(fighter2_has_stats),
+        })
 
     except HTTPException as http_err:
         raise http_err
     except Exception as e:
         print(f"[Prediction Error] {e}")
         raise HTTPException(status_code=500, detail="Prediction failed due to an unexpected error.")
-
 
 @router.get("/upcoming")
 def get_upcoming_cards():

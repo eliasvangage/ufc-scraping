@@ -50,9 +50,13 @@ export interface PredictionResponse {
   fighter2_data: Fighter;
   rematch: boolean;
   is_champion: boolean;
+  fighter1_has_stats?: boolean;
+  fighter2_has_stats?: boolean;
+  
   stat_favors: Array<{
     stat: string;
     favors: string;
+    
   }>;
 }
 

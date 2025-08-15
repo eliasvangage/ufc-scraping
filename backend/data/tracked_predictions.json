@@ -1,39 +1,41 @@
 [
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Dolidze vs. Hernandez",
     "date": "August 09, 2025",
     "fighter1": "Roman Dolidze",
     "fighter2": "Anthony Hernandez",
+    "fighter1_url": "http://ufcstats.com/fighter-details/327d5f279895110d",
+    "fighter2_url": "http://ufcstats.com/fighter-details/093e1f5bb73850be",
     "winner": "Anthony Hernandez",
-    "confidence": 59.98,
+    "confidence": 66.24,
     "rematch": false,
     "last_5_results_f1": [
-      "W",
-      "W",
-      "W",
-      "L",
-      "L"
-    ],
-    "last_5_results_f2": [
       "W",
       "W",
       "W",
       "W",
       "W"
     ],
+    "last_5_results_f2": [
+      "W",
+      "W",
+      "W",
+      "L",
+      "L"
+    ],
     "raw_feature_diffs": {
-      "SLpM_diff": -0.45999999999999996,
-      "SApM_diff": 0.9500000000000002,
-      "TD_Avg_diff": -5.159999999999999,
-      "TD_Def_diff": -9.9,
-      "Str_Acc_diff": -21.0,
-      "Str_Def_diff": 1.5,
-      "Height_diff": 0.041749999999999954,
-      "Reach_diff": 0.25,
-      "Recent_form_score_diff": -0.8,
-      "Win_streak_score_diff": -0.024920000000000005,
-      "Avg_opp_strength_diff": -0.015000000000000013,
+      "SLpM_diff": 0.45999999999999996,
+      "SApM_diff": -0.9500000000000002,
+      "TD_Avg_diff": 5.159999999999999,
+      "TD_Def_diff": 9.9,
+      "Str_Acc_diff": 21.0,
+      "Str_Def_diff": -1.5,
+      "Height_diff": -0.041749999999999954,
+      "Reach_diff": -0.25,
+      "Recent_form_score_diff": 0.8,
+      "Win_streak_score_diff": 0.024920000000000005,
+      "Avg_opp_strength_diff": 0.015000000000000013,
       "TD_SApM_combo": 0.31350000000000006
     },
     "shap_weights": {},
@@ -70,44 +72,48 @@
     ],
     "odds1": "+265",
     "odds2": "-330",
-    "actual_result": "Anthony Hernandez",
-    "correct": true
+    "actual_result": null,
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Dolidze vs. Hernandez",
     "date": "August 09, 2025",
     "fighter1": "Steve Erceg",
     "fighter2": "Ode Osbourne",
+    "fighter1_url": "http://ufcstats.com/fighter-details/32ab52e5de93092d",
+    "fighter2_url": "http://ufcstats.com/fighter-details/6d68c1afe954f121",
     "winner": "Steve Erceg",
-    "confidence": 75.89,
+    "confidence": 66.31,
     "rematch": false,
     "last_5_results_f1": [
-      "L",
-      "L",
-      "L",
       "W",
+      "L",
+      "L",
+      "L",
       "W"
     ],
     "last_5_results_f2": [
+      "L",
+      "L",
+      "L",
       "W",
-      "L",
-      "L",
-      "L",
       "W"
     ],
     "raw_feature_diffs": {
-      "SLpM_diff": 0.625,
-      "SApM_diff": 0.2100000000000004,
-      "TD_Avg_diff": -0.27000000000000013,
-      "TD_Def_diff": -0.6,
-      "Str_Acc_diff": 6.0,
-      "Str_Def_diff": 3.0,
-      "Height_diff": 0.020999999999999908,
-      "Reach_diff": -1.25,
+      "SLpM_diff": -0.625,
+      "SApM_diff": -0.2100000000000004,
+      "TD_Avg_diff": 0.27000000000000013,
+      "TD_Def_diff": 0.6,
+      "Str_Acc_diff": -6.0,
+      "Str_Def_diff": -3.0,
+      "Height_diff": -0.020999999999999908,
+      "Reach_diff": 1.25,
       "Recent_form_score_diff": 0.0,
-      "Win_streak_score_diff": -0.010480000000000001,
-      "Avg_opp_strength_diff": 0.0474,
+      "Win_streak_score_diff": 0.010480000000000001,
+      "Avg_opp_strength_diff": -0.0474,
       "TD_SApM_combo": 0.004200000000000008
     },
     "shap_weights": {},
@@ -144,44 +150,48 @@
     ],
     "odds1": "-585",
     "odds2": "+410",
-    "actual_result": "Steve Erceg",
-    "correct": true
+    "actual_result": null,
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Dolidze vs. Hernandez",
     "date": "August 09, 2025",
     "fighter1": "Iasmin Lucindo",
     "fighter2": "Angela Hill",
+    "fighter1_url": "http://ufcstats.com/fighter-details/abcf2cc6efc42031",
+    "fighter2_url": "http://ufcstats.com/fighter-details/f0feeb2192937424",
     "winner": "Angela Hill",
-    "confidence": 77.52,
+    "confidence": 62.78,
     "rematch": false,
     "last_5_results_f1": [
-      "L",
-      "W",
-      "W",
-      "W",
-      "W"
-    ],
-    "last_5_results_f2": [
       "W",
       "L",
       "W",
       "W",
       "L"
     ],
+    "last_5_results_f2": [
+      "L",
+      "W",
+      "W",
+      "W",
+      "W"
+    ],
     "raw_feature_diffs": {
-      "SLpM_diff": -1.265,
-      "SApM_diff": -2.39,
-      "TD_Avg_diff": 1.3399999999999999,
-      "TD_Def_diff": -6.3,
-      "Str_Acc_diff": -6.0,
-      "Str_Def_diff": 2.0,
+      "SLpM_diff": 1.265,
+      "SApM_diff": 2.39,
+      "TD_Avg_diff": -1.3399999999999999,
+      "TD_Def_diff": 6.3,
+      "Str_Acc_diff": 6.0,
+      "Str_Def_diff": -2.0,
       "Height_diff": 0.0,
-      "Reach_diff": 0.5,
-      "Recent_form_score_diff": 0.39999999999999997,
-      "Win_streak_score_diff": -0.01016,
-      "Avg_opp_strength_diff": -0.0408,
+      "Reach_diff": -0.5,
+      "Recent_form_score_diff": -0.39999999999999997,
+      "Win_streak_score_diff": 0.01016,
+      "Avg_opp_strength_diff": 0.0408,
       "TD_SApM_combo": -0.5019
     },
     "shap_weights": {},
@@ -218,17 +228,21 @@
     ],
     "odds1": "-215",
     "odds2": "+178",
-    "actual_result": "Iasmin Lucindo",
-    "correct": false
+    "actual_result": null,
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Dolidze vs. Hernandez",
     "date": "August 09, 2025",
     "fighter1": "Andre Fili",
     "fighter2": "Christian Rodriguez",
+    "fighter1_url": "http://ufcstats.com/fighter-details/8fd808923cffff82",
+    "fighter2_url": "http://ufcstats.com/fighter-details/5ec591b78349ba7e",
     "winner": "Christian Rodriguez",
-    "confidence": 63.3,
+    "confidence": 57.41,
     "rematch": false,
     "last_5_results_f1": [
       "L",
@@ -292,42 +306,46 @@
     ],
     "odds1": "+195",
     "odds2": "-235",
-    "actual_result": "Andre Fili",
-    "correct": false
+    "actual_result": null,
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Dolidze vs. Hernandez",
     "date": "August 09, 2025",
     "fighter1": "Miles Johns",
     "fighter2": "Jean Matsumoto",
+    "fighter1_url": "http://ufcstats.com/fighter-details/46e0d677f91bacc0",
+    "fighter2_url": "http://ufcstats.com/fighter-details/ffd3224638c01b57",
     "winner": "Miles Johns",
-    "confidence": 78.53,
+    "confidence": 66.15,
     "rematch": false,
     "last_5_results_f1": [
+      "L",
+      "W",
+      "W"
+    ],
+    "last_5_results_f2": [
       "L",
       "W",
       "W",
       "NC",
       "W"
     ],
-    "last_5_results_f2": [
-      "L",
-      "W",
-      "W"
-    ],
     "raw_feature_diffs": {
-      "SLpM_diff": -1.0099999999999998,
-      "SApM_diff": -2.7500000000000004,
-      "TD_Avg_diff": -1.81,
-      "TD_Def_diff": 7.199999999999999,
-      "Str_Acc_diff": 3.0,
-      "Str_Def_diff": 11.0,
-      "Height_diff": 0.020750000000000046,
-      "Reach_diff": -0.5,
-      "Recent_form_score_diff": 0.06670000000000004,
+      "SLpM_diff": 1.0099999999999998,
+      "SApM_diff": 2.7500000000000004,
+      "TD_Avg_diff": 1.81,
+      "TD_Def_diff": -7.199999999999999,
+      "Str_Acc_diff": -3.0,
+      "Str_Def_diff": -11.0,
+      "Height_diff": -0.020750000000000046,
+      "Reach_diff": 0.5,
+      "Recent_form_score_diff": -0.06670000000000004,
       "Win_streak_score_diff": 0.0,
-      "Avg_opp_strength_diff": 0.05899999999999994,
+      "Avg_opp_strength_diff": -0.05899999999999994,
       "TD_SApM_combo": 0.8525000000000001
     },
     "shap_weights": {},
@@ -364,44 +382,48 @@
     ],
     "odds1": "+250",
     "odds2": "-300",
-    "actual_result": "Jean Matsumoto",
-    "correct": false
+    "actual_result": null,
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Dolidze vs. Hernandez",
     "date": "August 09, 2025",
     "fighter1": "Eryk Anders",
     "fighter2": "Christian Leroy Duncan",
+    "fighter1_url": "http://ufcstats.com/fighter-details/cad24459b28592ca",
+    "fighter2_url": "http://ufcstats.com/fighter-details/a93f94c923c3a9cb",
     "winner": "Christian Leroy Duncan",
-    "confidence": 57.94,
+    "confidence": 54.6,
     "rematch": false,
     "last_5_results_f1": [
       "W",
-      "W",
       "L",
+      "W",
       "W",
       "L"
     ],
     "last_5_results_f2": [
       "W",
-      "L",
       "W",
+      "L",
       "W",
       "L"
     ],
     "raw_feature_diffs": {
-      "SLpM_diff": -0.605,
-      "SApM_diff": 1.04,
-      "TD_Avg_diff": 1.47,
-      "TD_Def_diff": 2.4,
-      "Str_Acc_diff": -11.0,
-      "Str_Def_diff": -0.5,
-      "Height_diff": -0.020999999999999908,
-      "Reach_diff": -1.0,
+      "SLpM_diff": 0.605,
+      "SApM_diff": -1.04,
+      "TD_Avg_diff": -1.47,
+      "TD_Def_diff": -2.4,
+      "Str_Acc_diff": 11.0,
+      "Str_Def_diff": 0.5,
+      "Height_diff": 0.020999999999999908,
+      "Reach_diff": 1.0,
       "Recent_form_score_diff": 0.0,
-      "Win_streak_score_diff": 0.011680000000000001,
-      "Avg_opp_strength_diff": 0.0239999999999998,
+      "Win_streak_score_diff": -0.011680000000000001,
+      "Avg_opp_strength_diff": -0.0239999999999998,
       "TD_SApM_combo": -0.0832
     },
     "shap_weights": {},
@@ -438,17 +460,21 @@
     ],
     "odds1": "+400",
     "odds2": "-575",
-    "actual_result": "Christian Leroy Duncan",
-    "correct": true
+    "actual_result": null,
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Dolidze vs. Hernandez",
     "date": "August 09, 2025",
     "fighter1": "Julius Walker",
     "fighter2": "Rafael Cerqueira",
+    "fighter1_url": "http://ufcstats.com/fighter-details/6add18754930182b",
+    "fighter2_url": "http://ufcstats.com/fighter-details/09a4447655fd4b7b",
     "winner": "Julius Walker",
-    "confidence": 58.37,
+    "confidence": 55.0,
     "rematch": false,
     "last_5_results_f1": [
       "L"
@@ -505,17 +531,21 @@
     ],
     "odds1": "N/A",
     "odds2": "N/A",
-    "actual_result": "Julius Walker",
-    "correct": true
+    "actual_result": null,
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Dolidze vs. Hernandez",
     "date": "August 09, 2025",
     "fighter1": "Elijah Smith",
     "fighter2": "Toshiomi Kazama",
+    "fighter1_url": "http://ufcstats.com/fighter-details/7478b7f959ba61f5",
+    "fighter2_url": "http://ufcstats.com/fighter-details/148bb103cfbf123e",
     "winner": "Elijah Smith",
-    "confidence": 57.81,
+    "confidence": 53.87,
     "rematch": false,
     "last_5_results_f1": [
       "W"
@@ -574,17 +604,21 @@
     ],
     "odds1": "-700",
     "odds2": "+475",
-    "actual_result": "Elijah Smith",
-    "correct": true
+    "actual_result": null,
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Dolidze vs. Hernandez",
     "date": "August 09, 2025",
     "fighter1": "Joselyne Edwards",
     "fighter2": "Priscila Cachoeira",
+    "fighter1_url": "http://ufcstats.com/fighter-details/f9ab66e67240db7b",
+    "fighter2_url": "http://ufcstats.com/fighter-details/b1e5bcaad32a3cac",
     "winner": "Joselyne Edwards",
-    "confidence": 75.03,
+    "confidence": 64.6,
     "rematch": false,
     "last_5_results_f1": [
       "W",
@@ -648,42 +682,46 @@
     ],
     "odds1": "-320",
     "odds2": "+260",
-    "actual_result": "Joselyne Edwards",
-    "correct": true
+    "actual_result": null,
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Dolidze vs. Hernandez",
     "date": "August 09, 2025",
     "fighter1": "Uros Medic",
     "fighter2": "Gilbert Urbina",
+    "fighter1_url": "http://ufcstats.com/fighter-details/681399317dbf4701",
+    "fighter2_url": "http://ufcstats.com/fighter-details/b12fb759e02378de",
     "winner": "Uros Medic",
-    "confidence": 74.86,
+    "confidence": 63.77,
     "rematch": false,
     "last_5_results_f1": [
+      "L",
+      "W",
+      "L"
+    ],
+    "last_5_results_f2": [
       "L",
       "W",
       "L",
       "W",
       "W"
     ],
-    "last_5_results_f2": [
-      "L",
-      "W",
-      "L"
-    ],
     "raw_feature_diffs": {
-      "SLpM_diff": -0.06000000000000005,
-      "SApM_diff": -1.1500000000000004,
-      "TD_Avg_diff": -2.6399999999999997,
-      "TD_Def_diff": 16.5,
-      "Str_Acc_diff": 3.0,
-      "Str_Def_diff": 6.0,
-      "Height_diff": -0.041749999999999954,
-      "Reach_diff": -1.0,
-      "Recent_form_score_diff": 0.5333,
+      "SLpM_diff": 0.06000000000000005,
+      "SApM_diff": 1.1500000000000004,
+      "TD_Avg_diff": 2.6399999999999997,
+      "TD_Def_diff": -16.5,
+      "Str_Acc_diff": -3.0,
+      "Str_Def_diff": -6.0,
+      "Height_diff": 0.041749999999999954,
+      "Reach_diff": 1.0,
+      "Recent_form_score_diff": -0.5333,
       "Win_streak_score_diff": 0.0,
-      "Avg_opp_strength_diff": -0.04260000000000008,
+      "Avg_opp_strength_diff": 0.04260000000000008,
       "TD_SApM_combo": 0.057500000000000016
     },
     "shap_weights": {},
@@ -720,17 +758,21 @@
     ],
     "odds1": "-470",
     "odds2": "+345",
-    "actual_result": "Uros Medic",
-    "correct": true
+    "actual_result": null,
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Dolidze vs. Hernandez",
     "date": "August 09, 2025",
     "fighter1": "Gabriella Fernandes",
     "fighter2": "Julija Stoliarenko",
+    "fighter1_url": "http://ufcstats.com/fighter-details/a6eb54ae17a551be",
+    "fighter2_url": "http://ufcstats.com/fighter-details/a78a87d8c2bbb1cb",
     "winner": "Gabriella Fernandes",
-    "confidence": 84.3,
+    "confidence": 69.6,
     "rematch": false,
     "last_5_results_f1": [
       "W",
@@ -793,17 +835,21 @@
     ],
     "odds1": "N/A",
     "odds2": "N/A",
-    "actual_result": "Gabriella Fernandes",
-    "correct": true
+    "actual_result": null,
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Dolidze vs. Hernandez",
     "date": "August 09, 2025",
     "fighter1": "Cody Brundage",
     "fighter2": "Eric McConico",
+    "fighter1_url": "http://ufcstats.com/fighter-details/f14f644d41ade29f",
+    "fighter2_url": "http://ufcstats.com/fighter-details/9508cc6184cb2450",
     "winner": "Cody Brundage",
-    "confidence": 69.71,
+    "confidence": 60.63,
     "rematch": false,
     "last_5_results_f1": [
       "D",
@@ -863,17 +909,21 @@
     ],
     "odds1": "N/A",
     "odds2": "N/A",
-    "actual_result": "Eric McConico",
-    "correct": false
+    "actual_result": null,
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC 319: Du Plessis vs. Chimaev",
     "date": "August 16, 2025",
     "fighter1": "Dricus Du Plessis",
     "fighter2": "Khamzat Chimaev",
+    "fighter1_url": "http://ufcstats.com/fighter-details/0d7b51c9d2649a6e",
+    "fighter2_url": "http://ufcstats.com/fighter-details/767755fd74662dbf",
     "winner": "Khamzat Chimaev",
-    "confidence": 53.77,
+    "confidence": 51.46,
     "rematch": false,
     "last_5_results_f1": [
       "W",
@@ -935,17 +985,21 @@
         "favors": "Dricus Du Plessis"
       }
     ],
-    "odds1": "+168",
-    "odds2": "-198",
+    "odds1": "+180",
+    "odds2": "-220",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC 319: Du Plessis vs. Chimaev",
     "date": "August 16, 2025",
     "fighter1": "Lerone Murphy",
     "fighter2": "Aaron Pico",
+    "fighter1_url": "http://ufcstats.com/fighter-details/396fe87b84ac2e1c",
+    "fighter2_url": "http://ufcstats.com/fighter-details/5537efc6e496dd84",
     "winner": "Toss Up",
     "confidence": 50.0,
     "rematch": false,
@@ -961,46 +1015,50 @@
     "shap_weights": {},
     "weighted_feature_diffs": {},
     "top_3_contributors": [],
-    "odds1": "+130",
-    "odds2": "-150",
+    "odds1": "+140",
+    "odds2": "-165",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC 319: Du Plessis vs. Chimaev",
     "date": "August 16, 2025",
     "fighter1": "Geoff Neal",
     "fighter2": "Carlos Prates",
+    "fighter1_url": "http://ufcstats.com/fighter-details/b997be68943010fc",
+    "fighter2_url": "http://ufcstats.com/fighter-details/7ee0fd831c0fe7c3",
     "winner": "Carlos Prates",
-    "confidence": 54.34,
+    "confidence": 54.91,
     "rematch": false,
     "last_5_results_f1": [
+      "L",
       "W",
-      "L",
-      "L",
+      "W",
       "W",
       "W"
     ],
     "last_5_results_f2": [
+      "W",
       "L",
-      "W",
-      "W",
+      "L",
       "W",
       "W"
     ],
     "raw_feature_diffs": {
-      "SLpM_diff": 0.7249999999999999,
-      "SApM_diff": 0.6500000000000004,
-      "TD_Avg_diff": 0.31000000000000005,
-      "TD_Def_diff": 1.2,
-      "Str_Acc_diff": -3.0,
-      "Str_Def_diff": 4.5,
-      "Height_diff": -0.04150000000000009,
-      "Reach_diff": -0.75,
-      "Recent_form_score_diff": -0.39999999999999997,
-      "Win_streak_score_diff": 0.01084,
-      "Avg_opp_strength_diff": -0.00539999999999996,
+      "SLpM_diff": -0.7249999999999999,
+      "SApM_diff": -0.6500000000000004,
+      "TD_Avg_diff": -0.31000000000000005,
+      "TD_Def_diff": -1.2,
+      "Str_Acc_diff": 3.0,
+      "Str_Def_diff": -4.5,
+      "Height_diff": 0.04150000000000009,
+      "Reach_diff": 0.75,
+      "Recent_form_score_diff": 0.39999999999999997,
+      "Win_streak_score_diff": -0.01084,
+      "Avg_opp_strength_diff": 0.00539999999999996,
       "TD_SApM_combo": -0.026000000000000013
     },
     "shap_weights": {},
@@ -1035,19 +1093,23 @@
         "favors": "Carlos Prates"
       }
     ],
-    "odds1": "+205",
-    "odds2": "-245",
+    "odds1": "+215",
+    "odds2": "-260",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC 319: Du Plessis vs. Chimaev",
     "date": "August 16, 2025",
     "fighter1": "Jared Cannonier",
     "fighter2": "Michael Page",
+    "fighter1_url": "http://ufcstats.com/fighter-details/13a0275fa13c4d26",
+    "fighter2_url": "http://ufcstats.com/fighter-details/a67d071163962af8",
     "winner": "Michael Page",
-    "confidence": 60.8,
+    "confidence": 56.61,
     "rematch": false,
     "last_5_results_f1": [
       "W",
@@ -1107,42 +1169,46 @@
         "favors": "Michael Page"
       }
     ],
-    "odds1": "+153",
-    "odds2": "-177",
+    "odds1": "+158",
+    "odds2": "-183",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC 319: Du Plessis vs. Chimaev",
     "date": "August 16, 2025",
     "fighter1": "Tim Elliott",
     "fighter2": "Kai Asakura",
+    "fighter1_url": "http://ufcstats.com/fighter-details/c96d9178c9ed9e62",
+    "fighter2_url": "http://ufcstats.com/fighter-details/d33da8a3d82bdb62",
     "winner": "Tim Elliott",
-    "confidence": 64.28,
+    "confidence": 57.6,
     "rematch": false,
     "last_5_results_f1": [
+      "L"
+    ],
+    "last_5_results_f2": [
       "W",
       "L",
       "W",
       "W",
       "L"
     ],
-    "last_5_results_f2": [
-      "L"
-    ],
     "raw_feature_diffs": {
-      "SLpM_diff": 0.4950000000000001,
-      "SApM_diff": -1.8599999999999994,
-      "TD_Avg_diff": 3.73,
-      "TD_Def_diff": 0.6,
-      "Str_Acc_diff": -14.0,
-      "Str_Def_diff": 9.0,
-      "Height_diff": -0.020999999999999908,
-      "Reach_diff": -0.75,
-      "Recent_form_score_diff": 1.2,
-      "Win_streak_score_diff": 0.011600000000000001,
-      "Avg_opp_strength_diff": 0.0023999999999999577,
+      "SLpM_diff": -0.4950000000000001,
+      "SApM_diff": 1.8599999999999994,
+      "TD_Avg_diff": -3.73,
+      "TD_Def_diff": -0.6,
+      "Str_Acc_diff": 14.0,
+      "Str_Def_diff": -9.0,
+      "Height_diff": 0.020999999999999908,
+      "Reach_diff": 0.75,
+      "Recent_form_score_diff": -1.2,
+      "Win_streak_score_diff": -0.011600000000000001,
+      "Avg_opp_strength_diff": -0.0023999999999999577,
       "TD_SApM_combo": 0.16739999999999994
     },
     "shap_weights": {},
@@ -1180,43 +1246,47 @@
     "odds1": "+240",
     "odds2": "-290",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC 319: Du Plessis vs. Chimaev",
     "date": "August 16, 2025",
     "fighter1": "King Green",
     "fighter2": "Diego Ferreira",
+    "fighter1_url": "http://ufcstats.com/fighter-details/887961364be5ceb3",
+    "fighter2_url": "http://ufcstats.com/fighter-details/f53d4f21d1b5f2dc",
     "winner": "King Green",
-    "confidence": 75.04,
+    "confidence": 62.13,
     "rematch": false,
     "last_5_results_f1": [
-      "L",
-      "L",
-      "W",
-      "L",
-      "W"
-    ],
-    "last_5_results_f2": [
       "L",
       "W",
       "W",
       "L",
       "L"
     ],
+    "last_5_results_f2": [
+      "L",
+      "L",
+      "W",
+      "L",
+      "W"
+    ],
     "raw_feature_diffs": {
-      "SLpM_diff": 0.79,
-      "SApM_diff": 0.26000000000000023,
-      "TD_Avg_diff": 0.36,
-      "TD_Def_diff": 5.1,
-      "Str_Acc_diff": 12.0,
-      "Str_Def_diff": 3.5,
-      "Height_diff": 0.020750000000000046,
-      "Reach_diff": -0.75,
+      "SLpM_diff": -0.79,
+      "SApM_diff": -0.26000000000000023,
+      "TD_Avg_diff": -0.36,
+      "TD_Def_diff": -5.1,
+      "Str_Acc_diff": -12.0,
+      "Str_Def_diff": -3.5,
+      "Height_diff": -0.020750000000000046,
+      "Reach_diff": 0.75,
       "Recent_form_score_diff": 0.0,
       "Win_streak_score_diff": 0.0,
-      "Avg_opp_strength_diff": -0.04619999999999991,
+      "Avg_opp_strength_diff": 0.04619999999999991,
       "TD_SApM_combo": -0.04420000000000004
     },
     "shap_weights": {},
@@ -1254,16 +1324,20 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC 319: Du Plessis vs. Chimaev",
     "date": "August 16, 2025",
     "fighter1": "Gerald Meerschaert",
     "fighter2": "Michal Oleksiejczuk",
+    "fighter1_url": "http://ufcstats.com/fighter-details/6ac9bc2953c47345",
+    "fighter2_url": "http://ufcstats.com/fighter-details/0d65c432720accb9",
     "winner": "Michal Oleksiejczuk",
-    "confidence": 66.2,
+    "confidence": 58.74,
     "rematch": false,
     "last_5_results_f1": [
       "L",
@@ -1325,19 +1399,23 @@
         "favors": "Gerald Meerschaert"
       }
     ],
-    "odds1": "+190",
-    "odds2": "-230",
+    "odds1": "+180",
+    "odds2": "-220",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC 319: Du Plessis vs. Chimaev",
     "date": "August 16, 2025",
     "fighter1": "Jessica Andrade",
     "fighter2": "Loopy Godinez",
+    "fighter1_url": "http://ufcstats.com/fighter-details/6a1901c62ab3870f",
+    "fighter2_url": "http://ufcstats.com/fighter-details/8e5d953bdb9ae5e7",
     "winner": "Loopy Godinez",
-    "confidence": 58.81,
+    "confidence": 53.41,
     "rematch": false,
     "last_5_results_f1": [
       "L",
@@ -1402,43 +1480,47 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC 319: Du Plessis vs. Chimaev",
     "date": "August 16, 2025",
     "fighter1": "Chase Hooper",
     "fighter2": "Alexander Hernandez",
-    "winner": "Alexander Hernandez",
-    "confidence": 62.45,
+    "fighter1_url": "http://ufcstats.com/fighter-details/971246648e162f0d",
+    "fighter2_url": "http://ufcstats.com/fighter-details/262a7d06203657e6",
+    "winner": "Chase Hooper",
+    "confidence": 51.99,
     "rematch": false,
     "last_5_results_f1": [
       "W",
       "W",
-      "W",
-      "W",
+      "L",
+      "L",
       "W"
     ],
     "last_5_results_f2": [
       "W",
       "W",
-      "L",
-      "L",
+      "W",
+      "W",
       "W"
     ],
     "raw_feature_diffs": {
-      "SLpM_diff": 0.07500000000000018,
-      "SApM_diff": -1.6600000000000001,
-      "TD_Avg_diff": 1.3499999999999999,
-      "TD_Def_diff": -4.8,
-      "Str_Acc_diff": 11.0,
-      "Str_Def_diff": -9.5,
-      "Height_diff": 0.08325000000000005,
-      "Reach_diff": 0.5,
-      "Recent_form_score_diff": 0.8,
-      "Win_streak_score_diff": 0.03116,
-      "Avg_opp_strength_diff": 0.016199999999999992,
+      "SLpM_diff": -0.07500000000000018,
+      "SApM_diff": 1.6600000000000001,
+      "TD_Avg_diff": -1.3499999999999999,
+      "TD_Def_diff": 4.8,
+      "Str_Acc_diff": -11.0,
+      "Str_Def_diff": 9.5,
+      "Height_diff": -0.08325000000000005,
+      "Reach_diff": -0.5,
+      "Recent_form_score_diff": -0.8,
+      "Win_streak_score_diff": -0.03116,
+      "Avg_opp_strength_diff": -0.016199999999999992,
       "TD_SApM_combo": -0.2656
     },
     "shap_weights": {},
@@ -1473,46 +1555,50 @@
         "favors": "Chase Hooper"
       }
     ],
-    "odds1": "-285",
-    "odds2": "+235",
+    "odds1": "-330",
+    "odds2": "+265",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC 319: Du Plessis vs. Chimaev",
     "date": "August 16, 2025",
     "fighter1": "Edson Barboza",
     "fighter2": "Drakkar Klose",
+    "fighter1_url": "http://ufcstats.com/fighter-details/64a50dad704d1d49",
+    "fighter2_url": "http://ufcstats.com/fighter-details/7cbf7c78d3b34218",
     "winner": "Drakkar Klose",
-    "confidence": 53.2,
+    "confidence": 58.78,
     "rematch": false,
     "last_5_results_f1": [
-      "L",
-      "W",
-      "W",
-      "L",
-      "L"
-    ],
-    "last_5_results_f2": [
       "L",
       "W",
       "W",
       "W",
       "W"
     ],
+    "last_5_results_f2": [
+      "L",
+      "W",
+      "W",
+      "L",
+      "L"
+    ],
     "raw_feature_diffs": {
-      "SLpM_diff": -0.10999999999999988,
-      "SApM_diff": 1.1100000000000003,
-      "TD_Avg_diff": -1.2,
-      "TD_Def_diff": 0.8999999999999999,
-      "Str_Acc_diff": -11.0,
-      "Str_Def_diff": 3.0,
-      "Height_diff": 0.041749999999999954,
-      "Reach_diff": 1.25,
-      "Recent_form_score_diff": -0.8,
+      "SLpM_diff": 0.10999999999999988,
+      "SApM_diff": -1.1100000000000003,
+      "TD_Avg_diff": 1.2,
+      "TD_Def_diff": -0.8999999999999999,
+      "Str_Acc_diff": 11.0,
+      "Str_Def_diff": -3.0,
+      "Height_diff": -0.041749999999999954,
+      "Reach_diff": -1.25,
+      "Recent_form_score_diff": 0.8,
       "Win_streak_score_diff": 0.0,
-      "Avg_opp_strength_diff": 0.02279999999999993,
+      "Avg_opp_strength_diff": -0.02279999999999993,
       "TD_SApM_combo": -0.03330000000000001
     },
     "shap_weights": {},
@@ -1547,19 +1633,23 @@
         "favors": "Edson Barboza"
       }
     ],
-    "odds1": "-150",
-    "odds2": "+130",
+    "odds1": "-170",
+    "odds2": "+145",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC 319: Du Plessis vs. Chimaev",
     "date": "August 16, 2025",
     "fighter1": "Bryan Battle",
     "fighter2": "Nursulton Ruziboev",
+    "fighter1_url": "http://ufcstats.com/fighter-details/f626118b6da0e020",
+    "fighter2_url": "http://ufcstats.com/fighter-details/49d2a08964c5eb11",
     "winner": "Bryan Battle",
-    "confidence": 74.73,
+    "confidence": 65.11,
     "rematch": false,
     "last_5_results_f1": [
       "W",
@@ -1624,55 +1714,57 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC 319: Du Plessis vs. Chimaev",
     "date": "August 16, 2025",
     "fighter1": "Karine Silva",
-    "fighter2": "JJ Aldrich",
-    "winner": "JJ Aldrich",
-    "confidence": 80.12,
+    "fighter2": "Dione Barbosa",
+    "fighter1_url": "http://ufcstats.com/fighter-details/9d62c2d8ee151f08",
+    "fighter2_url": "http://ufcstats.com/fighter-details/27b388f0aab49780",
+    "winner": "Dione Barbosa",
+    "confidence": 67.84,
     "rematch": false,
     "last_5_results_f1": [
+      "W",
+      "L",
+      "W"
+    ],
+    "last_5_results_f2": [
       "L",
       "W",
       "W",
       "W",
       "W"
     ],
-    "last_5_results_f2": [
-      "W",
-      "L",
-      "W",
-      "W",
-      "L"
-    ],
     "raw_feature_diffs": {
-      "SLpM_diff": -0.45999999999999996,
-      "SApM_diff": -1.1800000000000002,
-      "TD_Avg_diff": 2.04,
-      "TD_Def_diff": -20.099999999999998,
-      "Str_Acc_diff": -9.0,
-      "Str_Def_diff": -7.0,
-      "Height_diff": 0.0,
-      "Reach_diff": 0.0,
-      "Recent_form_score_diff": 0.39999999999999997,
-      "Win_streak_score_diff": -0.01084,
-      "Avg_opp_strength_diff": 0.04259999999999997,
-      "TD_SApM_combo": -0.7906000000000002
+      "SLpM_diff": -0.345,
+      "SApM_diff": -0.41000000000000014,
+      "TD_Avg_diff": -0.8600000000000001,
+      "TD_Def_diff": 12.6,
+      "Str_Acc_diff": 12.0,
+      "Str_Def_diff": 10.0,
+      "Height_diff": 0.020750000000000046,
+      "Reach_diff": -0.25,
+      "Recent_form_score_diff": -0.2667,
+      "Win_streak_score_diff": 0.010920000000000001,
+      "Avg_opp_strength_diff": 0.0024000000000000687,
+      "TD_SApM_combo": 0.20500000000000007
     },
     "shap_weights": {},
     "weighted_feature_diffs": {},
     "top_3_contributors": [
       {
         "stat": "Strikes Landed/Min",
-        "favors": "JJ Aldrich"
+        "favors": "Karine Silva"
       },
       {
         "stat": "Strikes Absorbed/Min",
-        "favors": "Karine Silva"
+        "favors": "Dione Barbosa"
       },
       {
         "stat": "Takedowns/15min",
@@ -1680,34 +1772,66 @@
       },
       {
         "stat": "Takedown Defense",
-        "favors": "JJ Aldrich"
+        "favors": "Dione Barbosa"
       },
       {
         "stat": "Striking Accuracy",
-        "favors": "JJ Aldrich"
+        "favors": "Dione Barbosa"
       },
       {
         "stat": "Striking Defense",
-        "favors": "JJ Aldrich"
+        "favors": "Dione Barbosa"
       },
       {
         "stat": "Reach",
-        "favors": "Even"
+        "favors": "Karine Silva"
       }
     ],
+    "odds1": "-220",
+    "odds2": "+180",
+    "actual_result": null,
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
+  },
+  {
+    "timestamp": "2025-08-14 19:09:59",
+    "event": "UFC 319: Du Plessis vs. Chimaev",
+    "date": "August 16, 2025",
+    "fighter1": "Joseph Morales",
+    "fighter2": "Alibi Idiris",
+    "fighter1_url": "http://ufcstats.com/fighter-details/2fe9032955c2e013",
+    "fighter2_url": "http://ufcstats.com/fighter-details/30cad5a751adcb48",
+    "winner": "Toss Up",
+    "confidence": 50.0,
+    "rematch": false,
+    "last_5_results_f1": [
+      "L",
+      "L",
+      "W"
+    ],
+    "last_5_results_f2": [],
+    "raw_feature_diffs": {},
+    "shap_weights": {},
+    "weighted_feature_diffs": {},
+    "top_3_contributors": [],
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": false
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Walker vs. Zhang",
     "date": "August 23, 2025",
     "fighter1": "Johnny Walker",
     "fighter2": "Zhang Mingyang",
+    "fighter1_url": "http://ufcstats.com/fighter-details/c21f26bbde777573",
+    "fighter2_url": "http://ufcstats.com/fighter-details/8a65fd9ba31fd3f7",
     "winner": "Zhang Mingyang",
-    "confidence": 69.75,
+    "confidence": 58.01,
     "rematch": false,
     "last_5_results_f1": [
       "L",
@@ -1771,43 +1895,47 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Walker vs. Zhang",
     "date": "August 23, 2025",
     "fighter1": "Brian Ortega",
     "fighter2": "Aljamain Sterling",
+    "fighter1_url": "http://ufcstats.com/fighter-details/def8166ff24bd237",
+    "fighter2_url": "http://ufcstats.com/fighter-details/cb696ebfb6598724",
     "winner": "Aljamain Sterling",
-    "confidence": 62.87,
+    "confidence": 63.73,
     "rematch": false,
     "last_5_results_f1": [
       "L",
       "W",
       "L",
-      "L",
+      "W",
       "W"
     ],
     "last_5_results_f2": [
       "L",
       "W",
       "L",
-      "W",
+      "L",
       "W"
     ],
     "raw_feature_diffs": {
-      "SLpM_diff": -0.16500000000000004,
-      "SApM_diff": 4.38,
-      "TD_Avg_diff": -1.4399999999999997,
-      "TD_Def_diff": 3.9,
-      "Str_Acc_diff": -15.0,
-      "Str_Def_diff": -4.5,
-      "Height_diff": 0.020999999999999908,
-      "Reach_diff": -0.5,
-      "Recent_form_score_diff": -0.4,
+      "SLpM_diff": 0.16500000000000004,
+      "SApM_diff": -4.38,
+      "TD_Avg_diff": 1.4399999999999997,
+      "TD_Def_diff": -3.9,
+      "Str_Acc_diff": 15.0,
+      "Str_Def_diff": 4.5,
+      "Height_diff": -0.020999999999999908,
+      "Reach_diff": 0.5,
+      "Recent_form_score_diff": 0.4,
       "Win_streak_score_diff": 0.0,
-      "Avg_opp_strength_diff": -0.03599999999999992,
+      "Avg_opp_strength_diff": 0.03599999999999992,
       "TD_SApM_combo": -0.5694
     },
     "shap_weights": {},
@@ -1845,16 +1973,20 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Walker vs. Zhang",
     "date": "August 23, 2025",
     "fighter1": "Sergei Pavlovich",
     "fighter2": "Waldo Cortes-Acosta",
-    "winner": "Waldo Cortes-Acosta",
-    "confidence": 51.69,
+    "fighter1_url": "http://ufcstats.com/fighter-details/f14cf73e51b29254",
+    "fighter2_url": "http://ufcstats.com/fighter-details/fc08099550072fe4",
+    "winner": "Sergei Pavlovich",
+    "confidence": 52.15,
     "rematch": false,
     "last_5_results_f1": [
       "W",
@@ -1919,41 +2051,45 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Walker vs. Zhang",
     "date": "August 23, 2025",
     "fighter1": "Sumudaerji",
     "fighter2": "Kevin Borjas",
+    "fighter1_url": "http://ufcstats.com/fighter-details/3cf18e01cb6cbde3",
+    "fighter2_url": "http://ufcstats.com/fighter-details/34b96d52db1d26e6",
     "winner": "Sumudaerji",
-    "confidence": 72.39,
+    "confidence": 62.09,
     "rematch": false,
     "last_5_results_f1": [
+      "W",
+      "L",
+      "L"
+    ],
+    "last_5_results_f2": [
       "W",
       "L",
       "L",
       "L",
       "W"
     ],
-    "last_5_results_f2": [
-      "W",
-      "L",
-      "L"
-    ],
     "raw_feature_diffs": {
-      "SLpM_diff": -0.34999999999999964,
-      "SApM_diff": -3.3600000000000003,
-      "TD_Avg_diff": 0.18,
-      "TD_Def_diff": 0.6,
-      "Str_Acc_diff": 7.0,
-      "Str_Def_diff": 4.5,
-      "Height_diff": 0.0625,
-      "Reach_diff": 1.0,
-      "Recent_form_score_diff": 0.13329999999999997,
-      "Win_streak_score_diff": -0.00016000000000000042,
-      "Avg_opp_strength_diff": -0.02939999999999987,
+      "SLpM_diff": 0.34999999999999964,
+      "SApM_diff": 3.3600000000000003,
+      "TD_Avg_diff": -0.18,
+      "TD_Def_diff": -0.6,
+      "Str_Acc_diff": -7.0,
+      "Str_Def_diff": -4.5,
+      "Height_diff": -0.0625,
+      "Reach_diff": -1.0,
+      "Recent_form_score_diff": -0.13329999999999997,
+      "Win_streak_score_diff": 0.00016000000000000042,
+      "Avg_opp_strength_diff": 0.02939999999999987,
       "TD_SApM_combo": 0.5712
     },
     "shap_weights": {},
@@ -1991,48 +2127,48 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Walker vs. Zhang",
     "date": "August 23, 2025",
-    "fighter1": "Song Kenan",
+    "fighter1": "Taiyilake Nueraji",
     "fighter2": "Kiefer Crosbie",
-    "winner": "Kiefer Crosbie",
-    "confidence": 59.53,
+    "fighter1_url": "http://ufcstats.com/fighter-details/7498b3ac79a3b948",
+    "fighter2_url": "http://ufcstats.com/fighter-details/4729c93ba705a3bf",
+    "winner": "Taiyilake Nueraji",
+    "confidence": 56.4,
     "rematch": false,
     "last_5_results_f1": [
       "L",
-      "W",
-      "L",
-      "W",
       "L"
     ],
     "last_5_results_f2": [
-      "L",
-      "L"
+      "W"
     ],
     "raw_feature_diffs": {
-      "SLpM_diff": -0.8899999999999997,
-      "SApM_diff": 0.8500000000000005,
-      "TD_Avg_diff": 0.42,
-      "TD_Def_diff": 21.9,
-      "Str_Acc_diff": -18.0,
-      "Str_Def_diff": -1.5,
-      "Height_diff": 0.020750000000000046,
-      "Reach_diff": 0.25,
-      "Recent_form_score_diff": 0.8,
-      "Win_streak_score_diff": 0.0,
-      "Avg_opp_strength_diff": 0.021299999999999986,
-      "TD_SApM_combo": -0.19550000000000012
+      "SLpM_diff": -2.37,
+      "SApM_diff": -2.42,
+      "TD_Avg_diff": 0.0,
+      "TD_Def_diff": 0.0,
+      "Str_Acc_diff": 16.0,
+      "Str_Def_diff": -2.0,
+      "Height_diff": -0.0625,
+      "Reach_diff": -1.25,
+      "Recent_form_score_diff": -2.0,
+      "Win_streak_score_diff": -0.01012,
+      "Avg_opp_strength_diff": 0.04049999999999998,
+      "TD_SApM_combo": 0.0
     },
     "shap_weights": {},
     "weighted_feature_diffs": {},
     "top_3_contributors": [
       {
         "stat": "Strikes Landed/Min",
-        "favors": "Kiefer Crosbie"
+        "favors": "Taiyilake Nueraji"
       },
       {
         "stat": "Strikes Absorbed/Min",
@@ -2040,11 +2176,11 @@
       },
       {
         "stat": "Takedowns/15min",
-        "favors": "Song Kenan"
+        "favors": "Even"
       },
       {
         "stat": "Takedown Defense",
-        "favors": "Song Kenan"
+        "favors": "Even"
       },
       {
         "stat": "Striking Accuracy",
@@ -2052,49 +2188,53 @@
       },
       {
         "stat": "Striking Defense",
-        "favors": "Kiefer Crosbie"
+        "favors": "Taiyilake Nueraji"
       },
       {
         "stat": "Reach",
-        "favors": "Song Kenan"
+        "favors": "Taiyilake Nueraji"
       }
     ],
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Walker vs. Zhang",
     "date": "August 23, 2025",
     "fighter1": "Maheshate",
     "fighter2": "Gauge Young",
+    "fighter1_url": "http://ufcstats.com/fighter-details/8c1ca54b5089d199",
+    "fighter2_url": "http://ufcstats.com/fighter-details/b2a78df161bd67f9",
     "winner": "Maheshate",
-    "confidence": 62.18,
+    "confidence": 56.8,
     "rematch": false,
     "last_5_results_f1": [
+      "L"
+    ],
+    "last_5_results_f2": [
       "L",
       "W",
       "L",
       "L",
       "W"
     ],
-    "last_5_results_f2": [
-      "L"
-    ],
     "raw_feature_diffs": {
-      "SLpM_diff": -0.4850000000000001,
-      "SApM_diff": -0.8900000000000006,
+      "SLpM_diff": 0.4850000000000001,
+      "SApM_diff": 0.8900000000000006,
       "TD_Avg_diff": 0.0,
-      "TD_Def_diff": -5.7,
-      "Str_Acc_diff": -19.0,
-      "Str_Def_diff": 4.5,
-      "Height_diff": 0.0625,
-      "Reach_diff": 0.25,
-      "Recent_form_score_diff": 0.8,
+      "TD_Def_diff": 5.7,
+      "Str_Acc_diff": 19.0,
+      "Str_Def_diff": -4.5,
+      "Height_diff": -0.0625,
+      "Reach_diff": -0.25,
+      "Recent_form_score_diff": -0.8,
       "Win_streak_score_diff": 0.0,
-      "Avg_opp_strength_diff": 0.08940000000000003,
+      "Avg_opp_strength_diff": -0.08940000000000003,
       "TD_SApM_combo": -0.044500000000000026
     },
     "shap_weights": {},
@@ -2132,40 +2272,44 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Walker vs. Zhang",
     "date": "August 23, 2025",
     "fighter1": "Lone'er Kavanagh",
     "fighter2": "Charles Johnson",
+    "fighter1_url": "http://ufcstats.com/fighter-details/bb2c3c3a466224af",
+    "fighter2_url": "http://ufcstats.com/fighter-details/814e5233e2acf2ee",
     "winner": "Lone'er Kavanagh",
-    "confidence": 73.76,
+    "confidence": 62.95,
     "rematch": false,
     "last_5_results_f1": [
-      "W",
-      "W"
-    ],
-    "last_5_results_f2": [
       "L",
       "W",
       "W",
       "W",
       "W"
     ],
+    "last_5_results_f2": [
+      "W",
+      "W"
+    ],
     "raw_feature_diffs": {
-      "SLpM_diff": -0.5050000000000001,
-      "SApM_diff": -0.20000000000000018,
-      "TD_Avg_diff": 1.35,
-      "TD_Def_diff": 9.9,
-      "Str_Acc_diff": 1.0,
-      "Str_Def_diff": 2.0,
-      "Height_diff": -0.10424999999999995,
-      "Reach_diff": -0.75,
-      "Recent_form_score_diff": 0.4,
-      "Win_streak_score_diff": 0.0188,
-      "Avg_opp_strength_diff": -0.1355999999999999,
+      "SLpM_diff": 0.5050000000000001,
+      "SApM_diff": 0.20000000000000018,
+      "TD_Avg_diff": -1.35,
+      "TD_Def_diff": -9.9,
+      "Str_Acc_diff": -1.0,
+      "Str_Def_diff": -2.0,
+      "Height_diff": 0.10424999999999995,
+      "Reach_diff": 0.75,
+      "Recent_form_score_diff": -0.4,
+      "Win_streak_score_diff": -0.0188,
+      "Avg_opp_strength_diff": 0.1355999999999999,
       "TD_SApM_combo": -0.03400000000000003
     },
     "shap_weights": {},
@@ -2203,43 +2347,47 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Walker vs. Zhang",
     "date": "August 23, 2025",
     "fighter1": "Rongzhu",
     "fighter2": "Austin Hubbard",
+    "fighter1_url": "http://ufcstats.com/fighter-details/a13d755965a4ec9f",
+    "fighter2_url": "http://ufcstats.com/fighter-details/d2cd7a69cc55e7ed",
     "winner": "Rongzhu",
-    "confidence": 84.3,
+    "confidence": 59.38,
     "rematch": false,
     "last_5_results_f1": [
-      "W",
-      "L",
-      "W",
-      "W",
-      "W"
-    ],
-    "last_5_results_f2": [
       "L",
       "L",
       "W",
       "L",
       "L"
     ],
+    "last_5_results_f2": [
+      "W",
+      "L",
+      "W",
+      "W",
+      "W"
+    ],
     "raw_feature_diffs": {
-      "SLpM_diff": 1.0150000000000001,
-      "SApM_diff": 1.69,
-      "TD_Avg_diff": -0.030000000000000027,
-      "TD_Def_diff": 4.8,
-      "Str_Acc_diff": 8.0,
-      "Str_Def_diff": -3.0,
-      "Height_diff": -0.020750000000000046,
+      "SLpM_diff": -1.0150000000000001,
+      "SApM_diff": -1.69,
+      "TD_Avg_diff": 0.030000000000000027,
+      "TD_Def_diff": -4.8,
+      "Str_Acc_diff": -8.0,
+      "Str_Def_diff": 3.0,
+      "Height_diff": 0.020750000000000046,
       "Reach_diff": 0.0,
-      "Recent_form_score_diff": 1.2,
-      "Win_streak_score_diff": 0.013120000000000001,
-      "Avg_opp_strength_diff": 0.01200000000000001,
+      "Recent_form_score_diff": -1.2,
+      "Win_streak_score_diff": -0.013120000000000001,
+      "Avg_opp_strength_diff": -0.01200000000000001,
       "TD_SApM_combo": -0.2704
     },
     "shap_weights": {},
@@ -2277,20 +2425,27 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Walker vs. Zhang",
     "date": "August 23, 2025",
-    "fighter1": "Marco Tulio",
-    "fighter2": "Michel Pereira",
-    "winner": "Marco Tulio",
-    "confidence": 72.49,
+    "fighter1": "Michel Pereira",
+    "fighter2": "Kyle Daukaus",
+    "fighter1_url": "http://ufcstats.com/fighter-details/595db60957de51d3",
+    "fighter2_url": "http://ufcstats.com/fighter-details/d6c0cdd7e467c440",
+    "winner": "Michel Pereira",
+    "confidence": 59.77,
     "rematch": false,
     "last_5_results_f1": [
+      "L",
+      "L",
       "W",
-      "W"
+      "NC",
+      "L"
     ],
     "last_5_results_f2": [
       "L",
@@ -2300,89 +2455,93 @@
       "W"
     ],
     "raw_feature_diffs": {
-      "SLpM_diff": 1.52,
-      "SApM_diff": -1.8000000000000003,
-      "TD_Avg_diff": -0.2599999999999999,
-      "TD_Def_diff": -22.8,
-      "Str_Acc_diff": 8.0,
-      "Str_Def_diff": 5.0,
-      "Height_diff": -0.020750000000000046,
-      "Reach_diff": 0.25,
-      "Recent_form_score_diff": 0.8,
-      "Win_streak_score_diff": 0.02264,
-      "Avg_opp_strength_diff": -0.011399999999999966,
-      "TD_SApM_combo": -0.468
+      "SLpM_diff": -0.6399999999999999,
+      "SApM_diff": -1.3900000000000001,
+      "TD_Avg_diff": 0.9800000000000002,
+      "TD_Def_diff": 1.7999999999999998,
+      "Str_Acc_diff": 0.0,
+      "Str_Def_diff": -4.5,
+      "Height_diff": 0.041749999999999954,
+      "Reach_diff": 0.75,
+      "Recent_form_score_diff": -0.6000000000000001,
+      "Win_streak_score_diff": 0.0,
+      "Avg_opp_strength_diff": -0.030000000000000027,
+      "TD_SApM_combo": 0.0834
     },
     "shap_weights": {},
     "weighted_feature_diffs": {},
     "top_3_contributors": [
       {
         "stat": "Strikes Landed/Min",
-        "favors": "Marco Tulio"
+        "favors": "Michel Pereira"
       },
       {
         "stat": "Strikes Absorbed/Min",
-        "favors": "Marco Tulio"
+        "favors": "Kyle Daukaus"
       },
       {
         "stat": "Takedowns/15min",
-        "favors": "Michel Pereira"
+        "favors": "Kyle Daukaus"
       },
       {
         "stat": "Takedown Defense",
-        "favors": "Michel Pereira"
+        "favors": "Kyle Daukaus"
       },
       {
         "stat": "Striking Accuracy",
-        "favors": "Marco Tulio"
+        "favors": "Even"
       },
       {
         "stat": "Striking Defense",
-        "favors": "Marco Tulio"
+        "favors": "Michel Pereira"
       },
       {
         "stat": "Reach",
-        "favors": "Marco Tulio"
+        "favors": "Kyle Daukaus"
       }
     ],
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Walker vs. Zhang",
     "date": "August 23, 2025",
     "fighter1": "Yizha",
     "fighter2": "Westin Wilson",
+    "fighter1_url": "http://ufcstats.com/fighter-details/3f11fd1751fa83b1",
+    "fighter2_url": "http://ufcstats.com/fighter-details/7b3503352cd53abb",
     "winner": "Yizha",
-    "confidence": 79.97,
+    "confidence": 66.81,
     "rematch": false,
     "last_5_results_f1": [
+      "W",
       "L",
-      "W",
-      "W",
-      "W",
       "L"
     ],
     "last_5_results_f2": [
-      "W",
       "L",
+      "W",
+      "W",
+      "W",
       "L"
     ],
     "raw_feature_diffs": {
-      "SLpM_diff": 0.5599999999999999,
-      "SApM_diff": -2.8899999999999997,
-      "TD_Avg_diff": 1.86,
-      "TD_Def_diff": 6.3,
-      "Str_Acc_diff": 11.0,
-      "Str_Def_diff": 8.0,
-      "Height_diff": -0.125,
-      "Reach_diff": -0.5,
-      "Recent_form_score_diff": 0.5333,
-      "Win_streak_score_diff": -0.010360000000000001,
-      "Avg_opp_strength_diff": -0.006400000000000183,
+      "SLpM_diff": -0.5599999999999999,
+      "SApM_diff": 2.8899999999999997,
+      "TD_Avg_diff": -1.86,
+      "TD_Def_diff": -6.3,
+      "Str_Acc_diff": -11.0,
+      "Str_Def_diff": -8.0,
+      "Height_diff": 0.125,
+      "Reach_diff": 0.5,
+      "Recent_form_score_diff": -0.5333,
+      "Win_streak_score_diff": 0.010360000000000001,
+      "Avg_opp_strength_diff": 0.006400000000000183,
       "TD_SApM_combo": 0.11559999999999998
     },
     "shap_weights": {},
@@ -2420,41 +2579,45 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Walker vs. Zhang",
     "date": "August 23, 2025",
     "fighter1": "Xiao Long",
     "fighter2": "SuYoung You",
+    "fighter1_url": "http://ufcstats.com/fighter-details/86bace9e4ad85542",
+    "fighter2_url": "http://ufcstats.com/fighter-details/a474aade8eb3a8f0",
     "winner": "Xiao Long",
-    "confidence": 53.09,
+    "confidence": 57.14,
     "rematch": false,
     "last_5_results_f1": [
       "W",
-      "L",
+      "W",
       "W",
       "W"
     ],
     "last_5_results_f2": [
       "W",
-      "W",
+      "L",
       "W",
       "W"
     ],
     "raw_feature_diffs": {
-      "SLpM_diff": 1.7600000000000002,
-      "SApM_diff": 2.9499999999999993,
-      "TD_Avg_diff": -3.91,
-      "TD_Def_diff": 3.3,
-      "Str_Acc_diff": 6.0,
-      "Str_Def_diff": -10.5,
-      "Height_diff": 0.041749999999999954,
-      "Reach_diff": 1.25,
-      "Recent_form_score_diff": -0.5,
-      "Win_streak_score_diff": -0.029120000000000004,
-      "Avg_opp_strength_diff": -0.04650000000000004,
+      "SLpM_diff": -1.7600000000000002,
+      "SApM_diff": -2.9499999999999993,
+      "TD_Avg_diff": 3.91,
+      "TD_Def_diff": -3.3,
+      "Str_Acc_diff": -6.0,
+      "Str_Def_diff": 10.5,
+      "Height_diff": -0.041749999999999954,
+      "Reach_diff": -1.25,
+      "Recent_form_score_diff": 0.5,
+      "Win_streak_score_diff": 0.029120000000000004,
+      "Avg_opp_strength_diff": 0.04650000000000004,
       "TD_SApM_combo": -0.3244999999999999
     },
     "shap_weights": {},
@@ -2492,16 +2655,20 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Walker vs. Zhang",
     "date": "August 23, 2025",
     "fighter1": "Uran Satybaldiev",
     "fighter2": "Diyar Nurgozhay",
+    "fighter1_url": "http://ufcstats.com/fighter-details/02f484417a6fa69d",
+    "fighter2_url": "http://ufcstats.com/fighter-details/709fadb644ee3f51",
     "winner": "Diyar Nurgozhay",
-    "confidence": 75.48,
+    "confidence": 58.05,
     "rematch": false,
     "last_5_results_f1": [
       "L"
@@ -2510,18 +2677,18 @@
       "L"
     ],
     "raw_feature_diffs": {
-      "SLpM_diff": -0.365,
-      "SApM_diff": 0.4700000000000002,
-      "TD_Avg_diff": -2.0,
+      "SLpM_diff": 0.365,
+      "SApM_diff": -0.4700000000000002,
+      "TD_Avg_diff": 2.0,
       "TD_Def_diff": 0.0,
-      "Str_Acc_diff": -23.0,
-      "Str_Def_diff": -7.0,
-      "Height_diff": 0.04150000000000009,
-      "Reach_diff": 1.25,
+      "Str_Acc_diff": 23.0,
+      "Str_Def_diff": 7.0,
+      "Height_diff": -0.04150000000000009,
+      "Reach_diff": -1.25,
       "Recent_form_score_diff": 0.0,
       "Win_streak_score_diff": 0.0,
-      "Avg_opp_strength_diff": 0.28800000000000003,
-      "TD_SApM_combo": -0.0
+      "Avg_opp_strength_diff": -0.28800000000000003,
+      "TD_SApM_combo": 0.0
     },
     "shap_weights": {},
     "weighted_feature_diffs": {},
@@ -2558,43 +2725,47 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Imavov vs. Borralho",
     "date": "September 06, 2025",
     "fighter1": "Nassourdine Imavov",
     "fighter2": "Caio Borralho",
+    "fighter1_url": "http://ufcstats.com/fighter-details/881bf86d4cba8578",
+    "fighter2_url": "http://ufcstats.com/fighter-details/4126a78111c0855a",
     "winner": "Caio Borralho",
-    "confidence": 71.48,
+    "confidence": 64.43,
     "rematch": false,
     "last_5_results_f1": [
       "W",
       "W",
       "W",
       "W",
-      "NC"
+      "W"
     ],
     "last_5_results_f2": [
       "W",
       "W",
       "W",
       "W",
-      "W"
+      "NC"
     ],
     "raw_feature_diffs": {
-      "SLpM_diff": 0.42000000000000015,
-      "SApM_diff": 0.9199999999999999,
-      "TD_Avg_diff": -0.7100000000000001,
-      "TD_Def_diff": 0.6,
-      "Str_Acc_diff": -5.0,
-      "Str_Def_diff": -2.0,
-      "Height_diff": 0.041749999999999954,
+      "SLpM_diff": -0.42000000000000015,
+      "SApM_diff": -0.9199999999999999,
+      "TD_Avg_diff": 0.7100000000000001,
+      "TD_Def_diff": -0.6,
+      "Str_Acc_diff": 5.0,
+      "Str_Def_diff": 2.0,
+      "Height_diff": -0.041749999999999954,
       "Reach_diff": 0.0,
-      "Recent_form_score_diff": -0.19999999999999996,
-      "Win_streak_score_diff": -0.013760000000000007,
-      "Avg_opp_strength_diff": -0.01619999999999988,
+      "Recent_form_score_diff": 0.19999999999999996,
+      "Win_streak_score_diff": 0.013760000000000007,
+      "Avg_opp_strength_diff": 0.01619999999999988,
       "TD_SApM_combo": -0.0184
     },
     "shap_weights": {},
@@ -2629,115 +2800,99 @@
         "favors": "Even"
       }
     ],
-    "odds1": "-150",
-    "odds2": "+130",
+    "odds1": "-142",
+    "odds2": "+122",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Imavov vs. Borralho",
     "date": "September 06, 2025",
-    "fighter1": "Andreas Gustafsson",
-    "fighter2": "Rinat Fakhretdinov",
-    "winner": "Andreas Gustafsson",
-    "confidence": 73.96,
+    "fighter1": "Benoit Saint Denis",
+    "fighter2": "Mauricio Ruffy",
+    "fighter1_url": "http://ufcstats.com/fighter-details/c2299ec916bc7c56",
+    "fighter2_url": "http://ufcstats.com/fighter-details/9c393e836a852f30",
+    "winner": "Mauricio Ruffy",
+    "confidence": 66.85,
     "rematch": false,
     "last_5_results_f1": [
+      "W",
+      "L",
+      "L",
+      "W",
       "W"
     ],
     "last_5_results_f2": [
       "W",
       "W",
-      "D",
-      "W",
       "W"
     ],
     "raw_feature_diffs": {
-      "SLpM_diff": 0.5249999999999999,
-      "SApM_diff": -0.79,
-      "TD_Avg_diff": 2.4799999999999995,
-      "TD_Def_diff": 2.6999999999999997,
-      "Str_Acc_diff": 24.0,
-      "Str_Def_diff": -4.0,
-      "Height_diff": 0.020750000000000046,
-      "Reach_diff": -0.25,
-      "Recent_form_score_diff": 0.19999999999999996,
-      "Win_streak_score_diff": -0.034480000000000004,
-      "Avg_opp_strength_diff": -0.05820000000000003,
-      "TD_SApM_combo": -0.3239
+      "SLpM_diff": 0.4249999999999998,
+      "SApM_diff": 0.020000000000000462,
+      "TD_Avg_diff": 4.19,
+      "TD_Def_diff": -9.0,
+      "Str_Acc_diff": -3.0,
+      "Str_Def_diff": -10.0,
+      "Height_diff": 0.0,
+      "Reach_diff": -0.5,
+      "Recent_form_score_diff": -0.8,
+      "Win_streak_score_diff": -0.02532,
+      "Avg_opp_strength_diff": -0.0623999999999999,
+      "TD_SApM_combo": -0.004000000000000092
     },
     "shap_weights": {},
     "weighted_feature_diffs": {},
     "top_3_contributors": [
       {
         "stat": "Strikes Landed/Min",
-        "favors": "Andreas Gustafsson"
+        "favors": "Benoit Saint Denis"
       },
       {
         "stat": "Strikes Absorbed/Min",
-        "favors": "Andreas Gustafsson"
+        "favors": "Mauricio Ruffy"
       },
       {
         "stat": "Takedowns/15min",
-        "favors": "Andreas Gustafsson"
+        "favors": "Benoit Saint Denis"
       },
       {
         "stat": "Takedown Defense",
-        "favors": "Andreas Gustafsson"
+        "favors": "Mauricio Ruffy"
       },
       {
         "stat": "Striking Accuracy",
-        "favors": "Andreas Gustafsson"
+        "favors": "Mauricio Ruffy"
       },
       {
         "stat": "Striking Defense",
-        "favors": "Rinat Fakhretdinov"
+        "favors": "Mauricio Ruffy"
       },
       {
         "stat": "Reach",
-        "favors": "Rinat Fakhretdinov"
+        "favors": "Mauricio Ruffy"
       }
     ],
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
-    "event": "UFC Fight Night: Imavov vs. Borralho",
-    "date": "September 06, 2025",
-    "fighter1": "Marcin Tybura",
-    "fighter2": "Ante Delija",
-    "winner": "Toss Up",
-    "confidence": 50.0,
-    "rematch": false,
-    "last_5_results_f1": [
-      "W",
-      "W",
-      "L",
-      "W",
-      "L"
-    ],
-    "last_5_results_f2": [],
-    "raw_feature_diffs": {},
-    "shap_weights": {},
-    "weighted_feature_diffs": {},
-    "top_3_contributors": [],
-    "odds1": "N/A",
-    "odds2": "N/A",
-    "actual_result": null,
-    "correct": null
-  },
-  {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Imavov vs. Borralho",
     "date": "September 06, 2025",
     "fighter1": "Bolaji Oki",
     "fighter2": "Mason Jones",
+    "fighter1_url": "http://ufcstats.com/fighter-details/4bdedbdeedff7d1d",
+    "fighter2_url": "http://ufcstats.com/fighter-details/f6ad6a1e4d600e0d",
     "winner": "Bolaji Oki",
-    "confidence": 83.96,
+    "confidence": 69.52,
     "rematch": false,
     "last_5_results_f1": [
       "W",
@@ -2800,110 +2955,20 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
-    "event": "UFC Fight Night: Imavov vs. Borralho",
-    "date": "September 06, 2025",
-    "fighter1": "Kennedy Freeman",
-    "fighter2": "Yuneisy Duben",
-    "winner": "Toss Up",
-    "confidence": 50.0,
-    "rematch": false,
-    "last_5_results_f1": [],
-    "last_5_results_f2": [
-      "L"
-    ],
-    "raw_feature_diffs": {},
-    "shap_weights": {},
-    "weighted_feature_diffs": {},
-    "top_3_contributors": [],
-    "odds1": "N/A",
-    "odds2": "N/A",
-    "actual_result": null,
-    "correct": null
-  },
-  {
-    "timestamp": "2025-08-08 18:33:40",
-    "event": "UFC Fight Night: Imavov vs. Borralho",
-    "date": "September 06, 2025",
-    "fighter1": "Shauna Bannon",
-    "fighter2": "Sam Hughes",
-    "winner": "Sam Hughes",
-    "confidence": 78.32,
-    "rematch": false,
-    "last_5_results_f1": [
-      "W",
-      "W",
-      "L"
-    ],
-    "last_5_results_f2": [
-      "W",
-      "W",
-      "L",
-      "W",
-      "L"
-    ],
-    "raw_feature_diffs": {
-      "SLpM_diff": 0.17999999999999972,
-      "SApM_diff": -0.6900000000000004,
-      "TD_Avg_diff": -1.08,
-      "TD_Def_diff": -5.3999999999999995,
-      "Str_Acc_diff": -3.0,
-      "Str_Def_diff": -7.0,
-      "Height_diff": 0.0,
-      "Reach_diff": 0.25,
-      "Recent_form_score_diff": 0.13329999999999997,
-      "Win_streak_score_diff": 0.00396,
-      "Avg_opp_strength_diff": 0.04999999999999993,
-      "TD_SApM_combo": -0.06900000000000003
-    },
-    "shap_weights": {},
-    "weighted_feature_diffs": {},
-    "top_3_contributors": [
-      {
-        "stat": "Strikes Landed/Min",
-        "favors": "Shauna Bannon"
-      },
-      {
-        "stat": "Strikes Absorbed/Min",
-        "favors": "Shauna Bannon"
-      },
-      {
-        "stat": "Takedowns/15min",
-        "favors": "Sam Hughes"
-      },
-      {
-        "stat": "Takedown Defense",
-        "favors": "Sam Hughes"
-      },
-      {
-        "stat": "Striking Accuracy",
-        "favors": "Sam Hughes"
-      },
-      {
-        "stat": "Striking Defense",
-        "favors": "Sam Hughes"
-      },
-      {
-        "stat": "Reach",
-        "favors": "Shauna Bannon"
-      }
-    ],
-    "odds1": "N/A",
-    "odds2": "N/A",
-    "actual_result": null,
-    "correct": null
-  },
-  {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Imavov vs. Borralho",
     "date": "September 06, 2025",
     "fighter1": "Modestas Bukauskas",
     "fighter2": "Paul Craig",
+    "fighter1_url": "http://ufcstats.com/fighter-details/476fe566d2df676e",
+    "fighter2_url": "http://ufcstats.com/fighter-details/eabf206b162b3b83",
     "winner": "Modestas Bukauskas",
-    "confidence": 79.96,
+    "confidence": 68.65,
     "rematch": false,
     "last_5_results_f1": [
       "W",
@@ -2968,16 +3033,20 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Imavov vs. Borralho",
     "date": "September 06, 2025",
     "fighter1": "Fares Ziam",
     "fighter2": "Kaue Fernandes",
+    "fighter1_url": "http://ufcstats.com/fighter-details/1e4f273069fb9e85",
+    "fighter2_url": "http://ufcstats.com/fighter-details/ec13c393d029297d",
     "winner": "Kaue Fernandes",
-    "confidence": 62.16,
+    "confidence": 56.91,
     "rematch": false,
     "last_5_results_f1": [
       "W",
@@ -3040,14 +3109,198 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
+    "event": "UFC Fight Night: Imavov vs. Borralho",
+    "date": "September 06, 2025",
+    "fighter1": "Oumar Sy",
+    "fighter2": "Brendson Ribeiro",
+    "fighter1_url": "http://ufcstats.com/fighter-details/46e2011d92463b7e",
+    "fighter2_url": "http://ufcstats.com/fighter-details/49edd0d90f60fb7d",
+    "winner": "Oumar Sy",
+    "confidence": 65.63,
+    "rematch": false,
+    "last_5_results_f1": [
+      "L",
+      "W",
+      "W",
+      "L",
+      "L"
+    ],
+    "last_5_results_f2": [
+      "L",
+      "W",
+      "W"
+    ],
+    "raw_feature_diffs": {
+      "SLpM_diff": -0.2100000000000002,
+      "SApM_diff": 2.23,
+      "TD_Avg_diff": -1.2300000000000002,
+      "TD_Def_diff": -30.0,
+      "Str_Acc_diff": -8.0,
+      "Str_Def_diff": -9.0,
+      "Height_diff": -0.020750000000000046,
+      "Reach_diff": -0.5,
+      "Recent_form_score_diff": -0.5333,
+      "Win_streak_score_diff": 0.0,
+      "Avg_opp_strength_diff": 0.04700000000000004,
+      "TD_SApM_combo": 1.115
+    },
+    "shap_weights": {},
+    "weighted_feature_diffs": {},
+    "top_3_contributors": [
+      {
+        "stat": "Strikes Landed/Min",
+        "favors": "Oumar Sy"
+      },
+      {
+        "stat": "Strikes Absorbed/Min",
+        "favors": "Oumar Sy"
+      },
+      {
+        "stat": "Takedowns/15min",
+        "favors": "Oumar Sy"
+      },
+      {
+        "stat": "Takedown Defense",
+        "favors": "Oumar Sy"
+      },
+      {
+        "stat": "Striking Accuracy",
+        "favors": "Oumar Sy"
+      },
+      {
+        "stat": "Striking Defense",
+        "favors": "Oumar Sy"
+      },
+      {
+        "stat": "Reach",
+        "favors": "Oumar Sy"
+      }
+    ],
+    "odds1": "N/A",
+    "odds2": "N/A",
+    "actual_result": null,
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
+  },
+  {
+    "timestamp": "2025-08-14 19:09:59",
+    "event": "UFC Fight Night: Imavov vs. Borralho",
+    "date": "September 06, 2025",
+    "fighter1": "Marcin Tybura",
+    "fighter2": "Ante Delija",
+    "fighter1_url": "http://ufcstats.com/fighter-details/c9cf753cfdf77fc2",
+    "fighter2_url": "http://ufcstats.com/fighter-details/7d8435c56043b0ae",
+    "winner": "Toss Up",
+    "confidence": 50.0,
+    "rematch": false,
+    "last_5_results_f1": [
+      "W",
+      "W",
+      "L",
+      "W",
+      "L"
+    ],
+    "last_5_results_f2": [],
+    "raw_feature_diffs": {},
+    "shap_weights": {},
+    "weighted_feature_diffs": {},
+    "top_3_contributors": [],
+    "odds1": "N/A",
+    "odds2": "N/A",
+    "actual_result": null,
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
+  },
+  {
+    "timestamp": "2025-08-14 19:09:59",
+    "event": "UFC Fight Night: Imavov vs. Borralho",
+    "date": "September 06, 2025",
+    "fighter1": "Andreas Gustafsson",
+    "fighter2": "Rinat Fakhretdinov",
+    "fighter1_url": "http://ufcstats.com/fighter-details/2caf993f53541fa1",
+    "fighter2_url": "http://ufcstats.com/fighter-details/8f765fd5775a8873",
+    "winner": "Andreas Gustafsson",
+    "confidence": 63.48,
+    "rematch": false,
+    "last_5_results_f1": [
+      "W"
+    ],
+    "last_5_results_f2": [
+      "W",
+      "W",
+      "D",
+      "W",
+      "W"
+    ],
+    "raw_feature_diffs": {
+      "SLpM_diff": 0.5249999999999999,
+      "SApM_diff": -0.79,
+      "TD_Avg_diff": 2.4799999999999995,
+      "TD_Def_diff": 2.6999999999999997,
+      "Str_Acc_diff": 24.0,
+      "Str_Def_diff": -4.0,
+      "Height_diff": 0.020750000000000046,
+      "Reach_diff": -0.25,
+      "Recent_form_score_diff": 0.19999999999999996,
+      "Win_streak_score_diff": -0.034480000000000004,
+      "Avg_opp_strength_diff": -0.05820000000000003,
+      "TD_SApM_combo": -0.3239
+    },
+    "shap_weights": {},
+    "weighted_feature_diffs": {},
+    "top_3_contributors": [
+      {
+        "stat": "Strikes Landed/Min",
+        "favors": "Andreas Gustafsson"
+      },
+      {
+        "stat": "Strikes Absorbed/Min",
+        "favors": "Andreas Gustafsson"
+      },
+      {
+        "stat": "Takedowns/15min",
+        "favors": "Andreas Gustafsson"
+      },
+      {
+        "stat": "Takedown Defense",
+        "favors": "Andreas Gustafsson"
+      },
+      {
+        "stat": "Striking Accuracy",
+        "favors": "Andreas Gustafsson"
+      },
+      {
+        "stat": "Striking Defense",
+        "favors": "Rinat Fakhretdinov"
+      },
+      {
+        "stat": "Reach",
+        "favors": "Rinat Fakhretdinov"
+      }
+    ],
+    "odds1": "N/A",
+    "odds2": "N/A",
+    "actual_result": null,
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
+  },
+  {
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Imavov vs. Borralho",
     "date": "September 06, 2025",
     "fighter1": "William Gomis",
     "fighter2": "Robert Ruchala",
+    "fighter1_url": "http://ufcstats.com/fighter-details/e1d40e8782d80bc2",
+    "fighter2_url": "http://ufcstats.com/fighter-details/92aed9d16794f42b",
     "winner": "Toss Up",
     "confidence": 50.0,
     "rematch": false,
@@ -3066,158 +3319,20 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
-    "event": "UFC Fight Night: Imavov vs. Borralho",
-    "date": "September 06, 2025",
-    "fighter1": "Benoit Saint Denis",
-    "fighter2": "Mauricio Ruffy",
-    "winner": "Mauricio Ruffy",
-    "confidence": 82.51,
-    "rematch": false,
-    "last_5_results_f1": [
-      "W",
-      "L",
-      "L",
-      "W",
-      "W"
-    ],
-    "last_5_results_f2": [
-      "W",
-      "W",
-      "W"
-    ],
-    "raw_feature_diffs": {
-      "SLpM_diff": 0.4249999999999998,
-      "SApM_diff": 0.020000000000000462,
-      "TD_Avg_diff": 4.19,
-      "TD_Def_diff": -9.0,
-      "Str_Acc_diff": -3.0,
-      "Str_Def_diff": -10.0,
-      "Height_diff": 0.0,
-      "Reach_diff": -0.5,
-      "Recent_form_score_diff": -0.8,
-      "Win_streak_score_diff": -0.02532,
-      "Avg_opp_strength_diff": -0.0623999999999999,
-      "TD_SApM_combo": -0.004000000000000092
-    },
-    "shap_weights": {},
-    "weighted_feature_diffs": {},
-    "top_3_contributors": [
-      {
-        "stat": "Strikes Landed/Min",
-        "favors": "Benoit Saint Denis"
-      },
-      {
-        "stat": "Strikes Absorbed/Min",
-        "favors": "Mauricio Ruffy"
-      },
-      {
-        "stat": "Takedowns/15min",
-        "favors": "Benoit Saint Denis"
-      },
-      {
-        "stat": "Takedown Defense",
-        "favors": "Mauricio Ruffy"
-      },
-      {
-        "stat": "Striking Accuracy",
-        "favors": "Mauricio Ruffy"
-      },
-      {
-        "stat": "Striking Defense",
-        "favors": "Mauricio Ruffy"
-      },
-      {
-        "stat": "Reach",
-        "favors": "Mauricio Ruffy"
-      }
-    ],
-    "odds1": "N/A",
-    "odds2": "N/A",
-    "actual_result": null,
-    "correct": null
-  },
-  {
-    "timestamp": "2025-08-08 18:33:40",
-    "event": "UFC Fight Night: Imavov vs. Borralho",
-    "date": "September 06, 2025",
-    "fighter1": "Brad Tavares",
-    "fighter2": "Robert Bryczek",
-    "winner": "Robert Bryczek",
-    "confidence": 55.79,
-    "rematch": false,
-    "last_5_results_f1": [
-      "W",
-      "L",
-      "L",
-      "W",
-      "L"
-    ],
-    "last_5_results_f2": [
-      "L"
-    ],
-    "raw_feature_diffs": {
-      "SLpM_diff": 0.645,
-      "SApM_diff": -1.19,
-      "TD_Avg_diff": 0.71,
-      "TD_Def_diff": -5.7,
-      "Str_Acc_diff": 19.0,
-      "Str_Def_diff": -2.5,
-      "Height_diff": 0.020750000000000046,
-      "Reach_diff": -0.25,
-      "Recent_form_score_diff": 0.8,
-      "Win_streak_score_diff": 0.009680000000000001,
-      "Avg_opp_strength_diff": -0.0012000000000000899,
-      "TD_SApM_combo": 0.3689
-    },
-    "shap_weights": {},
-    "weighted_feature_diffs": {},
-    "top_3_contributors": [
-      {
-        "stat": "Strikes Landed/Min",
-        "favors": "Brad Tavares"
-      },
-      {
-        "stat": "Strikes Absorbed/Min",
-        "favors": "Brad Tavares"
-      },
-      {
-        "stat": "Takedowns/15min",
-        "favors": "Brad Tavares"
-      },
-      {
-        "stat": "Takedown Defense",
-        "favors": "Robert Bryczek"
-      },
-      {
-        "stat": "Striking Accuracy",
-        "favors": "Brad Tavares"
-      },
-      {
-        "stat": "Striking Defense",
-        "favors": "Robert Bryczek"
-      },
-      {
-        "stat": "Reach",
-        "favors": "Robert Bryczek"
-      }
-    ],
-    "odds1": "N/A",
-    "odds2": "N/A",
-    "actual_result": null,
-    "correct": null
-  },
-  {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Imavov vs. Borralho",
     "date": "September 06, 2025",
     "fighter1": "Sam Patterson",
     "fighter2": "Trey Waters",
+    "fighter1_url": "http://ufcstats.com/fighter-details/8b6e5dc2ba1edbe7",
+    "fighter2_url": "http://ufcstats.com/fighter-details/31dbfbe4e7a6727c",
     "winner": "Trey Waters",
-    "confidence": 83.91,
+    "confidence": 68.02,
     "rematch": false,
     "last_5_results_f1": [
       "W",
@@ -3278,88 +3393,196 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
     "event": "UFC Fight Night: Imavov vs. Borralho",
     "date": "September 06, 2025",
-    "fighter1": "Oumar Sy",
-    "fighter2": "Brendson Ribeiro",
-    "winner": "Oumar Sy",
-    "confidence": 77.12,
+    "fighter1": "Shauna Bannon",
+    "fighter2": "Sam Hughes",
+    "fighter1_url": "http://ufcstats.com/fighter-details/9c442aaf149ea982",
+    "fighter2_url": "http://ufcstats.com/fighter-details/e94085e821bd81de",
+    "winner": "Sam Hughes",
+    "confidence": 68.08,
     "rematch": false,
     "last_5_results_f1": [
+      "W",
+      "W",
       "L",
       "W",
-      "W"
+      "L"
     ],
     "last_5_results_f2": [
-      "L",
       "W",
       "W",
-      "L",
       "L"
     ],
     "raw_feature_diffs": {
-      "SLpM_diff": 0.2100000000000002,
-      "SApM_diff": -2.23,
-      "TD_Avg_diff": 1.2300000000000002,
-      "TD_Def_diff": 30.0,
-      "Str_Acc_diff": 8.0,
-      "Str_Def_diff": 9.0,
-      "Height_diff": 0.020750000000000046,
-      "Reach_diff": 0.5,
-      "Recent_form_score_diff": 0.5333,
-      "Win_streak_score_diff": 0.0,
-      "Avg_opp_strength_diff": -0.04700000000000004,
-      "TD_SApM_combo": 1.115
+      "SLpM_diff": -0.17999999999999972,
+      "SApM_diff": 0.6900000000000004,
+      "TD_Avg_diff": 1.08,
+      "TD_Def_diff": 5.3999999999999995,
+      "Str_Acc_diff": 3.0,
+      "Str_Def_diff": 7.0,
+      "Height_diff": 0.0,
+      "Reach_diff": -0.25,
+      "Recent_form_score_diff": -0.13329999999999997,
+      "Win_streak_score_diff": -0.00396,
+      "Avg_opp_strength_diff": -0.04999999999999993,
+      "TD_SApM_combo": -0.06900000000000003
     },
     "shap_weights": {},
     "weighted_feature_diffs": {},
     "top_3_contributors": [
       {
         "stat": "Strikes Landed/Min",
-        "favors": "Oumar Sy"
+        "favors": "Shauna Bannon"
       },
       {
         "stat": "Strikes Absorbed/Min",
-        "favors": "Oumar Sy"
+        "favors": "Shauna Bannon"
       },
       {
         "stat": "Takedowns/15min",
-        "favors": "Oumar Sy"
+        "favors": "Sam Hughes"
       },
       {
         "stat": "Takedown Defense",
-        "favors": "Oumar Sy"
+        "favors": "Sam Hughes"
       },
       {
         "stat": "Striking Accuracy",
-        "favors": "Oumar Sy"
+        "favors": "Sam Hughes"
       },
       {
         "stat": "Striking Defense",
-        "favors": "Oumar Sy"
+        "favors": "Sam Hughes"
       },
       {
         "stat": "Reach",
-        "favors": "Oumar Sy"
+        "favors": "Shauna Bannon"
       }
     ],
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
+    "timestamp": "2025-08-14 19:09:59",
+    "event": "UFC Fight Night: Imavov vs. Borralho",
+    "date": "September 06, 2025",
+    "fighter1": "Kennedy Freeman",
+    "fighter2": "Yuneisy Duben",
+    "fighter1_url": "http://ufcstats.com/fighter-details/63d071997c75e3fd",
+    "fighter2_url": "http://ufcstats.com/fighter-details/c3d2b9bcb4cead6b",
+    "winner": "Toss Up",
+    "confidence": 50.0,
+    "rematch": false,
+    "last_5_results_f1": [],
+    "last_5_results_f2": [
+      "L"
+    ],
+    "raw_feature_diffs": {},
+    "shap_weights": {},
+    "weighted_feature_diffs": {},
+    "top_3_contributors": [],
+    "odds1": "N/A",
+    "odds2": "N/A",
+    "actual_result": null,
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
+  },
+  {
+    "timestamp": "2025-08-14 19:10:00",
+    "event": "UFC Fight Night: Imavov vs. Borralho",
+    "date": "September 06, 2025",
+    "fighter1": "Brad Tavares",
+    "fighter2": "Robert Bryczek",
+    "fighter1_url": "http://ufcstats.com/fighter-details/0c6d9ea8306c029e",
+    "fighter2_url": "http://ufcstats.com/fighter-details/f96856f9d69fd7e4",
+    "winner": "Brad Tavares",
+    "confidence": 51.41,
+    "rematch": false,
+    "last_5_results_f1": [
+      "W",
+      "L",
+      "L",
+      "W",
+      "L"
+    ],
+    "last_5_results_f2": [
+      "L"
+    ],
+    "raw_feature_diffs": {
+      "SLpM_diff": 0.645,
+      "SApM_diff": -1.19,
+      "TD_Avg_diff": 0.71,
+      "TD_Def_diff": -5.7,
+      "Str_Acc_diff": 19.0,
+      "Str_Def_diff": -2.5,
+      "Height_diff": 0.020750000000000046,
+      "Reach_diff": -0.25,
+      "Recent_form_score_diff": 0.8,
+      "Win_streak_score_diff": 0.009680000000000001,
+      "Avg_opp_strength_diff": -0.0012000000000000899,
+      "TD_SApM_combo": 0.3689
+    },
+    "shap_weights": {},
+    "weighted_feature_diffs": {},
+    "top_3_contributors": [
+      {
+        "stat": "Strikes Landed/Min",
+        "favors": "Brad Tavares"
+      },
+      {
+        "stat": "Strikes Absorbed/Min",
+        "favors": "Brad Tavares"
+      },
+      {
+        "stat": "Takedowns/15min",
+        "favors": "Brad Tavares"
+      },
+      {
+        "stat": "Takedown Defense",
+        "favors": "Robert Bryczek"
+      },
+      {
+        "stat": "Striking Accuracy",
+        "favors": "Brad Tavares"
+      },
+      {
+        "stat": "Striking Defense",
+        "favors": "Robert Bryczek"
+      },
+      {
+        "stat": "Reach",
+        "favors": "Robert Bryczek"
+      }
+    ],
+    "odds1": "N/A",
+    "odds2": "N/A",
+    "actual_result": null,
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
+  },
+  {
+    "timestamp": "2025-08-14 19:10:00",
     "event": "UFC Fight Night: Lopes vs. Silva",
     "date": "September 13, 2025",
     "fighter1": "Diego Lopes",
     "fighter2": "Jean Silva",
+    "fighter1_url": "http://ufcstats.com/fighter-details/f166e93d04a8c274",
+    "fighter2_url": "http://ufcstats.com/fighter-details/52ef95b5860fb28c",
     "winner": "Jean Silva",
-    "confidence": 75.42,
+    "confidence": 61.17,
     "rematch": false,
     "last_5_results_f1": [
       "L",
@@ -3424,257 +3647,47 @@
     "odds1": "+175",
     "odds2": "-210",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:40",
-    "event": "UFC Fight Night: Lopes vs. Silva",
-    "date": "September 13, 2025",
-    "fighter1": "Jose Daniel Medina",
-    "fighter2": "Dusko Todorovic",
-    "winner": "Dusko Todorovic",
-    "confidence": 82.46,
-    "rematch": false,
-    "last_5_results_f1": [
-      "L",
-      "L"
-    ],
-    "last_5_results_f2": [
-      "L",
-      "L",
-      "L",
-      "W",
-      "L"
-    ],
-    "raw_feature_diffs": {
-      "SLpM_diff": -1.305,
-      "SApM_diff": 0.7199999999999998,
-      "TD_Avg_diff": -1.05,
-      "TD_Def_diff": -3.3,
-      "Str_Acc_diff": -21.0,
-      "Str_Def_diff": 0.0,
-      "Height_diff": -0.020750000000000046,
-      "Reach_diff": 0.0,
-      "Recent_form_score_diff": -0.4,
-      "Win_streak_score_diff": 0.0,
-      "Avg_opp_strength_diff": -0.007200000000000095,
-      "TD_SApM_combo": -0.05759999999999998
-    },
-    "shap_weights": {},
-    "weighted_feature_diffs": {},
-    "top_3_contributors": [
-      {
-        "stat": "Strikes Landed/Min",
-        "favors": "Dusko Todorovic"
-      },
-      {
-        "stat": "Strikes Absorbed/Min",
-        "favors": "Dusko Todorovic"
-      },
-      {
-        "stat": "Takedowns/15min",
-        "favors": "Dusko Todorovic"
-      },
-      {
-        "stat": "Takedown Defense",
-        "favors": "Dusko Todorovic"
-      },
-      {
-        "stat": "Striking Accuracy",
-        "favors": "Dusko Todorovic"
-      },
-      {
-        "stat": "Striking Defense",
-        "favors": "Even"
-      },
-      {
-        "stat": "Reach",
-        "favors": "Even"
-      }
-    ],
-    "odds1": "N/A",
-    "odds2": "N/A",
-    "actual_result": null,
-    "correct": null
-  },
-  {
-    "timestamp": "2025-08-08 18:33:40",
-    "event": "UFC Fight Night: Lopes vs. Silva",
-    "date": "September 13, 2025",
-    "fighter1": "Edgar Chairez",
-    "fighter2": "Alessandro Costa",
-    "winner": "Alessandro Costa",
-    "confidence": 77.37,
-    "rematch": false,
-    "last_5_results_f1": [
-      "W",
-      "L",
-      "W",
-      "NC",
-      "L"
-    ],
-    "last_5_results_f2": [
-      "W",
-      "L",
-      "W",
-      "L"
-    ],
-    "raw_feature_diffs": {
-      "SLpM_diff": -0.34999999999999987,
-      "SApM_diff": 1.58,
-      "TD_Avg_diff": -0.27,
-      "TD_Def_diff": -17.099999999999998,
-      "Str_Acc_diff": -3.0,
-      "Str_Def_diff": -7.5,
-      "Height_diff": 0.0625,
-      "Reach_diff": 1.0,
-      "Recent_form_score_diff": 0.0,
-      "Win_streak_score_diff": -0.00016000000000000042,
-      "Avg_opp_strength_diff": -0.04215000000000002,
-      "TD_SApM_combo": 0.9006000000000001
-    },
-    "shap_weights": {},
-    "weighted_feature_diffs": {},
-    "top_3_contributors": [
-      {
-        "stat": "Strikes Landed/Min",
-        "favors": "Alessandro Costa"
-      },
-      {
-        "stat": "Strikes Absorbed/Min",
-        "favors": "Alessandro Costa"
-      },
-      {
-        "stat": "Takedowns/15min",
-        "favors": "Alessandro Costa"
-      },
-      {
-        "stat": "Takedown Defense",
-        "favors": "Alessandro Costa"
-      },
-      {
-        "stat": "Striking Accuracy",
-        "favors": "Alessandro Costa"
-      },
-      {
-        "stat": "Striking Defense",
-        "favors": "Alessandro Costa"
-      },
-      {
-        "stat": "Reach",
-        "favors": "Edgar Chairez"
-      }
-    ],
-    "odds1": "N/A",
-    "odds2": "N/A",
-    "actual_result": null,
-    "correct": null
-  },
-  {
-    "timestamp": "2025-08-08 18:33:41",
-    "event": "UFC Fight Night: Lopes vs. Silva",
-    "date": "September 13, 2025",
-    "fighter1": "Jesus Aguilar",
-    "fighter2": "Luis Gurule",
-    "winner": "Luis Gurule",
-    "confidence": 65.53,
-    "rematch": false,
-    "last_5_results_f1": [
-      "L",
-      "W",
-      "W",
-      "W",
-      "L"
-    ],
-    "last_5_results_f2": [
-      "L"
-    ],
-    "raw_feature_diffs": {
-      "SLpM_diff": -1.805,
-      "SApM_diff": -2.64,
-      "TD_Avg_diff": 1.15,
-      "TD_Def_diff": -3.0,
-      "Str_Acc_diff": -3.0,
-      "Str_Def_diff": 0.5,
-      "Height_diff": -0.020999999999999908,
-      "Reach_diff": -0.5,
-      "Recent_form_score_diff": 1.2,
-      "Win_streak_score_diff": 0.0,
-      "Avg_opp_strength_diff": -0.04200000000000004,
-      "TD_SApM_combo": -0.264
-    },
-    "shap_weights": {},
-    "weighted_feature_diffs": {},
-    "top_3_contributors": [
-      {
-        "stat": "Strikes Landed/Min",
-        "favors": "Luis Gurule"
-      },
-      {
-        "stat": "Strikes Absorbed/Min",
-        "favors": "Jesus Aguilar"
-      },
-      {
-        "stat": "Takedowns/15min",
-        "favors": "Jesus Aguilar"
-      },
-      {
-        "stat": "Takedown Defense",
-        "favors": "Luis Gurule"
-      },
-      {
-        "stat": "Striking Accuracy",
-        "favors": "Luis Gurule"
-      },
-      {
-        "stat": "Striking Defense",
-        "favors": "Jesus Aguilar"
-      },
-      {
-        "stat": "Reach",
-        "favors": "Luis Gurule"
-      }
-    ],
-    "odds1": "N/A",
-    "odds2": "N/A",
-    "actual_result": null,
-    "correct": null
-  },
-  {
-    "timestamp": "2025-08-08 18:33:41",
+    "timestamp": "2025-08-14 19:10:00",
     "event": "UFC Fight Night: Lopes vs. Silva",
     "date": "September 13, 2025",
     "fighter1": "Rafa Garcia",
     "fighter2": "Jared Gordon",
+    "fighter1_url": "http://ufcstats.com/fighter-details/e132d47bd9efbbe0",
+    "fighter2_url": "http://ufcstats.com/fighter-details/7026eca45f65377b",
     "winner": "Rafa Garcia",
-    "confidence": 67.47,
+    "confidence": 57.62,
     "rematch": false,
     "last_5_results_f1": [
-      "W",
-      "L",
-      "W",
-      "W",
-      "L"
-    ],
-    "last_5_results_f2": [
       "W",
       "L",
       "W",
       "NC",
       "L"
     ],
+    "last_5_results_f2": [
+      "W",
+      "L",
+      "W",
+      "W",
+      "L"
+    ],
     "raw_feature_diffs": {
-      "SLpM_diff": -0.8300000000000001,
-      "SApM_diff": 0.5599999999999996,
-      "TD_Avg_diff": 1.38,
-      "TD_Def_diff": 4.5,
-      "Str_Acc_diff": -12.0,
-      "Str_Def_diff": 2.0,
-      "Height_diff": -0.041749999999999954,
-      "Reach_diff": 0.5,
-      "Recent_form_score_diff": 0.2,
-      "Win_streak_score_diff": -0.0008800000000000002,
-      "Avg_opp_strength_diff": -0.03539999999999999,
+      "SLpM_diff": 0.8300000000000001,
+      "SApM_diff": -0.5599999999999996,
+      "TD_Avg_diff": -1.38,
+      "TD_Def_diff": -4.5,
+      "Str_Acc_diff": 12.0,
+      "Str_Def_diff": -2.0,
+      "Height_diff": 0.041749999999999954,
+      "Reach_diff": -0.5,
+      "Recent_form_score_diff": -0.2,
+      "Win_streak_score_diff": 0.0008800000000000002,
+      "Avg_opp_strength_diff": 0.03539999999999999,
       "TD_SApM_combo": -0.08399999999999995
     },
     "shap_weights": {},
@@ -3712,90 +3725,95 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:41",
+    "timestamp": "2025-08-14 19:10:00",
     "event": "UFC Fight Night: Lopes vs. Silva",
     "date": "September 13, 2025",
-    "fighter1": "Tatiana Suarez",
-    "fighter2": "Amanda Lemos",
-    "winner": "Tatiana Suarez",
-    "confidence": 84.3,
+    "fighter1": "Jose Daniel Medina",
+    "fighter2": "Dusko Todorovic",
+    "fighter1_url": "http://ufcstats.com/fighter-details/baa9be02c3e3e038",
+    "fighter2_url": "http://ufcstats.com/fighter-details/866fd7b1a6c90e7f",
+    "winner": "Dusko Todorovic",
+    "confidence": 65.72,
     "rematch": false,
     "last_5_results_f1": [
       "L",
+      "L",
+      "L",
       "W",
-      "W",
-      "W",
-      "W"
+      "L"
     ],
     "last_5_results_f2": [
-      "W",
       "L",
-      "W",
-      "L",
-      "W"
+      "L"
     ],
     "raw_feature_diffs": {
-      "SLpM_diff": 0.16500000000000004,
-      "SApM_diff": -1.88,
-      "TD_Avg_diff": 3.5100000000000007,
-      "TD_Def_diff": 6.3,
-      "Str_Acc_diff": 7.0,
-      "Str_Def_diff": 1.5,
-      "Height_diff": 0.020999999999999908,
-      "Reach_diff": 0.25,
-      "Recent_form_score_diff": 0.39999999999999997,
-      "Win_streak_score_diff": -0.011160000000000002,
-      "Avg_opp_strength_diff": 0.014399999999999968,
-      "TD_SApM_combo": 0.3948
+      "SLpM_diff": 1.305,
+      "SApM_diff": -0.7199999999999998,
+      "TD_Avg_diff": 1.05,
+      "TD_Def_diff": 3.3,
+      "Str_Acc_diff": 21.0,
+      "Str_Def_diff": 0.0,
+      "Height_diff": 0.020750000000000046,
+      "Reach_diff": 0.0,
+      "Recent_form_score_diff": 0.4,
+      "Win_streak_score_diff": 0.0,
+      "Avg_opp_strength_diff": 0.007200000000000095,
+      "TD_SApM_combo": -0.05759999999999998
     },
     "shap_weights": {},
     "weighted_feature_diffs": {},
     "top_3_contributors": [
       {
         "stat": "Strikes Landed/Min",
-        "favors": "Tatiana Suarez"
+        "favors": "Dusko Todorovic"
       },
       {
         "stat": "Strikes Absorbed/Min",
-        "favors": "Tatiana Suarez"
+        "favors": "Dusko Todorovic"
       },
       {
         "stat": "Takedowns/15min",
-        "favors": "Tatiana Suarez"
+        "favors": "Dusko Todorovic"
       },
       {
         "stat": "Takedown Defense",
-        "favors": "Tatiana Suarez"
+        "favors": "Dusko Todorovic"
       },
       {
         "stat": "Striking Accuracy",
-        "favors": "Tatiana Suarez"
+        "favors": "Dusko Todorovic"
       },
       {
         "stat": "Striking Defense",
-        "favors": "Tatiana Suarez"
+        "favors": "Even"
       },
       {
         "stat": "Reach",
-        "favors": "Tatiana Suarez"
+        "favors": "Even"
       }
     ],
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:41",
+    "timestamp": "2025-08-14 19:10:00",
     "event": "UFC Fight Night: Lopes vs. Silva",
     "date": "September 13, 2025",
     "fighter1": "Claudio Puelles",
     "fighter2": "Joaquim Silva",
+    "fighter1_url": "http://ufcstats.com/fighter-details/d747eb273a40a920",
+    "fighter2_url": "http://ufcstats.com/fighter-details/ae7fe94f117f98cf",
     "winner": "Claudio Puelles",
-    "confidence": 62.39,
+    "confidence": 57.67,
     "rematch": false,
     "last_5_results_f1": [
       "L",
@@ -3860,43 +3878,125 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:41",
+    "timestamp": "2025-08-14 19:10:00",
     "event": "UFC Fight Night: Lopes vs. Silva",
     "date": "September 13, 2025",
-    "fighter1": "Zachary Reese",
-    "fighter2": "Sedriques Dumas",
-    "winner": "Zachary Reese",
-    "confidence": 64.52,
+    "fighter1": "Tatiana Suarez",
+    "fighter2": "Amanda Lemos",
+    "fighter1_url": "http://ufcstats.com/fighter-details/b08012bbe542592a",
+    "fighter2_url": "http://ufcstats.com/fighter-details/3df5493bb279226f",
+    "winner": "Tatiana Suarez",
+    "confidence": 63.88,
     "rematch": false,
     "last_5_results_f1": [
       "W",
       "L",
       "W",
-      "W",
-      "L"
+      "L",
+      "W"
     ],
     "last_5_results_f2": [
+      "L",
+      "W",
+      "W",
+      "W",
+      "W"
+    ],
+    "raw_feature_diffs": {
+      "SLpM_diff": -0.16500000000000004,
+      "SApM_diff": 1.88,
+      "TD_Avg_diff": -3.5100000000000007,
+      "TD_Def_diff": -6.3,
+      "Str_Acc_diff": -7.0,
+      "Str_Def_diff": -1.5,
+      "Height_diff": -0.020999999999999908,
+      "Reach_diff": -0.25,
+      "Recent_form_score_diff": -0.39999999999999997,
+      "Win_streak_score_diff": 0.011160000000000002,
+      "Avg_opp_strength_diff": -0.014399999999999968,
+      "TD_SApM_combo": 0.3948
+    },
+    "shap_weights": {},
+    "weighted_feature_diffs": {},
+    "top_3_contributors": [
+      {
+        "stat": "Strikes Landed/Min",
+        "favors": "Tatiana Suarez"
+      },
+      {
+        "stat": "Strikes Absorbed/Min",
+        "favors": "Tatiana Suarez"
+      },
+      {
+        "stat": "Takedowns/15min",
+        "favors": "Tatiana Suarez"
+      },
+      {
+        "stat": "Takedown Defense",
+        "favors": "Tatiana Suarez"
+      },
+      {
+        "stat": "Striking Accuracy",
+        "favors": "Tatiana Suarez"
+      },
+      {
+        "stat": "Striking Defense",
+        "favors": "Tatiana Suarez"
+      },
+      {
+        "stat": "Reach",
+        "favors": "Tatiana Suarez"
+      }
+    ],
+    "odds1": "N/A",
+    "odds2": "N/A",
+    "actual_result": null,
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
+  },
+  {
+    "timestamp": "2025-08-14 19:10:00",
+    "event": "UFC Fight Night: Lopes vs. Silva",
+    "date": "September 13, 2025",
+    "fighter1": "Zachary Reese",
+    "fighter2": "Sedriques Dumas",
+    "fighter1_url": "http://ufcstats.com/fighter-details/23dec7c47cb418f8",
+    "fighter2_url": "http://ufcstats.com/fighter-details/4e6738062d469256",
+    "winner": "Zachary Reese",
+    "confidence": 57.13,
+    "rematch": false,
+    "last_5_results_f1": [
       "L",
       "W",
       "L",
       "W",
       "W"
     ],
+    "last_5_results_f2": [
+      "W",
+      "L",
+      "W",
+      "W",
+      "L"
+    ],
     "raw_feature_diffs": {
-      "SLpM_diff": 1.09,
-      "SApM_diff": 0.4900000000000002,
-      "TD_Avg_diff": 1.63,
-      "TD_Def_diff": 5.1,
-      "Str_Acc_diff": 9.0,
-      "Str_Def_diff": -6.0,
-      "Height_diff": 0.04150000000000009,
-      "Reach_diff": -0.5,
+      "SLpM_diff": -1.09,
+      "SApM_diff": -0.4900000000000002,
+      "TD_Avg_diff": -1.63,
+      "TD_Def_diff": -5.1,
+      "Str_Acc_diff": -9.0,
+      "Str_Def_diff": 6.0,
+      "Height_diff": -0.04150000000000009,
+      "Reach_diff": 0.5,
       "Recent_form_score_diff": 0.0,
-      "Win_streak_score_diff": 0.00936,
-      "Avg_opp_strength_diff": 0.015599999999999836,
+      "Win_streak_score_diff": -0.00936,
+      "Avg_opp_strength_diff": -0.015599999999999836,
       "TD_SApM_combo": -0.08330000000000004
     },
     "shap_weights": {},
@@ -3934,66 +4034,124 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:41",
+    "timestamp": "2025-08-14 19:10:00",
     "event": "UFC Fight Night: Lopes vs. Silva",
     "date": "September 13, 2025",
-    "fighter1": "Montserrat Rendon",
-    "fighter2": "Alice Pereira",
-    "winner": "Toss Up",
-    "confidence": 50.0,
+    "fighter1": "Edgar Chairez",
+    "fighter2": "Alessandro Costa",
+    "fighter1_url": "http://ufcstats.com/fighter-details/5ef94841c4bc3f86",
+    "fighter2_url": "http://ufcstats.com/fighter-details/3fa97913cfd205d3",
+    "winner": "Alessandro Costa",
+    "confidence": 69.21,
     "rematch": false,
     "last_5_results_f1": [
+      "W",
       "L",
-      "W"
+      "W",
+      "L"
     ],
-    "last_5_results_f2": [],
-    "raw_feature_diffs": {},
+    "last_5_results_f2": [
+      "W",
+      "L",
+      "W",
+      "NC",
+      "L"
+    ],
+    "raw_feature_diffs": {
+      "SLpM_diff": 0.34999999999999987,
+      "SApM_diff": -1.58,
+      "TD_Avg_diff": 0.27,
+      "TD_Def_diff": 17.099999999999998,
+      "Str_Acc_diff": 3.0,
+      "Str_Def_diff": 7.5,
+      "Height_diff": -0.0625,
+      "Reach_diff": -1.0,
+      "Recent_form_score_diff": 0.0,
+      "Win_streak_score_diff": 0.00016000000000000042,
+      "Avg_opp_strength_diff": 0.04215000000000002,
+      "TD_SApM_combo": 0.9006000000000001
+    },
     "shap_weights": {},
     "weighted_feature_diffs": {},
-    "top_3_contributors": [],
+    "top_3_contributors": [
+      {
+        "stat": "Strikes Landed/Min",
+        "favors": "Alessandro Costa"
+      },
+      {
+        "stat": "Strikes Absorbed/Min",
+        "favors": "Alessandro Costa"
+      },
+      {
+        "stat": "Takedowns/15min",
+        "favors": "Alessandro Costa"
+      },
+      {
+        "stat": "Takedown Defense",
+        "favors": "Alessandro Costa"
+      },
+      {
+        "stat": "Striking Accuracy",
+        "favors": "Alessandro Costa"
+      },
+      {
+        "stat": "Striking Defense",
+        "favors": "Alessandro Costa"
+      },
+      {
+        "stat": "Reach",
+        "favors": "Edgar Chairez"
+      }
+    ],
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:41",
+    "timestamp": "2025-08-14 19:10:00",
     "event": "UFC Fight Night: Lopes vs. Silva",
     "date": "September 13, 2025",
     "fighter1": "Raquel Pennington",
     "fighter2": "Norma Dumont",
+    "fighter1_url": "http://ufcstats.com/fighter-details/fc169c387b4b465d",
+    "fighter2_url": "http://ufcstats.com/fighter-details/d3f5d33d61cd00c9",
     "winner": "Norma Dumont",
-    "confidence": 76.49,
+    "confidence": 69.6,
     "rematch": false,
     "last_5_results_f1": [
-      "L",
+      "W",
       "W",
       "W",
       "W",
       "W"
     ],
     "last_5_results_f2": [
-      "W",
+      "L",
       "W",
       "W",
       "W",
       "W"
     ],
     "raw_feature_diffs": {
-      "SLpM_diff": 0.11999999999999988,
-      "SApM_diff": 1.1599999999999997,
-      "TD_Avg_diff": -0.89,
-      "TD_Def_diff": -3.0,
-      "Str_Acc_diff": -1.0,
-      "Str_Def_diff": -2.0,
+      "SLpM_diff": -0.11999999999999988,
+      "SApM_diff": -1.1599999999999997,
+      "TD_Avg_diff": 0.89,
+      "TD_Def_diff": 3.0,
+      "Str_Acc_diff": 1.0,
+      "Str_Def_diff": 2.0,
       "Height_diff": 0.0,
       "Reach_diff": 0.0,
-      "Recent_form_score_diff": -0.4,
-      "Win_streak_score_diff": -0.05444,
-      "Avg_opp_strength_diff": -0.01739999999999997,
+      "Recent_form_score_diff": 0.4,
+      "Win_streak_score_diff": 0.05444,
+      "Avg_opp_strength_diff": 0.01739999999999997,
       "TD_SApM_combo": 0.11599999999999998
     },
     "shap_weights": {},
@@ -4031,16 +4189,121 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:41",
+    "timestamp": "2025-08-14 19:10:00",
+    "event": "UFC Fight Night: Lopes vs. Silva",
+    "date": "September 13, 2025",
+    "fighter1": "Jesus Aguilar",
+    "fighter2": "Luis Gurule",
+    "fighter1_url": "http://ufcstats.com/fighter-details/c051c2e12d692b8a",
+    "fighter2_url": "http://ufcstats.com/fighter-details/29162be25ebef5f0",
+    "winner": "Luis Gurule",
+    "confidence": 57.49,
+    "rematch": false,
+    "last_5_results_f1": [
+      "L",
+      "W",
+      "W",
+      "W",
+      "L"
+    ],
+    "last_5_results_f2": [
+      "L"
+    ],
+    "raw_feature_diffs": {
+      "SLpM_diff": -1.805,
+      "SApM_diff": -2.64,
+      "TD_Avg_diff": 1.15,
+      "TD_Def_diff": -3.0,
+      "Str_Acc_diff": -3.0,
+      "Str_Def_diff": 0.5,
+      "Height_diff": -0.020999999999999908,
+      "Reach_diff": -0.5,
+      "Recent_form_score_diff": 1.2,
+      "Win_streak_score_diff": 0.0,
+      "Avg_opp_strength_diff": -0.04200000000000004,
+      "TD_SApM_combo": -0.264
+    },
+    "shap_weights": {},
+    "weighted_feature_diffs": {},
+    "top_3_contributors": [
+      {
+        "stat": "Strikes Landed/Min",
+        "favors": "Luis Gurule"
+      },
+      {
+        "stat": "Strikes Absorbed/Min",
+        "favors": "Jesus Aguilar"
+      },
+      {
+        "stat": "Takedowns/15min",
+        "favors": "Jesus Aguilar"
+      },
+      {
+        "stat": "Takedown Defense",
+        "favors": "Luis Gurule"
+      },
+      {
+        "stat": "Striking Accuracy",
+        "favors": "Luis Gurule"
+      },
+      {
+        "stat": "Striking Defense",
+        "favors": "Jesus Aguilar"
+      },
+      {
+        "stat": "Reach",
+        "favors": "Luis Gurule"
+      }
+    ],
+    "odds1": "N/A",
+    "odds2": "N/A",
+    "actual_result": null,
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
+  },
+  {
+    "timestamp": "2025-08-14 19:10:00",
+    "event": "UFC Fight Night: Lopes vs. Silva",
+    "date": "September 13, 2025",
+    "fighter1": "Montserrat Rendon",
+    "fighter2": "Alice Pereira",
+    "fighter1_url": "http://ufcstats.com/fighter-details/60193e707634e560",
+    "fighter2_url": "http://ufcstats.com/fighter-details/81d2c551886bd5a1",
+    "winner": "Toss Up",
+    "confidence": 50.0,
+    "rematch": false,
+    "last_5_results_f1": [
+      "L",
+      "W"
+    ],
+    "last_5_results_f2": [],
+    "raw_feature_diffs": {},
+    "shap_weights": {},
+    "weighted_feature_diffs": {},
+    "top_3_contributors": [],
+    "odds1": "N/A",
+    "odds2": "N/A",
+    "actual_result": null,
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
+  },
+  {
+    "timestamp": "2025-08-14 19:10:00",
     "event": "UFC Fight Night: Ulberg vs. Reyes",
     "date": "September 27, 2025",
     "fighter1": "Carlos Ulberg",
     "fighter2": "Dominick Reyes",
+    "fighter1_url": "http://ufcstats.com/fighter-details/9014c02eff8b3d62",
+    "fighter2_url": "http://ufcstats.com/fighter-details/2e19380f34871c6a",
     "winner": "Carlos Ulberg",
-    "confidence": 83.56,
+    "confidence": 69.41,
     "rematch": false,
     "last_5_results_f1": [
       "W",
@@ -4105,39 +4368,43 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:41",
+    "timestamp": "2025-08-14 19:10:00",
     "event": "UFC Fight Night: Ulberg vs. Reyes",
     "date": "September 27, 2025",
     "fighter1": "Loma Lookboonmee",
     "fighter2": "Alexia Thainara",
+    "fighter1_url": "http://ufcstats.com/fighter-details/4e30e4250cb08b61",
+    "fighter2_url": "http://ufcstats.com/fighter-details/545092d13c67aa49",
     "winner": "Alexia Thainara",
-    "confidence": 56.14,
+    "confidence": 54.15,
     "rematch": false,
     "last_5_results_f1": [
+      "W"
+    ],
+    "last_5_results_f2": [
       "W",
       "W",
       "W",
       "W",
       "L"
     ],
-    "last_5_results_f2": [
-      "W"
-    ],
     "raw_feature_diffs": {
-      "SLpM_diff": -0.9300000000000002,
-      "SApM_diff": -0.34999999999999964,
-      "TD_Avg_diff": -1.04,
-      "TD_Def_diff": 21.9,
-      "Str_Acc_diff": 16.0,
-      "Str_Def_diff": -9.0,
-      "Height_diff": -0.0625,
-      "Reach_diff": -1.5,
-      "Recent_form_score_diff": -0.4,
-      "Win_streak_score_diff": 0.031799999999999995,
-      "Avg_opp_strength_diff": 0.043199999999999905,
+      "SLpM_diff": 0.9300000000000002,
+      "SApM_diff": 0.34999999999999964,
+      "TD_Avg_diff": 1.04,
+      "TD_Def_diff": -21.9,
+      "Str_Acc_diff": -16.0,
+      "Str_Def_diff": 9.0,
+      "Height_diff": 0.0625,
+      "Reach_diff": 1.5,
+      "Recent_form_score_diff": 0.4,
+      "Win_streak_score_diff": -0.031799999999999995,
+      "Avg_opp_strength_diff": -0.043199999999999905,
       "TD_SApM_combo": 0.08049999999999992
     },
     "shap_weights": {},
@@ -4175,16 +4442,20 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:41",
+    "timestamp": "2025-08-14 19:10:00",
     "event": "UFC Fight Night: Ulberg vs. Reyes",
     "date": "September 27, 2025",
     "fighter1": "Colby Thicknesse",
     "fighter2": "Josias Musasa",
-    "winner": "Josias Musasa",
-    "confidence": 59.01,
+    "fighter1_url": "http://ufcstats.com/fighter-details/ed7d329d7c29428d",
+    "fighter2_url": "http://ufcstats.com/fighter-details/723b64c0e9a8f348",
+    "winner": "Colby Thicknesse",
+    "confidence": 51.71,
     "rematch": false,
     "last_5_results_f1": [
       "L"
@@ -4241,42 +4512,46 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:41",
+    "timestamp": "2025-08-14 19:10:00",
     "event": "UFC Fight Night: Ulberg vs. Reyes",
     "date": "September 27, 2025",
     "fighter1": "Dooho Choi",
     "fighter2": "Daniel Santos",
+    "fighter1_url": "http://ufcstats.com/fighter-details/e93b04e308913c2e",
+    "fighter2_url": "http://ufcstats.com/fighter-details/b67d6bacc68d4c92",
     "winner": "Daniel Santos",
-    "confidence": 56.24,
+    "confidence": 58.01,
     "rematch": false,
     "last_5_results_f1": [
+      "W",
+      "W",
+      "W",
+      "L"
+    ],
+    "last_5_results_f2": [
       "W",
       "W",
       "D",
       "L",
       "L"
     ],
-    "last_5_results_f2": [
-      "W",
-      "W",
-      "W",
-      "L"
-    ],
     "raw_feature_diffs": {
-      "SLpM_diff": -0.03500000000000014,
-      "SApM_diff": -0.9400000000000004,
-      "TD_Avg_diff": -1.5999999999999999,
-      "TD_Def_diff": -7.8,
-      "Str_Acc_diff": 16.0,
-      "Str_Def_diff": 2.5,
-      "Height_diff": 0.0625,
-      "Reach_diff": 0.75,
-      "Recent_form_score_diff": -0.5,
-      "Win_streak_score_diff": -0.011359999999999999,
-      "Avg_opp_strength_diff": -0.055199999999999805,
+      "SLpM_diff": 0.03500000000000014,
+      "SApM_diff": 0.9400000000000004,
+      "TD_Avg_diff": 1.5999999999999999,
+      "TD_Def_diff": 7.8,
+      "Str_Acc_diff": -16.0,
+      "Str_Def_diff": -2.5,
+      "Height_diff": -0.0625,
+      "Reach_diff": -0.75,
+      "Recent_form_score_diff": 0.5,
+      "Win_streak_score_diff": 0.011359999999999999,
+      "Avg_opp_strength_diff": 0.055199999999999805,
       "TD_SApM_combo": -0.24440000000000012
     },
     "shap_weights": {},
@@ -4314,16 +4589,20 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:41",
+    "timestamp": "2025-08-14 19:10:00",
     "event": "UFC Fight Night: Ulberg vs. Reyes",
     "date": "September 27, 2025",
     "fighter1": "Navajo Stirling",
     "fighter2": "Rodolfo Bellato",
-    "winner": "Navajo Stirling",
-    "confidence": 51.94,
+    "fighter1_url": "http://ufcstats.com/fighter-details/b4b496ec2197ee3e",
+    "fighter2_url": "http://ufcstats.com/fighter-details/69898645d600abdb",
+    "winner": "Rodolfo Bellato",
+    "confidence": 52.87,
     "rematch": false,
     "last_5_results_f1": [
       "W",
@@ -4383,14 +4662,18 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:41",
+    "timestamp": "2025-08-14 19:10:00",
     "event": "UFC Fight Night: Ulberg vs. Reyes",
     "date": "September 27, 2025",
     "fighter1": "Michelle Montague",
     "fighter2": "Luana Carolina",
+    "fighter1_url": "http://ufcstats.com/fighter-details/ca80d72da81d7224",
+    "fighter2_url": "http://ufcstats.com/fighter-details/528b071cf3da7c56",
     "winner": "Toss Up",
     "confidence": 50.0,
     "rematch": false,
@@ -4409,42 +4692,46 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:41",
+    "timestamp": "2025-08-14 19:10:00",
     "event": "UFC Fight Night: Ulberg vs. Reyes",
     "date": "September 27, 2025",
     "fighter1": "Junior Tafa",
     "fighter2": "Ibo Aslan",
+    "fighter1_url": "http://ufcstats.com/fighter-details/c15fa95b9a12fde4",
+    "fighter2_url": "http://ufcstats.com/fighter-details/6e8f1bcdda94ff45",
     "winner": "Ibo Aslan",
-    "confidence": 74.37,
+    "confidence": 64.18,
     "rematch": false,
     "last_5_results_f1": [
       "L",
+      "L",
       "W",
-      "L",
-      "L",
       "W"
     ],
     "last_5_results_f2": [
       "L",
-      "L",
       "W",
+      "L",
+      "L",
       "W"
     ],
     "raw_feature_diffs": {
-      "SLpM_diff": -0.95,
-      "SApM_diff": -0.98,
+      "SLpM_diff": 0.95,
+      "SApM_diff": 0.98,
       "TD_Avg_diff": 0.0,
-      "TD_Def_diff": -5.1,
-      "Str_Acc_diff": 4.0,
-      "Str_Def_diff": -4.0,
+      "TD_Def_diff": 5.1,
+      "Str_Acc_diff": -4.0,
+      "Str_Def_diff": 4.0,
       "Height_diff": 0.0,
-      "Reach_diff": -0.5,
-      "Recent_form_score_diff": -0.2,
+      "Reach_diff": 0.5,
+      "Recent_form_score_diff": 0.2,
       "Win_streak_score_diff": 0.0,
-      "Avg_opp_strength_diff": 0.02295000000000008,
+      "Avg_opp_strength_diff": -0.02295000000000008,
       "TD_SApM_combo": -0.1666
     },
     "shap_weights": {},
@@ -4482,40 +4769,44 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:41",
+    "timestamp": "2025-08-14 19:10:00",
     "event": "UFC Fight Night: Ulberg vs. Reyes",
     "date": "September 27, 2025",
     "fighter1": "Jimmy Crute",
     "fighter2": "Ivan Erslan",
+    "fighter1_url": "http://ufcstats.com/fighter-details/70e1f8a821b72c8b",
+    "fighter2_url": "http://ufcstats.com/fighter-details/64ad3e3b0efa30bb",
     "winner": "Jimmy Crute",
-    "confidence": 61.48,
+    "confidence": 56.58,
     "rematch": false,
     "last_5_results_f1": [
+      "L",
+      "L"
+    ],
+    "last_5_results_f2": [
       "W",
       "D",
       "L",
       "D",
       "L"
     ],
-    "last_5_results_f2": [
-      "L",
-      "L"
-    ],
     "raw_feature_diffs": {
-      "SLpM_diff": 0.835,
-      "SApM_diff": -1.4899999999999998,
-      "TD_Avg_diff": 3.7,
-      "TD_Def_diff": -1.7999999999999998,
-      "Str_Acc_diff": 8.0,
-      "Str_Def_diff": -6.5,
+      "SLpM_diff": -0.835,
+      "SApM_diff": 1.4899999999999998,
+      "TD_Avg_diff": -3.7,
+      "TD_Def_diff": 1.7999999999999998,
+      "Str_Acc_diff": -8.0,
+      "Str_Def_diff": 6.5,
       "Height_diff": 0.0,
-      "Reach_diff": 0.5,
-      "Recent_form_score_diff": 0.8,
-      "Win_streak_score_diff": 0.0104,
-      "Avg_opp_strength_diff": -0.016499999999999848,
+      "Reach_diff": -0.5,
+      "Recent_form_score_diff": -0.8,
+      "Win_streak_score_diff": -0.0104,
+      "Avg_opp_strength_diff": 0.016499999999999848,
       "TD_SApM_combo": 0.11919999999999999
     },
     "shap_weights": {},
@@ -4553,42 +4844,46 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:41",
+    "timestamp": "2025-08-14 19:10:00",
     "event": "UFC 320: Ankalaev vs. Pereira 2",
     "date": "October 04, 2025",
     "fighter1": "Magomed Ankalaev",
     "fighter2": "Alex Pereira",
+    "fighter1_url": "http://ufcstats.com/fighter-details/d802174b0c0c1f4e",
+    "fighter2_url": "http://ufcstats.com/fighter-details/e5549c82bfb5582d",
     "winner": "Magomed Ankalaev",
-    "confidence": 58.16,
+    "confidence": 52.18,
     "rematch": true,
     "last_5_results_f1": [
-      "W",
-      "W",
-      "W",
-      "NC",
-      "D"
-    ],
-    "last_5_results_f2": [
       "L",
       "W",
       "W",
       "W",
       "W"
     ],
+    "last_5_results_f2": [
+      "W",
+      "W",
+      "W",
+      "NC",
+      "D"
+    ],
     "raw_feature_diffs": {
-      "SLpM_diff": -0.6699999999999999,
-      "SApM_diff": -1.04,
-      "TD_Avg_diff": 0.6900000000000001,
-      "TD_Def_diff": 2.6999999999999997,
-      "Str_Acc_diff": -10.0,
-      "Str_Def_diff": 2.0,
-      "Height_diff": -0.020750000000000046,
-      "Reach_diff": -1.0,
+      "SLpM_diff": 0.6699999999999999,
+      "SApM_diff": 1.04,
+      "TD_Avg_diff": -0.6900000000000001,
+      "TD_Def_diff": -2.6999999999999997,
+      "Str_Acc_diff": 10.0,
+      "Str_Def_diff": -2.0,
+      "Height_diff": 0.020750000000000046,
+      "Reach_diff": 1.0,
       "Recent_form_score_diff": 0.0,
-      "Win_streak_score_diff": 0.03408,
+      "Win_streak_score_diff": -0.03408,
       "Avg_opp_strength_diff": 0.0,
       "TD_SApM_combo": 0.09359999999999999
     },
@@ -4624,46 +4919,50 @@
         "favors": "Alex Pereira"
       }
     ],
-    "odds1": "-195",
-    "odds2": "+165",
+    "odds1": "-200",
+    "odds2": "+170",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:41",
+    "timestamp": "2025-08-14 19:10:00",
     "event": "UFC 320: Ankalaev vs. Pereira 2",
     "date": "October 04, 2025",
     "fighter1": "Merab Dvalishvili",
     "fighter2": "Cory Sandhagen",
+    "fighter1_url": "http://ufcstats.com/fighter-details/c03520b5c88ed6b4",
+    "fighter2_url": "http://ufcstats.com/fighter-details/65f09bacd3957381",
     "winner": "Merab Dvalishvili",
-    "confidence": 74.89,
+    "confidence": 58.65,
     "rematch": false,
     "last_5_results_f1": [
-      "W",
-      "W",
-      "W",
-      "W",
-      "W"
-    ],
-    "last_5_results_f2": [
       "W",
       "L",
       "W",
       "W",
       "W"
     ],
+    "last_5_results_f2": [
+      "W",
+      "W",
+      "W",
+      "W",
+      "W"
+    ],
     "raw_feature_diffs": {
-      "SLpM_diff": -0.375,
-      "SApM_diff": -0.8599999999999999,
-      "TD_Avg_diff": 4.56,
-      "TD_Def_diff": 5.7,
-      "Str_Acc_diff": -3.0,
+      "SLpM_diff": 0.375,
+      "SApM_diff": 0.8599999999999999,
+      "TD_Avg_diff": -4.56,
+      "TD_Def_diff": -5.7,
+      "Str_Acc_diff": 3.0,
       "Str_Def_diff": 0.0,
-      "Height_diff": -0.10424999999999995,
-      "Reach_diff": -0.5,
-      "Recent_form_score_diff": 0.4,
-      "Win_streak_score_diff": 0.049080000000000006,
-      "Avg_opp_strength_diff": 0.05159999999999998,
+      "Height_diff": 0.10424999999999995,
+      "Reach_diff": 0.5,
+      "Recent_form_score_diff": -0.4,
+      "Win_streak_score_diff": -0.049080000000000006,
+      "Avg_opp_strength_diff": -0.05159999999999998,
       "TD_SApM_combo": 0.16339999999999996
     },
     "shap_weights": {},
@@ -4701,16 +5000,20 @@
     "odds1": "-390",
     "odds2": "+295",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:41",
+    "timestamp": "2025-08-14 19:10:00",
     "event": "UFC 320: Ankalaev vs. Pereira 2",
     "date": "October 04, 2025",
     "fighter1": "Jiri Prochazka",
     "fighter2": "Khalil Rountree Jr.",
+    "fighter1_url": "http://ufcstats.com/fighter-details/009341ed974bad72",
+    "fighter2_url": "http://ufcstats.com/fighter-details/749f572d1d3161fb",
     "winner": "Jiri Prochazka",
-    "confidence": 59.92,
+    "confidence": 55.81,
     "rematch": false,
     "last_5_results_f1": [
       "W",
@@ -4775,16 +5078,20 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:41",
+    "timestamp": "2025-08-14 19:10:00",
     "event": "UFC 320: Ankalaev vs. Pereira 2",
     "date": "October 04, 2025",
     "fighter1": "Abus Magomedov",
     "fighter2": "Joe Pyfer",
+    "fighter1_url": "http://ufcstats.com/fighter-details/36b8f265bcd1b7a4",
+    "fighter2_url": "http://ufcstats.com/fighter-details/c1085e1701b13eca",
     "winner": "Abus Magomedov",
-    "confidence": 77.78,
+    "confidence": 66.12,
     "rematch": false,
     "last_5_results_f1": [
       "W",
@@ -4849,16 +5156,20 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:41",
+    "timestamp": "2025-08-14 19:10:00",
     "event": "UFC 320: Ankalaev vs. Pereira 2",
     "date": "October 04, 2025",
     "fighter1": "Ateba Gautier",
     "fighter2": "Ozzy Diaz",
+    "fighter1_url": "http://ufcstats.com/fighter-details/2f815ed5f8278ba6",
+    "fighter2_url": "http://ufcstats.com/fighter-details/6967153c7edb4d87",
     "winner": "Ozzy Diaz",
-    "confidence": 56.21,
+    "confidence": 55.38,
     "rematch": false,
     "last_5_results_f1": [
       "W",
@@ -4917,43 +5228,47 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:41",
+    "timestamp": "2025-08-14 19:10:00",
     "event": "UFC 320: Ankalaev vs. Pereira 2",
     "date": "October 04, 2025",
     "fighter1": "Edmen Shahbazyan",
     "fighter2": "Andre Muniz",
-    "winner": "Andre Muniz",
-    "confidence": 52.01,
+    "fighter1_url": "http://ufcstats.com/fighter-details/4144798612ef96e5",
+    "fighter2_url": "http://ufcstats.com/fighter-details/886264a0c9f4ea5e",
+    "winner": "Edmen Shahbazyan",
+    "confidence": 50.9,
     "rematch": false,
     "last_5_results_f1": [
-      "W",
-      "W",
-      "L",
-      "W",
-      "L"
-    ],
-    "last_5_results_f2": [
       "L",
       "W",
       "L",
       "L",
       "W"
     ],
+    "last_5_results_f2": [
+      "W",
+      "W",
+      "L",
+      "W",
+      "L"
+    ],
     "raw_feature_diffs": {
-      "SLpM_diff": 0.8500000000000001,
-      "SApM_diff": 1.29,
-      "TD_Avg_diff": -2.3299999999999996,
-      "TD_Def_diff": 9.299999999999999,
-      "Str_Acc_diff": -1.0,
-      "Str_Def_diff": -1.5,
-      "Height_diff": 0.020999999999999908,
-      "Reach_diff": -0.75,
-      "Recent_form_score_diff": 0.4,
-      "Win_streak_score_diff": 0.023360000000000002,
-      "Avg_opp_strength_diff": 0.014399999999999968,
+      "SLpM_diff": -0.8500000000000001,
+      "SApM_diff": -1.29,
+      "TD_Avg_diff": 2.3299999999999996,
+      "TD_Def_diff": -9.299999999999999,
+      "Str_Acc_diff": 1.0,
+      "Str_Def_diff": 1.5,
+      "Height_diff": -0.020999999999999908,
+      "Reach_diff": 0.75,
+      "Recent_form_score_diff": -0.4,
+      "Win_streak_score_diff": -0.023360000000000002,
+      "Avg_opp_strength_diff": -0.014399999999999968,
       "TD_SApM_combo": -0.39990000000000003
     },
     "shap_weights": {},
@@ -4991,40 +5306,44 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:41",
+    "timestamp": "2025-08-14 19:10:00",
     "event": "UFC 320: Ankalaev vs. Pereira 2",
     "date": "October 04, 2025",
     "fighter1": "Veronica Hardy",
     "fighter2": "Brogan Walker",
+    "fighter1_url": "http://ufcstats.com/fighter-details/4798e823ada58fe9",
+    "fighter2_url": "http://ufcstats.com/fighter-details/4333a8e70a672eb7",
     "winner": "Veronica Hardy",
-    "confidence": 81.99,
+    "confidence": 68.11,
     "rematch": false,
     "last_5_results_f1": [
       "L",
-      "W",
-      "W",
-      "W",
       "L"
     ],
     "last_5_results_f2": [
       "L",
+      "W",
+      "W",
+      "W",
       "L"
     ],
     "raw_feature_diffs": {
-      "SLpM_diff": 0.54,
-      "SApM_diff": -0.2200000000000002,
-      "TD_Avg_diff": 0.93,
-      "TD_Def_diff": 13.2,
-      "Str_Acc_diff": 15.0,
-      "Str_Def_diff": 1.0,
+      "SLpM_diff": -0.54,
+      "SApM_diff": 0.2200000000000002,
+      "TD_Avg_diff": -0.93,
+      "TD_Def_diff": -13.2,
+      "Str_Acc_diff": -15.0,
+      "Str_Def_diff": -1.0,
       "Height_diff": 0.0,
-      "Reach_diff": -0.75,
-      "Recent_form_score_diff": 1.2,
+      "Reach_diff": 0.75,
+      "Recent_form_score_diff": -1.2,
       "Win_streak_score_diff": 0.0,
-      "Avg_opp_strength_diff": 0.07769999999999988,
+      "Avg_opp_strength_diff": -0.07769999999999988,
       "TD_SApM_combo": 0.01100000000000001
     },
     "shap_weights": {},
@@ -5062,16 +5381,20 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:41",
+    "timestamp": "2025-08-14 19:10:00",
     "event": "UFC 320: Ankalaev vs. Pereira 2",
     "date": "October 04, 2025",
     "fighter1": "Chris Gutierrez",
     "fighter2": "Farid Basharat",
+    "fighter1_url": "http://ufcstats.com/fighter-details/45f0cc9d18f35137",
+    "fighter2_url": "http://ufcstats.com/fighter-details/a09ed60aa67a3f67",
     "winner": "Chris Gutierrez",
-    "confidence": 53.2,
+    "confidence": 53.08,
     "rematch": false,
     "last_5_results_f1": [
       "W",
@@ -5135,43 +5458,77 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:41",
+    "timestamp": "2025-08-14 19:10:00",
+    "event": "UFC 320: Ankalaev vs. Pereira 2",
+    "date": "October 04, 2025",
+    "fighter1": "Macy Chiasson",
+    "fighter2": "Yana Santos",
+    "fighter1_url": "http://ufcstats.com/fighter-details/9cdd2da1a9104a0b",
+    "fighter2_url": "http://ufcstats.com/fighter-details/3143bf892608139a",
+    "winner": "Toss Up",
+    "confidence": 50.0,
+    "rematch": false,
+    "last_5_results_f1": [],
+    "last_5_results_f2": [
+      "W",
+      "W",
+      "L",
+      "L",
+      "L"
+    ],
+    "raw_feature_diffs": {},
+    "shap_weights": {},
+    "weighted_feature_diffs": {},
+    "top_3_contributors": [],
+    "odds1": "N/A",
+    "odds2": "N/A",
+    "actual_result": null,
+    "correct": null,
+    "fighter1_has_stats": false,
+    "fighter2_has_stats": true
+  },
+  {
+    "timestamp": "2025-08-14 19:10:00",
     "event": "UFC Fight Night",
     "date": "October 18, 2025",
     "fighter1": "Manon Fiorot",
     "fighter2": "Jasmine Jasudavicius",
+    "fighter1_url": "http://ufcstats.com/fighter-details/34ff304266360297",
+    "fighter2_url": "http://ufcstats.com/fighter-details/a9e260472d321361",
     "winner": "Jasmine Jasudavicius",
-    "confidence": 59.15,
+    "confidence": 59.47,
     "rematch": false,
     "last_5_results_f1": [
-      "L",
+      "W",
       "W",
       "W",
       "W",
       "W"
     ],
     "last_5_results_f2": [
-      "W",
+      "L",
       "W",
       "W",
       "W",
       "W"
     ],
     "raw_feature_diffs": {
-      "SLpM_diff": 0.935,
-      "SApM_diff": -0.040000000000000036,
-      "TD_Avg_diff": -1.5499999999999998,
-      "TD_Def_diff": 3.5999999999999996,
-      "Str_Acc_diff": -4.0,
-      "Str_Def_diff": 7.5,
+      "SLpM_diff": -0.935,
+      "SApM_diff": 0.040000000000000036,
+      "TD_Avg_diff": 1.5499999999999998,
+      "TD_Def_diff": -3.5999999999999996,
+      "Str_Acc_diff": 4.0,
+      "Str_Def_diff": -7.5,
       "Height_diff": 0.0,
-      "Reach_diff": -0.75,
-      "Recent_form_score_diff": -0.4,
-      "Win_streak_score_diff": -0.05444,
-      "Avg_opp_strength_diff": 0.008399999999999963,
+      "Reach_diff": 0.75,
+      "Recent_form_score_diff": 0.4,
+      "Win_streak_score_diff": 0.05444,
+      "Avg_opp_strength_diff": -0.008399999999999963,
       "TD_SApM_combo": 0.004800000000000004
     },
     "shap_weights": {},
@@ -5209,16 +5566,20 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:41",
+    "timestamp": "2025-08-14 19:10:00",
     "event": "UFC Fight Night",
     "date": "October 18, 2025",
     "fighter1": "Azamat Bekoev",
     "fighter2": "Yousri Belgaroui",
+    "fighter1_url": "http://ufcstats.com/fighter-details/3bc3f60b21cddc6a",
+    "fighter2_url": "http://ufcstats.com/fighter-details/7674b836ce0698a0",
     "winner": "Azamat Bekoev",
-    "confidence": 72.1,
+    "confidence": 62.79,
     "rematch": false,
     "last_5_results_f1": [
       "W",
@@ -5274,43 +5635,77 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:41",
+    "timestamp": "2025-08-14 19:10:00",
+    "event": "UFC Fight Night",
+    "date": "October 18, 2025",
+    "fighter1": "Marlon Vera",
+    "fighter2": "Aiemann Zahabi",
+    "fighter1_url": "http://ufcstats.com/fighter-details/7c7332319c14094c",
+    "fighter2_url": "http://ufcstats.com/fighter-details/24656ef4d605c96f",
+    "winner": "Toss Up",
+    "confidence": 50.0,
+    "rematch": false,
+    "last_5_results_f1": [],
+    "last_5_results_f2": [
+      "W",
+      "W",
+      "W",
+      "W",
+      "W"
+    ],
+    "raw_feature_diffs": {},
+    "shap_weights": {},
+    "weighted_feature_diffs": {},
+    "top_3_contributors": [],
+    "odds1": "N/A",
+    "odds2": "N/A",
+    "actual_result": null,
+    "correct": null,
+    "fighter1_has_stats": false,
+    "fighter2_has_stats": true
+  },
+  {
+    "timestamp": "2025-08-14 19:10:00",
     "event": "UFC 321: Aspinall vs. Gane",
     "date": "October 25, 2025",
     "fighter1": "Tom Aspinall",
     "fighter2": "Ciryl Gane",
+    "fighter1_url": "http://ufcstats.com/fighter-details/399afbabc02376b5",
+    "fighter2_url": "http://ufcstats.com/fighter-details/787bb1f087ccff8a",
     "winner": "Tom Aspinall",
-    "confidence": 84.3,
+    "confidence": 64.06,
     "rematch": false,
     "last_5_results_f1": [
-      "W",
-      "W",
-      "W",
-      "L",
-      "W"
-    ],
-    "last_5_results_f2": [
       "W",
       "W",
       "L",
       "W",
       "L"
     ],
+    "last_5_results_f2": [
+      "W",
+      "W",
+      "W",
+      "L",
+      "W"
+    ],
     "raw_feature_diffs": {
-      "SLpM_diff": 1.4050000000000002,
-      "SApM_diff": 0.6600000000000001,
-      "TD_Avg_diff": 2.5700000000000003,
-      "TD_Def_diff": 17.099999999999998,
-      "Str_Acc_diff": 6.0,
-      "Str_Def_diff": 2.0,
-      "Height_diff": 0.020999999999999908,
-      "Reach_diff": -0.75,
-      "Recent_form_score_diff": 0.39999999999999997,
-      "Win_streak_score_diff": 0.011319999999999997,
-      "Avg_opp_strength_diff": -0.020999999999999908,
+      "SLpM_diff": -1.4050000000000002,
+      "SApM_diff": -0.6600000000000001,
+      "TD_Avg_diff": -2.5700000000000003,
+      "TD_Def_diff": -17.099999999999998,
+      "Str_Acc_diff": -6.0,
+      "Str_Def_diff": -2.0,
+      "Height_diff": -0.020999999999999908,
+      "Reach_diff": 0.75,
+      "Recent_form_score_diff": -0.39999999999999997,
+      "Win_streak_score_diff": -0.011319999999999997,
+      "Avg_opp_strength_diff": 0.020999999999999908,
       "TD_SApM_combo": -0.37620000000000003
     },
     "shap_weights": {},
@@ -5348,16 +5743,20 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:41",
+    "timestamp": "2025-08-14 19:10:00",
     "event": "UFC 321: Aspinall vs. Gane",
     "date": "October 25, 2025",
     "fighter1": "Alexander Volkov",
     "fighter2": "Jailton Almeida",
+    "fighter1_url": "http://ufcstats.com/fighter-details/279566840aa55bf2",
+    "fighter2_url": "http://ufcstats.com/fighter-details/41e83a89929d1327",
     "winner": "Alexander Volkov",
-    "confidence": 71.36,
+    "confidence": 62.23,
     "rematch": false,
     "last_5_results_f1": [
       "L",
@@ -5422,41 +5821,75 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:41",
+    "timestamp": "2025-08-14 19:10:00",
+    "event": "UFC 321: Aspinall vs. Gane",
+    "date": "October 25, 2025",
+    "fighter1": "Aleksandar Rakic",
+    "fighter2": "Azamat Murzakanov",
+    "fighter1_url": "http://ufcstats.com/fighter-details/333b9e5c723ac873",
+    "fighter2_url": "http://ufcstats.com/fighter-details/e90a2f22417af68e",
+    "winner": "Toss Up",
+    "confidence": 50.0,
+    "rematch": false,
+    "last_5_results_f1": [
+      "L",
+      "L",
+      "L",
+      "W",
+      "W"
+    ],
+    "last_5_results_f2": [],
+    "raw_feature_diffs": {},
+    "shap_weights": {},
+    "weighted_feature_diffs": {},
+    "top_3_contributors": [],
+    "odds1": "N/A",
+    "odds2": "N/A",
+    "actual_result": null,
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": false
+  },
+  {
+    "timestamp": "2025-08-14 19:10:00",
     "event": "UFC 321: Aspinall vs. Gane",
     "date": "October 25, 2025",
     "fighter1": "Hamdy Abdelwahab",
     "fighter2": "Chris Barnett",
+    "fighter1_url": "http://ufcstats.com/fighter-details/3329d692aea4dc28",
+    "fighter2_url": "http://ufcstats.com/fighter-details/7a5e8c94a86f9895",
     "winner": "Hamdy Abdelwahab",
-    "confidence": 77.0,
+    "confidence": 65.37,
     "rematch": false,
     "last_5_results_f1": [
-      "L",
-      "W",
-      "NC"
-    ],
-    "last_5_results_f2": [
       "L",
       "W",
       "L",
       "W",
       "L"
     ],
+    "last_5_results_f2": [
+      "L",
+      "W",
+      "NC"
+    ],
     "raw_feature_diffs": {
-      "SLpM_diff": -0.3599999999999999,
-      "SApM_diff": -2.04,
-      "TD_Avg_diff": 1.33,
-      "TD_Def_diff": 20.099999999999998,
-      "Str_Acc_diff": 2.0,
-      "Str_Def_diff": 6.0,
-      "Height_diff": 0.10424999999999995,
-      "Reach_diff": -0.75,
-      "Recent_form_score_diff": 0.2,
+      "SLpM_diff": 0.3599999999999999,
+      "SApM_diff": 2.04,
+      "TD_Avg_diff": -1.33,
+      "TD_Def_diff": -20.099999999999998,
+      "Str_Acc_diff": -2.0,
+      "Str_Def_diff": -6.0,
+      "Height_diff": -0.10424999999999995,
+      "Reach_diff": 0.75,
+      "Recent_form_score_diff": -0.2,
       "Win_streak_score_diff": 0.0,
-      "Avg_opp_strength_diff": -0.0524,
+      "Avg_opp_strength_diff": 0.0524,
       "TD_SApM_combo": 0.3468
     },
     "shap_weights": {},
@@ -5494,16 +5927,20 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:41",
+    "timestamp": "2025-08-14 19:10:00",
     "event": "UFC 321: Aspinall vs. Gane",
     "date": "October 25, 2025",
     "fighter1": "Ikram Aliskerov",
     "fighter2": "JunYong Park",
+    "fighter1_url": "http://ufcstats.com/fighter-details/b07aed698fba8624",
+    "fighter2_url": "http://ufcstats.com/fighter-details/285ae0b4a68221f4",
     "winner": "Ikram Aliskerov",
-    "confidence": 79.56,
+    "confidence": 66.95,
     "rematch": false,
     "last_5_results_f1": [
       "W",
@@ -5567,16 +6004,20 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   },
   {
-    "timestamp": "2025-08-08 18:33:41",
+    "timestamp": "2025-08-14 19:10:00",
     "event": "UFC 321: Aspinall vs. Gane",
     "date": "October 25, 2025",
     "fighter1": "Azat Maksum",
     "fighter2": "Mitch Raposo",
+    "fighter1_url": "http://ufcstats.com/fighter-details/7f1bf0c255ec8756",
+    "fighter2_url": "http://ufcstats.com/fighter-details/0be6776db31d98ec",
     "winner": "Azat Maksum",
-    "confidence": 51.2,
+    "confidence": 50.48,
     "rematch": false,
     "last_5_results_f1": [
       "L",
@@ -5636,6 +6077,164 @@
     "odds1": "N/A",
     "odds2": "N/A",
     "actual_result": null,
-    "correct": null
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
+  },
+  {
+    "timestamp": "2025-08-14 19:10:00",
+    "event": "UFC Fight Night: Oliveira vs. Fiziev",
+    "date": "October 11, 2025",
+    "fighter1": "Charles Oliveira",
+    "fighter2": "Rafael Fiziev",
+    "fighter1_url": "http://ufcstats.com/fighter-details/07225ba28ae309b6",
+    "fighter2_url": "http://ufcstats.com/fighter-details/c814b4c899793af6",
+    "winner": "Charles Oliveira",
+    "confidence": 56.73,
+    "rematch": false,
+    "last_5_results_f1": [
+      "L",
+      "W",
+      "L",
+      "W",
+      "L"
+    ],
+    "last_5_results_f2": [
+      "W",
+      "L",
+      "L",
+      "L",
+      "W"
+    ],
+    "raw_feature_diffs": {
+      "SLpM_diff": -0.6799999999999997,
+      "SApM_diff": -1.5099999999999998,
+      "TD_Avg_diff": 1.3399999999999999,
+      "TD_Def_diff": -10.2,
+      "Str_Acc_diff": 3.0,
+      "Str_Def_diff": -1.0,
+      "Height_diff": 0.04150000000000009,
+      "Reach_diff": 0.75,
+      "Recent_form_score_diff": 0.0,
+      "Win_streak_score_diff": -0.011840000000000002,
+      "Avg_opp_strength_diff": 0.028200000000000003,
+      "TD_SApM_combo": -0.5133999999999999
+    },
+    "shap_weights": {},
+    "weighted_feature_diffs": {},
+    "top_3_contributors": [
+      {
+        "stat": "Strikes Landed/Min",
+        "favors": "Rafael Fiziev"
+      },
+      {
+        "stat": "Strikes Absorbed/Min",
+        "favors": "Charles Oliveira"
+      },
+      {
+        "stat": "Takedowns/15min",
+        "favors": "Charles Oliveira"
+      },
+      {
+        "stat": "Takedown Defense",
+        "favors": "Rafael Fiziev"
+      },
+      {
+        "stat": "Striking Accuracy",
+        "favors": "Charles Oliveira"
+      },
+      {
+        "stat": "Striking Defense",
+        "favors": "Rafael Fiziev"
+      },
+      {
+        "stat": "Reach",
+        "favors": "Charles Oliveira"
+      }
+    ],
+    "odds1": "N/A",
+    "odds2": "N/A",
+    "actual_result": null,
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
+  },
+  {
+    "timestamp": "2025-08-14 19:10:00",
+    "event": "UFC Fight Night: Oliveira vs. Fiziev",
+    "date": "October 11, 2025",
+    "fighter1": "Vicente Luque",
+    "fighter2": "Santiago Ponzinibbio",
+    "fighter1_url": "http://ufcstats.com/fighter-details/6d4b63c767106d3a",
+    "fighter2_url": "http://ufcstats.com/fighter-details/6d1bffff14897645",
+    "winner": "Santiago Ponzinibbio",
+    "confidence": 57.44,
+    "rematch": false,
+    "last_5_results_f1": [
+      "L",
+      "W",
+      "L",
+      "L",
+      "W"
+    ],
+    "last_5_results_f2": [
+      "L",
+      "W",
+      "L",
+      "W",
+      "L"
+    ],
+    "raw_feature_diffs": {
+      "SLpM_diff": -0.11999999999999966,
+      "SApM_diff": -0.5700000000000003,
+      "TD_Avg_diff": -0.37,
+      "TD_Def_diff": 3.0,
+      "Str_Acc_diff": -10.0,
+      "Str_Def_diff": 4.5,
+      "Height_diff": 0.020750000000000046,
+      "Reach_diff": -0.5,
+      "Recent_form_score_diff": 0.0,
+      "Win_streak_score_diff": 0.0,
+      "Avg_opp_strength_diff": -0.017400000000000193,
+      "TD_SApM_combo": 0.05700000000000003
+    },
+    "shap_weights": {},
+    "weighted_feature_diffs": {},
+    "top_3_contributors": [
+      {
+        "stat": "Strikes Landed/Min",
+        "favors": "Vicente Luque"
+      },
+      {
+        "stat": "Strikes Absorbed/Min",
+        "favors": "Santiago Ponzinibbio"
+      },
+      {
+        "stat": "Takedowns/15min",
+        "favors": "Vicente Luque"
+      },
+      {
+        "stat": "Takedown Defense",
+        "favors": "Santiago Ponzinibbio"
+      },
+      {
+        "stat": "Striking Accuracy",
+        "favors": "Vicente Luque"
+      },
+      {
+        "stat": "Striking Defense",
+        "favors": "Santiago Ponzinibbio"
+      },
+      {
+        "stat": "Reach",
+        "favors": "Vicente Luque"
+      }
+    ],
+    "odds1": "N/A",
+    "odds2": "N/A",
+    "actual_result": null,
+    "correct": null,
+    "fighter1_has_stats": true,
+    "fighter2_has_stats": true
   }
 ]

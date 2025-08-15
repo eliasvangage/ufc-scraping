@@ -412,6 +412,18 @@ export default function EventDetail() {
                   </Badge>
                 )}
 
+                {/* No-stats (debut/missing DB) badge from prediction flags */}
+                {prediction &&
+                  (corner === "red" ? !prediction.fighter1_has_stats : !prediction.fighter2_has_stats) && (
+                    <span className="inline-flex items-center gap-1 text-xs text-amber-400">
+                      <svg width="14" height="14" viewBox="0 0 24 24" className="shrink-0">
+                        <path d="M12 2l10 18H2L12 2zm0 14a1.25 1.25 0 110 2.5A1.25 1.25 0 0112 16zm-1-6h2v5h-2V10z"/>
+                      </svg>
+                      Debut / No stats
+                    </span>
+                )}
+
+
               {/* Champion badge */}
               {fighterData?.is_champion && (
                 <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold animate-pulse">
