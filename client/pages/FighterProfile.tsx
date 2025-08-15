@@ -33,7 +33,13 @@ import {
   MapPin,
   Brain,
   Lightbulb,
-  Hash
+  Hash,
+  Fists,
+  Crosshair,
+  Gauge,
+  Dumbbell,
+  Footprints,
+  Radar
 } from "lucide-react";
 import { Hero } from "@/components/ui/hero";
 import { cn } from "@/lib/utils";
@@ -77,7 +83,7 @@ interface Fighter {
   dob: string;
   age: number;
   division: string;
-  champion: boolean;
+  is_champion: boolean;
   ufc_record?: string;
   ufc_wins?: number;
   ufc_losses?: number;
@@ -90,7 +96,8 @@ const StatCard = ({
   value, 
   color = "primary", 
   description,
-  progress
+  progress,
+  subtitle
 }: {
   icon: React.ComponentType<any>;
   label: string;
@@ -98,13 +105,15 @@ const StatCard = ({
   color?: string;
   description?: string;
   progress?: number;
+  subtitle?: string;
 }) => (
   <div className={cn(
-    "bg-gradient-to-br rounded-xl p-6 border transition-all duration-500 hover:scale-105 hover:shadow-2xl group cursor-pointer",
+    "bg-gradient-to-br rounded-xl p-6 border transition-all duration-500 hover:scale-105 hover:shadow-2xl group cursor-pointer animate-fadeInUpOnce",
     color === "blue" && "from-blue-500/15 to-blue-500/5 border-blue-500/30 hover:shadow-blue-500/20",
     color === "green" && "from-green-500/15 to-green-500/5 border-green-500/30 hover:shadow-green-500/20",
     color === "purple" && "from-purple-500/15 to-purple-500/5 border-purple-500/30 hover:shadow-purple-500/20",
     color === "red" && "from-red-500/15 to-red-500/5 border-red-500/30 hover:shadow-red-500/20",
+    color === "orange" && "from-orange-500/15 to-orange-500/5 border-orange-500/30 hover:shadow-orange-500/20",
     color === "primary" && "from-primary/15 to-primary/5 border-primary/30 hover:shadow-primary/20"
   )}>
     <div className="text-center space-y-4">
@@ -114,6 +123,7 @@ const StatCard = ({
         color === "green" && "bg-green-500/20",
         color === "purple" && "bg-purple-500/20", 
         color === "red" && "bg-red-500/20",
+        color === "orange" && "bg-orange-500/20",
         color === "primary" && "bg-primary/20"
       )}>
         <Icon className={cn(
@@ -122,12 +132,16 @@ const StatCard = ({
           color === "green" && "text-green-400",
           color === "purple" && "text-purple-400",
           color === "red" && "text-red-400",
+          color === "orange" && "text-orange-400",
           color === "primary" && "text-primary"
         )} />
       </div>
       <div>
         <div className="text-3xl font-bold mb-1">{value}</div>
         <div className="text-sm font-medium text-muted-foreground">{label}</div>
+        {subtitle && (
+          <div className="text-xs text-muted-foreground mt-1">{subtitle}</div>
+        )}
         {description && (
           <div className="text-xs text-muted-foreground mt-1">{description}</div>
         )}
@@ -157,54 +171,66 @@ const FightHistoryCard = ({ fight, index }: { fight: FightHistory; index: number
         animationDelay: `${index * 100}ms`
       }}
     >
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <div className={cn(
-            "w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold transition-all duration-300 group-hover:scale-110",
-            isWin && "bg-green-500/20 text-green-400",
-            !isWin && !isDraw && "bg-red-500/20 text-red-400",
-            isDraw && "bg-yellow-500/20 text-yellow-400"
-          )}>
-            {isWin ? (
-              <CheckCircle className="h-6 w-6" />
-            ) : isDraw ? (
-              <Medal className="h-6 w-6" />
-            ) : (
-              <XCircle className="h-6 w-6" />
-            )}
-          </div>
-          <div className="space-y-1">
-            <div className="font-semibold text-lg">{fight.opponent}</div>
-            <div className="text-sm text-muted-foreground font-medium">
-              {fight.event}
-            </div>
-            <div className="flex items-center gap-2 text-xs text-muted-foreground">
-              <MapPin className="h-3 w-3" />
-              <span>UFC Event</span>
-              {fight.round && fight.time && (
-                <>
-                  <span>•</span>
-                  <Timer className="h-3 w-3" />
-                  <span>R{fight.round} {fight.time}</span>
-                </>
+      <div className="space-y-4">
+        {/* Fight Result Header */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className={cn(
+              "w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold transition-all duration-300 group-hover:scale-110",
+              isWin && "bg-green-500/20 text-green-400",
+              !isWin && !isDraw && "bg-red-500/20 text-red-400",
+              isDraw && "bg-yellow-500/20 text-yellow-400"
+            )}>
+              {isWin ? (
+                <CheckCircle className="h-6 w-6" />
+              ) : isDraw ? (
+                <Medal className="h-6 w-6" />
+              ) : (
+                <XCircle className="h-6 w-6" />
               )}
+            </div>
+            <div className="space-y-1">
+              <div className="font-semibold text-xl">{fight.opponent}</div>
+              <div className="text-sm text-muted-foreground font-medium">
+                {fight.event}
+              </div>
+            </div>
+          </div>
+          <div className="text-right space-y-2">
+            <Badge 
+              variant="outline" 
+              className={cn(
+                "font-bold text-lg px-4 py-2",
+                isWin && "border-green-500/30 text-green-400 bg-green-500/10",
+                !isWin && !isDraw && "border-red-500/30 text-red-400 bg-red-500/10",
+                isDraw && "border-yellow-500/30 text-yellow-400 bg-yellow-500/10"
+              )}
+            >
+              {fight.method}
+            </Badge>
+            <div className="text-xs text-muted-foreground">
+              R{fight.round} {fight.time}
             </div>
           </div>
         </div>
-        <div className="text-right space-y-2">
-          <Badge 
-            variant="outline" 
-            className={cn(
-              "font-bold text-lg px-3 py-1",
-              isWin && "border-green-500/30 text-green-400 bg-green-500/10",
-              !isWin && !isDraw && "border-red-500/30 text-red-400 bg-red-500/10",
-              isDraw && "border-yellow-500/30 text-yellow-400 bg-yellow-500/10"
-            )}
-          >
-            {fight.method}
-          </Badge>
-          <div className="text-xs text-muted-foreground">
-            {isWin ? "Victory" : isDraw ? "Draw" : "Defeat"}
+
+        {/* Fight Statistics */}
+        <div className="grid grid-cols-4 gap-4 pt-4 border-t border-border/50">
+          <div className="text-center p-3 bg-background/30 rounded-lg">
+            <div className="text-xs text-muted-foreground mb-1">Knockdowns</div>
+            <div className="text-xl font-bold text-red-400">{fight.KD}</div>
+          </div>
+          <div className="text-center p-3 bg-background/30 rounded-lg">
+            <div className="text-xs text-muted-foreground mb-1">Strikes</div>
+            <div className="text-xl font-bold text-blue-400">{fight.STR}</div>
+          </div>
+          <div className="text-center p-3 bg-background/30 rounded-lg">
+            <div className="text-xs text-muted-foreground mb-1">Takedowns</div>
+            <div className="text-xl font-bold text-purple-400">{fight.TD}</div>
+          </div>
+          <div className="text-center p-3 bg-background/30 rounded-lg">
+            <div className="text-xs text-muted-foreground mb-1">Submissions</div>
+            <div className="text-xl font-bold text-orange-400">{fight.SUB}</div>
           </div>
         </div>
       </div>
@@ -218,7 +244,6 @@ export default function FighterProfile() {
   const [fighter, setFighter] = useState<Fighter | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [selectedView, setSelectedView] = useState<"overview" | "stats" | "history">("overview");
   const [usingFallbackData, setUsingFallbackData] = useState(false);
 
   useEffect(() => {
@@ -234,36 +259,26 @@ export default function FighterProfile() {
       try {
         const decodedName = decodeURIComponent(fighterName);
         console.log('Loading fighter:', decodedName);
-
-        // Try to get fighter data from API service
+        
         const fighterData = await apiService.getFighterDetails(decodedName);
-
+        
         if (isMounted && fighterData) {
           // Fighter data is already transformed by the API service
           const transformedFighter: Fighter = {
             name: fighterData.name,
-            nickname: "", // Will extract from API if available
-            height: formatHeight(fighterData.height),
-            weight: fighterData.weight ? `${fighterData.weight} lbs` : "Unknown",
-            reach: fighterData.reach ? `${fighterData.reach}"` : "Unknown",
-            stance: "Orthodox", // Default stance
+            nickname: fighterData.nickname || "",
+            height: fighterData.height || "",
+            weight: fighterData.weight || "",
+            reach: fighterData.reach || "",
+            stance: fighterData.stance || "Orthodox",
             record: fighterData.record,
-            profile_url: "",
-            stats: {
-              "SLpM": fighterData.slpm?.toFixed(2) || "0.00",
-              "Str. Acc.": `${fighterData.strAcc?.toFixed(0) || 0}%`,
-              "SApM": fighterData.sapm?.toFixed(2) || "0.00",
-              "Str. Def": `${fighterData.strDef?.toFixed(0) || 0}%`,
-              "TD Avg.": fighterData.tdAvg?.toFixed(2) || "0.00",
-              "TD Acc.": "0%", // Calculate if needed
-              "TD Def.": `${fighterData.tdDef?.toFixed(0) || 0}%`,
-              "Sub. Avg.": "0.0", // Calculate if needed
-            },
+            profile_url: fighterData.profile_url || "",
+            stats: fighterData.stats,
             fight_history: fighterData.fight_history?.map(fight => ({
               result: fight.result as "win" | "loss" | "draw",
               opponent: fight.opponent,
               KD: fight.KD || "--",
-              STR: fight.STR || "--",
+              STR: fight.STR || "--", 
               TD: fight.TD || "--",
               SUB: fight.SUB || "--",
               event: fight.event,
@@ -271,23 +286,23 @@ export default function FighterProfile() {
               round: fight.round || "1",
               time: fight.time || "5:00"
             })) || [],
-            dob: "", // Extract from API if available
-            age: calculateAge(), // Calculate or use API
-            division: getDivisionFromWeight(fighterData.weight),
-            champion: fighterData.is_champion || false,
-            ufc_record: fighterData.record,
+            dob: fighterData.dob || "",
+            age: fighterData.age || 30,
+            division: fighterData.division || "Unknown",
+            is_champion: fighterData.is_champion || false,
+            ufc_record: fighterData.ufc_record,
             ufc_wins: fighterData.ufc_wins || 0,
             ufc_losses: fighterData.ufc_losses || 0,
             ufc_draws: fighterData.ufc_draws || 0,
           };
-
+          
           setFighter(transformedFighter);
           setError(null);
           setUsingFallbackData(false);
         }
       } catch (err) {
         console.warn("API fighter data unavailable, using fallback data for:", fighterName, err);
-
+        
         if (isMounted) {
           // Create fallback fighter data when API fails
           const decodedName = decodeURIComponent(fighterName);
@@ -296,8 +311,8 @@ export default function FighterProfile() {
             name: decodedName,
             nickname: "",
             height: "6'0\"",
-            weight: "185",
-            reach: "74",
+            weight: "185 lbs",
+            reach: "74\"",
             stance: "Orthodox",
             record: "15-3-0",
             profile_url: "",
@@ -328,15 +343,15 @@ export default function FighterProfile() {
             dob: "1990-01-01",
             age: 34,
             division: "Middleweight",
-            champion: false,
-            ufc_record: "15-3-0",
-            ufc_wins: 15,
-            ufc_losses: 3,
+            is_champion: false,
+            ufc_record: "12-2-0",
+            ufc_wins: 12,
+            ufc_losses: 2,
             ufc_draws: 0,
           };
-
+          
           setFighter(fallbackFighter);
-          setError(null); // Clear error since we have fallback data
+          setError(null);
           setUsingFallbackData(true);
         }
       } finally {
@@ -347,7 +362,7 @@ export default function FighterProfile() {
     };
 
     loadFighter();
-
+    
     return () => {
       isMounted = false;
     };
@@ -365,33 +380,6 @@ export default function FighterProfile() {
     if (winPercentage >= 80) return "bg-green-500/20 text-green-400 border-green-500/30";
     if (winPercentage >= 60) return "bg-yellow-500/20 text-yellow-400 border-yellow-500/30";
     return "bg-red-500/20 text-red-400 border-red-500/30";
-  };
-
-  const formatHeight = (height: string | number): string => {
-    if (typeof height === 'string' && height.includes("'")) return height;
-    const inches = typeof height === 'number' ? height : parseInt(height?.toString() || '0');
-    if (isNaN(inches) || inches === 0) return "Unknown";
-    const feet = Math.floor(inches / 12);
-    const remainingInches = inches % 12;
-    return `${feet}'${remainingInches}"`;
-  };
-
-  const calculateAge = (): number => {
-    // Default age - could calculate from dob if available in API
-    return 30;
-  };
-
-  const getDivisionFromWeight = (weight: number): string => {
-    if (!weight) return "Unknown";
-    if (weight <= 115) return "Strawweight";
-    if (weight <= 125) return "Flyweight";
-    if (weight <= 135) return "Bantamweight";
-    if (weight <= 145) return "Featherweight";
-    if (weight <= 155) return "Lightweight";
-    if (weight <= 170) return "Welterweight";
-    if (weight <= 185) return "Middleweight";
-    if (weight <= 205) return "Light Heavyweight";
-    return "Heavyweight";
   };
 
   if (loading) {
@@ -452,6 +440,7 @@ export default function FighterProfile() {
   }
 
   const winPercentage = getWinPercentage(fighter.record);
+  const ufcWinPercentage = getWinPercentage(fighter.ufc_record);
   const recentWins = fighter.fight_history?.slice(0, 10).filter(f => f.result === "win").length || 0;
   const finishRate = fighter.fight_history?.filter(f => f.method && !f.method.toLowerCase().includes("decision")).length || 0;
   const finishPercentage = fighter.fight_history?.length ? Math.round((finishRate / fighter.fight_history.length) * 100) : 0;
@@ -470,55 +459,68 @@ export default function FighterProfile() {
         </Button>
       </div>
 
-      <Hero
-        title={fighter.name}
-        subtitle={
-          fighter.nickname ? 
-            <>"{fighter.nickname}" - <span className="text-primary font-semibold">{fighter.division}</span> Division Fighter</> : 
-            `${fighter.division} Division Fighter`
-        }
-        icon={Shield}
-        variant="fighters"
-        stats={[
-          {
-            icon: Trophy,
-            label: "Record",
-            value: fighter.record,
-            color: "primary",
-          },
-          {
-            icon: Calendar,
-            label: "Age",
-            value: fighter.age,
-            color: "primary",
-          },
-          {
-            icon: Target,
-            label: "Win Rate",
-            value: `${winPercentage}%`,
-            color: winPercentage >= 70 ? "green-500" : winPercentage >= 50 ? "yellow-500" : "red-500",
-          },
-        ]}
-        badges={[
-          {
-            icon: Award,
-            label: fighter.division,
-            color: "primary"
-          },
-          ...(fighter.champion ? [{
-            icon: Crown,
-            label: "Champion",
-            color: "yellow-500"
-          }] : []),
-          {
-            icon: Activity,
-            label: fighter.stance,
-            color: "muted-foreground"
-          }
-        ]}
-      />
+      {/* Enhanced Hero Section */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-background via-background/95 to-muted/20">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5" />
+        <div className="container mx-auto px-4 py-16">
+          <div className="text-center space-y-8 animate-fadeInUpOnce">
+            {/* Champion Badge */}
+            {fighter.is_champion && (
+              <div className="flex justify-center">
+                <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold text-lg px-6 py-3 animate-pulse">
+                  <Crown className="h-5 w-5 mr-2" />
+                  UFC CHAMPION
+                </Badge>
+              </div>
+            )}
 
-      <div className="container mx-auto px-4 py-8 space-y-8">
+            {/* Fighter Name */}
+            <div className="space-y-4">
+              <h1 className="text-6xl font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
+                {fighter.name}
+              </h1>
+              {fighter.nickname && (
+                <p className="text-2xl text-muted-foreground">
+                  "{fighter.nickname}"
+                </p>
+              )}
+              <p className="text-xl text-primary font-semibold">
+                {fighter.division} Division Fighter
+              </p>
+            </div>
+
+            {/* Key Stats Row */}
+            <div className="flex items-center justify-center gap-8 flex-wrap">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-primary">{fighter.record}</div>
+                <div className="text-sm text-muted-foreground">Overall Record</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-orange-400">{fighter.ufc_record}</div>
+                <div className="text-sm text-muted-foreground">UFC Record</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-green-400">{fighter.age}</div>
+                <div className="text-sm text-muted-foreground">Years Old</div>
+              </div>
+            </div>
+
+            {/* Badges */}
+            <div className="flex items-center justify-center gap-4 flex-wrap">
+              <Badge variant="outline" className="border-primary/30 text-primary px-4 py-2">
+                <Award className="h-4 w-4 mr-2" />
+                {fighter.division}
+              </Badge>
+              <Badge variant="outline" className="border-muted-foreground/30 text-muted-foreground px-4 py-2">
+                <Activity className="h-4 w-4 mr-2" />
+                {fighter.stance}
+              </Badge>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 py-8 space-y-12">
         {/* Fallback Data Notification */}
         {usingFallbackData && (
           <div className="bg-gradient-to-r from-yellow-500/10 to-amber-500/10 border border-yellow-500/30 rounded-xl p-4 animate-fadeInUpOnce">
@@ -535,229 +537,240 @@ export default function FighterProfile() {
             </div>
           </div>
         )}
-        {/* Navigation Tabs */}
-        <div className="flex items-center justify-center">
-          <div className="flex items-center p-1 bg-background/60 rounded-xl border border-border/40 backdrop-blur-sm">
-            {[
-              { id: "overview", label: "Overview", icon: Eye },
-              { id: "stats", label: "Statistics", icon: BarChart3 },
-              { id: "history", label: "Fight History", icon: Swords }
-            ].map((tab) => {
-              const Icon = tab.icon;
-              return (
-                <Button
-                  key={tab.id}
-                  variant={selectedView === tab.id ? "default" : "ghost"}
-                  onClick={() => setSelectedView(tab.id as any)}
-                  className={cn(
-                    "gap-2 transition-all duration-300 px-6 py-3",
-                    selectedView === tab.id ? "bg-primary shadow-lg shadow-primary/20" : "hover:bg-primary/10"
-                  )}
+
+        {/* Physical Attributes */}
+        <section className="space-y-6">
+          <h2 className="text-3xl font-bold text-center">Physical Attributes</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <StatCard
+              icon={Ruler}
+              label="Height"
+              value={fighter.height}
+              color="blue"
+              description="Physical Measurement"
+            />
+            <StatCard
+              icon={Weight}
+              label="Weight"
+              value={fighter.weight}
+              color="green"
+              description="Fighting Weight"
+            />
+            <StatCard
+              icon={Target}
+              label="Reach"
+              value={fighter.reach}
+              color="purple"
+              description="Arm Reach"
+            />
+            <StatCard
+              icon={Footprints}
+              label="Stance"
+              value={fighter.stance}
+              color="orange"
+              description="Fighting Stance"
+            />
+          </div>
+        </section>
+
+        {/* Fighting Record & Performance */}
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Record Overview */}
+          <Card className="bg-gradient-to-br from-primary/15 to-primary/5 border-primary/30 shadow-xl">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-3">
+                <Trophy className="h-6 w-6 text-primary" />
+                Fighting Record
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="text-center space-y-4">
+                <Badge 
+                  variant="outline" 
+                  className={cn(getRecordBadgeColor(fighter.record), "text-2xl px-6 py-3 font-bold")}
                 >
-                  <Icon className="h-4 w-4" />
-                  {tab.label}
-                </Button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Overview Tab */}
-        {selectedView === "overview" && (
-          <div className="space-y-8 animate-fadeInUpOnce">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              <StatCard
-                icon={Ruler}
-                label="Height"
-                value={formatHeight(fighter.height)}
-                color="blue"
-                description="Physical Attribute"
-              />
-              <StatCard
-                icon={Weight}
-                label="Weight"
-                value={`${fighter.weight} lbs`}
-                color="green"
-                description="Fighting Weight"
-              />
-              <StatCard
-                icon={Target}
-                label="Reach"
-                value={`${fighter.reach}"`}
-                color="purple"
-                description="Arm Reach"
-              />
-              <StatCard
-                icon={Flame}
-                label="Finish Rate"
-                value={`${finishPercentage}%`}
-                color="red"
-                description="Non-Decision Wins"
-                progress={finishPercentage}
-              />
-            </div>
-
-            {/* Record and Performance Overview */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <Card className="bg-gradient-to-br from-primary/15 to-primary/5 border-primary/30 shadow-xl">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-3">
-                    <Trophy className="h-6 w-6 text-primary" />
-                    Fighting Record
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <div className="text-center space-y-4">
-                    <Badge 
-                      variant="outline" 
-                      className={cn(getRecordBadgeColor(fighter.record), "text-2xl px-6 py-3 font-bold")}
-                    >
-                      {fighter.record}
+                  {fighter.record}
+                </Badge>
+                <div className="text-sm text-muted-foreground font-medium">Overall Record</div>
+                
+                {fighter.ufc_record && (
+                  <div className="space-y-2">
+                    <div className="text-sm text-muted-foreground font-medium">UFC Record</div>
+                    <Badge variant="secondary" className="text-xl px-4 py-2">
+                      {fighter.ufc_record}
                     </Badge>
-                    {fighter.ufc_record && (
-                      <div className="space-y-2">
-                        <div className="text-sm text-muted-foreground font-medium">UFC Record</div>
-                        <Badge variant="secondary" className="text-xl px-4 py-2">
-                          {fighter.ufc_record}
-                        </Badge>
-                      </div>
-                    )}
-                  </div>
-                  
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center">
-                      <span className="text-muted-foreground font-medium">Win Percentage</span>
-                      <span className="font-bold text-primary text-xl">{winPercentage}%</span>
-                    </div>
-                    <Progress value={winPercentage} className="h-3" />
-                  </div>
-
-                  <div className="grid grid-cols-3 gap-4 text-center">
-                    <div className="space-y-1">
-                      <div className="text-2xl font-bold text-green-400">{recentWins}</div>
-                      <div className="text-xs text-muted-foreground">Wins (Last 10)</div>
-                    </div>
-                    <div className="space-y-1">
-                      <div className="text-2xl font-bold text-primary">{fighter.fight_history?.length || 0}</div>
-                      <div className="text-xs text-muted-foreground">Total Fights</div>
-                    </div>
-                    <div className="space-y-1">
-                      <div className="text-2xl font-bold text-red-400">{finishRate}</div>
-                      <div className="text-xs text-muted-foreground">Finishes</div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-gradient-to-br from-purple-500/15 to-purple-500/5 border-purple-500/30 shadow-xl">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-3">
-                    <Brain className="h-6 w-6 text-purple-400" />
-                    Key Insights
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <div className="space-y-4">
-                    <div className="bg-background/30 rounded-lg p-4 border border-purple-500/20">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Lightbulb className="h-4 w-4 text-purple-400" />
-                        <span className="font-medium text-purple-400">Fighting Style</span>
-                      </div>
-                      <p className="text-sm text-muted-foreground">
-                        {fighter.stance} stance fighter with {winPercentage >= 70 ? "excellent" : winPercentage >= 50 ? "solid" : "developing"} record
-                      </p>
-                    </div>
-
-                    <div className="bg-background/30 rounded-lg p-4 border border-purple-500/20">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Star className="h-4 w-4 text-purple-400" />
-                        <span className="font-medium text-purple-400">Experience Level</span>
-                      </div>
-                      <p className="text-sm text-muted-foreground">
-                        {(fighter.fight_history?.length || 0) >= 10 ? "Veteran fighter" : "Rising prospect"} with {fighter.fight_history?.length || 0} professional fights
-                      </p>
-                    </div>
-
-                    {fighter.champion && (
-                      <div className="bg-gradient-to-r from-yellow-500/20 to-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">
-                        <div className="flex items-center gap-2 mb-2">
-                          <Crown className="h-4 w-4 text-yellow-400" />
-                          <span className="font-medium text-yellow-400">Championship Status</span>
-                        </div>
-                        <p className="text-sm text-muted-foreground">
-                          Current {fighter.division} Division Champion
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        )}
-
-        {/* Statistics Tab */}
-        {selectedView === "stats" && (
-          <div className="space-y-8 animate-fadeInUpOnce">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                { label: "Striking Accuracy", value: fighter.stats["Str. Acc."], icon: Target, color: "blue" },
-                { label: "Striking Defense", value: fighter.stats["Str. Def"], icon: Shield, color: "green" },
-                { label: "Takedown Accuracy", value: fighter.stats["TD Acc."], icon: TrendingUp, color: "purple" },
-                { label: "Takedown Defense", value: fighter.stats["TD Def."], icon: Activity, color: "red" },
-                { label: "Strikes Landed/Min", value: fighter.stats["SLpM"], icon: BarChart3, color: "primary" },
-                { label: "Strikes Absorbed/Min", value: fighter.stats["SApM"], icon: TrendingDown, color: "primary" },
-                { label: "Takedown Average", value: fighter.stats["TD Avg."], icon: Hash, color: "primary" },
-                { label: "Submission Average", value: fighter.stats["Sub. Avg."], icon: Swords, color: "primary" },
-              ].map((stat, index) => {
-                const percentage = parseFloat(stat.value?.replace('%', '') || '0');
-                return (
-                  <StatCard
-                    key={index}
-                    icon={stat.icon}
-                    label={stat.label}
-                    value={stat.value || "N/A"}
-                    color={stat.color}
-                    progress={stat.value?.includes('%') ? percentage : undefined}
-                  />
-                );
-              })}
-            </div>
-          </div>
-        )}
-
-        {/* Fight History Tab */}
-        {selectedView === "history" && (
-          <div className="space-y-8 animate-fadeInUpOnce">
-            <Card className="bg-gradient-to-br from-card to-muted/20 shadow-xl">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3">
-                  <Swords className="h-6 w-6 text-primary" />
-                  Complete Fight History
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                {fighter.fight_history && fighter.fight_history.length > 0 ? (
-                  <div className="space-y-4">
-                    {fighter.fight_history.map((fight, index) => (
-                      <FightHistoryCard key={index} fight={fight} index={index} />
-                    ))}
-                  </div>
-                ) : (
-                  <div className="text-center py-12 space-y-4">
-                    <div className="w-20 h-20 mx-auto bg-muted/30 rounded-full flex items-center justify-center">
-                      <Swords className="h-10 w-10 text-muted-foreground" />
-                    </div>
-                    <div className="space-y-2">
-                      <h4 className="text-xl font-semibold text-muted-foreground">No Fight History Available</h4>
-                      <p className="text-muted-foreground">Fighter data not yet available in our database</p>
-                    </div>
                   </div>
                 )}
-              </CardContent>
-            </Card>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="flex justify-between items-center">
+                  <span className="text-muted-foreground font-medium">Overall Win Rate</span>
+                  <span className="font-bold text-primary text-xl">{winPercentage}%</span>
+                </div>
+                <Progress value={winPercentage} className="h-3" />
+                
+                {fighter.ufc_record && (
+                  <>
+                    <div className="flex justify-between items-center">
+                      <span className="text-muted-foreground font-medium">UFC Win Rate</span>
+                      <span className="font-bold text-orange-400 text-xl">{ufcWinPercentage}%</span>
+                    </div>
+                    <Progress value={ufcWinPercentage} className="h-3" />
+                  </>
+                )}
+              </div>
+
+              <div className="grid grid-cols-3 gap-4 text-center">
+                <div className="space-y-1">
+                  <div className="text-2xl font-bold text-green-400">{recentWins}</div>
+                  <div className="text-xs text-muted-foreground">Wins (Last 10)</div>
+                </div>
+                <div className="space-y-1">
+                  <div className="text-2xl font-bold text-primary">{fighter.fight_history?.length || 0}</div>
+                  <div className="text-xs text-muted-foreground">Total Fights</div>
+                </div>
+                <div className="space-y-1">
+                  <div className="text-2xl font-bold text-red-400">{finishRate}</div>
+                  <div className="text-xs text-muted-foreground">Finishes</div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Enhanced Key Insights */}
+          <Card className="bg-gradient-to-br from-purple-500/15 to-purple-500/5 border-purple-500/30 shadow-xl">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-3">
+                <Brain className="h-6 w-6 text-purple-400" />
+                Fighter Analysis
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="space-y-4">
+                <div className="bg-background/30 rounded-lg p-4 border border-purple-500/20">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Radar className="h-4 w-4 text-purple-400" />
+                    <span className="font-medium text-purple-400">Fighting Style Analysis</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    {fighter.stance} stance fighter with {winPercentage >= 70 ? "excellent" : winPercentage >= 50 ? "solid" : "developing"} record. 
+                    Shows {finishPercentage >= 50 ? "aggressive finishing ability" : "technical decision-focused approach"}.
+                  </p>
+                </div>
+
+                <div className="bg-background/30 rounded-lg p-4 border border-purple-500/20">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Star className="h-4 w-4 text-purple-400" />
+                    <span className="font-medium text-purple-400">Experience & Competition Level</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    {(fighter.fight_history?.length || 0) >= 15 ? "Seasoned veteran" : (fighter.fight_history?.length || 0) >= 8 ? "Experienced fighter" : "Rising prospect"} with {fighter.fight_history?.length || 0} professional fights. 
+                    UFC record of {fighter.ufc_record} demonstrates {ufcWinPercentage >= 70 ? "elite" : ufcWinPercentage >= 50 ? "competitive" : "developing"} level performance.
+                  </p>
+                </div>
+
+                <div className="bg-background/30 rounded-lg p-4 border border-purple-500/20">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Flame className="h-4 w-4 text-purple-400" />
+                    <span className="font-medium text-purple-400">Finishing Ability</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    {finishPercentage}% finish rate indicates {finishPercentage >= 60 ? "excellent finishing instincts" : finishPercentage >= 40 ? "solid finishing ability" : "decision-oriented fighting style"}. 
+                    Prefers {finishPercentage >= 50 ? "to end fights early" : "to control pace and win on points"}.
+                  </p>
+                </div>
+
+                {fighter.is_champion && (
+                  <div className="bg-gradient-to-r from-yellow-500/20 to-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Crown className="h-4 w-4 text-yellow-400" />
+                      <span className="font-medium text-yellow-400">Championship Status</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      Current {fighter.division} Division Champion, representing the pinnacle of skill in the weight class.
+                    </p>
+                  </div>
+                )}
+
+                <div className="bg-background/30 rounded-lg p-4 border border-purple-500/20">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Gauge className="h-4 w-4 text-purple-400" />
+                    <span className="font-medium text-purple-400">Performance Metrics</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3 text-xs">
+                    <div>Striking Accuracy: {fighter.stats["Str. Acc."]}</div>
+                    <div>Takedown Accuracy: {fighter.stats["TD Acc."]}</div>
+                    <div>Striking Defense: {fighter.stats["Str. Def"]}</div>
+                    <div>Takedown Defense: {fighter.stats["TD Def."]}</div>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* Detailed Statistics */}
+        <section className="space-y-6">
+          <h2 className="text-3xl font-bold text-center">Performance Statistics</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { label: "Strikes Landed/Min", value: fighter.stats["SLpM"], icon: Fists, color: "blue" },
+              { label: "Striking Accuracy", value: fighter.stats["Str. Acc."], icon: Target, color: "green", progress: parseFloat(fighter.stats["Str. Acc."]?.replace('%', '') || '0') },
+              { label: "Strikes Absorbed/Min", value: fighter.stats["SApM"], icon: Shield, color: "red" },
+              { label: "Striking Defense", value: fighter.stats["Str. Def"], icon: Shield, color: "purple", progress: parseFloat(fighter.stats["Str. Def"]?.replace('%', '') || '0') },
+              { label: "Takedown Average", value: fighter.stats["TD Avg."], icon: Crosshair, color: "orange" },
+              { label: "Takedown Accuracy", value: fighter.stats["TD Acc."], icon: Target, color: "green", progress: parseFloat(fighter.stats["TD Acc."]?.replace('%', '') || '0') },
+              { label: "Takedown Defense", value: fighter.stats["TD Def."], icon: Shield, color: "blue", progress: parseFloat(fighter.stats["TD Def."]?.replace('%', '') || '0') },
+              { label: "Submission Average", value: fighter.stats["Sub. Avg."], icon: Dumbbell, color: "red" },
+            ].map((stat, index) => (
+              <StatCard
+                key={index}
+                icon={stat.icon}
+                label={stat.label}
+                value={stat.value || "N/A"}
+                color={stat.color}
+                progress={stat.progress}
+              />
+            ))}
           </div>
-        )}
+        </section>
+
+        {/* Complete Fight History */}
+        <section className="space-y-6">
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl font-bold">Complete Fight History</h2>
+            <p className="text-muted-foreground">Detailed breakdown of all professional fights with performance metrics</p>
+          </div>
+          
+          <Card className="bg-gradient-to-br from-card to-muted/20 shadow-xl">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-3">
+                <Swords className="h-6 w-6 text-primary" />
+                Professional Record ({fighter.fight_history?.length || 0} fights)
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              {fighter.fight_history && fighter.fight_history.length > 0 ? (
+                <div className="space-y-4">
+                  {fighter.fight_history.map((fight, index) => (
+                    <FightHistoryCard key={index} fight={fight} index={index} />
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-12 space-y-4">
+                  <div className="w-20 h-20 mx-auto bg-muted/30 rounded-full flex items-center justify-center">
+                    <Swords className="h-10 w-10 text-muted-foreground" />
+                  </div>
+                  <div className="space-y-2">
+                    <h4 className="text-xl font-semibold text-muted-foreground">No Fight History Available</h4>
+                    <p className="text-muted-foreground">Fighter data not yet available in our database</p>
+                  </div>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </section>
 
         {/* Action Buttons */}
         <div className="flex justify-center gap-4 pt-8">
