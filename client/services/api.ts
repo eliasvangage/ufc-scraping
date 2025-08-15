@@ -113,12 +113,15 @@ class ApiService {
       });
 
       if (!response.ok) {
+        console.warn(`Full fighters API returned ${response.status}: ${response.statusText}`);
         throw new Error(`Failed to fetch full fighters: ${response.status} ${response.statusText}`);
       }
 
-      return await response.json();
+      const data = await response.json();
+      console.log('Full fighters data received, count:', data.length);
+      return data;
     } catch (error) {
-      console.warn('Full fighter data unavailable');
+      console.warn('Full fighter data unavailable, error:', error);
       throw error;
     }
   }
