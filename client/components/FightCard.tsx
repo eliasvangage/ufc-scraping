@@ -17,6 +17,7 @@ import {
   Flame,
   BarChart3,
   Zap,
+  AlertCircle,
 } from "lucide-react";
 
 interface FightCardProps {
