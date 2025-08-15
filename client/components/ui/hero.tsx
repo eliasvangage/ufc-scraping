@@ -41,10 +41,10 @@ export function Hero({
         return {
           bg: "bg-gradient-to-br from-background via-muted/5 to-background",
           overlay:
-            "bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(255,103,0,0.1),transparent)]",
+            "bg-[radial-gradient(ellipse_120%_80%_at_50%_-20%,rgba(255,103,0,0.15),rgba(255,103,0,0.05),transparent)]",
           accent:
-            "bg-[linear-gradient(45deg,transparent_25%,rgba(255,103,0,0.05)_50%,transparent_75%)]",
-          titleGradient: "from-foreground via-primary to-primary/70",
+            "bg-[linear-gradient(135deg,transparent_20%,rgba(255,103,0,0.08)_45%,rgba(255,215,0,0.06)_55%,transparent_80%)]",
+          titleGradient: "from-foreground via-primary to-yellow-400",
           iconColors: "text-primary",
         };
       case "combat":
