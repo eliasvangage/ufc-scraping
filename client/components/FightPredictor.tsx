@@ -201,16 +201,27 @@ export function FightPredictor() {
         stats={[
           {
             icon: Users,
-            label: "Fighters",
+            label: "Active Fighters",
             value: availableFighters.length,
             color: "primary",
+          },
+          {
+            icon: Target,
+            label: usingMockData ? "Demo Predictions" : "Live AI Predictions",
+            value: "✨",
+            color: usingMockData ? "yellow-500" : "green-500",
           },
         ]}
         badges={[
           {
-            icon: Target,
-            label: usingMockData ? "Demo Mode" : "Live Predictions",
-            color: usingMockData ? "yellow-500" : "green-500",
+            icon: Activity,
+            label: "Real-Time Analysis",
+            color: "blue-500",
+          },
+          {
+            icon: Zap,
+            label: "ML Powered",
+            color: "purple-500",
           },
         ]}
       />
