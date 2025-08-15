@@ -240,6 +240,90 @@ export default function EventDetail() {
     }
   };
 
+  const NoStatsCard = ({
+    fighter,
+    corner,
+  }: {
+    fighter: string;
+    corner: "red" | "blue";
+  }) => {
+    const cornerColors = {
+      red: {
+        bg: "from-red-500/20 via-red-500/10 to-red-500/5",
+        border: "border-red-500/30",
+        accent: "text-red-400",
+        icon: "text-red-400",
+      },
+      blue: {
+        bg: "from-blue-500/20 via-blue-500/10 to-blue-500/5",
+        border: "border-blue-500/30",
+        accent: "text-blue-400",
+        icon: "text-blue-400",
+      },
+    };
+
+    return (
+      <Card
+        className={`bg-gradient-to-br ${cornerColors[corner].bg} ${cornerColors[corner].border} shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] opacity-70`}
+      >
+        <CardContent className="p-6 space-y-6">
+          {/* Fighter Name */}
+          <div className="text-center space-y-3">
+            <h3 className={`text-2xl font-bold ${cornerColors[corner].accent}`}>
+              {fighter}
+            </h3>
+            <Badge
+              variant="outline"
+              className={`${cornerColors[corner].border} ${cornerColors[corner].accent} text-lg px-3 py-1`}
+            >
+              UFC Debut
+            </Badge>
+          </div>
+
+          {/* No Stats Icon */}
+          <div className="flex flex-col items-center justify-center py-12 space-y-4">
+            <div className="relative">
+              <div className="w-32 h-32 rounded-full bg-muted/20 flex items-center justify-center border-2 border-dashed border-muted/40">
+                <svg
+                  className={`w-16 h-16 ${cornerColors[corner].accent} opacity-60`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                  />
+                </svg>
+              </div>
+              <div className="absolute -top-2 -right-2">
+                <div className="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center shadow-lg">
+                  <span className="text-sm font-bold text-black">?</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center space-y-2">
+              <h4 className="text-xl font-bold text-muted-foreground">
+                No UFC Stats Available
+              </h4>
+              <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
+                This fighter is making their UFC debut or their data is not available in our database
+              </p>
+              <Badge variant="secondary" className="mt-2">
+                <Activity className="h-3 w-3 mr-1" />
+                First UFC Fight
+              </Badge>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  };
+
   const FighterStatsCard = ({
     fighter,
     corner,
