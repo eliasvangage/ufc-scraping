@@ -562,7 +562,7 @@ export default function FighterProfile() {
               description="Arm Reach"
             />
             <StatCard
-              icon={Footprints}
+              icon={Activity}
               label="Stance"
               value={fighter.stance}
               color="orange"
