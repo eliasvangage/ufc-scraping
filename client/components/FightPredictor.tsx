@@ -24,6 +24,8 @@ import {
   ChevronLeft,
   ChevronRight,
   History,
+  Activity,
+  Zap,
 } from "lucide-react";
 import { apiService, type PredictionResponse } from "@/services/api";
 import { FighterSearch } from "./FighterSearch";
