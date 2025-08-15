@@ -37,6 +37,7 @@ import {
 } from "lucide-react";
 import { Hero } from "@/components/ui/hero";
 import { cn } from "@/lib/utils";
+import { apiService } from "@/services/api";
 
 interface FightHistory {
   result: "win" | "loss" | "draw";
