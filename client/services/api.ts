@@ -194,6 +194,36 @@ class ApiService {
     return Array.from({ length: 5 }, (_, i) => results[Math.abs(seed + i) % 3]);
   }
 
+  private generateMockFightHistory(seed: number, totalFights: number): Array<{
+    opponent: string;
+    result: string;
+    event: string;
+    date?: string;
+    method?: string;
+  }> {
+    const opponents = [
+      "Alex Smith", "Mike Johnson", "Carlos Rodriguez", "Tony Ferguson",
+      "Daniel Williams", "Ryan Miller", "Jake Anderson", "Matt Brown"
+    ];
+    const methods = ["Decision", "TKO", "Submission", "KO"];
+    const events = ["UFC 300", "UFC 295", "UFC 290", "UFC 285", "UFC 280"];
+
+    return Array.from({ length: Math.min(totalFights, 8) }, (_, i) => {
+      const opponentIndex = Math.abs(seed + i) % opponents.length;
+      const methodIndex = Math.abs(seed + i * 2) % methods.length;
+      const eventIndex = Math.abs(seed + i * 3) % events.length;
+      const isWin = Math.abs(seed + i) % 3 !== 0; // 2/3 chance of win
+
+      return {
+        opponent: opponents[opponentIndex],
+        result: isWin ? "win" : "loss",
+        event: events[eventIndex],
+        method: methods[methodIndex],
+        date: new Date(2024 - i, Math.abs(seed + i) % 12, 1).toISOString(),
+      };
+    });
+  }
+
   async predictFight(request: PredictionRequest): Promise<PredictionResponse> {
     try {
       const response = await fetch(`${this.baseUrl}/predict`, {
