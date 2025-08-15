@@ -719,10 +719,10 @@ export default function FighterProfile() {
               { label: "Striking Accuracy", value: fighter.stats["Str. Acc."], icon: Target, color: "green", progress: parseFloat(fighter.stats["Str. Acc."]?.replace('%', '') || '0') },
               { label: "Strikes Absorbed/Min", value: fighter.stats["SApM"], icon: Shield, color: "red" },
               { label: "Striking Defense", value: fighter.stats["Str. Def"], icon: Shield, color: "purple", progress: parseFloat(fighter.stats["Str. Def"]?.replace('%', '') || '0') },
-              { label: "Takedown Average", value: fighter.stats["TD Avg."], icon: Crosshair, color: "orange" },
+              { label: "Takedown Average", value: fighter.stats["TD Avg."], icon: Target, color: "orange" },
               { label: "Takedown Accuracy", value: fighter.stats["TD Acc."], icon: Target, color: "green", progress: parseFloat(fighter.stats["TD Acc."]?.replace('%', '') || '0') },
               { label: "Takedown Defense", value: fighter.stats["TD Def."], icon: Shield, color: "blue", progress: parseFloat(fighter.stats["TD Def."]?.replace('%', '') || '0') },
-              { label: "Submission Average", value: fighter.stats["Sub. Avg."], icon: Dumbbell, color: "red" },
+              { label: "Submission Average", value: fighter.stats["Sub. Avg."], icon: Activity, color: "red" },
             ].map((stat, index) => (
               <StatCard
                 key={index}
