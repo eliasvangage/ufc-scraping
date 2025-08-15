@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { Progress } from "@/components/ui/progress";
 import {
   Shield,
   TrendingUp,
@@ -22,6 +23,10 @@ import {
   ChevronLeft,
   ChevronRight,
   History,
+  AlertTriangle,
+  Brain,
+  Flame,
+  Eye,
 } from "lucide-react";
 import {
   isEventPast,
