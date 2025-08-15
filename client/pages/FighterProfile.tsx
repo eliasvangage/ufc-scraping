@@ -367,13 +367,31 @@ export default function FighterProfile() {
     return "bg-red-500/20 text-red-400 border-red-500/30";
   };
 
-  const formatHeight = (height: string): string => {
-    if (height.includes("'")) return height;
-    const inches = parseInt(height);
-    if (isNaN(inches)) return height;
+  const formatHeight = (height: string | number): string => {
+    if (typeof height === 'string' && height.includes("'")) return height;
+    const inches = typeof height === 'number' ? height : parseInt(height?.toString() || '0');
+    if (isNaN(inches) || inches === 0) return "Unknown";
     const feet = Math.floor(inches / 12);
     const remainingInches = inches % 12;
     return `${feet}'${remainingInches}"`;
+  };
+
+  const calculateAge = (): number => {
+    // Default age - could calculate from dob if available in API
+    return 30;
+  };
+
+  const getDivisionFromWeight = (weight: number): string => {
+    if (!weight) return "Unknown";
+    if (weight <= 115) return "Strawweight";
+    if (weight <= 125) return "Flyweight";
+    if (weight <= 135) return "Bantamweight";
+    if (weight <= 145) return "Featherweight";
+    if (weight <= 155) return "Lightweight";
+    if (weight <= 170) return "Welterweight";
+    if (weight <= 185) return "Middleweight";
+    if (weight <= 205) return "Light Heavyweight";
+    return "Heavyweight";
   };
 
   if (loading) {
