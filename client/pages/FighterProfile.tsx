@@ -243,7 +243,7 @@ export default function FighterProfile() {
           const transformedFighter: Fighter = {
             name: fighterData.name,
             nickname: "", // Will extract from API if available
-            height: this.formatHeight(fighterData.height),
+            height: formatHeight(fighterData.height),
             weight: fighterData.weight ? `${fighterData.weight} lbs` : "Unknown",
             reach: fighterData.reach ? `${fighterData.reach}"` : "Unknown",
             stance: "Orthodox", // Default stance
@@ -272,8 +272,8 @@ export default function FighterProfile() {
               time: fight.time || "5:00"
             })) || [],
             dob: "", // Extract from API if available
-            age: this.calculateAge(), // Calculate or use API
-            division: this.getDivisionFromWeight(fighterData.weight),
+            age: calculateAge(), // Calculate or use API
+            division: getDivisionFromWeight(fighterData.weight),
             champion: fighterData.is_champion || false,
             ufc_record: fighterData.record,
             ufc_wins: fighterData.ufc_wins || 0,
