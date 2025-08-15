@@ -464,7 +464,7 @@ export default function Index() {
                 </div>
                 <div className="text-4xl font-bold text-green-400">
                   {
-                    allFights.filter((fight) => fight.confidenceScore >= 75)
+                    allFights.filter((fight) => fight.confidenceScore >= 65)
                       .length
                   }
                 </div>
