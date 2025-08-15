@@ -473,7 +473,7 @@ export default function Index() {
                 High Confidence
               </div>
               <div className="text-sm text-slate-400 mt-1">
-                75%+ confidence picks
+                65%+ confidence picks
               </div>
             </CardContent>
           </Card>
