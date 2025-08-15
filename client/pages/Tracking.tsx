@@ -676,7 +676,7 @@ export default function Index() {
                                       {isTossUp && (
                                         <Badge
                                           variant="outline"
-                                          className="text-yellow-400 border-yellow-400/30 bg-yellow-400/10 text-xs"
+                                          className="text-yellow-400 border-yellow-400/30 bg-yellow-400/10 text-xs whitespace-nowrap"
                                         >
                                           <AlertTriangle className="h-3 w-3 mr-1" />
                                           Toss-Up
