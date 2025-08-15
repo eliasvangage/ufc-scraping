@@ -164,28 +164,47 @@ class ApiService {
 
       console.log('Fighter data found:', fighterData);
 
-      // Parse the real API structure
+      // Return the fighter data in the expected format
       return {
         name: fighterData.name,
-        weight: parseFloat(fighterData.weight?.replace(/[^\d.]/g, '') || '0') || 0,
-        height: this.parseHeight(fighterData.height || '0'),
-        reach: parseFloat(fighterData.reach?.replace(/[^\d.]/g, '') || '0') || 0,
+        nickname: fighterData.nickname || "",
+        height: fighterData.height || "",
+        weight: fighterData.weight || "",
+        reach: fighterData.reach || "",
+        stance: fighterData.stance || "Orthodox",
+        record: fighterData.record || "0-0-0",
+        profile_url: fighterData.profile_url || "",
+        stats: fighterData.stats || {
+          "SLpM": "0.00",
+          "Str. Acc.": "0%",
+          "SApM": "0.00",
+          "Str. Def": "0%",
+          "TD Avg.": "0.00",
+          "TD Acc.": "0%",
+          "TD Def.": "0%",
+          "Sub. Avg.": "0.0"
+        },
+        fight_history: fighterData.fight_history || [],
+        dob: fighterData.dob || "",
+        age: fighterData.age || this.calculateAgeFromDob(fighterData.dob),
+        division: this.getDivisionFromWeight(fighterData.weight),
+        is_champion: fighterData.is_champion || false,
+        ufc_record: fighterData.record || "0-0-0",
+        ufc_wins: this.countWins(fighterData.fight_history || []),
+        ufc_losses: this.countLosses(fighterData.fight_history || []),
+        ufc_draws: this.countDraws(fighterData.fight_history || []),
+
+        // Computed fields for internal use
         slpm: parseFloat(fighterData.stats?.SLpM || '0') || 0,
         sapm: parseFloat(fighterData.stats?.SApM || '0') || 0,
         tdAvg: parseFloat(fighterData.stats?.["TD Avg."] || '0') || 0,
         tdDef: parseFloat(fighterData.stats?.["TD Def."]?.replace('%', '') || '0') || 0,
         strAcc: parseFloat(fighterData.stats?.["Str. Acc."]?.replace('%', '') || '0') || 0,
         strDef: parseFloat(fighterData.stats?.["Str. Def"]?.replace('%', '') || '0') || 0,
-        fight_history: fighterData.fight_history || [],
-        recent_form_score: 0, // Calculate from fight history
-        win_streak_score: 0, // Calculate from fight history
-        avg_opp_strength: 0, // Calculate from fight history
+        recent_form_score: 0,
+        win_streak_score: 0,
+        avg_opp_strength: 0,
         last_results: this.getLastResults(fighterData.fight_history || []),
-        is_champion: false, // Not provided in API, could add logic to determine
-        record: fighterData.record || "0-0-0",
-        ufc_wins: this.countWins(fighterData.fight_history || []),
-        ufc_losses: this.countLosses(fighterData.fight_history || []),
-        ufc_draws: this.countDraws(fighterData.fight_history || []),
         ko_pct: this.calculateFinishPercentage(fighterData.fight_history || [], ['KO', 'TKO']),
         dec_pct: this.calculateFinishPercentage(fighterData.fight_history || [], ['DEC', 'U-DEC']),
         sub_pct: this.calculateFinishPercentage(fighterData.fight_history || [], ['SUB']),
