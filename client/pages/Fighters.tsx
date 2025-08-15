@@ -977,6 +977,7 @@ export default function Fighters() {
                               className="gap-2"
                               onClick={(e) => {
                                 e.stopPropagation();
+                                console.log('List view: Navigating to fighter profile:', fighter.name);
                                 navigate(
                                   `/fighter/${encodeURIComponent(fighter.name)}`,
                                 );
