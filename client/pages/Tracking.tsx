@@ -258,6 +258,16 @@ export default function Index() {
     setExpandedEvents(newExpanded);
   };
 
+  const toggleFightDetails = (fightId: string) => {
+    const newExpanded = new Set(expandedFights);
+    if (newExpanded.has(fightId)) {
+      newExpanded.delete(fightId);
+    } else {
+      newExpanded.add(fightId);
+    }
+    setExpandedFights(newExpanded);
+  };
+
   const formatOdds = (odds: string) => {
     return odds.startsWith("+") ? odds : odds;
   };
