@@ -35,9 +35,7 @@ import {
   Lightbulb,
   Hash,
   Zap,
-  Crosshair,
   Gauge,
-  Dumbbell,
   Footprints,
   Radar
 } from "lucide-react";
