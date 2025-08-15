@@ -1,36 +1,57 @@
 export interface Fighter {
   name: string;
-  weight: number | null;
-  height: number | null;
-  reach: number | null;
-  slpm: number;
-  sapm: number;
-  tdAvg: number;
-  tdDef: number;
-  strAcc: number;
-  strDef: number;
-  fight_history: Array<{
-    opponent: string;
-    result: string;
-    event: string;
-    date?: string;
-    method?: string; // Added in case we send the finish method from backend
-  }>;
-  recent_form_score: number;
-  win_streak_score: number;
-  avg_opp_strength: number;
-  last_results: string[];
-  is_champion: boolean;
-
+  nickname?: string;
+  height?: string | number;
+  weight?: string | number;
+  reach?: string | number;
+  stance?: string;
   record: string;
-  ufc_wins: number;
-  ufc_losses: number;
-  ufc_draws: number;
+  profile_url?: string;
+  stats: {
+    "SLpM": string;
+    "Str. Acc.": string;
+    "SApM": string;
+    "Str. Def": string;
+    "TD Avg.": string;
+    "TD Acc.": string;
+    "TD Def.": string;
+    "Sub. Avg.": string;
+  };
+  fight_history: Array<{
+    result: "win" | "loss" | "draw";
+    opponent: string;
+    KD: string;
+    STR: string;
+    TD: string;
+    SUB: string;
+    event: string;
+    method: string;
+    round: string;
+    time: string;
+  }>;
+  dob?: string;
+  age?: number;
+  division?: string;
+  is_champion?: boolean;
+  ufc_record?: string;
+  ufc_wins?: number;
+  ufc_losses?: number;
+  ufc_draws?: number;
 
-  // 🆕 Added for finish method percentages
-  ko_pct: number;
-  dec_pct: number;
-  sub_pct: number;
+  // Internal computed fields
+  slpm?: number;
+  sapm?: number;
+  tdAvg?: number;
+  tdDef?: number;
+  strAcc?: number;
+  strDef?: number;
+  recent_form_score?: number;
+  win_streak_score?: number;
+  avg_opp_strength?: number;
+  last_results?: string[];
+  ko_pct?: number;
+  dec_pct?: number;
+  sub_pct?: number;
 }
 
 export interface PredictionRequest {
