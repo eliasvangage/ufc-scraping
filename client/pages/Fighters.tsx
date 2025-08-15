@@ -441,7 +441,13 @@ export default function Fighters() {
     const isUFCVeteran = isUFCFighter(fighter);
 
     return (
-      <Card className="group relative overflow-hidden bg-gradient-to-br from-card via-card/90 to-muted/30 border-border hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 hover:scale-[1.02] w-full">
+      <Card
+        className="group relative overflow-hidden bg-gradient-to-br from-card via-card/90 to-muted/30 border-border hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 hover:scale-[1.02] w-full cursor-pointer"
+        onClick={() => {
+          console.log('Fighter card clicked:', fighter.name);
+          navigate(`/fighter/${encodeURIComponent(fighter.name)}`);
+        }}
+      >
         {/* Animated background glow */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
