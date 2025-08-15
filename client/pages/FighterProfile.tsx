@@ -715,7 +715,7 @@ export default function FighterProfile() {
           <h2 className="text-3xl font-bold text-center">Performance Statistics</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { label: "Strikes Landed/Min", value: fighter.stats["SLpM"], icon: Fists, color: "blue" },
+              { label: "Strikes Landed/Min", value: fighter.stats["SLpM"], icon: Zap, color: "blue" },
               { label: "Striking Accuracy", value: fighter.stats["Str. Acc."], icon: Target, color: "green", progress: parseFloat(fighter.stats["Str. Acc."]?.replace('%', '') || '0') },
               { label: "Strikes Absorbed/Min", value: fighter.stats["SApM"], icon: Shield, color: "red" },
               { label: "Striking Defense", value: fighter.stats["Str. Def"], icon: Shield, color: "purple", progress: parseFloat(fighter.stats["Str. Def"]?.replace('%', '') || '0') },
