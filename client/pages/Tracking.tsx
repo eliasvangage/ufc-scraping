@@ -34,6 +34,7 @@ import {
   formatEventDate,
 } from "@/lib/dateUtils";
 import { Hero } from "@/components/ui/hero";
+import { cn } from "@/lib/utils";
 
 interface Fight {
   fighter1: string;
