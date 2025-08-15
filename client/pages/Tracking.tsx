@@ -190,23 +190,15 @@ const PredictionDetailsCard = ({ fight }: { fight: Fight }) => {
         </div>
       )}
 
-      {/* Result Section */}
-      <div className="bg-background/20 rounded-lg p-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Trophy className="h-4 w-4 text-primary" />
-            <h5 className="font-semibold text-sm">Actual Result</h5>
-          </div>
+      {/* Result Section - Only show for completed events */}
+      {!isPending && (
+        <div className="bg-background/20 rounded-lg p-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Trophy className="h-4 w-4 text-primary" />
+              <h5 className="font-semibold text-sm">Actual Result</h5>
+            </div>
 
-          {isPending ? (
-            <Badge
-              variant="outline"
-              className="text-muted-foreground border-border"
-            >
-              <Clock className="h-3 w-3 mr-1" />
-              Pending
-            </Badge>
-          ) : (
             <div className="flex items-center gap-2">
               {isCorrect ? (
                 <CheckCircle className="h-5 w-5 text-green-400" />
@@ -224,9 +216,9 @@ const PredictionDetailsCard = ({ fight }: { fight: Fight }) => {
                 {isCorrect ? "Prediction Correct" : "Prediction Incorrect"}
               </Badge>
             </div>
-          )}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
