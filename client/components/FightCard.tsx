@@ -562,7 +562,7 @@ export function FightCard({
                   <div className="flex justify-center gap-4 mb-4">
                     <Badge
                       variant="outline"
-                      className="text-xl py-3 px-6 bg-gradient-to-r from-yellow-500/20 to-yellow-500/10 border-yellow-500/30 text-yellow-400 shadow-lg"
+                      className="text-xl py-3 px-6 bg-gradient-to-r from-yellow-500/20 to-yellow-500/10 border-yellow-500/30 text-yellow-400 shadow-lg whitespace-nowrap"
                     >
                       <Target className="h-5 w-5 mr-2" />
                       50/50 Split
