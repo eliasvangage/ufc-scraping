@@ -1140,60 +1140,103 @@ export default function EventDetail() {
                                 </div>
                               )}
 
-                              {prediction && (
-                                <div className="space-y-6 relative">
-                                  <div className="text-center bg-gradient-to-r from-background/50 via-muted/20 to-background/50 p-6 rounded-xl border border-border/30">
-                                    <div className="mb-4">
-                                      <div className="text-sm text-muted-foreground mb-2">
-                                        ORACLE PREDICTION
-                                      </div>
-                                      <h3 className="text-3xl font-bold bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent mb-3">
-                                        {prediction.predicted_winner} VICTORIOUS
-                                      </h3>
-                                    </div>
-                                    <div className="flex justify-center gap-4">
-                                      <Badge
-                                        variant="default"
-                                        className="text-xl py-3 px-6 bg-gradient-to-r from-primary to-primary/80 shadow-lg shadow-primary/20"
-                                      >
-                                        <Zap className="h-5 w-5 mr-2" />
-                                        {prediction.confidence}% Confidence
-                                      </Badge>
-                                      {prediction.rematch && (
-                                        <Badge
-                                          variant="secondary"
-                                          className="text-xl py-3 px-6 shadow-lg"
-                                        >
-                                          <Activity className="h-4 w-4 mr-2" />
-                                          REMATCH
-                                        </Badge>
-                                      )}
-                                    </div>
-                                  </div>
+                              {prediction && (() => {
+                                const isTossUp = prediction.predicted_winner === "Toss Up" || prediction.confidence === 50;
 
-                                  <div>
-                                    <h4 className="font-semibold mb-3">
-                                      Key Advantages:
-                                    </h4>
-                                    <div className="grid sm:grid-cols-2 gap-2">
-                                      {prediction.stat_favors.map(
-                                        (stat, index) => (
-                                          <div
-                                            key={index}
-                                            className="flex items-center gap-2 p-2 bg-background/50 rounded-lg"
-                                          >
-                                            <div className="h-2 w-2 bg-primary rounded-full" />
-                                            <span className="text-sm">
-                                              <strong>{stat.stat}:</strong>{" "}
-                                              {stat.favors}
-                                            </span>
-                                          </div>
-                                        ),
-                                      )}
+                                return (
+                                  <div className="space-y-6 relative">
+                                    <div className="text-center bg-gradient-to-r from-background/50 via-muted/20 to-background/50 p-6 rounded-xl border border-border/30">
+                                      <div className="mb-4">
+                                        <div className="text-sm text-muted-foreground mb-2">
+                                          ORACLE PREDICTION
+                                        </div>
+                                        {isTossUp ? (
+                                          <h3 className="text-3xl font-bold bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 bg-clip-text text-transparent mb-3">
+                                            TOO CLOSE TO CALL
+                                          </h3>
+                                        ) : (
+                                          <h3 className="text-3xl font-bold bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent mb-3">
+                                            {prediction.predicted_winner} VICTORIOUS
+                                          </h3>
+                                        )}
+                                      </div>
+                                      <div className="flex justify-center gap-4">
+                                        {isTossUp ? (
+                                          <>
+                                            <Badge
+                                              variant="outline"
+                                              className="text-xl py-3 px-6 bg-gradient-to-r from-yellow-500/20 to-yellow-500/10 border-yellow-500/30 text-yellow-400 shadow-lg"
+                                            >
+                                              <Target className="h-5 w-5 mr-2" />
+                                              50/50 Split
+                                            </Badge>
+                                            <Badge
+                                              variant="secondary"
+                                              className="text-xl py-3 px-6 shadow-lg"
+                                            >
+                                              Insufficient Data
+                                            </Badge>
+                                          </>
+                                        ) : (
+                                          <>
+                                            <Badge
+                                              variant="default"
+                                              className="text-xl py-3 px-6 bg-gradient-to-r from-primary to-primary/80 shadow-lg shadow-primary/20"
+                                            >
+                                              <Zap className="h-5 w-5 mr-2" />
+                                              {prediction.confidence}% Confidence
+                                            </Badge>
+                                            {prediction.rematch && (
+                                              <Badge
+                                                variant="secondary"
+                                                className="text-xl py-3 px-6 shadow-lg"
+                                              >
+                                                <Activity className="h-4 w-4 mr-2" />
+                                                REMATCH
+                                              </Badge>
+                                            )}
+                                          </>
+                                        )}
+                                      </div>
                                     </div>
+
+                                    {/* Only show key advantages for non-toss-up predictions */}
+                                    {!isTossUp && (
+                                      <div>
+                                        <h4 className="font-semibold mb-3">
+                                          Key Advantages:
+                                        </h4>
+                                        <div className="grid sm:grid-cols-2 gap-2">
+                                          {prediction.stat_favors.map(
+                                            (stat, index) => (
+                                              <div
+                                                key={index}
+                                                className="flex items-center gap-2 p-2 bg-background/50 rounded-lg"
+                                              >
+                                                <div className="h-2 w-2 bg-primary rounded-full" />
+                                                <span className="text-sm">
+                                                  <strong>{stat.stat}:</strong>{" "}
+                                                  {stat.favors}
+                                                </span>
+                                              </div>
+                                            ),
+                                          )}
+                                        </div>
+                                      </div>
+                                    )}
+
+                                    {/* Toss-up explanation */}
+                                    {isTossUp && (
+                                      <div className="text-center bg-background/30 rounded-lg p-4">
+                                        <p className="text-muted-foreground leading-relaxed">
+                                          Due to limited UFC experience or missing fighter data, this fight is considered a toss-up.
+                                          Both fighters have equal chances of victory.
+                                        </p>
+                                      </div>
+                                    )}
                                   </div>
-                                </div>
-                              )}
+                                );
+                              })()}
                             </CardContent>
                           </Card>
                         </div>
