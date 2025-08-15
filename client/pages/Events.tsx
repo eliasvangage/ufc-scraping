@@ -78,14 +78,13 @@ export default function Events() {
 
     return (
       <Card
-        className={`group transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl cursor-pointer animate-in fade-in slide-in-from-bottom-4 ${
+        className={`group transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl cursor-pointer animate-fadeInUpOnce ${
           isNextEvent
             ? "bg-gradient-to-br from-primary/20 via-primary/10 to-primary/5 border-primary/30 shadow-primary/20 ring-1 ring-primary/20"
             : isPast
               ? "bg-gradient-to-br from-muted/20 to-muted/10 border-muted/30"
               : "bg-gradient-to-br from-card to-card/80 border-muted/20 hover:border-primary/30"
         }`}
-        style={{ animationDelay: `${index * 100}ms` }}
         onClick={() => navigate(`/event/${index}`)}
       >
         <CardHeader className="pb-4">
