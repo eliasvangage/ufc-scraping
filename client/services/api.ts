@@ -89,7 +89,7 @@ class ApiService {
 
   async getFighters(): Promise<string[]> {
     try {
-      const response = await this.fetchWithTimeout(`${this.baseUrl}/fighters`, {
+      const response = await this.fetchWithTimeout(`${this.baseUrl}/full_fighters`, {
         headers: { 'Accept': 'application/json' },
       });
 
@@ -97,9 +97,28 @@ class ApiService {
         throw new Error(`Failed to fetch fighters: ${response.status} ${response.statusText}`);
       }
 
-      return await response.json();
+      const fighters = await response.json();
+      // Extract just the names for the fighter list
+      return fighters.map((fighter: any) => fighter.name);
     } catch (error) {
       console.warn('Fighter data unavailable, using offline data');
+      throw error;
+    }
+  }
+
+  async getFullFighters(): Promise<any[]> {
+    try {
+      const response = await this.fetchWithTimeout(`${this.baseUrl}/full_fighters`, {
+        headers: { 'Accept': 'application/json' },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch full fighters: ${response.status} ${response.statusText}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.warn('Full fighter data unavailable');
       throw error;
     }
   }
