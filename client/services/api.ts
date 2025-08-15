@@ -106,43 +106,47 @@ class ApiService {
 
   async getFighterDetails(fighterName: string): Promise<Fighter | null> {
     try {
-      const response = await fetch(`${this.baseUrl}/fighter/${encodeURIComponent(fighterName)}`, {
+      console.log('Fetching fighter details for:', fighterName);
+      const response = await this.fetchWithTimeout(`${this.baseUrl}/fighter/${encodeURIComponent(fighterName)}`, {
         headers: { 'Accept': 'application/json' },
       });
 
       if (!response.ok) {
+        console.warn(`Fighter API returned ${response.status}: ${response.statusText} for ${fighterName}`);
         throw new Error(`Failed to fetch fighter details: ${response.status} ${response.statusText}`);
       }
 
       const data = await response.json();
+      console.log('Fighter data received:', data);
 
       return {
-        name: data.name,
-        weight: Number(data.weight),
-        height: Number(data.height),
-        reach: Number(data.reach),
-        slpm: Number(data.SLpM),
-        sapm: Number(data.SApM),
-        tdAvg: Number(data["TD Avg."]),
-        tdDef: Number(data["TD Def."]),
-        strAcc: Number(data["Str. Acc."]),
-        strDef: Number(data["Str. Def"]),
-        fight_history: data.fight_history,
-        recent_form_score: Number(data.recent_form_score),
-        win_streak_score: Number(data.win_streak_score),
-        avg_opp_strength: Number(data.avg_opp_strength),
-        last_results: data.last_results,
+        name: data.name || fighterName,
+        weight: Number(data.weight) || 0,
+        height: Number(data.height) || 0,
+        reach: Number(data.reach) || 0,
+        slpm: Number(data.SLpM) || 0,
+        sapm: Number(data.SApM) || 0,
+        tdAvg: Number(data["TD Avg."]) || 0,
+        tdDef: Number(data["TD Def."]) || 0,
+        strAcc: Number(data["Str. Acc."]) || 0,
+        strDef: Number(data["Str. Def"]) || 0,
+        fight_history: data.fight_history || [],
+        recent_form_score: Number(data.recent_form_score) || 0,
+        win_streak_score: Number(data.win_streak_score) || 0,
+        avg_opp_strength: Number(data.avg_opp_strength) || 0,
+        last_results: data.last_results || [],
         is_champion: Boolean(data.is_champion),
-        wins: data.wins ?? 0,
-        losses: data.losses ?? 0,
-        draws: data.draws ?? 0,
+        record: data.record || "0-0-0",
         ufc_wins: data.ufc_wins ?? 0,
         ufc_losses: data.ufc_losses ?? 0,
         ufc_draws: data.ufc_draws ?? 0,
-
+        ko_pct: data.ko_pct ?? 0,
+        dec_pct: data.dec_pct ?? 0,
+        sub_pct: data.sub_pct ?? 0,
       };
 
     } catch (error) {
+      console.warn('Using mock data for fighter:', fighterName, 'Error:', error);
       return this.getMockFighterData(fighterName);
     }
   }
