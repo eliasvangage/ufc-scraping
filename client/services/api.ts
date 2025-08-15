@@ -234,6 +234,31 @@ class ApiService {
     }
   }
 
+  private cleanWeight(weight: string): string {
+    if (!weight || weight === "--") return "Unknown";
+    // Remove duplicate "lbs." if present
+    return weight.replace(/(\s*lbs\.?\s*){2,}/g, ' lbs').trim();
+  }
+
+  private cleanReach(reach: string): string {
+    if (!reach || reach === "--") return "Unknown";
+    // Remove duplicate quotes if present
+    return reach.replace(/("{2,})/g, '"').trim();
+  }
+
+  private getUFCFights(fightHistory: any[]): any[] {
+    return fightHistory.filter(fight =>
+      fight.event && fight.event.toLowerCase().includes('ufc')
+    );
+  }
+
+  private calculateUFCRecord(ufcFights: any[]): string {
+    const wins = this.countWins(ufcFights);
+    const losses = this.countLosses(ufcFights);
+    const draws = this.countDraws(ufcFights);
+    return `${wins}-${losses}-${draws}`;
+  }
+
   private getDivisionFromWeight(weight?: string): string {
     if (!weight) return "Unknown";
     const weightNum = parseFloat(weight.replace(/[^\d.]/g, '') || '0');
