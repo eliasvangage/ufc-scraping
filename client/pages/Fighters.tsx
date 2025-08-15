@@ -127,10 +127,7 @@ export default function Fighters() {
     const loadFighters = async () => {
       try {
         // Load full fighter data from the API (all fighters including non-UFC)
-        const fullFightersRes = await fetch(
-          "http://localhost:8000/full_fighters",
-        );
-        const fullFightersData = await fullFightersRes.json();
+        const fullFightersData = await apiService.getFullFighters();
 
         // Load UFC-only fighters with UFC-specific data
         const ufcFightersRes = await fetch(
