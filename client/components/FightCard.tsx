@@ -471,7 +471,7 @@ export function FightCard({
         <CardHeader className="text-center pb-6">
           <div className="flex items-center justify-center gap-3 mb-4">
             {isTossUp ? (
-              <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold animate-pulse px-4 py-2">
+              <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold animate-pulse px-4 py-2 whitespace-nowrap">
                 <Target className="h-4 w-4 mr-1" />
                 TOSS-UP MATCH
               </Badge>
@@ -562,7 +562,7 @@ export function FightCard({
                   <div className="flex justify-center gap-4 mb-4">
                     <Badge
                       variant="outline"
-                      className="text-xl py-3 px-6 bg-gradient-to-r from-yellow-500/20 to-yellow-500/10 border-yellow-500/30 text-yellow-400 shadow-lg"
+                      className="text-xl py-3 px-6 bg-gradient-to-r from-yellow-500/20 to-yellow-500/10 border-yellow-500/30 text-yellow-400 shadow-lg whitespace-nowrap"
                     >
                       <Target className="h-5 w-5 mr-2" />
                       50/50 Split

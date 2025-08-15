@@ -41,6 +41,7 @@ import {
   Hash,
 } from "lucide-react";
 import { Hero } from "@/components/ui/hero";
+import { apiService } from "@/services/api";
 
 function inferDivisionFromWeight(weight: string): string | undefined {
   if (!weight) return undefined;
@@ -127,10 +128,7 @@ export default function Fighters() {
     const loadFighters = async () => {
       try {
         // Load full fighter data from the API (all fighters including non-UFC)
-        const fullFightersRes = await fetch(
-          "http://localhost:8000/full_fighters",
-        );
-        const fullFightersData = await fullFightersRes.json();
+        const fullFightersData = await apiService.getFullFighters();
 
         // Load UFC-only fighters with UFC-specific data
         const ufcFightersRes = await fetch(
@@ -443,7 +441,13 @@ export default function Fighters() {
     const isUFCVeteran = isUFCFighter(fighter);
 
     return (
-      <Card className="group relative overflow-hidden bg-gradient-to-br from-card via-card/90 to-muted/30 border-border hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 hover:scale-[1.02] w-full">
+      <Card
+        className="group relative overflow-hidden bg-gradient-to-br from-card via-card/90 to-muted/30 border-border hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 hover:scale-[1.02] w-full cursor-pointer"
+        onClick={() => {
+          console.log("Fighter card clicked:", fighter.name);
+          navigate(`/fighter/${encodeURIComponent(fighter.name)}`);
+        }}
+      >
         {/* Animated background glow */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
@@ -630,9 +634,14 @@ export default function Fighters() {
             variant="outline"
             size="sm"
             className="w-full group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-primary/80 group-hover:text-primary-foreground group-hover:border-primary transition-all duration-300 font-medium text-xs h-8"
-            onClick={() =>
-              navigate(`/fighter/${encodeURIComponent(fighter.name)}`)
-            }
+            onClick={(e) => {
+              e.stopPropagation();
+              console.log(
+                "Grid view button: Navigating to fighter profile:",
+                fighter.name,
+              );
+              navigate(`/fighter/${encodeURIComponent(fighter.name)}`);
+            }}
           >
             <Eye className="h-3 w-3 mr-1" />
             View Profile
@@ -977,6 +986,10 @@ export default function Fighters() {
                               className="gap-2"
                               onClick={(e) => {
                                 e.stopPropagation();
+                                console.log(
+                                  "List view: Navigating to fighter profile:",
+                                  fighter.name,
+                                );
                                 navigate(
                                   `/fighter/${encodeURIComponent(fighter.name)}`,
                                 );

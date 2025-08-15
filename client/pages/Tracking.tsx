@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -27,6 +27,7 @@ import {
   Brain,
   Flame,
   Eye,
+  Lightbulb,
 } from "lucide-react";
 import {
   isEventPast,
@@ -34,6 +35,7 @@ import {
   formatEventDate,
 } from "@/lib/dateUtils";
 import { Hero } from "@/components/ui/hero";
+import { cn } from "@/lib/utils";
 
 interface Fight {
   fighter1: string;
@@ -58,7 +60,7 @@ interface FightCard {
   events: Event[];
 }
 
-// Enhanced prediction details component
+// Enhanced prediction details component with professional design
 const PredictionDetailsCard = ({ fight }: { fight: Fight }) => {
   const isCorrect = fight.correct === true;
   const isPending = fight.actualResult === null;
@@ -66,154 +68,244 @@ const PredictionDetailsCard = ({ fight }: { fight: Fight }) => {
     fight.predictedWinner === "Toss Up" || fight.confidenceScore === 50;
 
   return (
-    <div className="bg-gradient-to-br from-card/50 to-muted/20 rounded-xl p-6 border border-border/30 space-y-6">
-      {/* Fight Header */}
-      <div className="text-center space-y-4">
-        <div className="flex items-center justify-center gap-4">
-          <div className="text-xl font-bold text-red-300">{fight.fighter1}</div>
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-500/30 to-red-600/20 flex items-center justify-center ring-2 ring-red-500/20">
-              <div className="w-5 h-5 rounded-full bg-gradient-to-br from-red-500 to-red-600 shadow-lg" />
+    <div className="bg-gradient-to-br from-card/80 via-muted/10 to-background/50 rounded-2xl p-8 border border-border/40 space-y-8 shadow-2xl backdrop-blur-sm">
+      {/* Enhanced Fight Header */}
+      <div className="text-center space-y-6">
+        <div className="flex items-center justify-center gap-6">
+          <div className="group">
+            <div className="text-2xl font-bold text-red-300 mb-2 group-hover:scale-105 transition-transform">
+              {fight.fighter1}
             </div>
-            <div className="mx-2">
-              <Flame className="h-6 w-6 text-primary animate-pulse" />
-            </div>
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500/30 to-blue-600/20 flex items-center justify-center ring-2 ring-blue-500/20">
-              <div className="w-5 h-5 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg" />
+            <div className="w-14 h-14 rounded-full bg-gradient-to-br from-red-500/40 to-red-600/20 flex items-center justify-center ring-4 ring-red-500/30 shadow-xl hover:shadow-red-500/40 transition-all">
+              <div className="w-7 h-7 rounded-full bg-gradient-to-br from-red-500 to-red-600 shadow-lg animate-pulse" />
             </div>
           </div>
-          <div className="text-xl font-bold text-blue-300">
-            {fight.fighter2}
+
+          <div className="flex flex-col items-center gap-3">
+            <div className="relative">
+              <Flame className="h-10 w-10 text-primary animate-pulse drop-shadow-lg" />
+              <div className="absolute inset-0 bg-primary/20 rounded-full blur-xl animate-pulse" />
+            </div>
+            <div className="text-xs font-semibold text-muted-foreground tracking-wider">
+              VERSUS
+            </div>
+          </div>
+
+          <div className="group">
+            <div className="text-2xl font-bold text-blue-300 mb-2 group-hover:scale-105 transition-transform">
+              {fight.fighter2}
+            </div>
+            <div className="w-14 h-14 rounded-full bg-gradient-to-br from-blue-500/40 to-blue-600/20 flex items-center justify-center ring-4 ring-blue-500/30 shadow-xl hover:shadow-blue-500/40 transition-all">
+              <div className="w-7 h-7 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg animate-pulse" />
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Prediction Section */}
-      <div className="bg-gradient-to-br from-card/50 to-background/30 rounded-xl p-6 space-y-4 border border-primary/20 shadow-lg">
-        <div className="flex items-center justify-center gap-3 mb-4">
-          <div className="p-2 bg-primary/10 rounded-lg">
-            
+      {/* Enhanced Prediction Section */}
+      <div className="bg-gradient-to-br from-primary/15 via-primary/8 to-primary/5 rounded-2xl p-8 space-y-6 border border-primary/30 shadow-xl backdrop-blur-sm">
+        <div className="flex items-center justify-center gap-4 mb-6">
+          <div className="p-3 bg-primary/20 rounded-xl border border-primary/30">
+            <Brain className="h-8 w-8 text-primary" />
           </div>
-          <h4 className="text-xl font-bold text-center bg-gradient-to-r from-primary to-yellow-400 bg-clip-text text-transparent">
+          <h4 className="text-3xl font-bold text-center bg-gradient-to-r from-primary via-yellow-400 to-primary bg-clip-text text-transparent">
             Oracle's Prophecy
           </h4>
-          <div className="p-2 bg-primary/10 rounded-lg">
-            <Eye className="h-6 w-6 text-primary" />
+          <div className="p-3 bg-primary/20 rounded-xl border border-primary/30">
+            <Eye className="h-8 w-8 text-primary" />
           </div>
         </div>
 
         {isTossUp ? (
-          <div className="text-center space-y-3">
-            <div className="text-2xl font-bold text-yellow-400">
-              TOO CLOSE TO CALL
+          <div className="text-center space-y-6">
+            <div className="relative">
+              <div className="text-4xl font-bold text-yellow-400 mb-4 animate-pulse">
+                TOO CLOSE TO CALL
+              </div>
+              <div className="absolute inset-0 bg-yellow-400/10 rounded-xl blur-2xl" />
             </div>
-            <Badge
-              variant="outline"
-              className="text-yellow-400 border-yellow-400/30 bg-yellow-400/10"
-            >
-              <Target className="h-3 w-3 mr-1" />
-              50/50 Split - Insufficient Data
-            </Badge>
-            <p className="text-sm text-muted-foreground">
-              Limited UFC experience or missing fighter data made this a toss-up
-              prediction
-            </p>
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <Badge
+                variant="outline"
+                className="text-yellow-400 border-yellow-400/30 bg-yellow-400/10 px-4 py-2 text-lg whitespace-nowrap"
+              >
+                <Target className="h-5 w-5 mr-2" />
+                50/50 Split
+              </Badge>
+              <Badge variant="secondary" className="px-4 py-2 text-lg">
+                <AlertTriangle className="h-4 w-4 mr-2" />
+                Insufficient Data
+              </Badge>
+            </div>
+            <div className="bg-background/30 rounded-xl p-4 border border-yellow-400/20">
+              <p className="text-muted-foreground leading-relaxed">
+                Limited UFC experience or missing fighter data made this a
+                toss-up prediction. Both fighters have equal chances of victory
+                according to the AI model.
+              </p>
+            </div>
           </div>
         ) : (
-          <div className="text-center space-y-3">
-            <div className="text-3xl font-bold text-primary">
-              {fight.predictedWinner}
-            </div>
-            <div className="text-sm text-muted-foreground mb-2">
-              PREDICTED WINNER
-            </div>
-
-            {/* Confidence Visualization */}
-            <div className="space-y-3">
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">AI Confidence</span>
-                <span className="font-bold text-primary text-lg">
-                  {fight.confidenceScore}%
-                </span>
+          <div className="text-center space-y-6">
+            <div className="relative">
+              <div className="text-5xl font-bold text-primary mb-3 drop-shadow-lg">
+                {fight.predictedWinner}
               </div>
+              <div className="absolute inset-0 bg-primary/10 rounded-xl blur-2xl" />
+              <div className="text-lg font-semibold text-muted-foreground tracking-wider">
+                PREDICTED WINNER
+              </div>
+            </div>
 
-              {/* Custom progress bar with correct scaling */}
-              <div className="relative">
-                <div className="w-full bg-muted/30 rounded-full h-4 overflow-hidden">
+            {/* Enhanced Confidence Visualization */}
+            <div className="space-y-6">
+              <div className="bg-background/40 rounded-xl p-6 border border-primary/20">
+                <div className="flex items-center justify-between text-lg mb-4">
+                  <span className="text-muted-foreground font-medium">
+                    AI Confidence Level
+                  </span>
+                  <span className="font-bold text-primary text-2xl drop-shadow-lg">
+                    {fight.confidenceScore}%
+                  </span>
+                </div>
+
+                {/* Advanced progress bar */}
+                <div className="relative mb-4">
+                  <div className="w-full bg-gradient-to-r from-muted/20 via-muted/30 to-muted/20 rounded-full h-6 overflow-hidden border border-muted/20">
+                    <div
+                      className="h-full bg-gradient-to-r from-primary/60 via-primary to-yellow-400/80 rounded-full transition-all duration-2000 shadow-lg relative overflow-hidden"
+                      style={{
+                        width: `${Math.max(0, Math.min(100, ((fight.confidenceScore - 50) / 50) * 100))}%`,
+                      }}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse" />
+                    </div>
+                  </div>
+
+                  {/* Enhanced confidence markers */}
+                  <div className="flex justify-between text-sm font-medium mt-3 px-1">
+                    <div className="flex flex-col items-center">
+                      <div className="w-2 h-2 bg-yellow-400 rounded-full mb-1" />
+                      <span className="text-yellow-400">50%</span>
+                      <span className="text-xs text-muted-foreground">
+                        Uncertain
+                      </span>
+                    </div>
+                    <div className="flex flex-col items-center">
+                      <div className="w-2 h-2 bg-orange-400 rounded-full mb-1" />
+                      <span className="text-orange-400">65%</span>
+                      <span className="text-xs text-muted-foreground">
+                        Likely
+                      </span>
+                    </div>
+                    <div className="flex flex-col items-center">
+                      <div className="w-2 h-2 bg-primary rounded-full mb-1" />
+                      <span className="text-primary">80%</span>
+                      <span className="text-xs text-muted-foreground">
+                        Confident
+                      </span>
+                    </div>
+                    <div className="flex flex-col items-center">
+                      <div className="w-2 h-2 bg-green-400 rounded-full mb-1" />
+                      <span className="text-green-400">100%</span>
+                      <span className="text-xs text-muted-foreground">
+                        Certain
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Enhanced pointer indicator */}
                   <div
-                    className="h-full bg-gradient-to-r from-primary/80 via-primary to-primary/90 rounded-full transition-all duration-1000 shadow-lg"
+                    className="absolute top-0 flex flex-col items-center transition-all duration-1000"
                     style={{
-                      width: `${Math.max(0, Math.min(100, ((fight.confidenceScore - 50) / 50) * 100))}%`,
+                      left: `${Math.max(0, Math.min(100, ((fight.confidenceScore - 50) / 50) * 100))}%`,
+                      transform: "translateX(-50%)",
                     }}
-                  />
+                  >
+                    <div className="w-1 h-6 bg-white rounded-full shadow-lg border border-primary/30" />
+                    <div className="w-0 h-0 border-l-2 border-r-2 border-t-4 border-transparent border-t-white shadow-lg" />
+                  </div>
                 </div>
-
-                {/* Confidence markers */}
-                <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                  <span className="text-yellow-400">50%</span>
-                  <span className="text-orange-400">65%</span>
-                  <span className="text-primary">80%</span>
-                  <span className="text-green-400">100%</span>
-                </div>
-
-                {/* Pointer indicator */}
-                <div
-                  className="absolute top-0 w-0.5 h-4 bg-white/80 shadow-lg"
-                  style={{
-                    left: `${Math.max(0, Math.min(100, ((fight.confidenceScore - 50) / 50) * 100))}%`,
-                    transform: "translateX(-50%)",
-                  }}
-                />
               </div>
-            </div>
 
-            {/* Betting Odds */}
-            <div className="flex items-center justify-center gap-2 mt-3">
-              <Badge variant="outline" className="font-mono">
-                Odds: {fight.winnerOddsAtPrediction}
-              </Badge>
+              {/* Enhanced Betting Odds */}
+              <div className="flex items-center justify-center gap-4">
+                <Badge
+                  variant="outline"
+                  className="font-mono text-lg px-4 py-2 bg-background/50 border-primary/30"
+                >
+                  <BarChart3 className="h-4 w-4 mr-2" />
+                  Odds: {fight.winnerOddsAtPrediction}
+                </Badge>
+              </div>
             </div>
           </div>
         )}
       </div>
 
-      {/* Reasoning Section */}
+      {/* Enhanced Reasoning Section */}
       {fight.pickReason && (
-        <div className="bg-background/20 rounded-lg p-4">
-          <div className="flex items-center gap-2 mb-2">
-            <Eye className="h-4 w-4 text-primary" />
-            <h5 className="font-semibold text-sm">Key Analysis Points</h5>
+        <div className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-xl p-6 border border-blue-500/20">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="p-2 bg-blue-500/20 rounded-lg">
+              <Lightbulb className="h-5 w-5 text-blue-400" />
+            </div>
+            <h5 className="font-bold text-lg text-blue-400">
+              Key Analysis Points
+            </h5>
           </div>
-          <p className="text-sm text-muted-foreground leading-relaxed">
-            {fight.pickReason}
-          </p>
+          <div className="bg-background/30 rounded-lg p-4 border border-blue-500/10">
+            <p className="text-muted-foreground leading-relaxed text-sm">
+              {fight.pickReason}
+            </p>
+          </div>
         </div>
       )}
 
-      {/* Result Section - Only show for completed events */}
+      {/* Enhanced Result Section */}
       {!isPending && (
-        <div className="bg-background/20 rounded-lg p-4">
+        <div
+          className={cn(
+            "rounded-xl p-6 border",
+            isCorrect
+              ? "bg-gradient-to-br from-green-500/10 to-emerald-500/10 border-green-500/20"
+              : "bg-gradient-to-br from-red-500/10 to-rose-500/10 border-red-500/20",
+          )}
+        >
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Trophy className="h-4 w-4 text-primary" />
-              <h5 className="font-semibold text-sm">Actual Result</h5>
+            <div className="flex items-center gap-3">
+              <div
+                className={cn(
+                  "p-2 rounded-lg",
+                  isCorrect ? "bg-green-500/20" : "bg-red-500/20",
+                )}
+              >
+                <Trophy
+                  className={cn(
+                    "h-5 w-5",
+                    isCorrect ? "text-green-400" : "text-red-400",
+                  )}
+                />
+              </div>
+              <h5 className="font-bold text-lg">Actual Result</h5>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               {isCorrect ? (
-                <CheckCircle className="h-5 w-5 text-green-400" />
+                <CheckCircle className="h-6 w-6 text-green-400" />
               ) : (
-                <XCircle className="h-5 w-5 text-red-400" />
+                <XCircle className="h-6 w-6 text-red-400" />
               )}
               <Badge
                 variant={isCorrect ? "default" : "destructive"}
-                className={
+                className={cn(
+                  "text-lg px-4 py-2 font-bold",
                   isCorrect
                     ? "bg-green-500/20 text-green-400 border-green-500/30"
-                    : ""
-                }
+                    : "bg-red-500/20 text-red-400 border-red-500/30",
+                )}
               >
-                {isCorrect ? "Prediction Correct" : "Prediction Incorrect"}
+                {isCorrect ? "✓ Prediction Correct" : "✗ Prediction Incorrect"}
               </Badge>
             </div>
           </div>
@@ -233,15 +325,32 @@ export default function Index() {
   const [expandedFights, setExpandedFights] = useState<Set<string>>(new Set());
 
   useEffect(() => {
-    fetchFightData();
+    let isMounted = true;
+    fetchFightData(isMounted);
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
-  const fetchFightData = async () => {
+  const fetchFightData = async (isMounted = true) => {
+    if (!isMounted) return;
+
     try {
-      const response = await fetch("http://localhost:8000/tracked");
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+      const response = await fetch("http://localhost:8000/tracked", {
+        signal: controller.signal,
+      });
+
+      clearTimeout(timeoutId);
+
       if (!response.ok) throw new Error("Failed to fetch logs");
 
       const data = await response.json();
+
+      if (!isMounted) return;
 
       // Defensive check
       if (!Array.isArray(data)) {
@@ -287,10 +396,18 @@ export default function Index() {
 
       setFightData({ events: Object.values(groupedByEvent) });
     } catch (error) {
-      console.error("Error fetching fight data:", error);
-      setFightData({ events: [] }); // prevent crashing UI
+      if (error.name === "AbortError") {
+        console.warn("Request was aborted");
+        return;
+      }
+      console.warn("Error fetching fight data:", error);
+      if (isMounted) {
+        setFightData({ events: [] }); // prevent crashing UI
+      }
     } finally {
-      setLoading(false);
+      if (isMounted) {
+        setLoading(false);
+      }
     }
   };
 
@@ -659,9 +776,8 @@ export default function Index() {
                               fight.confidenceScore === 50;
 
                             return (
-                              <>
+                              <React.Fragment key={fightId}>
                                 <tr
-                                  key={index}
                                   className="border-b border-border/30 hover:bg-muted/20 transition-colors cursor-pointer"
                                   onClick={() => toggleFightDetails(fightId)}
                                 >
@@ -677,7 +793,7 @@ export default function Index() {
                                       {isTossUp && (
                                         <Badge
                                           variant="outline"
-                                          className="text-yellow-400 border-yellow-400/30 bg-yellow-400/10 text-xs"
+                                          className="text-yellow-400 border-yellow-400/30 bg-yellow-400/10 text-xs whitespace-nowrap"
                                         >
                                           <AlertTriangle className="h-3 w-3 mr-1" />
                                           Toss-Up
@@ -782,7 +898,7 @@ export default function Index() {
                                     </td>
                                   </tr>
                                 )}
-                              </>
+                              </React.Fragment>
                             );
                           })}
                         </tbody>
