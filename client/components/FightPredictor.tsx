@@ -256,11 +256,16 @@ export function FightPredictor() {
               <div className="flex justify-center mt-8">
                 <Button
                   onClick={runPrediction}
-                  disabled={isAnalyzing}
+                  disabled={isAnalyzing || showPastEvents}
                   size="lg"
-                  className="gap-2 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-lg px-8 py-6"
+                  className="gap-2 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-lg px-8 py-6 disabled:opacity-50"
                 >
-                  {isAnalyzing ? (
+                  {showPastEvents ? (
+                    <>
+                      <History className="h-5 w-5" />
+                      VIEW PAST RESULTS
+                    </>
+                  ) : isAnalyzing ? (
                     <>
                       <Loader2 className="h-5 w-5 animate-spin" />
                       Consulting the Oracle...
