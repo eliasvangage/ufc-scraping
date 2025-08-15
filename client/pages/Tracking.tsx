@@ -58,6 +58,125 @@ interface FightCard {
   events: Event[];
 }
 
+// Enhanced prediction details component
+const PredictionDetailsCard = ({ fight }: { fight: Fight }) => {
+  const isCorrect = fight.correct === true;
+  const isPending = fight.actualResult === null;
+  const isTossUp = fight.predictedWinner === "Toss Up" || fight.confidenceScore === 50;
+
+  return (
+    <div className="bg-gradient-to-br from-card/50 to-muted/20 rounded-xl p-6 border border-border/30 space-y-6">
+      {/* Fight Header */}
+      <div className="text-center space-y-4">
+        <div className="flex items-center justify-center gap-4">
+          <div className="text-xl font-bold text-red-400">{fight.fighter1}</div>
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center">
+              <div className="w-4 h-4 rounded-full bg-red-500" />
+            </div>
+            <Flame className="h-5 w-5 text-primary" />
+            <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center">
+              <div className="w-4 h-4 rounded-full bg-blue-500" />
+            </div>
+          </div>
+          <div className="text-xl font-bold text-blue-400">{fight.fighter2}</div>
+        </div>
+      </div>
+
+      {/* Prediction Section */}
+      <div className="bg-background/30 rounded-lg p-4 space-y-4">
+        <div className="flex items-center justify-center gap-2 mb-3">
+          <Brain className="h-5 w-5 text-primary" />
+          <h4 className="text-lg font-semibold text-center">Oracle's Prophecy</h4>
+        </div>
+
+        {isTossUp ? (
+          <div className="text-center space-y-3">
+            <div className="text-2xl font-bold text-yellow-400">TOO CLOSE TO CALL</div>
+            <Badge variant="outline" className="text-yellow-400 border-yellow-400/30 bg-yellow-400/10">
+              <Target className="h-3 w-3 mr-1" />
+              50/50 Split - Insufficient Data
+            </Badge>
+            <p className="text-sm text-muted-foreground">
+              Limited UFC experience or missing fighter data made this a toss-up prediction
+            </p>
+          </div>
+        ) : (
+          <div className="text-center space-y-3">
+            <div className="text-3xl font-bold text-primary">{fight.predictedWinner}</div>
+            <div className="text-sm text-muted-foreground mb-2">PREDICTED WINNER</div>
+
+            {/* Confidence Visualization */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-muted-foreground">Confidence</span>
+                <span className="font-semibold text-primary">{fight.confidenceScore}%</span>
+              </div>
+              <Progress value={fight.confidenceScore} className="h-3" />
+              <div className="flex justify-between text-xs text-muted-foreground">
+                <span>50%</span>
+                <span>75%</span>
+                <span>100%</span>
+              </div>
+            </div>
+
+            {/* Betting Odds */}
+            <div className="flex items-center justify-center gap-2 mt-3">
+              <Badge variant="outline" className="font-mono">
+                Odds: {fight.winnerOddsAtPrediction}
+              </Badge>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Reasoning Section */}
+      {fight.pickReason && (
+        <div className="bg-background/20 rounded-lg p-4">
+          <div className="flex items-center gap-2 mb-2">
+            <Eye className="h-4 w-4 text-primary" />
+            <h5 className="font-semibold text-sm">Key Analysis Points</h5>
+          </div>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            {fight.pickReason}
+          </p>
+        </div>
+      )}
+
+      {/* Result Section */}
+      <div className="bg-background/20 rounded-lg p-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Trophy className="h-4 w-4 text-primary" />
+            <h5 className="font-semibold text-sm">Actual Result</h5>
+          </div>
+
+          {isPending ? (
+            <Badge variant="outline" className="text-muted-foreground border-border">
+              <Clock className="h-3 w-3 mr-1" />
+              Pending
+            </Badge>
+          ) : (
+            <div className="flex items-center gap-2">
+              {isCorrect ? (
+                <CheckCircle className="h-5 w-5 text-green-400" />
+              ) : (
+                <XCircle className="h-5 w-5 text-red-400" />
+              )}
+              <Badge
+                variant={isCorrect ? "default" : "destructive"}
+                className={isCorrect ? "bg-green-500/20 text-green-400 border-green-500/30" : ""}
+              >
+                {isCorrect ? "Prediction Correct" : "Prediction Incorrect"}
+              </Badge>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function Index() {
   const [fightData, setFightData] = useState<FightCard | null>(null);
   const [loading, setLoading] = useState(true);
@@ -65,6 +184,7 @@ export default function Index() {
     new Set(["current"]),
   );
   const [showPastEvents, setShowPastEvents] = useState(false);
+  const [expandedFights, setExpandedFights] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     fetchFightData();
