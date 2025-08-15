@@ -34,7 +34,6 @@ import {
   Brain,
   Lightbulb,
   Hash,
-  Zap,
   Gauge
 } from "lucide-react";
 import { Hero } from "@/components/ui/hero";
