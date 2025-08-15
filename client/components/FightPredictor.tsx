@@ -390,11 +390,17 @@ export function FightPredictor() {
                         className={`
                         w-96 transition-all duration-500 group cursor-pointer
                         hover:scale-[1.02] hover:shadow-2xl
-                        ${filteredIdx === 0 ? 'animate-stagger-1' :
-                          filteredIdx === 1 ? 'animate-stagger-2' :
-                          filteredIdx === 2 ? 'animate-stagger-3' :
-                          filteredIdx === 3 ? 'animate-stagger-4' :
-                          'animate-stagger-5'}
+                        ${
+                          filteredIdx === 0
+                            ? "animate-stagger-1"
+                            : filteredIdx === 1
+                              ? "animate-stagger-2"
+                              : filteredIdx === 2
+                                ? "animate-stagger-3"
+                                : filteredIdx === 3
+                                  ? "animate-stagger-4"
+                                  : "animate-stagger-5"
+                        }
                         ${
                           isNextEvent
                             ? "bg-gradient-to-br from-primary/20 via-primary/10 to-primary/5 border-primary/30 shadow-primary/20 ring-1 ring-primary/20"

@@ -143,7 +143,7 @@ const PredictionDetailsCard = ({ fight }: { fight: Fight }) => {
                   <div
                     className="h-full bg-gradient-to-r from-primary/80 via-primary to-primary/90 rounded-full transition-all duration-1000 shadow-lg"
                     style={{
-                      width: `${Math.max(0, Math.min(100, ((fight.confidenceScore - 50) / 50) * 100))}%`
+                      width: `${Math.max(0, Math.min(100, ((fight.confidenceScore - 50) / 50) * 100))}%`,
                     }}
                   />
                 </div>
@@ -161,7 +161,7 @@ const PredictionDetailsCard = ({ fight }: { fight: Fight }) => {
                   className="absolute top-0 w-0.5 h-4 bg-white/80 shadow-lg"
                   style={{
                     left: `${Math.max(0, Math.min(100, ((fight.confidenceScore - 50) / 50) * 100))}%`,
-                    transform: 'translateX(-50%)'
+                    transform: "translateX(-50%)",
                   }}
                 />
               </div>
