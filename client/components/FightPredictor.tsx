@@ -454,15 +454,18 @@ export function FightPredictor() {
                               variant="outline"
                               size="sm"
                               className="group-hover:bg-primary/10 group-hover:border-primary/30 transition-all duration-300"
+                              disabled={showPastEvents}
                               onClick={(e) => {
                                 e.stopPropagation();
-                                setFighter1(mainEvent.fighter_red);
-                                setFighter2(mainEvent.fighter_blue);
-                                setPrediction(null);
+                                if (!showPastEvents) {
+                                  setFighter1(mainEvent.fighter_red);
+                                  setFighter2(mainEvent.fighter_blue);
+                                  setPrediction(null);
+                                }
                               }}
                             >
                               <Target className="h-3 w-3 mr-1" />
-                              Predict
+                              {showPastEvents ? "View Results" : "Predict"}
                             </Button>
 
                             <Button
