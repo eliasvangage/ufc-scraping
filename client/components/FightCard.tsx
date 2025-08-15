@@ -471,7 +471,7 @@ export function FightCard({
         <CardHeader className="text-center pb-6">
           <div className="flex items-center justify-center gap-3 mb-4">
             {isTossUp ? (
-              <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold animate-pulse px-4 py-2">
+              <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold animate-pulse px-4 py-2 whitespace-nowrap">
                 <Target className="h-4 w-4 mr-1" />
                 TOSS-UP MATCH
               </Badge>
