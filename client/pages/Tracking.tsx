@@ -309,15 +309,32 @@ export default function Index() {
   const [expandedFights, setExpandedFights] = useState<Set<string>>(new Set());
 
   useEffect(() => {
-    fetchFightData();
+    let isMounted = true;
+    fetchFightData(isMounted);
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
-  const fetchFightData = async () => {
+  const fetchFightData = async (isMounted = true) => {
+    if (!isMounted) return;
+
     try {
-      const response = await fetch("http://localhost:8000/tracked");
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+      const response = await fetch("http://localhost:8000/tracked", {
+        signal: controller.signal
+      });
+
+      clearTimeout(timeoutId);
+
       if (!response.ok) throw new Error("Failed to fetch logs");
 
       const data = await response.json();
+
+      if (!isMounted) return;
 
       // Defensive check
       if (!Array.isArray(data)) {
@@ -363,10 +380,18 @@ export default function Index() {
 
       setFightData({ events: Object.values(groupedByEvent) });
     } catch (error) {
-      console.error("Error fetching fight data:", error);
-      setFightData({ events: [] }); // prevent crashing UI
+      if (error.name === 'AbortError') {
+        console.warn('Request was aborted');
+        return;
+      }
+      console.warn("Error fetching fight data:", error);
+      if (isMounted) {
+        setFightData({ events: [] }); // prevent crashing UI
+      }
     } finally {
-      setLoading(false);
+      if (isMounted) {
+        setLoading(false);
+      }
     }
   };
 
