@@ -603,59 +603,77 @@ export function FightCard({
           </div>
 
           {/* Statistical Comparison */}
-          <div className="bg-background/30 p-6 rounded-xl border border-muted/20">
-            <h4 className="text-xl font-semibold mb-6 flex items-center gap-2 justify-center">
-              <BarChart3 className="h-6 w-6 text-primary" />
-              Statistical Comparison
-            </h4>
-            <div className="space-y-1">
-              <div className="grid grid-cols-3 gap-4 items-center py-3 border-b border-muted/20">
-                <div className="text-right font-bold text-red-400">
-                  {f1.name}
+          {!isTossUp && f1HasData && f2HasData ? (
+            <div className="bg-background/30 p-6 rounded-xl border border-muted/20">
+              <h4 className="text-xl font-semibold mb-6 flex items-center gap-2 justify-center">
+                <BarChart3 className="h-6 w-6 text-primary" />
+                Statistical Comparison
+              </h4>
+              <div className="space-y-1">
+                <div className="grid grid-cols-3 gap-4 items-center py-3 border-b border-muted/20">
+                  <div className="text-right font-bold text-red-400">
+                    {f1Name}
+                  </div>
+                  <div className="text-center text-sm font-medium text-muted-foreground">
+                    STAT
+                  </div>
+                  <div className="text-left font-bold text-blue-400">
+                    {f2Name}
+                  </div>
                 </div>
-                <div className="text-center text-sm font-medium text-muted-foreground">
-                  STAT
-                </div>
-                <div className="text-left font-bold text-blue-400">
-                  {f2.name}
-                </div>
+                <StatComparison
+                  label="Strikes Landed/Min"
+                  fighter1Value={f1.slpm || 0}
+                  fighter2Value={f2.slpm || 0}
+                />
+                <StatComparison
+                  label="Strikes Absorbed/Min"
+                  fighter1Value={f1.sapm || 0}
+                  fighter2Value={f2.sapm || 0}
+                  higher="worse"
+                />
+                <StatComparison
+                  label="Striking Accuracy"
+                  fighter1Value={f1.strAcc || 0}
+                  fighter2Value={f2.strAcc || 0}
+                  format="percentage"
+                />
+                <StatComparison
+                  label="Striking Defense"
+                  fighter1Value={f1.strDef || 0}
+                  fighter2Value={f2.strDef || 0}
+                  format="percentage"
+                />
+                <StatComparison
+                  label="Takedown Average"
+                  fighter1Value={f1.tdAvg || 0}
+                  fighter2Value={f2.tdAvg || 0}
+                />
+                <StatComparison
+                  label="Takedown Defense"
+                  fighter1Value={f1.tdDef || 0}
+                  fighter2Value={f2.tdDef || 0}
+                  format="percentage"
+                />
               </div>
-              <StatComparison
-                label="Strikes Landed/Min"
-                fighter1Value={f1.slpm}
-                fighter2Value={f2.slpm}
-              />
-              <StatComparison
-                label="Strikes Absorbed/Min"
-                fighter1Value={f1.sapm}
-                fighter2Value={f2.sapm}
-                higher="worse"
-              />
-              <StatComparison
-                label="Striking Accuracy"
-                fighter1Value={f1.strAcc}
-                fighter2Value={f2.strAcc}
-                format="percentage"
-              />
-              <StatComparison
-                label="Striking Defense"
-                fighter1Value={f1.strDef}
-                fighter2Value={f2.strDef}
-                format="percentage"
-              />
-              <StatComparison
-                label="Takedown Average"
-                fighter1Value={f1.tdAvg}
-                fighter2Value={f2.tdAvg}
-              />
-              <StatComparison
-                label="Takedown Defense"
-                fighter1Value={f1.tdDef}
-                fighter2Value={f2.tdDef}
-                format="percentage"
-              />
             </div>
-          </div>
+          ) : (
+            <div className="bg-background/30 p-6 rounded-xl border border-muted/20">
+              <h4 className="text-xl font-semibold mb-6 flex items-center gap-2 justify-center">
+                <AlertCircle className="h-6 w-6 text-yellow-400" />
+                Limited Analysis Available
+              </h4>
+              <div className="text-center space-y-4">
+                <div className="w-16 h-16 mx-auto bg-muted/30 rounded-full flex items-center justify-center">
+                  <Target className="h-8 w-8 text-muted-foreground" />
+                </div>
+                <p className="text-muted-foreground max-w-md mx-auto leading-relaxed">
+                  Statistical comparison unavailable due to insufficient fighter data or limited UFC experience.
+                  Both fighters are considered to have equal chances in this matchup.
+                </p>
+              </div>
+            </div>
+          )}
 
           {/* Key Advantages */}
           <div className="bg-background/30 p-6 rounded-xl border border-muted/20">
