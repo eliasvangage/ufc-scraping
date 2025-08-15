@@ -241,6 +241,36 @@ def calculate_age(dob_str):
         return age
     except Exception:
         return None
+    
+def build_placeholder_fighter(name: str) -> dict:
+    """Return a minimal fighter dict when the athlete isn't in the DB yet."""
+    return {
+        "name": name,
+        "nickname": "",
+        "weight": None,
+        "height": None,
+        "reach": None,
+        "SLpM": 0.0,
+        "SApM": 0.0,
+        "TD Avg.": 0.0,
+        "TD Def.": 0.0,
+        "Str. Acc.": 0.0,
+        "Str. Def": 0.0,
+        "fight_history": [],
+        "recent_form_score": 0.0,
+        "win_streak_score": 0.0,
+        "avg_opp_strength": 0.5,
+        "last_results": [],
+        "is_champion": False,
+        "record": "0-0-0",
+        "ufc_wins": 0,
+        "ufc_losses": 0,
+        "ufc_draws": 0,
+        "ko_pct": 0.0,
+        "sub_pct": 0.0,
+        "dec_pct": 0.0,
+        "age": None,
+    }
 
 
 def get_fighter_stats(name):
@@ -379,17 +409,12 @@ def recent_rematch_winner(f1, f2, max_fights_ago=2):
 
 
 def predict_match(f1_input, f2_input):
+    # --- Canonical order (alphabetical by fighter name) ---
+    original_pair = (f1_input["name"], f2_input["name"])
+    pair = sorted([f1_input, f2_input], key=lambda d: d["name"].strip().lower())
+    f1_input, f2_input = pair[0], pair[1]  # canonical F1, F2
 
-    print(f"ALPHA ORDER: {f1_input['name']} (f1) vs {f2_input['name']} (f2)")
-    
-    # === Enforce deterministic order: alphabetical by name ===
-    f1_name = f1_input["name"].strip().lower()
-    f2_name = f2_input["name"].strip().lower()
-
-    reverse = False
-    if f1_name > f2_name:
-        f1_input, f2_input = f2_input, f1_input
-        reverse = True
+    print(f"ALPHA ORDER (canonical): {f1_input['name']} (f1) vs {f2_input['name']} (f2)")
 
     # === Debug: Show fighter stats before feature calculation ===
     print(f"\n🔴 RED CORNER: {f1_input['name']}")
@@ -405,49 +430,34 @@ def predict_match(f1_input, f2_input):
     sa_diff = f1_input["SApM"] - f2_input["SApM"]
     print(f"[SApM] {f1_input['name']}: {f1_input['SApM']} | {f2_input['name']}: {f2_input['SApM']} → Diff: {sa_diff:.3f}")
 
-
-    # === Build features as f1 - f2 ===
+    # === Build features as (f1 - f2) in canonical order ===
     X = build_feature_vector(f1_input, f2_input)
     X_scaled = scaler.transform(X)
 
-    raw_proba = model.predict_proba(X_scaled)[0][1]  # prob f1 wins
+    # Prob canonical f1 wins
+    raw_proba = model.predict_proba(X_scaled)[0][1]
 
-    # If inputs were reversed, invert probability
-    if reverse:
-        raw_proba = 1 - raw_proba
-        f1_input, f2_input = f2_input, f1_input
-        # rebuild X for debug so stats match displayed order
-        X = build_feature_vector(f1_input, f2_input)
-        X_scaled = scaler.transform(X)
-
-    # === Confidence normalization helper ===
-    def normalize_confidence(p: float, low=50.0, high=68.0) -> float:
-        # Clamp more gently to avoid extreme confidence
-        p = max(0.01, min(p, 0.99))
-        # Symmetric scaling around 0.5
+    # === Confidence normalization helper (hard cap @ 70) ===
+    def normalize_confidence(p: float, low=50.0, high=70.0) -> float:
+        p = max(0.01, min(p, 0.99))              # gentle clamp
         scaled = low + abs(p - 0.5) * 2 * (high - low)
-        return round(scaled, 2)
+        return round(min(scaled, high), 2)       # enforce cap
 
-
-    # Store the unmodified raw_proba for boosting
-    boosted_proba = raw_proba
-
-    # Normalize based on true raw (not max symmetrical)
     base_confidence = normalize_confidence(raw_proba)
-
+    boosted_proba = raw_proba
 
     # === Stat Favors ===
     stat_favors = get_stat_favors(f1_input, f2_input)
     if APPLY_STAT_DOMINANCE_BONUS:
         initial_winner = f1_input["name"] if boosted_proba >= 0.5 else f2_input["name"]
         winner_count = sum(1 for s in stat_favors if s["favors"] == initial_winner)
-        loser_count = sum(1 for s in stat_favors if s["favors"] not in [initial_winner, "Even"])
+        loser_count  = sum(1 for s in stat_favors if s["favors"] not in [initial_winner, "Even"])
         net_advantage = winner_count - loser_count
         stat_boost = net_advantage * 0.5
     else:
         stat_boost = 0.0
 
-    # === Form & Streak Boosts ===
+    # === Form & Streak Boosts (canonical) ===
     recent_diff = f1_input["recent_form_score"] - f2_input["recent_form_score"]
     streak_diff = f1_input["win_streak_score"] - f2_input["win_streak_score"]
 
@@ -459,40 +469,34 @@ def predict_match(f1_input, f2_input):
 
     streak_boost = 0.0
     if APPLY_STREAK_BOOST:
-        streak_boost = abs(streak_diff) * 12
+        streak_boost = abs(streak_diff) * 13
         if (boosted_proba >= 0.5 and streak_diff < 0) or (boosted_proba < 0.5 and streak_diff > 0):
             streak_boost *= -1
 
-    # === Convert boosts from confidence points → probability space ===
-        # === Convert boosts from confidence points → probability space ===
-    def conf_boost_to_prob(boost_pts, low=50.0, high=85.0):
-        scale = 0.5 / (high - low)  # inverse of normalize_confidence scaling
-        return boost_pts * scale
+    # === Convert boosts from confidence points → probability space
+    #     Use same bounds as normalize_confidence (low=50, high=70)
+    def conf_boost_to_prob(boost_pts, low=50.0, high=75.0):
+        return boost_pts * (0.5 / (high - low))
 
-    # === Disable boosts if either fighter has < 4 fights
-    min_fight_count = 4
-    if len(f1_input["fight_history"]) < min_fight_count or len(f2_input["fight_history"]) < min_fight_count:
-        stat_boost = 0.0
-        form_boost = 0.0
-        streak_boost = 0.0
+    # Disable boosts for small samples
+    if len(f1_input["fight_history"]) < 4 or len(f2_input["fight_history"]) < 4:
+        stat_boost = form_boost = streak_boost = 0.0
 
     boosted_proba += conf_boost_to_prob(stat_boost)
     boosted_proba += conf_boost_to_prob(form_boost)
     boosted_proba += conf_boost_to_prob(streak_boost)
 
-
-    # Clamp boosted probability
+    # Clamp probability
     boosted_proba = min(max(boosted_proba, 0.0), 1.0)
 
-    # === Final Winner & Confidence after boosts ===
+    # === Final Winner & Confidence in canonical space ===
     winner = f1_input["name"] if boosted_proba >= 0.5 else f2_input["name"]
-    confidence = normalize_confidence(max(boosted_proba, 1 - boosted_proba))
+    confidence = normalize_confidence(max(boosted_proba, 1 - boosted_proba))  # capped inside
 
-    # === Rematch Info ===
     # === Rematch Info ===
     rematch = is_rematch(f1_input, f2_input)
 
-    # === Debug Logging ===
+    # === Optional: Opponent-strength adjustment (kept canonical) ===
     if DEBUG_LOGGING:
         def combined_ufc_record(fighter):
             total_wins = total_losses = total_draws = 0
@@ -513,17 +517,16 @@ def predict_match(f1_input, f2_input):
         f1_opp_winpct = win_pct(f1_opp_w, f1_opp_l, f1_opp_d)
         f2_opp_winpct = win_pct(f2_opp_w, f2_opp_l, f2_opp_d)
         winpct_diff = f1_opp_winpct - f2_opp_winpct
-        #boost
         opp_strength_boost = round(abs(winpct_diff) * 10, 2)
 
-        if (boosted_proba >= 0.5 and winpct_diff > 0) or (boosted_proba < 0.5 and winpct_diff < 0):
-            boosted_proba += conf_boost_to_prob(opp_strength_boost)
-        else:
-            boosted_proba -= conf_boost_to_prob(opp_strength_boost)
+                # If f1's opposition was stronger (winpct_diff > 0), move probability toward f1.
+        # If f2's was stronger (winpct_diff < 0), move probability toward f2.
+        boosted_proba += conf_boost_to_prob(opp_strength_boost) * (1 if winpct_diff > 0 else -1)
+
 
         boosted_proba = min(max(boosted_proba, 0.0), 1.0)
         winner = f1_input["name"] if boosted_proba >= 0.5 else f2_input["name"]
-        confidence = normalize_confidence(max(boosted_proba, 1 - boosted_proba))
+        confidence = normalize_confidence(max(boosted_proba, 1 - boosted_proba))  # still capped
 
         print("📊 Opponent UFC Records:")
         print(f"   {f1_input['name']}: {f1_opp_w}-{f1_opp_l}-{f1_opp_d} (Win%: {f1_opp_winpct:.3f})")
@@ -548,34 +551,29 @@ def predict_match(f1_input, f2_input):
             print(f"{k}: {X_scaled_debug[0][i]:.3f}")
         print(f"Rematch Detected: {rematch}")
 
-        
-    
-        
-    # Apply SHAP-style weights, reducing influence of TD_Def_diff
+    # === Feature “contributor” display (unchanged) ===
     shap_weights = {f: 1.0 for f in X.columns}
-    shap_weights["TD_Def_diff"] = 0.25  # reduce weight here
+    shap_weights["TD_Def_diff"] = 0.25  # reduce this weight
 
-    # Apply weights to feature diffs
     weighted_feature_diffs = {
         f: round(X.iloc[0][f] * shap_weights[f], 4)
         for f in X.columns
     }
 
-    # Recalculate top contributors from weighted values
     top_contributors = sorted(
         weighted_feature_diffs.items(),
         key=lambda kv: abs(kv[1]),
         reverse=True
     )[:3]
 
-        # === Apply recent rematch override if present ===
+    # === Recent rematch override (still capped) ===
     recent_rematch = recent_rematch_winner(f1_input, f2_input)
     if recent_rematch:
         print(f"⚠️ Overriding prediction due to recent dominant rematch result: {recent_rematch} won last time.")
         winner = recent_rematch
-        confidence = 90.0  # Strong confidence override
+        confidence = 70.0  # obey the global cap
 
-
+    # === Log entry ===
     log_entry = {
         "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "fighter1": f1_input["name"],
@@ -589,11 +587,10 @@ def predict_match(f1_input, f2_input):
         "top_3_contributors": [f"{k} ({v:+.3f})" for k, v in top_contributors],
     }
 
-
     with open("predictions.log", "a", encoding="utf-8") as f:
         f.write(json.dumps(log_entry) + "\n")
 
-
+    # === Return (order-independent; canonical names last) ===
     return (
         winner,
         confidence,
@@ -603,5 +600,5 @@ def predict_match(f1_input, f2_input):
         rematch,
         stat_favors,
         f1_input["name"],
-        f2_input["name"]
+        f2_input["name"],
     )

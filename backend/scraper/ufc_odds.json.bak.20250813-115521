@@ -44,64 +44,64 @@
     "anthony hernandez": "-330"
   },
   "bryan battle|nursultan ruziboev": {
-    "bryan battle": "-170",
-    "nursultan ruziboev": "+145"
+    "bryan battle": "-180",
+    "nursultan ruziboev": "+155"
   },
   "jessica andrade|lupita godinez": {
-    "lupita godinez": "-150",
-    "jessica andrade": "+130"
+    "lupita godinez": "-220",
+    "jessica andrade": "+180"
   },
   "drakkar klose|edson barboza": {
-    "drakkar klose": "+145",
-    "edson barboza": "-170"
+    "drakkar klose": "+130",
+    "edson barboza": "-150"
   },
   "alexander hernandez|chase hooper": {
-    "alexander hernandez": "+265",
-    "chase hooper": "-330"
+    "alexander hernandez": "+235",
+    "chase hooper": "-285"
   },
   "gerald meerschaert|michal oleksiejczuk": {
-    "michal oleksiejczuk": "-220",
-    "gerald meerschaert": "+180"
+    "michal oleksiejczuk": "-230",
+    "gerald meerschaert": "+190"
   },
   "bobby green|carlos diego ferreira": {
-    "bobby green": "+135",
-    "carlos diego ferreira": "-160"
+    "bobby green": "+168",
+    "carlos diego ferreira": "-198"
   },
   "kai asakura|tim elliott": {
     "kai asakura": "-290",
     "tim elliott": "+240"
   },
   "jared cannonier|michael page": {
-    "jared cannonier": "+158",
-    "michael page": "-183"
+    "jared cannonier": "+153",
+    "michael page": "-177"
   },
   "carlos prates|geoff neal": {
-    "geoff neal": "+215",
-    "carlos prates": "-260"
+    "geoff neal": "+205",
+    "carlos prates": "-245"
   },
   "aaron pico|lerone murphy": {
-    "lerone murphy": "+140",
-    "aaron pico": "-165"
+    "lerone murphy": "+130",
+    "aaron pico": "-150"
   },
   "dricus du plessis|khamzat chimaev": {
-    "dricus du plessis": "+180",
-    "khamzat chimaev": "-220"
+    "dricus du plessis": "+168",
+    "khamzat chimaev": "-198"
   },
   "caio borralho|nassourdine imavov": {
-    "nassourdine imavov": "-142",
-    "caio borralho": "+122"
+    "nassourdine imavov": "-150",
+    "caio borralho": "+130"
   },
   "diego lopes|jean silva": {
     "diego lopes": "+175",
     "jean silva": "-210"
   },
   "alex pereira|magomed ankalaev": {
-    "magomed ankalaev": "-200",
-    "alex pereira": "+170"
+    "magomed ankalaev": "-195",
+    "alex pereira": "+165"
   },
-  "jiří procházka|khalil rountree": {
-    "jiří procházka": "-190",
-    "khalil rountree": "+163"
+  "ji\u0159\u00ed proch\u00e1zka|khalil rountree": {
+    "ji\u0159\u00ed proch\u00e1zka": "-195",
+    "khalil rountree": "+165"
   },
   "cory sandhagen|merab dvalishvili": {
     "merab dvalishvili": "-390",
@@ -122,9 +122,5 @@
   "francis ngannou|tom aspinall": {
     "tom aspinall": "-130",
     "francis ngannou": "+110"
-  },
-  "dione barbosa|karine silva": {
-    "karine silva": "-220",
-    "dione barbosa": "+180"
   }
 }
