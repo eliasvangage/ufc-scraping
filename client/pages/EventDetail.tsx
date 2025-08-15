@@ -416,7 +416,11 @@ export default function EventDetail() {
                   className={`
                     w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold
                     transition-all duration-300 hover:scale-110 cursor-pointer
-                    animate-[fadeInUp_0.5s_ease-out_${index * 0.1}s_both]
+                    ${index === 0 ? 'animate-stagger-1' :
+                      index === 1 ? 'animate-stagger-2' :
+                      index === 2 ? 'animate-stagger-3' :
+                      index === 3 ? 'animate-stagger-4' :
+                      'animate-stagger-5'}
                     ${
                       result === "W"
                         ? "bg-green-500/80 text-white shadow-green-500/50"
@@ -426,9 +430,6 @@ export default function EventDetail() {
                     }
                     shadow-lg
                   `}
-                  style={{
-                    animationDelay: `${index * 100}ms`,
-                  }}
                 >
                   {result}
                 </div>
