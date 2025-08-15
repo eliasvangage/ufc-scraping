@@ -27,6 +27,7 @@ import {
   Brain,
   Flame,
   Eye,
+  Lightbulb,
 } from "lucide-react";
 import {
   isEventPast,
