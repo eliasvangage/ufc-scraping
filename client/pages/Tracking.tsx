@@ -70,17 +70,19 @@ const PredictionDetailsCard = ({ fight }: { fight: Fight }) => {
       {/* Fight Header */}
       <div className="text-center space-y-4">
         <div className="flex items-center justify-center gap-4">
-          <div className="text-xl font-bold text-red-400">{fight.fighter1}</div>
+          <div className="text-xl font-bold text-red-300">{fight.fighter1}</div>
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center">
-              <div className="w-4 h-4 rounded-full bg-red-500" />
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-500/30 to-red-600/20 flex items-center justify-center ring-2 ring-red-500/20">
+              <div className="w-5 h-5 rounded-full bg-gradient-to-br from-red-500 to-red-600 shadow-lg" />
             </div>
-            <Flame className="h-5 w-5 text-primary" />
-            <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center">
-              <div className="w-4 h-4 rounded-full bg-blue-500" />
+            <div className="mx-2">
+              <Flame className="h-6 w-6 text-primary animate-pulse" />
+            </div>
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500/30 to-blue-600/20 flex items-center justify-center ring-2 ring-blue-500/20">
+              <div className="w-5 h-5 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg" />
             </div>
           </div>
-          <div className="text-xl font-bold text-blue-400">
+          <div className="text-xl font-bold text-blue-300">
             {fight.fighter2}
           </div>
         </div>
