@@ -336,6 +336,7 @@ export default function FighterProfile() {
 
           setFighter(fallbackFighter);
           setError(null); // Clear error since we have fallback data
+          setUsingFallbackData(true);
         }
       } finally {
         if (isMounted) {
