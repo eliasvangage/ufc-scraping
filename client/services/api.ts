@@ -126,48 +126,93 @@ class ApiService {
   async getFighterDetails(fighterName: string): Promise<Fighter | null> {
     try {
       console.log('Fetching fighter details for:', fighterName);
-      const response = await this.fetchWithTimeout(`${this.baseUrl}/fighter/${encodeURIComponent(fighterName)}`, {
-        headers: { 'Accept': 'application/json' },
-      });
 
-      if (!response.ok) {
-        console.warn(`Fighter API returned ${response.status}: ${response.statusText} for ${fighterName}`);
-        throw new Error(`Failed to fetch fighter details: ${response.status} ${response.statusText}`);
+      // Get all fighters from full_fighters endpoint
+      const allFighters = await this.getFullFighters();
+
+      // Find the specific fighter by name
+      const fighterData = allFighters.find(f => f.name.toLowerCase() === fighterName.toLowerCase());
+
+      if (!fighterData) {
+        console.warn(`Fighter "${fighterName}" not found in full_fighters data`);
+        throw new Error(`Fighter not found: ${fighterName}`);
       }
 
-      const data = await response.json();
-      console.log('Fighter data received:', data);
+      console.log('Fighter data found:', fighterData);
 
+      // Parse the real API structure
       return {
-        name: data.name || fighterName,
-        weight: Number(data.weight) || 0,
-        height: Number(data.height) || 0,
-        reach: Number(data.reach) || 0,
-        slpm: Number(data.SLpM) || 0,
-        sapm: Number(data.SApM) || 0,
-        tdAvg: Number(data["TD Avg."]) || 0,
-        tdDef: Number(data["TD Def."]) || 0,
-        strAcc: Number(data["Str. Acc."]) || 0,
-        strDef: Number(data["Str. Def"]) || 0,
-        fight_history: data.fight_history || [],
-        recent_form_score: Number(data.recent_form_score) || 0,
-        win_streak_score: Number(data.win_streak_score) || 0,
-        avg_opp_strength: Number(data.avg_opp_strength) || 0,
-        last_results: data.last_results || [],
-        is_champion: Boolean(data.is_champion),
-        record: data.record || "0-0-0",
-        ufc_wins: data.ufc_wins ?? 0,
-        ufc_losses: data.ufc_losses ?? 0,
-        ufc_draws: data.ufc_draws ?? 0,
-        ko_pct: data.ko_pct ?? 0,
-        dec_pct: data.dec_pct ?? 0,
-        sub_pct: data.sub_pct ?? 0,
+        name: fighterData.name,
+        weight: parseFloat(fighterData.weight?.replace(/[^\d.]/g, '') || '0') || 0,
+        height: this.parseHeight(fighterData.height || '0'),
+        reach: parseFloat(fighterData.reach?.replace(/[^\d.]/g, '') || '0') || 0,
+        slpm: parseFloat(fighterData.stats?.SLpM || '0') || 0,
+        sapm: parseFloat(fighterData.stats?.SApM || '0') || 0,
+        tdAvg: parseFloat(fighterData.stats?.["TD Avg."] || '0') || 0,
+        tdDef: parseFloat(fighterData.stats?.["TD Def."]?.replace('%', '') || '0') || 0,
+        strAcc: parseFloat(fighterData.stats?.["Str. Acc."]?.replace('%', '') || '0') || 0,
+        strDef: parseFloat(fighterData.stats?.["Str. Def"]?.replace('%', '') || '0') || 0,
+        fight_history: fighterData.fight_history || [],
+        recent_form_score: 0, // Calculate from fight history
+        win_streak_score: 0, // Calculate from fight history
+        avg_opp_strength: 0, // Calculate from fight history
+        last_results: this.getLastResults(fighterData.fight_history || []),
+        is_champion: false, // Not provided in API, could add logic to determine
+        record: fighterData.record || "0-0-0",
+        ufc_wins: this.countWins(fighterData.fight_history || []),
+        ufc_losses: this.countLosses(fighterData.fight_history || []),
+        ufc_draws: this.countDraws(fighterData.fight_history || []),
+        ko_pct: this.calculateFinishPercentage(fighterData.fight_history || [], ['KO', 'TKO']),
+        dec_pct: this.calculateFinishPercentage(fighterData.fight_history || [], ['DEC', 'U-DEC']),
+        sub_pct: this.calculateFinishPercentage(fighterData.fight_history || [], ['SUB']),
       };
 
     } catch (error) {
       console.warn('Using mock data for fighter:', fighterName, 'Error:', error);
       return this.getMockFighterData(fighterName);
     }
+  }
+
+  private parseHeight(heightStr: string): number {
+    // Convert height like "5' 11\"" to inches
+    if (heightStr.includes("'")) {
+      const parts = heightStr.replace(/"/g, '').split("'");
+      const feet = parseInt(parts[0]) || 0;
+      const inches = parseInt(parts[1]?.trim()) || 0;
+      return feet * 12 + inches;
+    }
+    return 0;
+  }
+
+  private getLastResults(fightHistory: any[]): string[] {
+    return fightHistory.slice(0, 5).map(fight => {
+      switch(fight.result) {
+        case 'win': return 'W';
+        case 'loss': return 'L';
+        case 'draw': return 'D';
+        default: return 'L';
+      }
+    });
+  }
+
+  private countWins(fightHistory: any[]): number {
+    return fightHistory.filter(fight => fight.result === 'win').length;
+  }
+
+  private countLosses(fightHistory: any[]): number {
+    return fightHistory.filter(fight => fight.result === 'loss').length;
+  }
+
+  private countDraws(fightHistory: any[]): number {
+    return fightHistory.filter(fight => fight.result === 'draw').length;
+  }
+
+  private calculateFinishPercentage(fightHistory: any[], methods: string[]): number {
+    if (fightHistory.length === 0) return 0;
+    const finishes = fightHistory.filter(fight =>
+      methods.some(method => fight.method?.toUpperCase().includes(method))
+    ).length;
+    return Math.round((finishes / fightHistory.length) * 100);
   }
 
   private getMockFighterData(fighterName: string): Fighter {
