@@ -550,26 +550,55 @@ export function FightCard({
         <CardContent className="space-y-8">
           <div className="text-center">
             <div className="mb-6">
-              <h3 className="text-4xl font-bold text-primary mb-4 tracking-wide">
-                {prediction.predicted_winner} VICTORIOUS
-              </h3>
-              <div className="flex justify-center gap-4 mb-4">
-                <Badge
-                  variant="default"
-                  className="text-xl py-3 px-6 bg-gradient-to-r from-primary to-primary/80 shadow-lg"
-                >
-                  <Zap className="h-5 w-5 mr-2" />
-                  {prediction.confidence.toFixed(1)}% Certainty
-                </Badge>
-                {prediction.rematch && (
-                  <Badge
-                    variant="secondary"
-                    className="text-xl py-3 px-6 shadow-lg"
-                  >
-                    REMATCH
-                  </Badge>
-                )}
-              </div>
+              {isTossUp ? (
+                <>
+                  <h3 className="text-4xl font-bold text-yellow-400 mb-4 tracking-wide">
+                    TOO CLOSE TO CALL
+                  </h3>
+                  <div className="flex justify-center gap-4 mb-4">
+                    <Badge
+                      variant="outline"
+                      className="text-xl py-3 px-6 bg-gradient-to-r from-yellow-500/20 to-yellow-500/10 border-yellow-500/30 text-yellow-400 shadow-lg"
+                    >
+                      <Target className="h-5 w-5 mr-2" />
+                      50/50 Split
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="text-xl py-3 px-6 shadow-lg"
+                    >
+                      Insufficient Data
+                    </Badge>
+                  </div>
+                  <p className="text-muted-foreground max-w-md mx-auto leading-relaxed">
+                    Due to limited UFC experience or missing fighter data, this fight is considered a toss-up.
+                    Both fighters have equal chances of victory.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <h3 className="text-4xl font-bold text-primary mb-4 tracking-wide">
+                    {prediction.predicted_winner} VICTORIOUS
+                  </h3>
+                  <div className="flex justify-center gap-4 mb-4">
+                    <Badge
+                      variant="default"
+                      className="text-xl py-3 px-6 bg-gradient-to-r from-primary to-primary/80 shadow-lg"
+                    >
+                      <Zap className="h-5 w-5 mr-2" />
+                      {prediction.confidence.toFixed(1)}% Certainty
+                    </Badge>
+                    {prediction.rematch && (
+                      <Badge
+                        variant="secondary"
+                        className="text-xl py-3 px-6 shadow-lg"
+                      >
+                        REMATCH
+                      </Badge>
+                    )}
+                  </div>
+                </>
+              )}
             </div>
           </div>
 
