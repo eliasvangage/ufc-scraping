@@ -648,7 +648,7 @@ export default function FighterProfile() {
               <div className="space-y-4">
                 <div className="bg-background/30 rounded-lg p-4 border border-purple-500/20">
                   <div className="flex items-center gap-2 mb-2">
-                    <Radar className="h-4 w-4 text-purple-400" />
+                    <Eye className="h-4 w-4 text-purple-400" />
                     <span className="font-medium text-purple-400">Fighting Style Analysis</span>
                   </div>
                   <p className="text-sm text-muted-foreground">
