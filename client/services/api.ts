@@ -8,9 +8,9 @@ export interface Fighter {
   record: string;
   profile_url?: string;
   stats: {
-    "SLpM": string;
+    SLpM: string;
     "Str. Acc.": string;
-    "SApM": string;
+    SApM: string;
     "Str. Def": string;
     "TD Avg.": string;
     "TD Acc.": string;
@@ -73,14 +73,12 @@ export interface PredictionResponse {
   is_champion: boolean;
   fighter1_has_stats?: boolean;
   fighter2_has_stats?: boolean;
-  
+
   stat_favors: Array<{
     stat: string;
     favors: string;
-    
   }>;
 }
-
 
 class ApiService {
   private baseUrl: string;
@@ -89,14 +87,18 @@ class ApiService {
     this.baseUrl = import.meta.env.VITE_API_URL || "http://localhost:8000";
   }
 
-  private async fetchWithTimeout(url: string, options: RequestInit = {}, timeout = 5000): Promise<Response> {
+  private async fetchWithTimeout(
+    url: string,
+    options: RequestInit = {},
+    timeout = 5000,
+  ): Promise<Response> {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), timeout);
 
     try {
       const response = await fetch(url, {
         ...options,
-        signal: controller.signal
+        signal: controller.signal,
       });
       clearTimeout(timeoutId);
       return response;
@@ -106,63 +108,77 @@ class ApiService {
     }
   }
 
-  
-
   async getFighters(): Promise<string[]> {
     try {
-      const response = await this.fetchWithTimeout(`${this.baseUrl}/full_fighters`, {
-        headers: { 'Accept': 'application/json' },
-      });
+      const response = await this.fetchWithTimeout(
+        `${this.baseUrl}/full_fighters`,
+        {
+          headers: { Accept: "application/json" },
+        },
+      );
 
       if (!response.ok) {
-        throw new Error(`Failed to fetch fighters: ${response.status} ${response.statusText}`);
+        throw new Error(
+          `Failed to fetch fighters: ${response.status} ${response.statusText}`,
+        );
       }
 
       const fighters = await response.json();
       // Extract just the names for the fighter list
       return fighters.map((fighter: any) => fighter.name);
     } catch (error) {
-      console.warn('Fighter data unavailable, using offline data');
+      console.warn("Fighter data unavailable, using offline data");
       throw error;
     }
   }
 
   async getFullFighters(): Promise<any[]> {
     try {
-      const response = await this.fetchWithTimeout(`${this.baseUrl}/full_fighters`, {
-        headers: { 'Accept': 'application/json' },
-      });
+      const response = await this.fetchWithTimeout(
+        `${this.baseUrl}/full_fighters`,
+        {
+          headers: { Accept: "application/json" },
+        },
+      );
 
       if (!response.ok) {
-        console.warn(`Full fighters API returned ${response.status}: ${response.statusText}`);
-        throw new Error(`Failed to fetch full fighters: ${response.status} ${response.statusText}`);
+        console.warn(
+          `Full fighters API returned ${response.status}: ${response.statusText}`,
+        );
+        throw new Error(
+          `Failed to fetch full fighters: ${response.status} ${response.statusText}`,
+        );
       }
 
       const data = await response.json();
-      console.log('Full fighters data received, count:', data.length);
+      console.log("Full fighters data received, count:", data.length);
       return data;
     } catch (error) {
-      console.warn('Full fighter data unavailable, error:', error);
+      console.warn("Full fighter data unavailable, error:", error);
       throw error;
     }
   }
 
   async getFighterDetails(fighterName: string): Promise<Fighter | null> {
     try {
-      console.log('Fetching fighter details for:', fighterName);
+      console.log("Fetching fighter details for:", fighterName);
 
       // Get all fighters from full_fighters endpoint
       const allFighters = await this.getFullFighters();
 
       // Find the specific fighter by name
-      const fighterData = allFighters.find(f => f.name.toLowerCase() === fighterName.toLowerCase());
+      const fighterData = allFighters.find(
+        (f) => f.name.toLowerCase() === fighterName.toLowerCase(),
+      );
 
       if (!fighterData) {
-        console.warn(`Fighter "${fighterName}" not found in full_fighters data`);
+        console.warn(
+          `Fighter "${fighterName}" not found in full_fighters data`,
+        );
         throw new Error(`Fighter not found: ${fighterName}`);
       }
 
-      console.log('Fighter data found:', fighterData);
+      console.log("Fighter data found:", fighterData);
 
       // Return the fighter data in the expected format
       const ufcFights = this.getUFCFights(fighterData.fight_history || []);
@@ -177,19 +193,21 @@ class ApiService {
         record: fighterData.record || "0-0-0",
         profile_url: fighterData.profile_url || "",
         stats: fighterData.stats || {
-          "SLpM": "0.00",
+          SLpM: "0.00",
           "Str. Acc.": "0%",
-          "SApM": "0.00",
+          SApM: "0.00",
           "Str. Def": "0%",
           "TD Avg.": "0.00",
           "TD Acc.": "0%",
           "TD Def.": "0%",
-          "Sub. Avg.": "0.0"
+          "Sub. Avg.": "0.0",
         },
         fight_history: fighterData.fight_history || [],
         dob: fighterData.dob || "",
         age: fighterData.age || this.calculateAgeFromDob(fighterData.dob),
-        division: this.getDivisionFromWeight(this.cleanWeight(fighterData.weight || "")),
+        division: this.getDivisionFromWeight(
+          this.cleanWeight(fighterData.weight || ""),
+        ),
         is_champion: fighterData.is_champion || false,
         ufc_record: this.calculateUFCRecord(ufcFights),
         ufc_wins: this.countWins(ufcFights),
@@ -197,23 +215,44 @@ class ApiService {
         ufc_draws: this.countDraws(ufcFights),
 
         // Computed fields for internal use
-        slpm: parseFloat(fighterData.stats?.SLpM || '0') || 0,
-        sapm: parseFloat(fighterData.stats?.SApM || '0') || 0,
-        tdAvg: parseFloat(fighterData.stats?.["TD Avg."] || '0') || 0,
-        tdDef: parseFloat(fighterData.stats?.["TD Def."]?.replace('%', '') || '0') || 0,
-        strAcc: parseFloat(fighterData.stats?.["Str. Acc."]?.replace('%', '') || '0') || 0,
-        strDef: parseFloat(fighterData.stats?.["Str. Def"]?.replace('%', '') || '0') || 0,
+        slpm: parseFloat(fighterData.stats?.SLpM || "0") || 0,
+        sapm: parseFloat(fighterData.stats?.SApM || "0") || 0,
+        tdAvg: parseFloat(fighterData.stats?.["TD Avg."] || "0") || 0,
+        tdDef:
+          parseFloat(fighterData.stats?.["TD Def."]?.replace("%", "") || "0") ||
+          0,
+        strAcc:
+          parseFloat(
+            fighterData.stats?.["Str. Acc."]?.replace("%", "") || "0",
+          ) || 0,
+        strDef:
+          parseFloat(
+            fighterData.stats?.["Str. Def"]?.replace("%", "") || "0",
+          ) || 0,
         recent_form_score: 0,
         win_streak_score: 0,
         avg_opp_strength: 0,
         last_results: this.getLastResults(fighterData.fight_history || []),
-        ko_pct: this.calculateFinishPercentage(fighterData.fight_history || [], ['KO', 'TKO']),
-        dec_pct: this.calculateFinishPercentage(fighterData.fight_history || [], ['DEC', 'U-DEC']),
-        sub_pct: this.calculateFinishPercentage(fighterData.fight_history || [], ['SUB']),
+        ko_pct: this.calculateFinishPercentage(
+          fighterData.fight_history || [],
+          ["KO", "TKO"],
+        ),
+        dec_pct: this.calculateFinishPercentage(
+          fighterData.fight_history || [],
+          ["DEC", "U-DEC"],
+        ),
+        sub_pct: this.calculateFinishPercentage(
+          fighterData.fight_history || [],
+          ["SUB"],
+        ),
       };
-
     } catch (error) {
-      console.warn('Using mock data for fighter:', fighterName, 'Error:', error);
+      console.warn(
+        "Using mock data for fighter:",
+        fighterName,
+        "Error:",
+        error,
+      );
       return this.getMockFighterData(fighterName);
     }
   }
@@ -225,7 +264,10 @@ class ApiService {
       const today = new Date();
       let age = today.getFullYear() - birthDate.getFullYear();
       const monthDiff = today.getMonth() - birthDate.getMonth();
-      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+      if (
+        monthDiff < 0 ||
+        (monthDiff === 0 && today.getDate() < birthDate.getDate())
+      ) {
         age--;
       }
       return age > 0 ? age : 30;
@@ -237,7 +279,7 @@ class ApiService {
   private cleanWeight(weight: string): string {
     if (!weight || weight === "--") return "Unknown";
     // Remove duplicate "lbs." if present
-    return weight.replace(/(\s*lbs\.?\s*){2,}/g, ' lbs').trim();
+    return weight.replace(/(\s*lbs\.?\s*){2,}/g, " lbs").trim();
   }
 
   private cleanReach(reach: string): string {
@@ -247,8 +289,8 @@ class ApiService {
   }
 
   private getUFCFights(fightHistory: any[]): any[] {
-    return fightHistory.filter(fight =>
-      fight.event && fight.event.toLowerCase().includes('ufc')
+    return fightHistory.filter(
+      (fight) => fight.event && fight.event.toLowerCase().includes("ufc"),
     );
   }
 
@@ -261,7 +303,7 @@ class ApiService {
 
   private getDivisionFromWeight(weight?: string): string {
     if (!weight) return "Unknown";
-    const weightNum = parseFloat(weight.replace(/[^\d.]/g, '') || '0');
+    const weightNum = parseFloat(weight.replace(/[^\d.]/g, "") || "0");
     if (weightNum <= 115) return "Strawweight";
     if (weightNum <= 125) return "Flyweight";
     if (weightNum <= 135) return "Bantamweight";
@@ -274,39 +316,46 @@ class ApiService {
   }
 
   private getLastResults(fightHistory: any[]): string[] {
-    return fightHistory.slice(0, 5).map(fight => {
-      switch(fight.result) {
-        case 'win': return 'W';
-        case 'loss': return 'L';
-        case 'draw': return 'D';
-        default: return 'L';
+    return fightHistory.slice(0, 5).map((fight) => {
+      switch (fight.result) {
+        case "win":
+          return "W";
+        case "loss":
+          return "L";
+        case "draw":
+          return "D";
+        default:
+          return "L";
       }
     });
   }
 
   private countWins(fightHistory: any[]): number {
-    return fightHistory.filter(fight => fight.result === 'win').length;
+    return fightHistory.filter((fight) => fight.result === "win").length;
   }
 
   private countLosses(fightHistory: any[]): number {
-    return fightHistory.filter(fight => fight.result === 'loss').length;
+    return fightHistory.filter((fight) => fight.result === "loss").length;
   }
 
   private countDraws(fightHistory: any[]): number {
-    return fightHistory.filter(fight => fight.result === 'draw').length;
+    return fightHistory.filter((fight) => fight.result === "draw").length;
   }
 
-  private calculateFinishPercentage(fightHistory: any[], methods: string[]): number {
+  private calculateFinishPercentage(
+    fightHistory: any[],
+    methods: string[],
+  ): number {
     if (fightHistory.length === 0) return 0;
-    const finishes = fightHistory.filter(fight =>
-      methods.some(method => fight.method?.toUpperCase().includes(method))
+    const finishes = fightHistory.filter((fight) =>
+      methods.some((method) => fight.method?.toUpperCase().includes(method)),
     ).length;
     return Math.round((finishes / fightHistory.length) * 100);
   }
 
   private getMockFighterData(fighterName: string): Fighter {
-    const nameHash = fighterName.split('').reduce((a, b) => {
-      a = ((a << 5) - a) + b.charCodeAt(0);
+    const nameHash = fighterName.split("").reduce((a, b) => {
+      a = (a << 5) - a + b.charCodeAt(0);
       return a & a;
     }, 0);
 
@@ -347,7 +396,10 @@ class ApiService {
     return Array.from({ length: 5 }, (_, i) => results[Math.abs(seed + i) % 3]);
   }
 
-  private generateMockFightHistory(seed: number, totalFights: number): Array<{
+  private generateMockFightHistory(
+    seed: number,
+    totalFights: number,
+  ): Array<{
     opponent: string;
     result: string;
     event: string;
@@ -355,8 +407,14 @@ class ApiService {
     method?: string;
   }> {
     const opponents = [
-      "Alex Smith", "Mike Johnson", "Carlos Rodriguez", "Tony Ferguson",
-      "Daniel Williams", "Ryan Miller", "Jake Anderson", "Matt Brown"
+      "Alex Smith",
+      "Mike Johnson",
+      "Carlos Rodriguez",
+      "Tony Ferguson",
+      "Daniel Williams",
+      "Ryan Miller",
+      "Jake Anderson",
+      "Matt Brown",
     ];
     const methods = ["Decision", "TKO", "Submission", "KO"];
     const events = ["UFC 300", "UFC 295", "UFC 290", "UFC 285", "UFC 280"];
@@ -387,7 +445,9 @@ class ApiService {
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.detail || `Prediction failed: ${response.statusText}`);
+        throw new Error(
+          errorData.detail || `Prediction failed: ${response.statusText}`,
+        );
       }
 
       return await response.json();
@@ -412,10 +472,19 @@ class ApiService {
         rematch: Math.random() > 0.8,
         is_champion: Math.random() > 0.7,
         stat_favors: [
-          { stat: "Striking Accuracy", favors: Math.random() > 0.5 ? request.fighter1 : request.fighter2 },
-          { stat: "Takedown Defense", favors: Math.random() > 0.5 ? request.fighter1 : request.fighter2 },
-          { stat: "Reach", favors: Math.random() > 0.5 ? request.fighter1 : request.fighter2 },
-        ]
+          {
+            stat: "Striking Accuracy",
+            favors: Math.random() > 0.5 ? request.fighter1 : request.fighter2,
+          },
+          {
+            stat: "Takedown Defense",
+            favors: Math.random() > 0.5 ? request.fighter1 : request.fighter2,
+          },
+          {
+            stat: "Reach",
+            favors: Math.random() > 0.5 ? request.fighter1 : request.fighter2,
+          },
+        ],
       };
     }
   }
@@ -441,7 +510,7 @@ class ApiService {
         top_contributors: { feature: string; value: number }[];
       }>;
     } catch (error) {
-      console.warn('Explanation service unavailable');
+      console.warn("Explanation service unavailable");
       throw error;
     }
   }

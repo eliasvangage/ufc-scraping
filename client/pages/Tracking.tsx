@@ -132,18 +132,16 @@ const PredictionDetailsCard = ({ fight }: { fight: Fight }) => {
                 <Target className="h-5 w-5 mr-2" />
                 50/50 Split
               </Badge>
-              <Badge
-                variant="secondary"
-                className="px-4 py-2 text-lg"
-              >
+              <Badge variant="secondary" className="px-4 py-2 text-lg">
                 <AlertTriangle className="h-4 w-4 mr-2" />
                 Insufficient Data
               </Badge>
             </div>
             <div className="bg-background/30 rounded-xl p-4 border border-yellow-400/20">
               <p className="text-muted-foreground leading-relaxed">
-                Limited UFC experience or missing fighter data made this a toss-up prediction.
-                Both fighters have equal chances of victory according to the AI model.
+                Limited UFC experience or missing fighter data made this a
+                toss-up prediction. Both fighters have equal chances of victory
+                according to the AI model.
               </p>
             </div>
           </div>
@@ -163,7 +161,9 @@ const PredictionDetailsCard = ({ fight }: { fight: Fight }) => {
             <div className="space-y-6">
               <div className="bg-background/40 rounded-xl p-6 border border-primary/20">
                 <div className="flex items-center justify-between text-lg mb-4">
-                  <span className="text-muted-foreground font-medium">AI Confidence Level</span>
+                  <span className="text-muted-foreground font-medium">
+                    AI Confidence Level
+                  </span>
                   <span className="font-bold text-primary text-2xl drop-shadow-lg">
                     {fight.confidenceScore}%
                   </span>
@@ -187,22 +187,30 @@ const PredictionDetailsCard = ({ fight }: { fight: Fight }) => {
                     <div className="flex flex-col items-center">
                       <div className="w-2 h-2 bg-yellow-400 rounded-full mb-1" />
                       <span className="text-yellow-400">50%</span>
-                      <span className="text-xs text-muted-foreground">Uncertain</span>
+                      <span className="text-xs text-muted-foreground">
+                        Uncertain
+                      </span>
                     </div>
                     <div className="flex flex-col items-center">
                       <div className="w-2 h-2 bg-orange-400 rounded-full mb-1" />
                       <span className="text-orange-400">65%</span>
-                      <span className="text-xs text-muted-foreground">Likely</span>
+                      <span className="text-xs text-muted-foreground">
+                        Likely
+                      </span>
                     </div>
                     <div className="flex flex-col items-center">
                       <div className="w-2 h-2 bg-primary rounded-full mb-1" />
                       <span className="text-primary">80%</span>
-                      <span className="text-xs text-muted-foreground">Confident</span>
+                      <span className="text-xs text-muted-foreground">
+                        Confident
+                      </span>
                     </div>
                     <div className="flex flex-col items-center">
                       <div className="w-2 h-2 bg-green-400 rounded-full mb-1" />
                       <span className="text-green-400">100%</span>
-                      <span className="text-xs text-muted-foreground">Certain</span>
+                      <span className="text-xs text-muted-foreground">
+                        Certain
+                      </span>
                     </div>
                   </div>
 
@@ -242,7 +250,9 @@ const PredictionDetailsCard = ({ fight }: { fight: Fight }) => {
             <div className="p-2 bg-blue-500/20 rounded-lg">
               <Lightbulb className="h-5 w-5 text-blue-400" />
             </div>
-            <h5 className="font-bold text-lg text-blue-400">Key Analysis Points</h5>
+            <h5 className="font-bold text-lg text-blue-400">
+              Key Analysis Points
+            </h5>
           </div>
           <div className="bg-background/30 rounded-lg p-4 border border-blue-500/10">
             <p className="text-muted-foreground leading-relaxed text-sm">
@@ -254,22 +264,28 @@ const PredictionDetailsCard = ({ fight }: { fight: Fight }) => {
 
       {/* Enhanced Result Section */}
       {!isPending && (
-        <div className={cn(
-          "rounded-xl p-6 border",
-          isCorrect
-            ? "bg-gradient-to-br from-green-500/10 to-emerald-500/10 border-green-500/20"
-            : "bg-gradient-to-br from-red-500/10 to-rose-500/10 border-red-500/20"
-        )}>
+        <div
+          className={cn(
+            "rounded-xl p-6 border",
+            isCorrect
+              ? "bg-gradient-to-br from-green-500/10 to-emerald-500/10 border-green-500/20"
+              : "bg-gradient-to-br from-red-500/10 to-rose-500/10 border-red-500/20",
+          )}
+        >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className={cn(
-                "p-2 rounded-lg",
-                isCorrect ? "bg-green-500/20" : "bg-red-500/20"
-              )}>
-                <Trophy className={cn(
-                  "h-5 w-5",
-                  isCorrect ? "text-green-400" : "text-red-400"
-                )} />
+              <div
+                className={cn(
+                  "p-2 rounded-lg",
+                  isCorrect ? "bg-green-500/20" : "bg-red-500/20",
+                )}
+              >
+                <Trophy
+                  className={cn(
+                    "h-5 w-5",
+                    isCorrect ? "text-green-400" : "text-red-400",
+                  )}
+                />
               </div>
               <h5 className="font-bold text-lg">Actual Result</h5>
             </div>
@@ -286,7 +302,7 @@ const PredictionDetailsCard = ({ fight }: { fight: Fight }) => {
                   "text-lg px-4 py-2 font-bold",
                   isCorrect
                     ? "bg-green-500/20 text-green-400 border-green-500/30"
-                    : "bg-red-500/20 text-red-400 border-red-500/30"
+                    : "bg-red-500/20 text-red-400 border-red-500/30",
                 )}
               >
                 {isCorrect ? "✓ Prediction Correct" : "✗ Prediction Incorrect"}
@@ -325,7 +341,7 @@ export default function Index() {
       const timeoutId = setTimeout(() => controller.abort(), 10000);
 
       const response = await fetch("http://localhost:8000/tracked", {
-        signal: controller.signal
+        signal: controller.signal,
       });
 
       clearTimeout(timeoutId);
@@ -380,8 +396,8 @@ export default function Index() {
 
       setFightData({ events: Object.values(groupedByEvent) });
     } catch (error) {
-      if (error.name === 'AbortError') {
-        console.warn('Request was aborted');
+      if (error.name === "AbortError") {
+        console.warn("Request was aborted");
         return;
       }
       console.warn("Error fetching fight data:", error);

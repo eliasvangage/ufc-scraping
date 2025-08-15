@@ -444,7 +444,7 @@ export default function Fighters() {
       <Card
         className="group relative overflow-hidden bg-gradient-to-br from-card via-card/90 to-muted/30 border-border hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 hover:scale-[1.02] w-full cursor-pointer"
         onClick={() => {
-          console.log('Fighter card clicked:', fighter.name);
+          console.log("Fighter card clicked:", fighter.name);
           navigate(`/fighter/${encodeURIComponent(fighter.name)}`);
         }}
       >
@@ -636,7 +636,10 @@ export default function Fighters() {
             className="w-full group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-primary/80 group-hover:text-primary-foreground group-hover:border-primary transition-all duration-300 font-medium text-xs h-8"
             onClick={(e) => {
               e.stopPropagation();
-              console.log('Grid view button: Navigating to fighter profile:', fighter.name);
+              console.log(
+                "Grid view button: Navigating to fighter profile:",
+                fighter.name,
+              );
               navigate(`/fighter/${encodeURIComponent(fighter.name)}`);
             }}
           >
@@ -983,7 +986,10 @@ export default function Fighters() {
                               className="gap-2"
                               onClick={(e) => {
                                 e.stopPropagation();
-                                console.log('List view: Navigating to fighter profile:', fighter.name);
+                                console.log(
+                                  "List view: Navigating to fighter profile:",
+                                  fighter.name,
+                                );
                                 navigate(
                                   `/fighter/${encodeURIComponent(fighter.name)}`,
                                 );
