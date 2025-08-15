@@ -35,9 +35,7 @@ import {
   Lightbulb,
   Hash,
   Zap,
-  Gauge,
-  Footprints,
-  Radar
+  Gauge
 } from "lucide-react";
 import { Hero } from "@/components/ui/hero";
 import { cn } from "@/lib/utils";
