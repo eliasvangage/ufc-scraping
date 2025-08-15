@@ -449,16 +449,34 @@ export function FightCard({
   const f1 = prediction.fighter1_data;
   const f2 = prediction.fighter2_data;
 
+  // Check if either fighter has insufficient data
+  const f1HasData = f1 && f1.name && (f1.ufc_wins > 0 || f1.ufc_losses > 0 || f1.ufc_draws > 0);
+  const f2HasData = f2 && f2.name && (f2.ufc_wins > 0 || f2.ufc_losses > 0 || f2.ufc_draws > 0);
+
+  // Get fighter names, handling missing data
+  const f1Name = f1?.name || fighter1 || "Unknown Fighter";
+  const f2Name = f2?.name || fighter2 || "Unknown Fighter";
+
+  // Check if this is a toss-up prediction
+  const isTossUp = prediction.predicted_winner === "Toss Up" || prediction.confidence === 50;
+
   return (
     <div className="space-y-8">
       {/* Enhanced Header */}
       <Card className="bg-gradient-to-br from-primary/15 via-primary/8 to-primary/15 border-primary/30 shadow-xl">
         <CardHeader className="text-center pb-6">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold animate-pulse px-4 py-2">
-              <Crown className="h-4 w-4 mr-1" />
-              MAIN EVENT
-            </Badge>
+            {isTossUp ? (
+              <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold animate-pulse px-4 py-2">
+                <Target className="h-4 w-4 mr-1" />
+                TOSS-UP MATCH
+              </Badge>
+            ) : (
+              <Badge className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold animate-pulse px-4 py-2">
+                <Crown className="h-4 w-4 mr-1" />
+                MAIN EVENT
+              </Badge>
+            )}
           </div>
 
           <CardTitle className="text-3xl md:text-4xl font-bold mb-6">
@@ -468,7 +486,7 @@ export function FightCard({
                 <Shield className="h-6 w-6 text-blue-400" />
               </div>
               <span className="bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">
-                ORYEN ORACLE PREDICTION
+                {isTossUp ? "ORYEN ORACLE ANALYSIS" : "ORYEN ORACLE PREDICTION"}
               </span>
               <div className="flex items-center gap-2">
                 <Shield className="h-6 w-6 text-blue-400" />
@@ -478,7 +496,7 @@ export function FightCard({
           </CardTitle>
 
           <div className="text-2xl font-bold flex items-center justify-center gap-4 flex-wrap">
-            <span className="text-red-400 font-bold">{f1.name}</span>
+            <span className="text-red-400 font-bold">{f1Name}</span>
             <div className="flex items-center gap-2 animate-pulse">
               <div className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center">
                 <div className="w-4 h-4 rounded-full bg-red-500" />
@@ -488,25 +506,34 @@ export function FightCard({
                 <div className="w-4 h-4 rounded-full bg-blue-500" />
               </div>
             </div>
-            <span className="text-blue-400 font-bold">{f2.name}</span>
+            <span className="text-blue-400 font-bold">{f2Name}</span>
           </div>
         </CardHeader>
       </Card>
 
       {/* Fighter Comparison Cards */}
       <div className="grid md:grid-cols-2 gap-8">
-        <FighterStatsCard
-          fighter={f1.name}
-          corner="red"
-          fighterData={f1}
-          recentForm={prediction.fighter1_last5}
-        />
-        <FighterStatsCard
-          fighter={f2.name}
-          corner="blue"
-          fighterData={f2}
-          recentForm={prediction.fighter2_last5}
-        />
+        {f1HasData ? (
+          <FighterStatsCard
+            fighter={f1Name}
+            corner="red"
+            fighterData={f1}
+            recentForm={prediction.fighter1_last5}
+          />
+        ) : (
+          <NoStatsCard fighter={f1Name} corner="red" />
+        )}
+
+        {f2HasData ? (
+          <FighterStatsCard
+            fighter={f2Name}
+            corner="blue"
+            fighterData={f2}
+            recentForm={prediction.fighter2_last5}
+          />
+        ) : (
+          <NoStatsCard fighter={f2Name} corner="blue" />
+        )}
       </div>
 
       {/* AI Prediction Section */}
