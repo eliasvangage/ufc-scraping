@@ -378,10 +378,58 @@ def recent_rematch_winner(f1, f2, max_fights_ago=2):
     return None
 
 
+def should_be_tossup(f1_input, f2_input):
+    """
+    Determine if this should be a 50/50 toss-up based on the conditions:
+    - Either fighter is making UFC debut (0 UFC fights)
+    - Either fighter is not in database (None data)
+    - Either fighter has less than 3 UFC fights
+    """
+    # Check if either fighter is None (not in database)
+    if f1_input is None or f2_input is None:
+        return True
+
+    # Count UFC fights for each fighter
+    f1_ufc_fights = f1_input.get("ufc_wins", 0) + f1_input.get("ufc_losses", 0) + f1_input.get("ufc_draws", 0)
+    f2_ufc_fights = f2_input.get("ufc_wins", 0) + f2_input.get("ufc_losses", 0) + f2_input.get("ufc_draws", 0)
+
+    # If either has less than 3 UFC fights, it's a toss-up
+    if f1_ufc_fights < 3 or f2_ufc_fights < 3:
+        return True
+
+    return False
+
 def predict_match(f1_input, f2_input):
 
-    print(f"ALPHA ORDER: {f1_input['name']} (f1) vs {f2_input['name']} (f2)")
-    
+    print(f"ALPHA ORDER: {f1_input['name'] if f1_input else 'Unknown'} (f1) vs {f2_input['name'] if f2_input else 'Unknown'} (f2)")
+
+    # Check for toss-up conditions before any processing
+    if should_be_tossup(f1_input, f2_input):
+        # Return a 50/50 toss-up prediction
+        fighter1_name = f1_input['name'] if f1_input else "Unknown Fighter"
+        fighter2_name = f2_input['name'] if f2_input else "Unknown Fighter"
+
+        print(f"⚖️ TOSS-UP: Insufficient data or experience for reliable prediction")
+
+        # Create minimal stat favors for toss-up
+        stat_favors = [
+            {"stat": "Experience", "favors": "Even"},
+            {"stat": "Data Available", "favors": "Limited"},
+            {"stat": "Prediction Confidence", "favors": "Toss-Up"}
+        ]
+
+        return (
+            "Toss Up",  # winner
+            50.0,  # confidence
+            {},  # raw feature diffs (empty for toss-up)
+            f1_input.get("last_results", []) if f1_input else [],  # f1 last results
+            f2_input.get("last_results", []) if f2_input else [],  # f2 last results
+            False,  # rematch
+            stat_favors,  # stat favors
+            fighter1_name,  # f1 name
+            fighter2_name   # f2 name
+        )
+
     # === Enforce deterministic order: alphabetical by name ===
     f1_name = f1_input["name"].strip().lower()
     f2_name = f2_input["name"].strip().lower()
