@@ -87,10 +87,12 @@ def build_tracking_log():
                     "odds1": fight.get("odds1", "N/A"),
                     "odds2": fight.get("odds2", "N/A"),
                     "actual_result": None,
-                    "correct": None
+                    "correct": None,
+                    "is_tossup": winner == "Toss Up"  # Add flag for toss-up
                 }
 
             except Exception as e:
+                print(f"⚠️ Exception during prediction: {e}")
                 log = {
                     "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                     "event": event_name,
@@ -100,8 +102,8 @@ def build_tracking_log():
                     "winner": "Toss Up",
                     "confidence": 50.0,
                     "rematch": False,
-                    "last_5_results_f1": f1.get("last_results", []),
-                    "last_5_results_f2": f2.get("last_results", []),
+                    "last_5_results_f1": f1.get("last_results", []) if f1 else [],
+                    "last_5_results_f2": f2.get("last_results", []) if f2 else [],
                     "raw_feature_diffs": {},
                     "shap_weights": {},
                     "weighted_feature_diffs": {},
@@ -109,7 +111,8 @@ def build_tracking_log():
                     "odds1": fight.get("odds1", "N/A"),
                     "odds2": fight.get("odds2", "N/A"),
                     "actual_result": None,
-                    "correct": None
+                    "correct": None,
+                    "is_tossup": True  # Add flag for toss-up
                 }
 
             logs.append(log)
