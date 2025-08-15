@@ -404,8 +404,18 @@ export default function FighterProfile() {
               <div className="absolute -inset-4 bg-muted-foreground/10 rounded-full blur-xl"></div>
             </div>
             <div className="space-y-3">
-              <h3 className="text-2xl font-bold">Fighter Not Found</h3>
-              <p className="text-muted-foreground">{error || "The requested fighter could not be found."}</p>
+              <h3 className="text-2xl font-bold">Fighter Profile Unavailable</h3>
+              <p className="text-muted-foreground">
+                Fighter data is temporarily unavailable. This may be due to:
+              </p>
+              <ul className="text-sm text-muted-foreground list-disc list-inside space-y-1">
+                <li>Fighter not in our database yet</li>
+                <li>Backend service temporarily offline</li>
+                <li>Network connectivity issues</li>
+              </ul>
+              <p className="text-xs text-muted-foreground mt-2">
+                Error details: {error || "Unknown error"}
+              </p>
             </div>
             <div className="flex gap-3 justify-center">
               <Button variant="outline" onClick={() => navigate(-1)} className="gap-2">
