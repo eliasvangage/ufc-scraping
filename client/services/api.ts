@@ -165,12 +165,14 @@ class ApiService {
       console.log('Fighter data found:', fighterData);
 
       // Return the fighter data in the expected format
+      const ufcFights = this.getUFCFights(fighterData.fight_history || []);
+
       return {
         name: fighterData.name,
         nickname: fighterData.nickname || "",
         height: fighterData.height || "",
-        weight: fighterData.weight || "",
-        reach: fighterData.reach || "",
+        weight: this.cleanWeight(fighterData.weight || ""),
+        reach: this.cleanReach(fighterData.reach || ""),
         stance: fighterData.stance || "Orthodox",
         record: fighterData.record || "0-0-0",
         profile_url: fighterData.profile_url || "",
@@ -187,12 +189,12 @@ class ApiService {
         fight_history: fighterData.fight_history || [],
         dob: fighterData.dob || "",
         age: fighterData.age || this.calculateAgeFromDob(fighterData.dob),
-        division: this.getDivisionFromWeight(fighterData.weight),
+        division: this.getDivisionFromWeight(this.cleanWeight(fighterData.weight || "")),
         is_champion: fighterData.is_champion || false,
-        ufc_record: fighterData.record || "0-0-0",
-        ufc_wins: this.countWins(fighterData.fight_history || []),
-        ufc_losses: this.countLosses(fighterData.fight_history || []),
-        ufc_draws: this.countDraws(fighterData.fight_history || []),
+        ufc_record: this.calculateUFCRecord(ufcFights),
+        ufc_wins: this.countWins(ufcFights),
+        ufc_losses: this.countLosses(ufcFights),
+        ufc_draws: this.countDraws(ufcFights),
 
         // Computed fields for internal use
         slpm: parseFloat(fighterData.stats?.SLpM || '0') || 0,
