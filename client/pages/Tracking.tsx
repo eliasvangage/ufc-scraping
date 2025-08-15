@@ -659,9 +659,8 @@ export default function Index() {
                               fight.confidenceScore === 50;
 
                             return (
-                              <>
+                              <React.Fragment key={fightId}>
                                 <tr
-                                  key={index}
                                   className="border-b border-border/30 hover:bg-muted/20 transition-colors cursor-pointer"
                                   onClick={() => toggleFightDetails(fightId)}
                                 >
@@ -782,7 +781,7 @@ export default function Index() {
                                     </td>
                                   </tr>
                                 )}
-                              </>
+                              </React.Fragment>
                             );
                           })}
                         </tbody>
