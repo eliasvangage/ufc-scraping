@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { Progress } from "@/components/ui/progress";
 import {
   Shield,
   TrendingUp,
@@ -22,6 +23,10 @@ import {
   ChevronLeft,
   ChevronRight,
   History,
+  AlertTriangle,
+  Brain,
+  Flame,
+  Eye,
 } from "lucide-react";
 import {
   isEventPast,
@@ -53,6 +58,171 @@ interface FightCard {
   events: Event[];
 }
 
+// Enhanced prediction details component
+const PredictionDetailsCard = ({ fight }: { fight: Fight }) => {
+  const isCorrect = fight.correct === true;
+  const isPending = fight.actualResult === null;
+  const isTossUp =
+    fight.predictedWinner === "Toss Up" || fight.confidenceScore === 50;
+
+  return (
+    <div className="bg-gradient-to-br from-card/50 to-muted/20 rounded-xl p-6 border border-border/30 space-y-6">
+      {/* Fight Header */}
+      <div className="text-center space-y-4">
+        <div className="flex items-center justify-center gap-4">
+          <div className="text-xl font-bold text-red-300">{fight.fighter1}</div>
+          <div className="flex items-center gap-2">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-500/30 to-red-600/20 flex items-center justify-center ring-2 ring-red-500/20">
+              <div className="w-5 h-5 rounded-full bg-gradient-to-br from-red-500 to-red-600 shadow-lg" />
+            </div>
+            <div className="mx-2">
+              <Flame className="h-6 w-6 text-primary animate-pulse" />
+            </div>
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500/30 to-blue-600/20 flex items-center justify-center ring-2 ring-blue-500/20">
+              <div className="w-5 h-5 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg" />
+            </div>
+          </div>
+          <div className="text-xl font-bold text-blue-300">
+            {fight.fighter2}
+          </div>
+        </div>
+      </div>
+
+      {/* Prediction Section */}
+      <div className="bg-gradient-to-br from-card/50 to-background/30 rounded-xl p-6 space-y-4 border border-primary/20 shadow-lg">
+        <div className="flex items-center justify-center gap-3 mb-4">
+          <div className="p-2 bg-primary/10 rounded-lg">
+            <Brain className="h-6 w-6 text-primary" />
+          </div>
+          <h4 className="text-xl font-bold text-center bg-gradient-to-r from-primary to-yellow-400 bg-clip-text text-transparent">
+            Oracle's Prophecy
+          </h4>
+          <div className="p-2 bg-primary/10 rounded-lg">
+            <Eye className="h-6 w-6 text-primary" />
+          </div>
+        </div>
+
+        {isTossUp ? (
+          <div className="text-center space-y-3">
+            <div className="text-2xl font-bold text-yellow-400">
+              TOO CLOSE TO CALL
+            </div>
+            <Badge
+              variant="outline"
+              className="text-yellow-400 border-yellow-400/30 bg-yellow-400/10"
+            >
+              <Target className="h-3 w-3 mr-1" />
+              50/50 Split - Insufficient Data
+            </Badge>
+            <p className="text-sm text-muted-foreground">
+              Limited UFC experience or missing fighter data made this a toss-up
+              prediction
+            </p>
+          </div>
+        ) : (
+          <div className="text-center space-y-3">
+            <div className="text-3xl font-bold text-primary">
+              {fight.predictedWinner}
+            </div>
+            <div className="text-sm text-muted-foreground mb-2">
+              PREDICTED WINNER
+            </div>
+
+            {/* Confidence Visualization */}
+            <div className="space-y-3">
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-muted-foreground">AI Confidence</span>
+                <span className="font-bold text-primary text-lg">
+                  {fight.confidenceScore}%
+                </span>
+              </div>
+
+              {/* Custom progress bar with correct scaling */}
+              <div className="relative">
+                <div className="w-full bg-muted/30 rounded-full h-4 overflow-hidden">
+                  <div
+                    className="h-full bg-gradient-to-r from-primary/80 via-primary to-primary/90 rounded-full transition-all duration-1000 shadow-lg"
+                    style={{
+                      width: `${Math.max(0, Math.min(100, ((fight.confidenceScore - 50) / 50) * 100))}%`,
+                    }}
+                  />
+                </div>
+
+                {/* Confidence markers */}
+                <div className="flex justify-between text-xs text-muted-foreground mt-1">
+                  <span className="text-yellow-400">50%</span>
+                  <span className="text-orange-400">65%</span>
+                  <span className="text-primary">80%</span>
+                  <span className="text-green-400">100%</span>
+                </div>
+
+                {/* Pointer indicator */}
+                <div
+                  className="absolute top-0 w-0.5 h-4 bg-white/80 shadow-lg"
+                  style={{
+                    left: `${Math.max(0, Math.min(100, ((fight.confidenceScore - 50) / 50) * 100))}%`,
+                    transform: "translateX(-50%)",
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Betting Odds */}
+            <div className="flex items-center justify-center gap-2 mt-3">
+              <Badge variant="outline" className="font-mono">
+                Odds: {fight.winnerOddsAtPrediction}
+              </Badge>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Reasoning Section */}
+      {fight.pickReason && (
+        <div className="bg-background/20 rounded-lg p-4">
+          <div className="flex items-center gap-2 mb-2">
+            <Eye className="h-4 w-4 text-primary" />
+            <h5 className="font-semibold text-sm">Key Analysis Points</h5>
+          </div>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            {fight.pickReason}
+          </p>
+        </div>
+      )}
+
+      {/* Result Section - Only show for completed events */}
+      {!isPending && (
+        <div className="bg-background/20 rounded-lg p-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Trophy className="h-4 w-4 text-primary" />
+              <h5 className="font-semibold text-sm">Actual Result</h5>
+            </div>
+
+            <div className="flex items-center gap-2">
+              {isCorrect ? (
+                <CheckCircle className="h-5 w-5 text-green-400" />
+              ) : (
+                <XCircle className="h-5 w-5 text-red-400" />
+              )}
+              <Badge
+                variant={isCorrect ? "default" : "destructive"}
+                className={
+                  isCorrect
+                    ? "bg-green-500/20 text-green-400 border-green-500/30"
+                    : ""
+                }
+              >
+                {isCorrect ? "Prediction Correct" : "Prediction Incorrect"}
+              </Badge>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
 export default function Index() {
   const [fightData, setFightData] = useState<FightCard | null>(null);
   const [loading, setLoading] = useState(true);
@@ -60,6 +230,7 @@ export default function Index() {
     new Set(["current"]),
   );
   const [showPastEvents, setShowPastEvents] = useState(false);
+  const [expandedFights, setExpandedFights] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     fetchFightData();
@@ -131,6 +302,16 @@ export default function Index() {
       newExpanded.add(eventId);
     }
     setExpandedEvents(newExpanded);
+  };
+
+  const toggleFightDetails = (fightId: string) => {
+    const newExpanded = new Set(expandedFights);
+    if (newExpanded.has(fightId)) {
+      newExpanded.delete(fightId);
+    } else {
+      newExpanded.add(fightId);
+    }
+    setExpandedFights(newExpanded);
   };
 
   const formatOdds = (odds: string) => {
@@ -226,7 +407,6 @@ export default function Index() {
       />
 
       <div className="container mx-auto px-4 py-8">
-
         {/* Top Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
           <Card className="bg-gradient-to-br from-primary/20 to-primary/10 border-primary/30 shadow-xl hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 hover:scale-[1.02]">
@@ -276,7 +456,7 @@ export default function Index() {
                 </div>
                 <div className="text-4xl font-bold text-green-400">
                   {
-                    allFights.filter((fight) => fight.confidenceScore >= 75)
+                    allFights.filter((fight) => fight.confidenceScore >= 65)
                       .length
                   }
                 </div>
@@ -285,7 +465,7 @@ export default function Index() {
                 High Confidence
               </div>
               <div className="text-sm text-slate-400 mt-1">
-                75%+ confidence picks
+                65%+ confidence picks
               </div>
             </CardContent>
           </Card>
@@ -382,7 +562,7 @@ export default function Index() {
             return (
               <Card
                 key={event.id}
-                className="bg-gradient-to-br from-card to-muted/30 border-border shadow-xl hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 hover:scale-[1.01] animate-in fade-in slide-in-from-bottom-4"
+                className="bg-gradient-to-br from-card to-muted/30 border-border shadow-xl hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 hover:scale-[1.01] animate-fadeInUpOnce"
               >
                 <CardHeader
                   className="cursor-pointer hover:bg-slate-700/30 transition-colors"
@@ -471,79 +651,140 @@ export default function Index() {
                           </tr>
                         </thead>
                         <tbody>
-                          {event.fights.map((fight, index) => (
-                            <tr
-                              key={index}
-                              className="border-b border-border/30 hover:bg-muted/20 transition-colors"
-                            >
-                              <td className="px-6 py-4">
-                                <div className="font-medium text-foreground">
-                                  {fight.fighter1}{" "}
-                                  <span className="text-primary font-bold">
-                                    vs
-                                  </span>{" "}
-                                  {fight.fighter2}
-                                </div>
-                              </td>
-                              <td className="px-6 py-4">
-                                <div className="flex items-center gap-2">
-                                  <Target className="h-4 w-4 text-primary" />
-                                  <span className="font-medium text-primary">
-                                    {fight.predictedWinner}
-                                  </span>
-                                </div>
-                              </td>
-                              <td className="px-6 py-4 text-center">
-                                <Badge
-                                  variant="outline"
-                                  className="bg-orange-100 text-orange-800 border-orange-200 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-800 font-medium"
-                                >
-                                  {fight.confidenceScore}%
-                                </Badge>
-                              </td>
-                              <td className="px-6 py-4 text-center">
-                                <span className="font-mono text-sm bg-muted/50 text-foreground px-2 py-1 rounded">
-                                  {fight.winnerOddsAtPrediction}
-                                </span>
-                              </td>
+                          {event.fights.map((fight, index) => {
+                            const fightId = `${event.id}-${index}`;
+                            const isExpanded = expandedFights.has(fightId);
+                            const isTossUp =
+                              fight.predictedWinner === "Toss Up" ||
+                              fight.confidenceScore === 50;
 
-                              <td className="px-6 py-4 text-center">
-                                {fight.actualResult ? (
-                                  <div className="flex items-center justify-center gap-2">
-                                    {fight.correct === true ? (
-                                      <CheckCircle className="h-5 w-5 text-green-400" />
-                                    ) : (
-                                      <XCircle className="h-5 w-5 text-red-400" />
-                                    )}
-                                    <span
-                                      className={`text-sm font-medium ${
-                                        fight.correct === true
-                                          ? "text-green-400"
-                                          : "text-red-400"
+                            return (
+                              <>
+                                <tr
+                                  key={index}
+                                  className="border-b border-border/30 hover:bg-muted/20 transition-colors cursor-pointer"
+                                  onClick={() => toggleFightDetails(fightId)}
+                                >
+                                  <td className="px-6 py-4">
+                                    <div className="flex items-center gap-3">
+                                      <div className="font-medium text-foreground">
+                                        {fight.fighter1}{" "}
+                                        <span className="text-primary font-bold">
+                                          vs
+                                        </span>{" "}
+                                        {fight.fighter2}
+                                      </div>
+                                      {isTossUp && (
+                                        <Badge
+                                          variant="outline"
+                                          className="text-yellow-400 border-yellow-400/30 bg-yellow-400/10 text-xs"
+                                        >
+                                          <AlertTriangle className="h-3 w-3 mr-1" />
+                                          Toss-Up
+                                        </Badge>
+                                      )}
+                                    </div>
+                                  </td>
+                                  <td className="px-6 py-4">
+                                    <div className="flex items-center gap-2">
+                                      {isTossUp ? (
+                                        <>
+                                          <Target className="h-4 w-4 text-yellow-400" />
+                                          <span className="font-medium text-yellow-400">
+                                            Too Close to Call
+                                          </span>
+                                        </>
+                                      ) : (
+                                        <>
+                                          <Target className="h-4 w-4 text-primary" />
+                                          <span className="font-medium text-primary">
+                                            {fight.predictedWinner}
+                                          </span>
+                                        </>
+                                      )}
+                                    </div>
+                                  </td>
+                                  <td className="px-6 py-4 text-center">
+                                    <Badge
+                                      variant="outline"
+                                      className={`font-medium ${
+                                        isTossUp
+                                          ? "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-900/20 dark:text-yellow-400 dark:border-yellow-800"
+                                          : "bg-orange-100 text-orange-800 border-orange-200 dark:bg-orange-900/20 dark:text-orange-400 dark:border-orange-800"
                                       }`}
                                     >
-                                      {fight.correct === true
-                                        ? "Correct"
-                                        : "Incorrect"}
+                                      {fight.confidenceScore}%
+                                    </Badge>
+                                  </td>
+                                  <td className="px-6 py-4 text-center">
+                                    <span className="font-mono text-sm bg-muted/50 text-foreground px-2 py-1 rounded">
+                                      {fight.winnerOddsAtPrediction}
                                     </span>
-                                  </div>
-                                ) : (
-                                  <Badge
-                                    variant="outline"
-                                    className="text-muted-foreground border-border"
-                                  >
-                                    <Clock className="h-3 w-3 mr-1" />
-                                    Pending
-                                  </Badge>
+                                  </td>
+
+                                  <td className="px-6 py-4 text-center">
+                                    {fight.actualResult ? (
+                                      <div className="flex items-center justify-center gap-2">
+                                        {fight.correct === true ? (
+                                          <CheckCircle className="h-5 w-5 text-green-400" />
+                                        ) : (
+                                          <XCircle className="h-5 w-5 text-red-400" />
+                                        )}
+                                        <span
+                                          className={`text-sm font-medium ${
+                                            fight.correct === true
+                                              ? "text-green-400"
+                                              : "text-red-400"
+                                          }`}
+                                        >
+                                          {fight.correct === true
+                                            ? "Correct"
+                                            : "Incorrect"}
+                                        </span>
+                                      </div>
+                                    ) : (
+                                      <Badge
+                                        variant="outline"
+                                        className="text-muted-foreground border-border"
+                                      >
+                                        <Clock className="h-3 w-3 mr-1" />
+                                        Pending
+                                      </Badge>
+                                    )}
+                                  </td>
+                                  <td className="px-6 py-4">
+                                    <div className="flex items-center justify-between">
+                                      <span className="text-sm text-muted-foreground truncate max-w-xs">
+                                        {fight.pickReason ||
+                                          "No details available"}
+                                      </span>
+                                      <Button
+                                        variant="ghost"
+                                        size="sm"
+                                        className="ml-2"
+                                      >
+                                        {isExpanded ? (
+                                          <ChevronUp className="h-4 w-4" />
+                                        ) : (
+                                          <ChevronDown className="h-4 w-4" />
+                                        )}
+                                      </Button>
+                                    </div>
+                                  </td>
+                                </tr>
+                                {isExpanded && (
+                                  <tr>
+                                    <td
+                                      colSpan={6}
+                                      className="px-6 py-4 bg-muted/5"
+                                    >
+                                      <PredictionDetailsCard fight={fight} />
+                                    </td>
+                                  </tr>
                                 )}
-                              </td>
-                              <td className="px-6 py-4">
-                                <span className="text-sm text-muted-foreground">
-                                  {fight.pickReason}
-                                </span>
-                              </td>
-                            </tr>
-                          ))}
+                              </>
+                            );
+                          })}
                         </tbody>
                       </table>
                     </div>

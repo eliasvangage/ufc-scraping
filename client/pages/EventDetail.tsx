@@ -240,6 +240,91 @@ export default function EventDetail() {
     }
   };
 
+  const NoStatsCard = ({
+    fighter,
+    corner,
+  }: {
+    fighter: string;
+    corner: "red" | "blue";
+  }) => {
+    const cornerColors = {
+      red: {
+        bg: "from-red-500/20 via-red-500/10 to-red-500/5",
+        border: "border-red-500/30",
+        accent: "text-red-400",
+        icon: "text-red-400",
+      },
+      blue: {
+        bg: "from-blue-500/20 via-blue-500/10 to-blue-500/5",
+        border: "border-blue-500/30",
+        accent: "text-blue-400",
+        icon: "text-blue-400",
+      },
+    };
+
+    return (
+      <Card
+        className={`bg-gradient-to-br ${cornerColors[corner].bg} ${cornerColors[corner].border} shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] opacity-70`}
+      >
+        <CardContent className="p-6 space-y-6">
+          {/* Fighter Name */}
+          <div className="text-center space-y-3">
+            <h3 className={`text-2xl font-bold ${cornerColors[corner].accent}`}>
+              {fighter}
+            </h3>
+            <Badge
+              variant="outline"
+              className={`${cornerColors[corner].border} ${cornerColors[corner].accent} text-lg px-3 py-1`}
+            >
+              UFC Debut
+            </Badge>
+          </div>
+
+          {/* No Stats Icon */}
+          <div className="flex flex-col items-center justify-center py-12 space-y-4">
+            <div className="relative">
+              <div className="w-32 h-32 rounded-full bg-muted/20 flex items-center justify-center border-2 border-dashed border-muted/40">
+                <svg
+                  className={`w-16 h-16 ${cornerColors[corner].accent} opacity-60`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                  />
+                </svg>
+              </div>
+              <div className="absolute -top-2 -right-2">
+                <div className="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center shadow-lg">
+                  <span className="text-sm font-bold text-black">?</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center space-y-2">
+              <h4 className="text-xl font-bold text-muted-foreground">
+                No UFC Stats Available
+              </h4>
+              <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
+                This fighter is making their UFC debut or their data is not
+                available in our database
+              </p>
+              <Badge variant="secondary" className="mt-2">
+                <Activity className="h-3 w-3 mr-1" />
+                First UFC Fight
+              </Badge>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  };
+
   const FighterStatsCard = ({
     fighter,
     corner,
@@ -428,7 +513,17 @@ export default function EventDetail() {
                   className={`
                     w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold
                     transition-all duration-300 hover:scale-110 cursor-pointer
-                    animate-[fadeInUp_0.5s_ease-out_${index * 0.1}s_both]
+                    ${
+                      index === 0
+                        ? "animate-stagger-1"
+                        : index === 1
+                          ? "animate-stagger-2"
+                          : index === 2
+                            ? "animate-stagger-3"
+                            : index === 3
+                              ? "animate-stagger-4"
+                              : "animate-stagger-5"
+                    }
                     ${
                       result === "W"
                         ? "bg-green-500/80 text-white shadow-green-500/50"
@@ -438,9 +533,6 @@ export default function EventDetail() {
                     }
                     shadow-lg
                   `}
-                  style={{
-                    animationDelay: `${index * 100}ms`,
-                  }}
                 >
                   {result}
                 </div>
@@ -801,8 +893,7 @@ export default function EventDetail() {
                       : fightStats.isCoMain
                         ? "bg-gradient-to-br from-purple-500/25 via-purple-500/15 to-purple-500/5 border-purple-500/40 shadow-xl shadow-purple-500/10 hover:shadow-purple-500/20"
                         : "bg-gradient-to-br from-card via-card/95 to-muted/30 border-border hover:border-primary/30 shadow-lg hover:shadow-xl"
-                  } ${isExpanded ? "shadow-3xl scale-[1.01] ring-2 ring-primary/20" : ""} animate-in fade-in slide-in-from-bottom-4`}
-                  style={{ animationDelay: `${index * 100}ms` }}
+                  } ${isExpanded ? "shadow-3xl scale-[1.01] ring-2 ring-primary/20" : ""} animate-fadeInUpOnce`}
                 >
                   <CardHeader className="space-y-4 relative overflow-hidden">
                     {/* Animated background glow */}
@@ -985,16 +1076,53 @@ export default function EventDetail() {
                             </div>
 
                             <div className="grid md:grid-cols-2 gap-8">
-                              <FighterStatsCard
-                                fighter={fight.fighter_red}
-                                corner="red"
-                                prediction={prediction}
-                              />
-                              <FighterStatsCard
-                                fighter={fight.fighter_blue}
-                                corner="blue"
-                                prediction={prediction}
-                              />
+                              {/* Red Corner Fighter */}
+                              {(() => {
+                                const fighterData = prediction?.fighter1_data;
+                                const hasData =
+                                  fighterData &&
+                                  fighterData.name &&
+                                  (fighterData.ufc_wins > 0 ||
+                                    fighterData.ufc_losses > 0 ||
+                                    fighterData.ufc_draws > 0);
+
+                                return hasData ? (
+                                  <FighterStatsCard
+                                    fighter={fight.fighter_red}
+                                    corner="red"
+                                    prediction={prediction}
+                                  />
+                                ) : (
+                                  <NoStatsCard
+                                    fighter={fight.fighter_red}
+                                    corner="red"
+                                  />
+                                );
+                              })()}
+
+                              {/* Blue Corner Fighter */}
+                              {(() => {
+                                const fighterData = prediction?.fighter2_data;
+                                const hasData =
+                                  fighterData &&
+                                  fighterData.name &&
+                                  (fighterData.ufc_wins > 0 ||
+                                    fighterData.ufc_losses > 0 ||
+                                    fighterData.ufc_draws > 0);
+
+                                return hasData ? (
+                                  <FighterStatsCard
+                                    fighter={fight.fighter_blue}
+                                    corner="blue"
+                                    prediction={prediction}
+                                  />
+                                ) : (
+                                  <NoStatsCard
+                                    fighter={fight.fighter_blue}
+                                    corner="blue"
+                                  />
+                                );
+                              })()}
                             </div>
                           </div>
 
@@ -1039,60 +1167,112 @@ export default function EventDetail() {
                                 </div>
                               )}
 
-                              {prediction && (
-                                <div className="space-y-6 relative">
-                                  <div className="text-center bg-gradient-to-r from-background/50 via-muted/20 to-background/50 p-6 rounded-xl border border-border/30">
-                                    <div className="mb-4">
-                                      <div className="text-sm text-muted-foreground mb-2">
-                                        ORACLE PREDICTION
-                                      </div>
-                                      <h3 className="text-3xl font-bold bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent mb-3">
-                                        {prediction.predicted_winner} VICTORIOUS
-                                      </h3>
-                                    </div>
-                                    <div className="flex justify-center gap-4">
-                                      <Badge
-                                        variant="default"
-                                        className="text-xl py-3 px-6 bg-gradient-to-r from-primary to-primary/80 shadow-lg shadow-primary/20"
-                                      >
-                                        <Zap className="h-5 w-5 mr-2" />
-                                        {prediction.confidence}% Confidence
-                                      </Badge>
-                                      {prediction.rematch && (
-                                        <Badge
-                                          variant="secondary"
-                                          className="text-xl py-3 px-6 shadow-lg"
-                                        >
-                                          <Activity className="h-4 w-4 mr-2" />
-                                          REMATCH
-                                        </Badge>
-                                      )}
-                                    </div>
-                                  </div>
+                              {prediction &&
+                                (() => {
+                                  const isTossUp =
+                                    prediction.predicted_winner === "Toss Up" ||
+                                    prediction.confidence === 50;
 
-                                  <div>
-                                    <h4 className="font-semibold mb-3">
-                                      Key Advantages:
-                                    </h4>
-                                    <div className="grid sm:grid-cols-2 gap-2">
-                                      {prediction.stat_favors.map(
-                                        (stat, index) => (
-                                          <div
-                                            key={index}
-                                            className="flex items-center gap-2 p-2 bg-background/50 rounded-lg"
-                                          >
-                                            <div className="h-2 w-2 bg-primary rounded-full" />
-                                            <span className="text-sm">
-                                              <strong>{stat.stat}:</strong>{" "}
-                                              {stat.favors}
-                                            </span>
+                                  return (
+                                    <div className="space-y-6 relative">
+                                      <div className="text-center bg-gradient-to-r from-background/50 via-muted/20 to-background/50 p-6 rounded-xl border border-border/30">
+                                        <div className="mb-4">
+                                          <div className="text-sm text-muted-foreground mb-2">
+                                            ORACLE PREDICTION
                                           </div>
-                                        ),
+                                          {isTossUp ? (
+                                            <h3 className="text-3xl font-bold bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 bg-clip-text text-transparent mb-3">
+                                              TOO CLOSE TO CALL
+                                            </h3>
+                                          ) : (
+                                            <h3 className="text-3xl font-bold bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent mb-3">
+                                              {prediction.predicted_winner}{" "}
+                                              VICTORIOUS
+                                            </h3>
+                                          )}
+                                        </div>
+                                        <div className="flex justify-center gap-4">
+                                          {isTossUp ? (
+                                            <>
+                                              <Badge
+                                                variant="outline"
+                                                className="text-xl py-3 px-6 bg-gradient-to-r from-yellow-500/20 to-yellow-500/10 border-yellow-500/30 text-yellow-400 shadow-lg"
+                                              >
+                                                <Target className="h-5 w-5 mr-2" />
+                                                50/50 Split
+                                              </Badge>
+                                              <Badge
+                                                variant="secondary"
+                                                className="text-xl py-3 px-6 shadow-lg"
+                                              >
+                                                Insufficient Data
+                                              </Badge>
+                                            </>
+                                          ) : (
+                                            <>
+                                              <Badge
+                                                variant="default"
+                                                className="text-xl py-3 px-6 bg-gradient-to-r from-primary to-primary/80 shadow-lg shadow-primary/20"
+                                              >
+                                                <Zap className="h-5 w-5 mr-2" />
+                                                {prediction.confidence}%
+                                                Confidence
+                                              </Badge>
+                                              {prediction.rematch && (
+                                                <Badge
+                                                  variant="secondary"
+                                                  className="text-xl py-3 px-6 shadow-lg"
+                                                >
+                                                  <Activity className="h-4 w-4 mr-2" />
+                                                  REMATCH
+                                                </Badge>
+                                              )}
+                                            </>
+                                          )}
+                                        </div>
+                                      </div>
+
+                                      {/* Only show key advantages for non-toss-up predictions */}
+                                      {!isTossUp && (
+                                        <div>
+                                          <h4 className="font-semibold mb-3">
+                                            Key Advantages:
+                                          </h4>
+                                          <div className="grid sm:grid-cols-2 gap-2">
+                                            {prediction.stat_favors.map(
+                                              (stat, index) => (
+                                                <div
+                                                  key={index}
+                                                  className="flex items-center gap-2 p-2 bg-background/50 rounded-lg"
+                                                >
+                                                  <div className="h-2 w-2 bg-primary rounded-full" />
+                                                  <span className="text-sm">
+                                                    <strong>
+                                                      {stat.stat}:
+                                                    </strong>{" "}
+                                                    {stat.favors}
+                                                  </span>
+                                                </div>
+                                              ),
+                                            )}
+                                          </div>
+                                        </div>
+                                      )}
+
+                                      {/* Toss-up explanation */}
+                                      {isTossUp && (
+                                        <div className="text-center bg-background/30 rounded-lg p-4">
+                                          <p className="text-muted-foreground leading-relaxed">
+                                            Due to limited UFC experience or
+                                            missing fighter data, this fight is
+                                            considered a toss-up. Both fighters
+                                            have equal chances of victory.
+                                          </p>
+                                        </div>
                                       )}
                                     </div>
-                                  </div>
-                                </div>
-                              )}
+                                  );
+                                })()}
                             </CardContent>
                           </Card>
                         </div>
