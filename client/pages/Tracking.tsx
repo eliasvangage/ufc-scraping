@@ -62,7 +62,8 @@ interface FightCard {
 const PredictionDetailsCard = ({ fight }: { fight: Fight }) => {
   const isCorrect = fight.correct === true;
   const isPending = fight.actualResult === null;
-  const isTossUp = fight.predictedWinner === "Toss Up" || fight.confidenceScore === 50;
+  const isTossUp =
+    fight.predictedWinner === "Toss Up" || fight.confidenceScore === 50;
 
   return (
     <div className="bg-gradient-to-br from-card/50 to-muted/20 rounded-xl p-6 border border-border/30 space-y-6">
@@ -79,7 +80,9 @@ const PredictionDetailsCard = ({ fight }: { fight: Fight }) => {
               <div className="w-4 h-4 rounded-full bg-blue-500" />
             </div>
           </div>
-          <div className="text-xl font-bold text-blue-400">{fight.fighter2}</div>
+          <div className="text-xl font-bold text-blue-400">
+            {fight.fighter2}
+          </div>
         </div>
       </div>
 
@@ -87,30 +90,44 @@ const PredictionDetailsCard = ({ fight }: { fight: Fight }) => {
       <div className="bg-background/30 rounded-lg p-4 space-y-4">
         <div className="flex items-center justify-center gap-2 mb-3">
           <Brain className="h-5 w-5 text-primary" />
-          <h4 className="text-lg font-semibold text-center">Oracle's Prophecy</h4>
+          <h4 className="text-lg font-semibold text-center">
+            Oracle's Prophecy
+          </h4>
         </div>
 
         {isTossUp ? (
           <div className="text-center space-y-3">
-            <div className="text-2xl font-bold text-yellow-400">TOO CLOSE TO CALL</div>
-            <Badge variant="outline" className="text-yellow-400 border-yellow-400/30 bg-yellow-400/10">
+            <div className="text-2xl font-bold text-yellow-400">
+              TOO CLOSE TO CALL
+            </div>
+            <Badge
+              variant="outline"
+              className="text-yellow-400 border-yellow-400/30 bg-yellow-400/10"
+            >
               <Target className="h-3 w-3 mr-1" />
               50/50 Split - Insufficient Data
             </Badge>
             <p className="text-sm text-muted-foreground">
-              Limited UFC experience or missing fighter data made this a toss-up prediction
+              Limited UFC experience or missing fighter data made this a toss-up
+              prediction
             </p>
           </div>
         ) : (
           <div className="text-center space-y-3">
-            <div className="text-3xl font-bold text-primary">{fight.predictedWinner}</div>
-            <div className="text-sm text-muted-foreground mb-2">PREDICTED WINNER</div>
+            <div className="text-3xl font-bold text-primary">
+              {fight.predictedWinner}
+            </div>
+            <div className="text-sm text-muted-foreground mb-2">
+              PREDICTED WINNER
+            </div>
 
             {/* Confidence Visualization */}
             <div className="space-y-2">
               <div className="flex items-center justify-between text-sm">
                 <span className="text-muted-foreground">Confidence</span>
-                <span className="font-semibold text-primary">{fight.confidenceScore}%</span>
+                <span className="font-semibold text-primary">
+                  {fight.confidenceScore}%
+                </span>
               </div>
               <Progress value={fight.confidenceScore} className="h-3" />
               <div className="flex justify-between text-xs text-muted-foreground">
@@ -152,7 +169,10 @@ const PredictionDetailsCard = ({ fight }: { fight: Fight }) => {
           </div>
 
           {isPending ? (
-            <Badge variant="outline" className="text-muted-foreground border-border">
+            <Badge
+              variant="outline"
+              className="text-muted-foreground border-border"
+            >
               <Clock className="h-3 w-3 mr-1" />
               Pending
             </Badge>
@@ -165,7 +185,11 @@ const PredictionDetailsCard = ({ fight }: { fight: Fight }) => {
               )}
               <Badge
                 variant={isCorrect ? "default" : "destructive"}
-                className={isCorrect ? "bg-green-500/20 text-green-400 border-green-500/30" : ""}
+                className={
+                  isCorrect
+                    ? "bg-green-500/20 text-green-400 border-green-500/30"
+                    : ""
+                }
               >
                 {isCorrect ? "Prediction Correct" : "Prediction Incorrect"}
               </Badge>
@@ -361,7 +385,6 @@ export default function Index() {
       />
 
       <div className="container mx-auto px-4 py-8">
-
         {/* Top Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
           <Card className="bg-gradient-to-br from-primary/20 to-primary/10 border-primary/30 shadow-xl hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 hover:scale-[1.02]">
@@ -609,7 +632,9 @@ export default function Index() {
                           {event.fights.map((fight, index) => {
                             const fightId = `${event.id}-${index}`;
                             const isExpanded = expandedFights.has(fightId);
-                            const isTossUp = fight.predictedWinner === "Toss Up" || fight.confidenceScore === 50;
+                            const isTossUp =
+                              fight.predictedWinner === "Toss Up" ||
+                              fight.confidenceScore === 50;
 
                             return (
                               <>
@@ -628,7 +653,10 @@ export default function Index() {
                                         {fight.fighter2}
                                       </div>
                                       {isTossUp && (
-                                        <Badge variant="outline" className="text-yellow-400 border-yellow-400/30 bg-yellow-400/10 text-xs">
+                                        <Badge
+                                          variant="outline"
+                                          className="text-yellow-400 border-yellow-400/30 bg-yellow-400/10 text-xs"
+                                        >
                                           <AlertTriangle className="h-3 w-3 mr-1" />
                                           Toss-Up
                                         </Badge>
@@ -705,9 +733,14 @@ export default function Index() {
                                   <td className="px-6 py-4">
                                     <div className="flex items-center justify-between">
                                       <span className="text-sm text-muted-foreground truncate max-w-xs">
-                                        {fight.pickReason || "No details available"}
+                                        {fight.pickReason ||
+                                          "No details available"}
                                       </span>
-                                      <Button variant="ghost" size="sm" className="ml-2">
+                                      <Button
+                                        variant="ghost"
+                                        size="sm"
+                                        className="ml-2"
+                                      >
                                         {isExpanded ? (
                                           <ChevronUp className="h-4 w-4" />
                                         ) : (
@@ -719,7 +752,10 @@ export default function Index() {
                                 </tr>
                                 {isExpanded && (
                                   <tr>
-                                    <td colSpan={6} className="px-6 py-4 bg-muted/5">
+                                    <td
+                                      colSpan={6}
+                                      className="px-6 py-4 bg-muted/5"
+                                    >
                                       <PredictionDetailsCard fight={fight} />
                                     </td>
                                   </tr>

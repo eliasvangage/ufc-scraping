@@ -289,7 +289,8 @@ export function FightPredictor() {
               <div className="text-center p-4 bg-blue-500/10 rounded-lg border border-blue-500/20 mt-4">
                 <History className="h-5 w-5 text-blue-400 mx-auto mb-2" />
                 <p className="text-blue-400 text-sm">
-                  Prediction functionality disabled for past events. View tracking results instead.
+                  Prediction functionality disabled for past events. View
+                  tracking results instead.
                 </p>
               </div>
             )}

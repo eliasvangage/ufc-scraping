@@ -451,15 +451,18 @@ export function FightCard({
   const f2 = prediction.fighter2_data;
 
   // Check if either fighter has insufficient data
-  const f1HasData = f1 && f1.name && (f1.ufc_wins > 0 || f1.ufc_losses > 0 || f1.ufc_draws > 0);
-  const f2HasData = f2 && f2.name && (f2.ufc_wins > 0 || f2.ufc_losses > 0 || f2.ufc_draws > 0);
+  const f1HasData =
+    f1 && f1.name && (f1.ufc_wins > 0 || f1.ufc_losses > 0 || f1.ufc_draws > 0);
+  const f2HasData =
+    f2 && f2.name && (f2.ufc_wins > 0 || f2.ufc_losses > 0 || f2.ufc_draws > 0);
 
   // Get fighter names, handling missing data
   const f1Name = f1?.name || fighter1 || "Unknown Fighter";
   const f2Name = f2?.name || fighter2 || "Unknown Fighter";
 
   // Check if this is a toss-up prediction
-  const isTossUp = prediction.predicted_winner === "Toss Up" || prediction.confidence === 50;
+  const isTossUp =
+    prediction.predicted_winner === "Toss Up" || prediction.confidence === 50;
 
   return (
     <div className="space-y-8">
@@ -572,8 +575,9 @@ export function FightCard({
                     </Badge>
                   </div>
                   <p className="text-muted-foreground max-w-md mx-auto leading-relaxed">
-                    Due to limited UFC experience or missing fighter data, this fight is considered a toss-up.
-                    Both fighters have equal chances of victory.
+                    Due to limited UFC experience or missing fighter data, this
+                    fight is considered a toss-up. Both fighters have equal
+                    chances of victory.
                   </p>
                 </>
               ) : (
@@ -669,8 +673,9 @@ export function FightCard({
                   <Target className="h-8 w-8 text-muted-foreground" />
                 </div>
                 <p className="text-muted-foreground max-w-md mx-auto leading-relaxed">
-                  Statistical comparison unavailable due to insufficient fighter data or limited UFC experience.
-                  Both fighters are considered to have equal chances in this matchup.
+                  Statistical comparison unavailable due to insufficient fighter
+                  data or limited UFC experience. Both fighters are considered
+                  to have equal chances in this matchup.
                 </p>
               </div>
             </div>
