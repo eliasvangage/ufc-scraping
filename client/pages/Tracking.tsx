@@ -89,12 +89,17 @@ const PredictionDetailsCard = ({ fight }: { fight: Fight }) => {
       </div>
 
       {/* Prediction Section */}
-      <div className="bg-background/30 rounded-lg p-4 space-y-4">
-        <div className="flex items-center justify-center gap-2 mb-3">
-          <Brain className="h-5 w-5 text-primary" />
-          <h4 className="text-lg font-semibold text-center">
+      <div className="bg-gradient-to-br from-card/50 to-background/30 rounded-xl p-6 space-y-4 border border-primary/20 shadow-lg">
+        <div className="flex items-center justify-center gap-3 mb-4">
+          <div className="p-2 bg-primary/10 rounded-lg">
+            <Brain className="h-6 w-6 text-primary" />
+          </div>
+          <h4 className="text-xl font-bold text-center bg-gradient-to-r from-primary to-yellow-400 bg-clip-text text-transparent">
             Oracle's Prophecy
           </h4>
+          <div className="p-2 bg-primary/10 rounded-lg">
+            <Eye className="h-6 w-6 text-primary" />
+          </div>
         </div>
 
         {isTossUp ? (
