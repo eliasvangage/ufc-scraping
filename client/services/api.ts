@@ -60,12 +60,15 @@ export interface PredictionResponse {
   }>;
 }
 
+
 class ApiService {
   private baseUrl: string;
 
   constructor() {
     this.baseUrl = import.meta.env.VITE_API_URL || "http://localhost:8000";
   }
+
+  
 
   async getFighters(): Promise<string[]> {
     const response = await fetch(`${this.baseUrl}/fighters`, {
@@ -196,6 +199,27 @@ class ApiService {
         ]
       };
     }
+  }
+
+  async explainFight(body: { fighter1: string; fighter2: string }) {
+    const res = await fetch(`${this.baseUrl}/explain`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    if (!res.ok) {
+      const text = await res.text().catch(() => "");
+      throw new Error(text || "Failed to explain");
+    }
+    return res.json() as Promise<{
+      explainable: boolean;
+      reason?: string;
+      features: string[];
+      shap_values: number[];
+      expected_value: number;
+      model_proba_canonical_f1: number | null;
+      top_contributors: { feature: string; value: number }[];
+    }>;
   }
 }
 

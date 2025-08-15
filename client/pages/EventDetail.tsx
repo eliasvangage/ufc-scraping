@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import ExplainPanel from "@/components/ExplainPanel";
 import {
   ArrowLeft,
   Calendar,
@@ -60,7 +61,13 @@ interface TrackedFight {
   currentOdds: string | null;
   actualResult: string | null;
   correct: boolean | null;
+  // new (optional) fields:
+  fighter1HasStats?: boolean;
+  fighter2HasStats?: boolean;
+  explainable?: boolean;
+  topContributors?: { feature: string; value: number }[];
 }
+
 
 interface TrackedEvent {
   id: string;
@@ -104,6 +111,8 @@ export default function EventDetail() {
   const [analyzingFights, setAnalyzingFights] = useState<Set<number>>(
     new Set(),
   );
+
+  const [explanations, setExplanations] = useState<Map<number, any>>(new Map());
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -207,38 +216,71 @@ export default function EventDetail() {
   const [predictionLogs, setPredictionLogs] = useState<TrackedFight[]>([]);
 
   const generatePrediction = async (fight: Fight) => {
-    setAnalyzingFights((prev) => new Set(prev).add(fight.bout_order));
+  setAnalyzingFights((prev) => new Set(prev).add(fight.bout_order));
 
+  try {
+    // 1) Predict
+    const prediction = await apiService.predictFight({
+      fighter1: fight.fighter_red,
+      fighter2: fight.fighter_blue,
+    });
+
+    setPredictions((prev) => new Map(prev).set(fight.bout_order, prediction));
+
+    // 2) Explain (gracefully handle debut / no SHAP)
+    let exp: any = null;
     try {
-      const prediction = await apiService.predictFight({
+      exp = await apiService.explainFight({
         fighter1: fight.fighter_red,
         fighter2: fight.fighter_blue,
       });
-
-      setPredictions((prev) => new Map(prev).set(fight.bout_order, prediction));
-
-      const predictedFight: TrackedFight = {
-        fighter1: fight.fighter_red,
-        fighter2: fight.fighter_blue,
-        predictedWinner: prediction.predicted_winner,
-        confidenceScore: prediction.confidence,
-        oddsAtPrediction: fight.odds1 || "N/A", // use proper mapping if needed
-        currentOdds: fight.odds1 || null,
-        actualResult: null,
-        correct: null,
-      };
-
-      setPredictionLogs((prev) => [...prev, predictedFight]);
-    } catch (error) {
-      console.error("Prediction failed:", error);
-    } finally {
-      setAnalyzingFights((prev) => {
-        const newSet = new Set(prev);
-        newSet.delete(fight.bout_order);
-        return newSet;
-      });
+    } catch (e) {
+      console.warn("Explain failed:", e);
     }
-  };
+    if (exp) {
+      setExplanations((prev) => new Map(prev).set(fight.bout_order, exp));
+    }
+
+    // 3) Build a rich tracking log entry (dedupe by pair)
+    const predictedFight: TrackedFight = {
+      fighter1: fight.fighter_red,
+      fighter2: fight.fighter_blue,
+      predictedWinner: prediction.predicted_winner,
+      confidenceScore: prediction.confidence,
+      oddsAtPrediction: fight.odds1 || "N/A",
+      currentOdds: fight.odds1 || null,
+      actualResult: null,
+      correct: null,
+      // new flags from backend (used for Debut / No stats badge)
+      fighter1HasStats: prediction.fighter1_has_stats ?? true,
+      fighter2HasStats: prediction.fighter2_has_stats ?? true,
+      // explanation summary
+      explainable: exp?.explainable ?? false,
+      topContributors: exp?.top_contributors ?? [],
+    };
+
+    setPredictionLogs((prev) => {
+      // remove any existing entry for the same pair before adding
+      const next = prev.filter(
+        (p) =>
+          !(
+            p.fighter1 === fight.fighter_red &&
+            p.fighter2 === fight.fighter_blue
+          )
+      );
+      return [...next, predictedFight];
+    });
+  } catch (error) {
+    console.error("Prediction failed:", error);
+  } finally {
+    setAnalyzingFights((prev) => {
+      const newSet = new Set(prev);
+      newSet.delete(fight.bout_order);
+      return newSet;
+    });
+  }
+};
+
 
   const NoStatsCard = ({
     fighter,
@@ -1167,112 +1209,118 @@ export default function EventDetail() {
                                 </div>
                               )}
 
-                              {prediction &&
-                                (() => {
-                                  const isTossUp =
-                                    prediction.predicted_winner === "Toss Up" ||
-                                    prediction.confidence === 50;
+                             {prediction &&
+  (() => {
+    const isTossUp =
+      prediction.predicted_winner === "Toss Up" ||
+      prediction.confidence === 50;
 
-                                  return (
-                                    <div className="space-y-6 relative">
-                                      <div className="text-center bg-gradient-to-r from-background/50 via-muted/20 to-background/50 p-6 rounded-xl border border-border/30">
-                                        <div className="mb-4">
-                                          <div className="text-sm text-muted-foreground mb-2">
-                                            ORACLE PREDICTION
-                                          </div>
-                                          {isTossUp ? (
-                                            <h3 className="text-3xl font-bold bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 bg-clip-text text-transparent mb-3">
-                                              TOO CLOSE TO CALL
-                                            </h3>
-                                          ) : (
-                                            <h3 className="text-3xl font-bold bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent mb-3">
-                                              {prediction.predicted_winner}{" "}
-                                              VICTORIOUS
-                                            </h3>
-                                          )}
-                                        </div>
-                                        <div className="flex justify-center gap-4">
-                                          {isTossUp ? (
-                                            <>
-                                              <Badge
-                                                variant="outline"
-                                                className="text-xl py-3 px-6 bg-gradient-to-r from-yellow-500/20 to-yellow-500/10 border-yellow-500/30 text-yellow-400 shadow-lg"
-                                              >
-                                                <Target className="h-5 w-5 mr-2" />
-                                                50/50 Split
-                                              </Badge>
-                                              <Badge
-                                                variant="secondary"
-                                                className="text-xl py-3 px-6 shadow-lg"
-                                              >
-                                                Insufficient Data
-                                              </Badge>
-                                            </>
-                                          ) : (
-                                            <>
-                                              <Badge
-                                                variant="default"
-                                                className="text-xl py-3 px-6 bg-gradient-to-r from-primary to-primary/80 shadow-lg shadow-primary/20"
-                                              >
-                                                <Zap className="h-5 w-5 mr-2" />
-                                                {prediction.confidence}%
-                                                Confidence
-                                              </Badge>
-                                              {prediction.rematch && (
-                                                <Badge
-                                                  variant="secondary"
-                                                  className="text-xl py-3 px-6 shadow-lg"
-                                                >
-                                                  <Activity className="h-4 w-4 mr-2" />
-                                                  REMATCH
-                                                </Badge>
-                                              )}
-                                            </>
-                                          )}
-                                        </div>
-                                      </div>
+    return (
+      <div className="space-y-6 relative">
+        {/* ORACLE PREDICTION UI */}
+        <div className="text-center bg-gradient-to-r from-background/50 via-muted/20 to-background/50 p-6 rounded-xl border border-border/30">
+          <div className="mb-4">
+            <div className="text-sm text-muted-foreground mb-2">
+              ORACLE PREDICTION
+            </div>
+            {isTossUp ? (
+              <h3 className="text-3xl font-bold bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 bg-clip-text text-transparent mb-3">
+                TOO CLOSE TO CALL
+              </h3>
+            ) : (
+              <h3 className="text-3xl font-bold bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-transparent mb-3">
+                {prediction.predicted_winner} VICTORIOUS
+              </h3>
+            )}
+          </div>
+          <div className="flex justify-center gap-4">
+            {isTossUp ? (
+              <>
+                <Badge
+                  variant="outline"
+                  className="text-xl py-3 px-6 bg-gradient-to-r from-yellow-500/20 to-yellow-500/10 border-yellow-500/30 text-yellow-400 shadow-lg"
+                >
+                  <Target className="h-5 w-5 mr-2" />
+                  50/50 Split
+                </Badge>
+                <Badge
+                  variant="secondary"
+                  className="text-xl py-3 px-6 shadow-lg"
+                >
+                  Insufficient Data
+                </Badge>
+              </>
+            ) : (
+              <>
+                <Badge
+                  variant="default"
+                  className="text-xl py-3 px-6 bg-gradient-to-r from-primary to-primary/80 shadow-lg shadow-primary/20"
+                >
+                  <Zap className="h-5 w-5 mr-2" />
+                  {prediction.confidence}% Confidence
+                </Badge>
+                {prediction.rematch && (
+                  <Badge
+                    variant="secondary"
+                    className="text-xl py-3 px-6 shadow-lg"
+                  >
+                    <Activity className="h-4 w-4 mr-2" />
+                    REMATCH
+                  </Badge>
+                )}
+              </>
+            )}
+          </div>
+        </div>
 
-                                      {/* Only show key advantages for non-toss-up predictions */}
-                                      {!isTossUp && (
-                                        <div>
-                                          <h4 className="font-semibold mb-3">
-                                            Key Advantages:
-                                          </h4>
-                                          <div className="grid sm:grid-cols-2 gap-2">
-                                            {prediction.stat_favors.map(
-                                              (stat, index) => (
-                                                <div
-                                                  key={index}
-                                                  className="flex items-center gap-2 p-2 bg-background/50 rounded-lg"
-                                                >
-                                                  <div className="h-2 w-2 bg-primary rounded-full" />
-                                                  <span className="text-sm">
-                                                    <strong>
-                                                      {stat.stat}:
-                                                    </strong>{" "}
-                                                    {stat.favors}
-                                                  </span>
-                                                </div>
-                                              ),
-                                            )}
-                                          </div>
-                                        </div>
-                                      )}
+        {/* Only show key advantages for non-toss-up predictions */}
+        {!isTossUp && (
+          <div>
+            <h4 className="font-semibold mb-3">Key Advantages:</h4>
+            <div className="grid sm:grid-cols-2 gap-2">
+              {prediction.stat_favors.map((stat, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-2 p-2 bg-background/50 rounded-lg"
+                >
+                  <div className="h-2 w-2 bg-primary rounded-full" />
+                  <span className="text-sm">
+                    <strong>{stat.stat}:</strong> {stat.favors}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
-                                      {/* Toss-up explanation */}
-                                      {isTossUp && (
-                                        <div className="text-center bg-background/30 rounded-lg p-4">
-                                          <p className="text-muted-foreground leading-relaxed">
-                                            Due to limited UFC experience or
-                                            missing fighter data, this fight is
-                                            considered a toss-up. Both fighters
-                                            have equal chances of victory.
-                                          </p>
-                                        </div>
-                                      )}
-                                    </div>
-                                  );
-                                })()}
+        {/* Toss-up explanation */}
+        {isTossUp && (
+          <div className="text-center bg-background/30 rounded-lg p-4">
+            <p className="text-muted-foreground leading-relaxed">
+              Due to limited UFC experience or missing fighter data, this fight
+              is considered a toss-up. Both fighters have equal chances of
+              victory.
+            </p>
+          </div>
+        )}
+
+        {/* ⬇️ Add Explainability here */}
+        <div className="mt-6">
+          <h4 className="font-semibold mb-3">Model Explainability</h4>
+          <ExplainPanel
+            explainable={!!explanations.get(fight.bout_order)?.explainable}
+            topContributors={
+              explanations.get(fight.bout_order)?.top_contributors ?? []
+            }
+            reason={explanations.get(fight.bout_order)?.reason}
+          />
+        </div>
+      </div>
+    );
+  })()}
+
+
+                                
                             </CardContent>
                           </Card>
                         </div>

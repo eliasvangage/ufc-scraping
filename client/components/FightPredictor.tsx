@@ -210,7 +210,7 @@ export function FightPredictor() {
           {
             icon: Target,
             label: usingMockData ? "Demo Predictions" : "Live AI Predictions",
-            value: "✨",
+            value: "",
             color: usingMockData ? "yellow-500" : "green-500",
           },
         ]}

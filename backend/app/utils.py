@@ -105,6 +105,36 @@ def is_debut(fighter: dict) -> bool:
         ])
     )
 
+def build_placeholder_fighter(name: str) -> dict:
+    """Return a minimal fighter dict when the athlete isn't in the DB yet."""
+    return {
+        "name": name,
+        "nickname": "",
+        "weight": None,
+        "height": None,
+        "reach": None,
+        "SLpM": 0.0,
+        "SApM": 0.0,
+        "TD Avg.": 0.0,
+        "TD Def.": 0.0,
+        "Str. Acc.": 0.0,
+        "Str. Def": 0.0,
+        "fight_history": [],
+        "recent_form_score": 0.0,
+        "win_streak_score": 0.0,
+        "avg_opp_strength": 0.5,
+        "last_results": [],
+        "is_champion": False,
+        "record": "0-0-0",
+        "ufc_wins": 0,
+        "ufc_losses": 0,
+        "ufc_draws": 0,
+        "ko_pct": 0.0,
+        "sub_pct": 0.0,
+        "dec_pct": 0.0,
+        "age": None,
+    }
+
 def recent_form_score(fights, limit=5):
     """
     Returns a recency-weighted form score between -1 and +1.
@@ -399,6 +429,101 @@ def should_be_tossup(f1_input, f2_input):
 
     return False
 
+# ---- Lightweight explainability helpers ----
+
+def build_placeholder_fighter(name: str) -> dict:
+    """
+    Return a minimal 'debut / no-stats' fighter dict so the app can still
+    render matchups and default to a 50/50 prediction.
+    """
+    return {
+        "name": name,
+        "nickname": "",
+        "weight": None,
+        "height": None,
+        "reach": None,
+        "SLpM": 0.0,
+        "SApM": 0.0,
+        "TD Avg.": 0.0,
+        "TD Def.": 0.0,
+        "Str. Acc.": 0.0,
+        "Str. Def": 0.0,
+        "fight_history": [],
+        "recent_form_score": 0.0,
+        "win_streak_score": 0.0,
+        "avg_opp_strength": 0.5,
+        "last_results": [],
+        "is_champion": False,
+        "record": "0-0-0",
+        "ufc_wins": 0,
+        "ufc_losses": 0,
+        "ufc_draws": 0,
+        "ko_pct": 0.0,
+        "sub_pct": 0.0,
+        "dec_pct": 0.0,
+        "age": None,
+    }
+
+def compute_shap_for_pair(f1: dict, f2: dict, top_k: int = 5) -> dict:
+    """
+    Cheap, dependency-free 'explainability':
+    - Build your canonical (f1 - f2) feature vector
+    - Optionally weight features (if a weight file exists)
+    - Return top contributors by absolute weighted magnitude
+
+    If either fighter is a debut / has no stats, mark as not explainable.
+    """
+    try:
+        # If either fighter is a debut / no usable UFC stats → skip
+        if is_debut(f1) or is_debut(f2):
+            return {
+                "explainable": False,
+                "reason": "At least one fighter has no UFC stats (debut or missing data).",
+                "top_contributors": []
+            }
+
+        # Build canonical features (this uses the same canonicalization as predict_match)
+        pair = sorted([f1, f2], key=lambda d: d["name"].strip().lower())
+        f1c, f2c = pair[0], pair[1]
+        X = build_feature_vector(f1c, f2c)  # 1xN DataFrame
+
+        # Try to load weights if they exist; otherwise uniform = 1.0
+        weights = None
+        weights_path = os.path.join(os.path.dirname(__file__), "..", "ml", "model", "shap_feature_weights.npy")
+        try:
+            import numpy as _np
+            if os.path.exists(weights_path):
+                weights = _np.load(weights_path).tolist()
+        except Exception:
+            weights = None
+
+        features = list(X.columns)
+        values = X.iloc[0].to_dict()
+
+        # Build weighted contributions
+        contribs = []
+        for i, feat in enumerate(features):
+            v = float(values.get(feat, 0.0) or 0.0)
+            w = float(weights[i]) if (weights and i < len(weights)) else 1.0
+            contribs.append((feat, round(v * w, 6)))
+
+        # Sort by absolute impact and take top_k
+        contribs.sort(key=lambda kv: abs(kv[1]), reverse=True)
+        top = [{"feature": f, "value": v} for (f, v) in contribs[:top_k]]
+
+        return {
+            "explainable": True,
+            "reason": None,
+            "top_contributors": top
+        }
+    except Exception as e:
+        return {
+            "explainable": False,
+            "reason": f"Explainability failed: {e}",
+            "top_contributors": []
+        }
+
+
 def predict_match(f1_input, f2_input):
 
     print(f"ALPHA ORDER: {f1_input['name'] if f1_input else 'Unknown'} (f1) vs {f2_input['name'] if f2_input else 'Unknown'} (f2)")
@@ -469,7 +594,7 @@ def predict_match(f1_input, f2_input):
         X_scaled = scaler.transform(X)
 
     # === Confidence normalization helper ===
-    def normalize_confidence(p: float, low=50.0, high=68.0) -> float:
+    def normalize_confidence(p: float, low=50.0, high=75.0) -> float:
         # Clamp more gently to avoid extreme confidence
         p = max(0.01, min(p, 0.99))
         # Symmetric scaling around 0.5

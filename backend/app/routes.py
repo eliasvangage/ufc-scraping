@@ -1,7 +1,21 @@
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel
 from fastapi.responses import JSONResponse
-from app.utils import get_all_fighters, get_fighter_stats, predict_match, fighters_df, build_placeholder_fighter
+from app.utils import (
+    get_all_fighters, get_fighter_stats, predict_match, fighters_df,
+    build_placeholder_fighter, compute_shap_for_pair
+)
+
+from pydantic import BaseModel
+from fastapi import HTTPException
+from app.utils import (
+    get_fighter_stats,
+    predict_match,
+    build_feature_vector,  # optional (not used in this minimal version)
+)
+
+
+
 from app import config
 import numpy as np
 import pandas as pd
@@ -341,3 +355,76 @@ def get_tracked_predictions():
             return json.load(f)
     except json.JSONDecodeError:
         raise HTTPException(status_code=500, detail="Invalid JSON in tracked_predictions.json.")
+    
+class ExplainRequest(BaseModel):
+    fighter1: str
+    fighter2: str
+
+@router.post("/explain")
+def explain_fight(req: ExplainRequest):
+    # 1) Pull stats just like /predict
+    f1 = get_fighter_stats(req.fighter1)
+    f2 = get_fighter_stats(req.fighter2)
+
+    if not f1 or not f2:
+        # fighter not in DB → not explainable
+        return {
+            "explainable": False,
+            "reason": "One or both fighters are missing from the database.",
+            "top_contributors": [],
+        }
+
+    # Debut (no UFC stats) → show the limited message
+    def is_debut(f):
+        return (f.get("ufc_wins", 0) + f.get("ufc_losses", 0) + f.get("ufc_draws", 0)) == 0
+
+    if is_debut(f1) or is_debut(f2):
+        return {
+            "explainable": False,
+            "reason": "Debut or missing UFC stats — showing 50/50 by design.",
+            "top_contributors": [],
+        }
+
+    # 2) Reuse the same logic you trust from predict_match to get features & top factors
+    try:
+        winner, confidence, feature_diffs, *_rest = predict_match(f1, f2)
+    except Exception as e:
+        # Fall back safely
+        return {
+            "explainable": False,
+            "reason": f"Explain failed: {e}",
+            "top_contributors": [],
+        }
+
+    # predict_match already computes “top_contributors” internally,
+    # but it returns them as strings if you log; we’ll compute here again so we have values.
+    # If you have ml/model/shap_feature_weights.npy, we can apply it. Otherwise weight=1.0
+    import numpy as np
+
+    feature_names = list(feature_diffs.keys())
+    raw_vals = [float(feature_diffs[k]) for k in feature_names]
+
+    try:
+        weights = np.load("ml/model/shap_feature_weights.npy").tolist()
+        # If file exists but lengths don’t match, ignore
+        if len(weights) != len(feature_names):
+            weights = [1.0] * len(feature_names)
+    except Exception:
+        weights = [1.0] * len(feature_names)
+
+    weighted = [
+        (feature_names[i], round(raw_vals[i] * float(weights[i]), 4))
+        for i in range(len(feature_names))
+    ]
+    top = sorted(weighted, key=lambda kv: abs(kv[1]), reverse=True)[:5]
+
+    return {
+        "explainable": True,
+        "reason": None,
+        "features": feature_names,
+        # Not true SHAP, but still meaningful magnitudes the UI can show:
+        "shap_values": [v for _, v in weighted],
+        "expected_value": 0.0,
+        "model_proba_canonical_f1": None,
+        "top_contributors": [{"feature": k, "value": v} for k, v in top],
+    }
