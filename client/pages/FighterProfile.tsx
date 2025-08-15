@@ -239,43 +239,43 @@ export default function FighterProfile() {
         const fighterData = await apiService.getFighterDetails(decodedName);
 
         if (isMounted && fighterData) {
-          // Transform API data to match our Fighter interface
+          // Fighter data is already transformed by the API service
           const transformedFighter: Fighter = {
-            name: fighterData.name || decodedName,
-            nickname: "", // API doesn't provide nickname, so use empty string
-            height: fighterData.height?.toString() || "0",
-            weight: fighterData.weight?.toString() || "0",
-            reach: fighterData.reach?.toString() || "0",
-            stance: "Orthodox", // Default stance as API doesn't provide this
-            record: `${fighterData.ufc_wins || 0}-${fighterData.ufc_losses || 0}-${fighterData.ufc_draws || 0}`,
+            name: fighterData.name,
+            nickname: "", // Will extract from API if available
+            height: this.formatHeight(fighterData.height),
+            weight: fighterData.weight ? `${fighterData.weight} lbs` : "Unknown",
+            reach: fighterData.reach ? `${fighterData.reach}"` : "Unknown",
+            stance: "Orthodox", // Default stance
+            record: fighterData.record,
             profile_url: "",
             stats: {
-              "SLpM": fighterData.slpm?.toString() || "0",
-              "Str. Acc.": fighterData.strAcc?.toString() + "%" || "0%",
-              "SApM": fighterData.sapm?.toString() || "0",
-              "Str. Def": fighterData.strDef?.toString() + "%" || "0%",
-              "TD Avg.": fighterData.tdAvg?.toString() || "0",
-              "TD Acc.": "0%", // Not provided in API
-              "TD Def.": fighterData.tdDef?.toString() + "%" || "0%",
-              "Sub. Avg.": "0", // Not provided in API
+              "SLpM": fighterData.slpm?.toFixed(2) || "0.00",
+              "Str. Acc.": `${fighterData.strAcc?.toFixed(0) || 0}%`,
+              "SApM": fighterData.sapm?.toFixed(2) || "0.00",
+              "Str. Def": `${fighterData.strDef?.toFixed(0) || 0}%`,
+              "TD Avg.": fighterData.tdAvg?.toFixed(2) || "0.00",
+              "TD Acc.": "0%", // Calculate if needed
+              "TD Def.": `${fighterData.tdDef?.toFixed(0) || 0}%`,
+              "Sub. Avg.": "0.0", // Calculate if needed
             },
             fight_history: fighterData.fight_history?.map(fight => ({
               result: fight.result as "win" | "loss" | "draw",
               opponent: fight.opponent,
-              KD: "0",
-              STR: "0",
-              TD: "0",
-              SUB: "0",
+              KD: fight.KD || "--",
+              STR: fight.STR || "--",
+              TD: fight.TD || "--",
+              SUB: fight.SUB || "--",
               event: fight.event,
               method: fight.method || "Decision",
-              round: "1",
-              time: "5:00"
+              round: fight.round || "1",
+              time: fight.time || "5:00"
             })) || [],
-            dob: "", // Not provided in API
-            age: 30, // Default age as API doesn't provide this
-            division: "Heavyweight", // Default division as API doesn't provide this
+            dob: "", // Extract from API if available
+            age: this.calculateAge(), // Calculate or use API
+            division: this.getDivisionFromWeight(fighterData.weight),
             champion: fighterData.is_champion || false,
-            ufc_record: `${fighterData.ufc_wins || 0}-${fighterData.ufc_losses || 0}-${fighterData.ufc_draws || 0}`,
+            ufc_record: fighterData.record,
             ufc_wins: fighterData.ufc_wins || 0,
             ufc_losses: fighterData.ufc_losses || 0,
             ufc_draws: fighterData.ufc_draws || 0,
