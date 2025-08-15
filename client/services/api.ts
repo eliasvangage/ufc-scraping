@@ -216,15 +216,34 @@ class ApiService {
     }
   }
 
-  private parseHeight(heightStr: string): number {
-    // Convert height like "5' 11\"" to inches
-    if (heightStr.includes("'")) {
-      const parts = heightStr.replace(/"/g, '').split("'");
-      const feet = parseInt(parts[0]) || 0;
-      const inches = parseInt(parts[1]?.trim()) || 0;
-      return feet * 12 + inches;
+  private calculateAgeFromDob(dob?: string): number {
+    if (!dob) return 30; // Default age
+    try {
+      const birthDate = new Date(dob);
+      const today = new Date();
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const monthDiff = today.getMonth() - birthDate.getMonth();
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      return age > 0 ? age : 30;
+    } catch {
+      return 30;
     }
-    return 0;
+  }
+
+  private getDivisionFromWeight(weight?: string): string {
+    if (!weight) return "Unknown";
+    const weightNum = parseFloat(weight.replace(/[^\d.]/g, '') || '0');
+    if (weightNum <= 115) return "Strawweight";
+    if (weightNum <= 125) return "Flyweight";
+    if (weightNum <= 135) return "Bantamweight";
+    if (weightNum <= 145) return "Featherweight";
+    if (weightNum <= 155) return "Lightweight";
+    if (weightNum <= 170) return "Welterweight";
+    if (weightNum <= 185) return "Middleweight";
+    if (weightNum <= 205) return "Light Heavyweight";
+    return "Heavyweight";
   }
 
   private getLastResults(fightHistory: any[]): string[] {
