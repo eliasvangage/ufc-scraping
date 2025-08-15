@@ -124,18 +124,41 @@ const PredictionDetailsCard = ({ fight }: { fight: Fight }) => {
             </div>
 
             {/* Confidence Visualization */}
-            <div className="space-y-2">
+            <div className="space-y-3">
               <div className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">Confidence</span>
-                <span className="font-semibold text-primary">
+                <span className="text-muted-foreground">AI Confidence</span>
+                <span className="font-bold text-primary text-lg">
                   {fight.confidenceScore}%
                 </span>
               </div>
-              <Progress value={fight.confidenceScore} className="h-3" />
-              <div className="flex justify-between text-xs text-muted-foreground">
-                <span>50%</span>
-                <span>75%</span>
-                <span>100%</span>
+
+              {/* Custom progress bar with correct scaling */}
+              <div className="relative">
+                <div className="w-full bg-muted/30 rounded-full h-4 overflow-hidden">
+                  <div
+                    className="h-full bg-gradient-to-r from-primary/80 via-primary to-primary/90 rounded-full transition-all duration-1000 shadow-lg"
+                    style={{
+                      width: `${Math.max(0, Math.min(100, ((fight.confidenceScore - 50) / 50) * 100))}%`
+                    }}
+                  />
+                </div>
+
+                {/* Confidence markers */}
+                <div className="flex justify-between text-xs text-muted-foreground mt-1">
+                  <span className="text-yellow-400">50%</span>
+                  <span className="text-orange-400">65%</span>
+                  <span className="text-primary">80%</span>
+                  <span className="text-green-400">100%</span>
+                </div>
+
+                {/* Pointer indicator */}
+                <div
+                  className="absolute top-0 w-0.5 h-4 bg-white/80 shadow-lg"
+                  style={{
+                    left: `${Math.max(0, Math.min(100, ((fight.confidenceScore - 50) / 50) * 100))}%`,
+                    transform: 'translateX(-50%)'
+                  }}
+                />
               </div>
             </div>
 
