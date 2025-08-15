@@ -1057,16 +1057,45 @@ export default function EventDetail() {
                             </div>
 
                             <div className="grid md:grid-cols-2 gap-8">
-                              <FighterStatsCard
-                                fighter={fight.fighter_red}
-                                corner="red"
-                                prediction={prediction}
-                              />
-                              <FighterStatsCard
-                                fighter={fight.fighter_blue}
-                                corner="blue"
-                                prediction={prediction}
-                              />
+                              {/* Red Corner Fighter */}
+                              {(() => {
+                                const fighterData = prediction?.fighter1_data;
+                                const hasData = fighterData && fighterData.name &&
+                                  (fighterData.ufc_wins > 0 || fighterData.ufc_losses > 0 || fighterData.ufc_draws > 0);
+
+                                return hasData ? (
+                                  <FighterStatsCard
+                                    fighter={fight.fighter_red}
+                                    corner="red"
+                                    prediction={prediction}
+                                  />
+                                ) : (
+                                  <NoStatsCard
+                                    fighter={fight.fighter_red}
+                                    corner="red"
+                                  />
+                                );
+                              })()}
+
+                              {/* Blue Corner Fighter */}
+                              {(() => {
+                                const fighterData = prediction?.fighter2_data;
+                                const hasData = fighterData && fighterData.name &&
+                                  (fighterData.ufc_wins > 0 || fighterData.ufc_losses > 0 || fighterData.ufc_draws > 0);
+
+                                return hasData ? (
+                                  <FighterStatsCard
+                                    fighter={fight.fighter_blue}
+                                    corner="blue"
+                                    prediction={prediction}
+                                  />
+                                ) : (
+                                  <NoStatsCard
+                                    fighter={fight.fighter_blue}
+                                    corner="blue"
+                                  />
+                                );
+                              })()}
                             </div>
                           </div>
 
