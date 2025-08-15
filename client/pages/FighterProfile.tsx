@@ -286,11 +286,12 @@ export default function FighterProfile() {
           setUsingFallbackData(false);
         }
       } catch (err) {
-        console.warn("API fighter data unavailable, using fallback data for:", fighterName);
+        console.warn("API fighter data unavailable, using fallback data for:", fighterName, err);
 
         if (isMounted) {
           // Create fallback fighter data when API fails
           const decodedName = decodeURIComponent(fighterName);
+          console.log('Creating fallback data for:', decodedName);
           const fallbackFighter: Fighter = {
             name: decodedName,
             nickname: "",
