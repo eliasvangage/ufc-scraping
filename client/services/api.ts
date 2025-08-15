@@ -88,15 +88,20 @@ class ApiService {
   
 
   async getFighters(): Promise<string[]> {
-    const response = await fetch(`${this.baseUrl}/fighters`, {
-      headers: { 'Accept': 'application/json' },
-    });
+    try {
+      const response = await this.fetchWithTimeout(`${this.baseUrl}/fighters`, {
+        headers: { 'Accept': 'application/json' },
+      });
 
-    if (!response.ok) {
-      throw new Error(`Failed to fetch fighters: ${response.status} ${response.statusText}`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch fighters: ${response.status} ${response.statusText}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.warn('Fighter data unavailable, using offline data');
+      throw error;
     }
-
-    return await response.json();
   }
 
   async getFighterDetails(fighterName: string): Promise<Fighter | null> {
