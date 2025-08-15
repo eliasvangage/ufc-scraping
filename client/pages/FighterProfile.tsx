@@ -34,7 +34,7 @@ import {
   Brain,
   Lightbulb,
   Hash,
-  Fists,
+  Zap,
   Crosshair,
   Gauge,
   Dumbbell,
