@@ -98,6 +98,101 @@ export function FightCard({
     );
   };
 
+  const NoStatsCard = ({
+    fighter,
+    corner,
+  }: {
+    fighter: string;
+    corner: "red" | "blue";
+  }) => {
+    const cornerColors = {
+      red: {
+        bg: "from-red-500/20 via-red-500/10 to-red-500/5",
+        border: "border-red-500/30",
+        accent: "text-red-400",
+        icon: "text-red-400",
+      },
+      blue: {
+        bg: "from-blue-500/20 via-blue-500/10 to-blue-500/5",
+        border: "border-blue-500/30",
+        accent: "text-blue-400",
+        icon: "text-blue-400",
+      },
+    };
+
+    return (
+      <Card
+        className={`bg-gradient-to-br ${cornerColors[corner].bg} ${cornerColors[corner].border} shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] opacity-60`}
+      >
+        <CardContent className="p-6 space-y-4">
+          {/* Fighter Name */}
+          <div className="text-center space-y-3">
+            <h3 className={`text-2xl font-bold ${cornerColors[corner].accent}`}>
+              {fighter}
+            </h3>
+            <Badge
+              variant="outline"
+              className={`${cornerColors[corner].border} ${cornerColors[corner].accent} text-lg px-3 py-1`}
+            >
+              No Record Available
+            </Badge>
+          </div>
+
+          {/* No Stats Icon */}
+          <div className="flex flex-col items-center justify-center py-8 space-y-4">
+            <div className="relative">
+              <div className="w-24 h-24 rounded-full bg-muted/30 flex items-center justify-center">
+                <svg
+                  className={`w-12 h-12 ${cornerColors[corner].accent} opacity-50`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.034 0-3.9.785-5.291 2.069M8 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <div className="absolute -top-1 -right-1">
+                <div className="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center">
+                  <span className="text-xs font-bold text-black">?</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <h4 className="text-lg font-semibold text-muted-foreground mb-2">
+                No Stats Available
+              </h4>
+              <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
+                Fighter data not found in database or making UFC debut
+              </p>
+            </div>
+          </div>
+
+          {/* Debut/Unknown indicators */}
+          <div className="grid grid-cols-1 gap-3">
+            <div className="bg-background/30 rounded-lg p-4 text-center backdrop-blur-sm">
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <Activity className={`h-4 w-4 ${cornerColors[corner].icon}`} />
+                <span className="text-sm font-medium text-muted-foreground">
+                  Status
+                </span>
+              </div>
+              <Badge variant="secondary" className="text-xs">
+                Insufficient Data
+              </Badge>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  };
+
   const FighterStatsCard = ({
     fighter,
     corner,
