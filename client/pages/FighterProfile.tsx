@@ -219,6 +219,7 @@ export default function FighterProfile() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedView, setSelectedView] = useState<"overview" | "stats" | "history">("overview");
+  const [usingFallbackData, setUsingFallbackData] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
