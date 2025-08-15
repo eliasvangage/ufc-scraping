@@ -790,8 +790,7 @@ export default function EventDetail() {
                       : fightStats.isCoMain
                         ? "bg-gradient-to-br from-purple-500/25 via-purple-500/15 to-purple-500/5 border-purple-500/40 shadow-xl shadow-purple-500/10 hover:shadow-purple-500/20"
                         : "bg-gradient-to-br from-card via-card/95 to-muted/30 border-border hover:border-primary/30 shadow-lg hover:shadow-xl"
-                  } ${isExpanded ? "shadow-3xl scale-[1.01] ring-2 ring-primary/20" : ""} animate-in fade-in slide-in-from-bottom-4`}
-                  style={{ animationDelay: `${index * 100}ms` }}
+                  } ${isExpanded ? "shadow-3xl scale-[1.01] ring-2 ring-primary/20" : ""} animate-fadeInUpOnce`}
                 >
                   <CardHeader className="space-y-4 relative overflow-hidden">
                     {/* Animated background glow */}
