@@ -283,6 +283,7 @@ export default function FighterProfile() {
 
           setFighter(transformedFighter);
           setError(null);
+          setUsingFallbackData(false);
         }
       } catch (err) {
         console.warn("API fighter data unavailable, using fallback data for:", fighterName);
