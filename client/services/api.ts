@@ -158,24 +158,34 @@ class ApiService {
     }, 0);
 
     const weights = [125, 135, 145, 155, 170, 185, 205, 265];
+    const wins = 10 + (Math.abs(nameHash) % 15);
+    const losses = Math.abs(nameHash) % 5;
+    const draws = Math.abs(nameHash) % 2;
 
     return {
       name: fighterName,
       weight: weights[Math.abs(nameHash) % weights.length],
-      height: 160 + (Math.abs(nameHash) % 30),
-      reach: 170 + (Math.abs(nameHash) % 40),
+      height: 65 + (Math.abs(nameHash) % 15), // Height in inches
+      reach: 70 + (Math.abs(nameHash) % 10),
       slpm: 2.5 + (Math.abs(nameHash) % 50) / 10,
       sapm: 1.5 + (Math.abs(nameHash) % 40) / 10,
       tdAvg: (Math.abs(nameHash) % 50) / 10,
       tdDef: 50 + (Math.abs(nameHash) % 50),
       strAcc: 35 + (Math.abs(nameHash) % 30),
       strDef: 45 + (Math.abs(nameHash) % 35),
-      fight_history: [],
+      fight_history: this.generateMockFightHistory(nameHash, wins + losses),
       recent_form_score: (Math.abs(nameHash) % 100) / 100,
       win_streak_score: (Math.abs(nameHash) % 100) / 100,
       avg_opp_strength: (Math.abs(nameHash) % 100) / 100,
       last_results: this.generateLastResults(nameHash),
       is_champion: Math.abs(nameHash) % 100 < 10,
+      record: `${wins}-${losses}-${draws}`,
+      ufc_wins: wins,
+      ufc_losses: losses,
+      ufc_draws: draws,
+      ko_pct: Math.abs(nameHash) % 40,
+      dec_pct: 60 + (Math.abs(nameHash) % 30),
+      sub_pct: Math.abs(nameHash) % 20,
     };
   }
 
