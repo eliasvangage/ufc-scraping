@@ -111,24 +111,33 @@ export function Hero({
         <div className={`absolute inset-0 ${styles.accent} animate-pulse`} />
       )}
 
-      {/* Animated Background Particles */}
+      {/* Dynamic Grid Pattern */}
+      <div className="absolute inset-0 opacity-[0.02]">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,103,0,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,103,0,0.1) 1px, transparent 1px)`,
+            backgroundSize: '40px 40px'
+          }}
+        />
+      </div>
+
+      {/* Floating Orbs */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-br from-primary/10 to-yellow-500/5 rounded-full blur-xl animate-float" />
+        <div className="absolute top-40 right-32 w-24 h-24 bg-gradient-to-br from-yellow-500/8 to-primary/5 rounded-full blur-xl animate-float" style={{ animationDelay: "2s" }} />
+        <div className="absolute bottom-32 left-40 w-20 h-20 bg-gradient-to-br from-primary/12 to-orange-500/5 rounded-full blur-xl animate-float" style={{ animationDelay: "4s" }} />
+        <div className="absolute bottom-20 right-20 w-28 h-28 bg-gradient-to-br from-orange-500/6 to-primary/8 rounded-full blur-xl animate-float" style={{ animationDelay: "1s" }} />
+      </div>
+
+      {/* Enhanced Particles */}
       <div className="absolute inset-0">
-        <div
-          className="absolute top-1/4 left-1/4 w-2 h-2 bg-primary/20 rounded-full animate-pulse"
-          style={{ animationDelay: "0s" }}
-        />
-        <div
-          className="absolute top-1/3 right-1/4 w-1 h-1 bg-primary/30 rounded-full animate-pulse"
-          style={{ animationDelay: "1s" }}
-        />
-        <div
-          className="absolute bottom-1/3 left-1/3 w-1.5 h-1.5 bg-primary/25 rounded-full animate-pulse"
-          style={{ animationDelay: "2s" }}
-        />
-        <div
-          className="absolute top-2/3 right-1/3 w-1 h-1 bg-primary/20 rounded-full animate-pulse"
-          style={{ animationDelay: "1.5s" }}
-        />
+        <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-gradient-to-br from-primary/30 to-yellow-500/20 rounded-full animate-pulse-glow" />
+        <div className="absolute top-1/3 right-1/4 w-2 h-2 bg-gradient-to-br from-yellow-500/25 to-primary/15 rounded-full animate-pulse-glow" style={{ animationDelay: "1s" }} />
+        <div className="absolute bottom-1/3 left-1/3 w-2.5 h-2.5 bg-gradient-to-br from-primary/35 to-orange-500/20 rounded-full animate-pulse-glow" style={{ animationDelay: "2s" }} />
+        <div className="absolute top-2/3 right-1/3 w-2 h-2 bg-gradient-to-br from-orange-500/20 to-primary/25 rounded-full animate-pulse-glow" style={{ animationDelay: "1.5s" }} />
+        <div className="absolute top-1/6 left-2/3 w-1.5 h-1.5 bg-gradient-to-br from-primary/20 to-yellow-500/15 rounded-full animate-pulse-glow" style={{ animationDelay: "3s" }} />
+        <div className="absolute bottom-1/6 right-1/6 w-3.5 h-3.5 bg-gradient-to-br from-yellow-500/15 to-primary/20 rounded-full animate-pulse-glow" style={{ animationDelay: "0.5s" }} />
       </div>
 
       {/* Content */}
